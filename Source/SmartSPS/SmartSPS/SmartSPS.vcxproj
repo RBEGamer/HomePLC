@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}</ProjectGuid>
+    <ProjectName>SmartSPS</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\c++\4.6;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\c++\4.6\arm-linux-gnueabihf;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\c++\4.6\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\arm-linux-gnueabihf;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)SmartSPS-Debug.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\c++\4.6;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\c++\4.6\arm-linux-gnueabihf;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\c++\4.6\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include\arm-linux-gnueabihf;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.178.58\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)SmartSPS-Release.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="base_node.cpp" />
+    <ClCompile Include="node_bifte.cpp" />
+    <ClCompile Include="node_biftefl.cpp" />
+    <ClCompile Include="node_biftest.cpp" />
+    <ClCompile Include="node_blbuffer.cpp" />
+    <ClCompile Include="node_blfrs.cpp" />
+    <ClCompile Include="node_blft.cpp" />
+    <ClCompile Include="node_blnot.cpp" />
+    <ClCompile Include="connector.cpp" />
+    <ClCompile Include="node_bland.cpp" />
+    <ClCompile Include="node_blor.cpp" />
+    <ClCompile Include="node_blxor.cpp" />
+    <ClCompile Include="node_bndmx.cpp" />
+    <ClCompile Include="node_bnidisp.cpp" />
+    <ClCompile Include="node_ctimest.cpp" />
+    <ClCompile Include="node_floatcomp.cpp" />
+    <ClCompile Include="node_intcomp.cpp" />
+    <ClCompile Include="node_nbcobof.cpp" />
+    <ClCompile Include="node_nbcobot.cpp" />
+    <ClCompile Include="node_nbcofl.cpp" />
+    <ClCompile Include="node_nbcoin.cpp" />
+    <ClCompile Include="node_nbcost.cpp" />
+    <ClCompile Include="node_nbdi.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="node_nbdo.cpp" />
+    <ClCompile Include="node_nbfltostr.cpp" />
+    <ClCompile Include="node_nbftoi.cpp" />
+    <ClCompile Include="node_nbinttostr.cpp" />
+    <ClCompile Include="node_nbitof.cpp" />
+    <ClCompile Include="node_nbsttof.cpp" />
+    <ClCompile Include="node_nbsttoi.cpp" />
+    <ClCompile Include="node_opwemare.cpp" />
+    <ClCompile Include="node_phhlux.cpp" />
+    <ClCompile Include="node_strcomp.cpp" />
+    <ClCompile Include="node_tstoint.cpp" />
+    <ClCompile Include="serialib.cpp" />
+    <ClCompile Include="serial_management.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="debug.mak" />
+    <None Include="Makefile" />
+    <None Include="release.mak" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base_node.h" />
+    <ClInclude Include="galik.h" />
+    <ClInclude Include="node_bifte.h" />
+    <ClInclude Include="node_biftefl.h" />
+    <ClInclude Include="node_biftest.h" />
+    <ClInclude Include="node_blbuffer.h" />
+    <ClInclude Include="node_blfrs.h" />
+    <ClInclude Include="node_blft.h" />
+    <ClInclude Include="node_blnot.h" />
+    <ClInclude Include="connector.h" />
+    <ClInclude Include="main_node_include.h" />
+    <ClInclude Include="node_bland.h" />
+    <ClInclude Include="node_blor.h" />
+    <ClInclude Include="node_blxor.h" />
+    <ClInclude Include="node_bndmx.h" />
+    <ClInclude Include="node_bnidisp.h" />
+    <ClInclude Include="node_ctimest.h" />
+    <ClInclude Include="node_floatcomp.h" />
+    <ClInclude Include="node_intcomp.h" />
+    <ClInclude Include="node_nbcobof.h" />
+    <ClInclude Include="node_nbcobot.h" />
+    <ClInclude Include="node_nbcofl.h" />
+    <ClInclude Include="node_nbcoin.h" />
+    <ClInclude Include="node_nbcost.h" />
+    <ClInclude Include="node_nbdi.h" />
+    <ClInclude Include="node_nbdo.h" />
+    <ClInclude Include="node_nbfltostr.h" />
+    <ClInclude Include="node_nbftoi.h" />
+    <ClInclude Include="node_nbinttostr.h" />
+    <ClInclude Include="node_nbitof.h" />
+    <ClInclude Include="node_nbsttof.h" />
+    <ClInclude Include="node_nbsttoi.h" />
+    <ClInclude Include="node_opwemare.h" />
+    <ClInclude Include="node_phhlux.h" />
+    <ClInclude Include="node_strcomp.h" />
+    <ClInclude Include="node_tstoint.h" />
+    <ClInclude Include="serialib.h" />
+    <ClInclude Include="serial_management.h" />
+    <ClInclude Include="single_node_include.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TEXTCONFIG.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

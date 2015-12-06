@@ -1,0 +1,7 @@
+NID		NSI		CON			PARAM	
+1		NBDI	1:0:2:0		GPIO1%
+2		NBDO				GPIO2%
+
+
+globaler trenner %
+trenner zwischen einträgen :

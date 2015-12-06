@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{9715ff7b-5344-4b2a-8353-ff5289126321}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{b870e91b-498b-446b-b2c2-dfa112203c9b}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{a1feb6e8-76f6-4251-a565-80197e1c25c2}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{ce3a2637-bbdb-4041-8bb8-927a3f4e8249}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base_node.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbdi.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="connector.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbdo.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="serial_management.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="serialib.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_bland.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_blor.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_blxor.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_blnot.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_blbuffer.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_blfrs.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_blft.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbcoin.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_bifte.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_phhlux.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbcost.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbcofl.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbcobot.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbcobof.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_biftefl.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_biftest.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_opwemare.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbsttoi.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbsttof.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbitof.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbftoi.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_ctimest.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_tstoint.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_intcomp.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_floatcomp.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_strcomp.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_bndmx.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_bnidisp.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbinttostr.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="node_nbfltostr.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base_node.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbdi.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="main_node_include.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbdo.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="connector.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="serial_management.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="single_node_include.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="serialib.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_bland.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_blor.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_blxor.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_blnot.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_blbuffer.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_blfrs.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_blft.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbcoin.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_bifte.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_phhlux.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="galik.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbcost.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbcofl.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbcobot.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbcobof.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_biftefl.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_biftest.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_opwemare.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbsttoi.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbsttof.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbitof.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbftoi.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_ctimest.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_tstoint.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_intcomp.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_floatcomp.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_strcomp.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_bndmx.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_bnidisp.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbinttostr.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="node_nbfltostr.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TEXTCONFIG.txt" />
+  </ItemGroup>
+</Project>
