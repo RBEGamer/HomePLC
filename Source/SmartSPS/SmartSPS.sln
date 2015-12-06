@@ -1,17 +1,23 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmartSPS", "SmartSPS\SmartSPS.vcxproj", "{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_remote|Any CPU = Debug_remote|Any CPU
+		Debug_remote|x86 = Debug_remote|x86
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}.Debug_remote|Any CPU.ActiveCfg = Debug_remote|Win32
+		{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}.Debug_remote|Any CPU.Build.0 = Debug_remote|Win32
+		{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}.Debug_remote|x86.ActiveCfg = Debug_remote|Win32
+		{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}.Debug_remote|x86.Build.0 = Debug_remote|Win32
 		{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}.Debug|x86.ActiveCfg = Debug|Win32
 		{F715FC8D-59C1-46F9-99FC-AB5DB5B17451}.Debug|x86.Build.0 = Debug|Win32

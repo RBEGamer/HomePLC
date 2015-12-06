@@ -85,8 +85,16 @@
     <None Include="Makefile" />
     <None Include="release.mak" />
     <None Include="ClassDiagram.cd" />
+    <None Include="debug_remote.mak">
+      <Filter>Make files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TEXTCONFIG.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{0cf47616-e852-45e6-abf5-79e15844b818}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

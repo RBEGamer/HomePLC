@@ -1,0 +1,163 @@
+
+ #include <SoftwareSerial.h>
+#include <DMXSerial.h>
+String readString;
+#include <elapsedMillis.h>
+
+elapsedMillis timeElapsed; //declare global if you don't want it reset every time loop runs
+// delay in milliseconds between blinks of the LED
+unsigned int interval = 10000;
+ const byte rxPin = 8;
+const byte txPin = 9;
+SoftwareSerial mySerial (rxPin, txPin);
+const int max_ch = 512;
+ #include <Wire.h>  // Comes with Arduino IDE
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address
+int modul_id = 0;
+ bool bgs;
+void setup() {
+pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+
+
+
+  digitalWrite(3, HIGH);
+  delay(300);
+  digitalWrite(3, LOW);
+    digitalWrite(4, HIGH);
+  delay(300);
+  digitalWrite(4, LOW);
+    digitalWrite(5, HIGH);
+  delay(300);
+  digitalWrite(5, LOW);
+  // put your setup code here, to run once:
+  // define pin modes for tx, rx:
+  pinMode(rxPin, INPUT);
+  pinMode(txPin, OUTPUT);
+  // set the data rate for the SoftwareSerial port
+  mySerial.begin(9600);
+ DMXSerial.init(DMXController);
+
+  Wire.begin ();
+  // initialize digital pin 13 as an output.
+ lcd.begin(16,2);   
+
+
+
+   lcd.setCursor(0,0); //Start at character 4 on line 0
+  lcd.print("MSI : BNID, BNDMX");
+  lcd.setCursor(0,1); //Start at character 4 on line 0
+  lcd.print("MID : 0");
+  delay(1000);
+
+
+
+
+for(int i = 0; i < 255; i++){
+    digitalWrite(3, HIGH);
+  for(int j = 0; j < 255; j++){
+  
+ DMXSerial.write(i, j);
+
+ 
+}
+delay(10);
+ digitalWrite(3, LOW);
+}
+delay(1000);
+ digitalWrite(3, HIGH);
+for(int i = 0; i < 255; i++){
+ DMXSerial.write(i, 0);
+}
+ digitalWrite(3, LOW);
+
+  lcd.clear();
+bgs = false;
+   lcd.noBacklight();
+mySerial.println( "register_bnid_0");
+
+}
+
+
+void loop() {
+  if(modul_id >= 0){
+    
+  if (timeElapsed > interval && bgs == true) 
+  {       
+   
+    timeElapsed = 0;       // reset the counter to 0 so the counting starts over...
+    bgs = false;
+       lcd.noBacklight();
+  }
+
+  
+       while (mySerial.available()) {
+         digitalWrite(4, HIGH);
+    delay(3);  //delay to allow buffer to fill 
+    if (mySerial.available() >0) {
+      char c = mySerial.read();  //gets one byte from serial buffer
+      readString += c; //makes the string readString
+    } 
+    digitalWrite(4, LOW);
+  }
+
+
+
+
+
+  if (readString.length() >0) {
+  if(getValue(readString, '_', 0).toInt() == modul_id){
+  if(getValue(readString, '_', 1) == "bnid"){
+  
+       int _cursor = getValue(readString, '_', 2).toInt();
+       if(_cursor != -1){
+      
+       if(getValue(readString, '_', 3) != ""){
+         digitalWrite(5, HIGH);
+         lcd.setCursor(0,_cursor); //Start at character 4 on line 0 //CHAR LINE
+        lcd.println(getValue(readString, '_', 3));
+        lcd.backlight();
+        bgs = true;
+         timeElapsed = 0; 
+         digitalWrite(5, LOW);
+          readString="";
+        }
+       }else{
+          lcd.clear();
+           readString="";
+        }
+    }else if(getValue(readString, '_', 1) == "bndmx"){
+         int channel = getValue(readString, '_', 2).toInt();
+         int value = getValue(readString, '_', 3).toInt();
+         digitalWrite(3, HIGH);
+           DMXSerial.write(channel,value);
+           digitalWrite(3, LOW);
+            readString="";
+     }
+  }
+    readString="";
+  } 
+  } 
+
+}
+
+
+
+
+String getValue(String data, char separator, int index)
+{
+  int found = 0;
+  int strIndex[] = {
+    0, -1  };
+  int maxIndex = data.length()-1;
+  for(int i=0; i<=maxIndex && found<=index; i++){
+    if(data.charAt(i)==separator || i==maxIndex){
+      found++;
+      strIndex[0] = strIndex[1]+1;
+      strIndex[1] = (i == maxIndex) ? i+1 : i;
+    }
+  }
+  return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
+}

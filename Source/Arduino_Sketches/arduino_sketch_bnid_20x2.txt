@@ -1,0 +1,99 @@
+/*
+  Blink
+  Turns on an LED on for one second, then off for one second, repeatedly.
+
+  Most Arduinos have an on-board LED you can control. On the Uno and
+  Leonardo, it is attached to digital pin 13. If you're unsure what
+  pin the on-board LED is connected to on your Arduino model, check
+  the documentation at http://www.arduino.cc
+
+  This example code is in the public domain.
+
+  modified 8 May 2014
+  by Scott Fitzgerald
+ */
+
+ #include <Wire.h>  // Comes with Arduino IDE
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address
+
+
+String readString;
+int modul_id = 0;
+// the setup function runs once when you press reset or power the board
+void setup() {
+Serial.begin(9600);
+  Wire.begin ();
+  // initialize digital pin 13 as an output.
+ lcd.begin(16,2);   
+
+// NOTE: Cursor Position: CHAR, LINE) start at 0  
+  lcd.setCursor(0,0); //Start at character 4 on line 0
+  lcd.print("MSI : BNID");
+  lcd.setCursor(0,1); //Start at character 4 on line 0
+  lcd.print("MID : 0");
+  delay(1000);
+
+ 
+
+
+
+  lcd.clear();
+Serial.println( "register_bnid_0");
+}
+
+// the loop function runs over and over again forever
+void loop() {
+if(modul_id >= 0){
+  }
+
+   while (Serial.available()) {
+    delay(3);  //delay to allow buffer to fill 
+    if (Serial.available() >0) {
+      char c = Serial.read();  //gets one byte from serial buffer
+      readString += c; //makes the string readString
+    } 
+  }
+
+  if (readString.length() >0) {
+      //Serial.println(readString); //see what was received
+
+if(getValue(readString, '_', 0).toInt() == modul_id){
+  if(getValue(readString, '_', 1) == "bnid"){
+  
+       int _cursor = getValue(readString, '_', 2).toInt();
+       if(_cursor < 2){
+       lcd.setCursor(0,_cursor); //Start at character 4 on line 0 //CHAR LINE
+
+       if(getValue(readString, '_', 3) != ""){
+        lcd.print(getValue(readString, '_', 3));
+        }
+       }else{
+          lcd.clear();
+        }
+    }
+  }
+    readString="";
+  } 
+ 
+}
+
+
+
+
+
+String getValue(String data, char separator, int index)
+{
+  int found = 0;
+  int strIndex[] = {
+    0, -1  };
+  int maxIndex = data.length()-1;
+  for(int i=0; i<=maxIndex && found<=index; i++){
+    if(data.charAt(i)==separator || i==maxIndex){
+      found++;
+      strIndex[0] = strIndex[1]+1;
+      strIndex[1] = (i == maxIndex) ? i+1 : i;
+    }
+  }
+  return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
+}

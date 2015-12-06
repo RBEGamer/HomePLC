@@ -208,9 +208,13 @@ std::deque<std::string> serial_management::recieve_queue = std::deque<std::strin
 std::deque<std::string> serial_management::send_queue = std::deque<std::string>();
 int uart0_filestream = -1;
 serialib LS;                                                            // Object of the serialib class
-int Ret;                                                                // Used for return values
-char Buffer[128];
+int Ret;             //returns the recieved serial chars                                                   // Used for return values
+char Buffer[128]; //for the serial recieve
 base_node** nodes_buffer;
+int end_loop_ticks = 0;
+int start_loop_ticks = 0;
+
+
 
 void processing_serial_query(base_node* bn[]) {
 	
@@ -348,7 +352,7 @@ std::stringstream ss;
 
 
 
-std::string* connection_string;
+std::string* connection_string;//holds all connection inforamtion
 
 void process_xml_nodes(std::string*  kvp, int element_count) {
 	std::cout << "XML NODE CONTENT: " << kvp[element_count].c_str() << std::endl;
@@ -390,7 +394,34 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	
 }
 
+void main_serial_update_loop() {
+	//SEND SERIAL MESSAGE FROM QUEUE
+	if (!serial_management::send_queue.empty()) {
 
+		std::string msg = serial_management::get_message_to_send();
+		std::cout << msg << std::endl;
+		if (msg != "") {
+			Ret = LS.WriteString(msg.c_str());
+			usleep(100);// Send the command on the serial port
+			if (Ret != 1) {                                                           // If the writting operation failed ...
+				printf("Error while writing data\n");                              // ... display a message ...
+
+			}
+		}
+	}
+	// READ SERIAL MESSAGE FROM DEVICE TO SERIAL RECIEVE QUEUE
+	Ret = LS.ReadString(Buffer, '\n', 128, 50);                                // Read a maximum of 128 characters with a timeout of 5 seconds
+	if (Ret > 0) {
+#if defined(DEBUG)
+		std::cout << "recieved : " << Buffer << std::endl;
+#endif
+		serial_management::add_to_revieved_queue(Buffer);
+	}
+	//SERIAL PROCESSING STUFF -> TRANSMIT RECIEVED DATA TO ALL NODES WHO NEEDED SERIAL COMMANDS
+	processing_serial_query(nodes_buffer); //process the recieved messsages
+	serial_management::update();// The final character of the string must be a line feed ('\n')
+
+}
 
 
 int main(int argc, char *argv[])
@@ -410,14 +441,14 @@ int main(int argc, char *argv[])
 	}
 	std::cout << "NODESERVER V1.2 STARTING THE SERIAL INTERFACE IS: /dev/ttyUSB0" << std::endl;
 	serial_management::add_to_send_queue("0_bnid_0_SmartSPS 1.2\n");
-	
+	serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
 
 
 
 
 
 	
-	connection_string = new std::string();
+	connection_string = new std::string();//create string
 
 
 
@@ -497,7 +528,7 @@ int main(int argc, char *argv[])
 	while (!break_update_cycle)
 	{
 		//STORE TIME AT LOOP START
-		int a = getTick();
+		start_loop_ticks = getTick();
 	
 		//UPDATE ALL NODES 
 		if (delta_time > 0) {
@@ -508,36 +539,11 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
-		//SEND SERIAL MESSAGE FROM QUEUE
-		if (!serial_management::send_queue.empty()) {
-		
-			std::string msg = serial_management::get_message_to_send();
-			std::cout << msg << std::endl;
-			if (msg != "") {
-				Ret = LS.WriteString(msg.c_str());
-				usleep(100);// Send the command on the serial port
-				if (Ret != 1) {                                                           // If the writting operation failed ...
-					printf("Error while writing data\n");                              // ... display a message ...
-
-				}
-			}
-		}
-		// READ SERIAL MESSAGE FROM DEVICE TO SERIAL RECIEVE QUEUE
-		Ret = LS.ReadString(Buffer, '\n', 128, 50);                                // Read a maximum of 128 characters with a timeout of 5 seconds
-		if (Ret > 0) {
-#if defined(DEBUG)
-			std::cout << "recieved : " << Buffer << std::endl;
-#endif
-			serial_management::add_to_revieved_queue(Buffer);
-		}
-		//SERIAL PROCESSING STUFF -> TRANSMIT RECIEVED DATA TO ALL NODES WHO NEEDED SERIAL COMMANDS
-		processing_serial_query(nodes_buffer); //process the recieved messsages
-		serial_management::update();// The final character of the string must be a line feed ('\n')
-		                                                          
-
+		                            
+		main_serial_update_loop();
 	//GET TIME AND CALC DELTATIME FOR THE NEXT ITERATION
-		int b = getTick();
-		delta_time = (b - a) / 1000.0f;
+		 end_loop_ticks = getTick();
+		delta_time = (end_loop_ticks - start_loop_ticks) / 1000.0f;
 #if defined(DEBUG)
 		timer += delta_time;
 		std::cout << "RUNTIME  :" << timer << std::endl;
