@@ -386,12 +386,50 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 
 
 	//CHECK IF ALL DATA VALID
+	//TODO: ADD ALL OTHERS
+	//TODO:wqa  ADD TIMER NODE
+	if (nsi == "nbdi") { nodes_buffer[element_count] = new node_nbdi(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "nbdo") { nodes_buffer[element_count] = new node_nbdo(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "bndmx") { nodes_buffer[element_count] = new node_bndmx(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "bnidisp") { nodes_buffer[element_count] = new node_bnidisp(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
 
-	if (nsi == "nbdi") { nodes_buffer[element_count] = new node_nbdi(nid, true, count_connections(*connection_string, nid), nparam, false); std::cout << "FACTORY ADDED : NBDI-" << nid << std::endl; return; };
-	if (nsi == "nbdo") { nodes_buffer[element_count] = new node_nbdo(nid, true, count_connections(*connection_string, nid), nparam, false); std::cout << "FACTORY ADDED : nbdo" << nid << std::endl; return; };
+	if (nsi == "bland") { nodes_buffer[element_count] = new node_bland(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "blor") { nodes_buffer[element_count] = new node_blor(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "blxor") { nodes_buffer[element_count] = new node_blxor(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "blnot") { nodes_buffer[element_count] = new node_blnot(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "blbuffer") { nodes_buffer[element_count] = new node_blbuffer(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+	if (nsi == "bifte") { nodes_buffer[element_count] = new node_bifte(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "biftest") { nodes_buffer[element_count] = new node_biftest(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "biftefl") { nodes_buffer[element_count] = new node_biftefl(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+	if (nsi == "intcomp") { nodes_buffer[element_count] = new node_intcomp(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "floatcomp") { nodes_buffer[element_count] = new node_floatcomp(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "strcomp") { nodes_buffer[element_count] = new node_strcomp(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+	if (nsi == "blfrs") { nodes_buffer[element_count] = new node_blfrs(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "blft") { nodes_buffer[element_count] = new node_blft(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 
 
-	
+	if (nsi == "nbcoin") { nodes_buffer[element_count] = new node_nbcoin(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
+	if (nsi == "nbcost") { nodes_buffer[element_count] = new node_nbcost(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
+	if (nsi == "nbcofl") { nodes_buffer[element_count] = new node_nbcofl(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
+	if (nsi == "nbcobot") { nodes_buffer[element_count] = new node_nbcobot(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
+	if (nsi == "nbcobof") { nodes_buffer[element_count] = new node_nbcobof(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
+
+	if (nsi == "nbsttoi") { nodes_buffer[element_count] = new node_nbsttoi(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "nbsttof") { nodes_buffer[element_count] = new node_nbsttof(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "nbitof") { nodes_buffer[element_count] = new node_nbitof(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "nbftoi") { nodes_buffer[element_count] = new node_nbftoi(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "nbinttostr") { nodes_buffer[element_count] = new node_nbinttostr(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "nbfltostr") { nodes_buffer[element_count] = new node_fltostr(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+	if (nsi == "ctimest") { nodes_buffer[element_count] = new node_ctimest(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "tstoint") { nodes_buffer[element_count] = new node_tstoint(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+	if (nsi == "phhlux") { nodes_buffer[element_count] = new node_phhlux(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "opwemare") { nodes_buffer[element_count] = new node_opwemare(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
 }
 
 void main_serial_update_loop() {
@@ -441,8 +479,9 @@ int main(int argc, char *argv[])
 	}
 	std::cout << "NODESERVER V1.2 STARTING THE SERIAL INTERFACE IS: /dev/ttyUSB0" << std::endl;
 	serial_management::add_to_send_queue("0_bnid_0_SmartSPS 1.2\n");
+	#if defined(DEBUG)
 	serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
-
+	#endif
 
 
 
