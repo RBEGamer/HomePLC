@@ -26,10 +26,11 @@ void node_intcomp::update(float timestep)
 
 	if (updated_values) {
 		updated_values = false;
-
+		last_state_p3 = p3_output;
 		if (comp_node == "==" && p0_input_a == p1_input_b) {
 			p3_output = true;
-		}else {
+		}
+		else {
 			p3_output = false;
 		}
 
@@ -46,7 +47,7 @@ void node_intcomp::update(float timestep)
 		else {
 			p3_output = false;
 		}
-		
+
 		if (comp_node == "<" && p0_input_a < p1_input_b) {
 			p3_output = true;
 		}
@@ -68,19 +69,20 @@ void node_intcomp::update(float timestep)
 			p3_output = false;
 		}
 
-
-		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
-		for (size_t i = 0; i < connection_count; i++) {
-			switch ((p_connections + i)->input_pos) {
-			case 2:
-				//update value in in the connected node connector
-				if ((p_connections + i)->connector_node_ptr != NULL) {
-					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p3_output);
-					std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+		if (last_state_p3 != p3_output) {
+			//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
+			for (size_t i = 0; i < connection_count; i++) {
+				switch ((p_connections + i)->input_pos) {
+				case 2:
+					//update value in in the connected node connector
+					if ((p_connections + i)->connector_node_ptr != NULL) {
+						(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p3_output);
+						std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+					}
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
 			}
 		}
 	}
@@ -91,6 +93,7 @@ void node_intcomp::init()
 	node_intcomp::p0_input_a = 0;
 	node_intcomp::p1_input_b = 0;
 	node_intcomp::p3_output = false;
+	node_intcomp::last_state_p3 = true;
 }
 
 void node_intcomp::load_node_parameters(std::string params)

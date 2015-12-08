@@ -21,6 +21,7 @@ public:
 	bool p2_stop_input; //stop
 	bool p3_reset_input; //reset
 
+
 	float p5_running_output; //OUT TIME
 	bool p4_outtime_output; //is running
 

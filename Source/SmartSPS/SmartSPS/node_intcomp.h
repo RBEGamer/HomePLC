@@ -19,7 +19,7 @@ public:
 	int p0_input_a;
 	int p1_input_b;
 	bool p3_output;
-
+	bool last_state_p3;
 
 
 

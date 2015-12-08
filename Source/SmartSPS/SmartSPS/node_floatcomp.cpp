@@ -94,6 +94,7 @@ void node_floatcomp::init()
 	node_floatcomp::p0_input_a = 0;
 	node_floatcomp::p1_input_b = 0;
 	node_floatcomp::p3_output = false;
+	node_floatcomp::last_state_p3 = true;
 }
 
 void node_floatcomp::load_node_parameters(std::string params)

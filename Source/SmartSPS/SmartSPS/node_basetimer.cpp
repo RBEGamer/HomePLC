@@ -26,8 +26,10 @@ void node_basetimer::update(float timestep)
 		if (p4_outtime_output <= 0.0f) {
 			p5_running_output = false;
 			p4_outtime_output = 0.0f;
+			updated_values = true;
 		}else {
 			p4_outtime_output -= timestep;
+			updated_values = true;
 		}
 	}
 
@@ -112,7 +114,7 @@ void node_basetimer::set_value(int position, float value)
 	case 0: p0_interval_input = value; break;
 
 	case 1: if (value > 0.0f) {
-		p1_start_input = true; p5_running_output = true;
+		p1_start_input = true; p5_running_output = true; if (p4_outtime_output <= 0.0f) { p4_outtime_output = p0_interval_input; }
 	}else { p1_start_input = false; } break;
 
 	case 2: if (value > 0.0f) {
@@ -136,7 +138,7 @@ void node_basetimer::set_value(int position, int value)
 	case 0: p0_interval_input = value; break;
 
 	case 1: if (value > 0) {
-		p1_start_input = true; p5_running_output = true;
+		p1_start_input = true; p5_running_output = true; if (p4_outtime_output <= 0.0f) { p4_outtime_output = p0_interval_input; }
 	}
 			else { p1_start_input = false; } break;
 
@@ -164,7 +166,7 @@ void node_basetimer::set_value(int position, bool value)
 			else { p0_interval_input = 0.0f; } break;
 
 	case 1: if (value) {
-		p1_start_input = true; p5_running_output = true;
+		p1_start_input = true; p5_running_output = true; if (p4_outtime_output <= 0.0f) { p4_outtime_output = p0_interval_input; }
 	}
 			else { p1_start_input = false; } break;
 
@@ -190,7 +192,7 @@ void node_basetimer::set_value(int position, std::string value)
 	case 0: p0_interval_input = atoi(value.c_str()); break;
 
 	case 1: if (value == "TRUE") {
-		p1_start_input = true; p5_running_output = true;
+		p1_start_input = true; p5_running_output = true; if (p4_outtime_output <= 0.0f) { p4_outtime_output = p0_interval_input; }
 	}
 			else { p1_start_input = false; } break;
 
