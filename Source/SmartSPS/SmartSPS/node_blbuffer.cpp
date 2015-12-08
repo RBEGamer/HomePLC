@@ -90,7 +90,7 @@ void node_blbuffer::set_value(int position, float value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  if (value > 1.0f) { p0_a_input = true; }
+	case 0:  if (value > 0.0f) { p0_a_input = true; }
 			 else { p0_a_input = false; }  break;
 	default:uv = false; break;
 	}
@@ -125,7 +125,7 @@ void node_blbuffer::set_value(int position, std::string value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  if (value == "TRUE") { p0_a_input = true; }
+	case 0:  if (value != "") { p0_a_input = true; }
 			 else { p0_a_input = false; }  break;
 	default:uv = false; break;
 	}

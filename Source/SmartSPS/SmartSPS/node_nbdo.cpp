@@ -107,7 +107,7 @@ void node_nbdo::set_value(int position, float value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0: if (value > 1.0f) { p0_value_input_state = true; }else { p0_value_input_state = false; } break;
+	case 0: if (value > 0.0f) { p0_value_input_state = true; }else { p0_value_input_state = false; } break;
 	default:uv = false; break;
 	}
 	updated_values = uv;

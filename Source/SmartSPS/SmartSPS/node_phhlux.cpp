@@ -278,7 +278,7 @@ void node_phhlux::set_value(int position, std::string value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0: if (value == "TRUE") { p0_brightnes_input = 100; }
+	case 0: if (value != "") { p0_brightnes_input = 100; }
 		   else { p0_brightnes_input = 0; } break;
 
 

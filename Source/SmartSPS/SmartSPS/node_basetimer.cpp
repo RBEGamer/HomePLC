@@ -199,17 +199,17 @@ void node_basetimer::set_value(int position, std::string value)
 	{
 	case 0: p0_interval_input = atoi(value.c_str()); p4_outtime_output = p0_interval_input; break;
 
-	case 1: if (value == "TRUE") {
+	case 1: if (value != "") {
 		p1_start_input = true; p5_running_output = true; running_state_updated = true; if (p4_outtime_output <= 0.0f) { p4_outtime_output = p0_interval_input; }
 	}
 			else { p1_start_input = false; } break;
 
-	case 2: if (value == "TRUE") {
+	case 2: if (value != "") {
 		p2_stop_input = true; p5_running_output = false; running_state_updated = true;
 	}
 			else { p2_stop_input = false; } break;
 
-	case 3: if (value == "TRUE") {
+	case 3: if (value != "") {
 		p3_reset_input = true; p4_outtime_output = 0.0f;
 	}
 			else { p3_reset_input = false; } break;

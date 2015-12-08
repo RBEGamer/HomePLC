@@ -96,7 +96,7 @@ void node_biftest::set_value(int position, float value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  if (value > 1.0f) { p0_toggle_input = true; }
+	case 0:  if (value > 0.0f) { p0_toggle_input = true; }
 			 else { p0_toggle_input = false; }  break;
 	case 1: p1_iftrue_input = value; break;
 	case 2: p2_ifelse_input = value; break;
@@ -140,7 +140,7 @@ void node_biftest::set_value(int position, std::string value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  if (value == "TRUE") { p0_toggle_input = true; }
+	case 0:  if (value != "") { p0_toggle_input = true; }
 			 else { p0_toggle_input = false; }  break;
 	case 1: p1_iftrue_input = atoi(value.c_str()); break;
 	case 2: p2_ifelse_input = atoi(value.c_str()); break;

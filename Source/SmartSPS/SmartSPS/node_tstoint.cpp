@@ -204,7 +204,7 @@ void node_tstoint::set_value(int position, std::string value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  if (value == "TRUE") { p0_timestamp_input = 1; }
+	case 0:  if (value != "") { p0_timestamp_input = 1; }
 			 else { p0_timestamp_input = 0; }  break;
 	default:uv = false; break;
 	}
