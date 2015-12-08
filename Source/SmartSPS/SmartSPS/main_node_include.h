@@ -48,6 +48,8 @@
 //TIME
 #include "node_ctimest.h" // GETS THE CURRENT TIMESTAMP AS INT
 #include "node_tstoint.h" //CONVERTS A TIMESTAMP TO SINGLE INTS
+
+#include "node_basetimer.h" //A basic timer node DOWNTIMER
 //PHILIPS HUE
 #include "node_phhlux.h" // PHILIPS HUE LUX LAMPS  <bridge_ip><username><light_id>
 //OpenWeatherMap 

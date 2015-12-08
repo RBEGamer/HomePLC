@@ -31,6 +31,7 @@
       </FileMasks>
       <TransferNewFilesOnly>true</TransferNewFilesOnly>
       <IncludeSubdirectories>true</IncludeSubdirectories>
+      <SelectedDirectories />
     </MainSourceTransferCommand>
     <AllowChangingHostForMainCommands>false</AllowChangingHostForMainCommands>
     <SkipBuildIfNoSourceFilesChanged>false</SkipBuildIfNoSourceFilesChanged>
@@ -44,7 +45,7 @@
     <MakeConfigurationName>Debug_remote</MakeConfigurationName>
     <AdditionalMakeArguments />
     <Toolchain>
-      <Name>Default GCC toolchain on 192.168.178.58</Name>
+      <Name>Default GCC toolchain on rbnetworks.dyndns.ws</Name>
       <UnixSystem>true</UnixSystem>
       <GCC>gcc</GCC>
       <GXX>g++</GXX>
@@ -76,7 +77,7 @@
     <MakeCommandTemplate>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
       <RemoteHost>
-        <HostName>192.168.178.58</HostName>
+        <HostName>rbnetworks.dyndns.ws</HostName>
         <Transport>SSH</Transport>
         <UserName>root</UserName>
       </RemoteHost>

@@ -11,10 +11,35 @@
 #include <fcntl.h>			//Used for UART
 #include <termios.h>		//Used for UART
 #include <string>
+
+
+
+#include <unistd.h>
+
+size_t getTotalSystemMemory()
+{
+	long pages = sysconf(_SC_PHYS_PAGES);
+	long page_size = sysconf(_SC_PAGE_SIZE);
+	return pages * page_size;
+}
+
+
 #endif
 
 
 #if defined(_WIN_)
+#include <iostream>
+#include <windows.h>
+
+size_t getTotalSystemMemory()
+{
+	MEMORYSTATUSEX status;
+	status.dwLength = sizeof(status);
+	GlobalMemoryStatusEx(&status);
+	return status.ullTotalPhys;
+}
+
+
 #endif
 
 
@@ -213,7 +238,7 @@ char Buffer[128]; //for the serial recieve
 base_node** nodes_buffer;
 int end_loop_ticks = 0;
 int start_loop_ticks = 0;
-
+float average_delta_time = 0.0f;
 
 
 void processing_serial_query(base_node* bn[]) {
@@ -422,10 +447,14 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "nbitof") { nodes_buffer[element_count] = new node_nbitof(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbftoi") { nodes_buffer[element_count] = new node_nbftoi(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbinttostr") { nodes_buffer[element_count] = new node_nbinttostr(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-	if (nsi == "nbfltostr") { nodes_buffer[element_count] = new node_fltostr(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "nbfltostr") { nodes_buffer[element_count] = new node_nbfltostr(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 
 	if (nsi == "ctimest") { nodes_buffer[element_count] = new node_ctimest(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "tstoint") { nodes_buffer[element_count] = new node_tstoint(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+	if (nsi == "basetimer") { nodes_buffer[element_count] = new node_basetimer(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+
 
 	if (nsi == "phhlux") { nodes_buffer[element_count] = new node_phhlux(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "opwemare") { nodes_buffer[element_count] = new node_opwemare(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
@@ -464,6 +493,8 @@ void main_serial_update_loop() {
 
 int main(int argc, char *argv[])
 {
+
+	std::cout << "TOTAL SYSTEM RAM : " << (getTotalSystemMemory()/1024)/1024 << "MB" <<  std::endl;
 
 	//INIT SERIAL STUFF
 	float delta_time = 0.0f; //current updatetime in loop
@@ -522,7 +553,7 @@ int main(int argc, char *argv[])
 
 
 
-	float timer = 0.0f;
+
 
 	
 	//GET AMOUNT OF NODES
@@ -584,8 +615,9 @@ int main(int argc, char *argv[])
 		 end_loop_ticks = getTick();
 		delta_time = (end_loop_ticks - start_loop_ticks) / 1000.0f;
 #if defined(DEBUG)
-		timer += delta_time;
-		std::cout << "RUNTIME  :" << timer << std::endl;
+		average_delta_time += delta_time;
+		average_delta_time = average_delta_time / 2;
+		std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
 #endif
 	}
 
