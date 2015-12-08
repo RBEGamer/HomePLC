@@ -527,12 +527,12 @@ int main(int argc, char *argv[])
 	//XML BIS NODES PARSEN
 	std::string xml_input_string = "<?xml version=\"1.0\"?>"
 		"<schematic>"
-		"<node nid=\"1\" npos=\"-19.79573,11.62813\" nsi=\"nbcofl\" ncon=\"1:0:2:0%\" nparam=\"20.0%\" />"
+		"<node nid=\"1\" npos=\"-19.79573,11.62813\" nsi=\"nbcofl\" ncon=\"1:0:2:0%\" nparam=\"3.0%\" />"
 		"<node nid=\"2\" npos=\"-19.79573,11.62813\" nsi=\"basetimer\" ncon=\"2:5:3:0%2:5:4:0%\" nparam=\"%\" />"
 		"<node nid=\"3\" npos=\"-19.79573,11.62813\" nsi=\"blnot\" ncon=\"3:1:2:1%\" nparam=\"%\" />"
 		"<node nid=\"4\" npos=\"-19.79573,11.62813\" nsi=\"blft\" ncon=\"4:1:5:0%\" nparam=\"%\" />"
 		"<node nid=\"5\" npos=\"-19.79573,11.62813\" nsi=\"bifte\" ncon=\"5:3:8:0%\" nparam=\"%\" />"
-		"<node nid=\"6\" npos=\"-19.79573,11.62813\" nsi=\"nbcoin\" ncon=\"6:0:5:1%\" nparam=\"0%\" />"
+		"<node nid=\"6\" npos=\"-19.79573,11.62813\" nsi=\"nbcoin\" ncon=\"6:0:5:1%\" nparam=\"20%\" />"
 		"<node nid=\"7\" npos=\"-19.79573,11.62813\" nsi=\"nbcoin\" ncon=\"7:0:5:2%\" nparam=\"255%\" />"
 		"<node nid=\"8\" npos=\"-19.79573,11.62813\" nsi=\"phhlux\" ncon=\"%\" nparam=\"192.168.178.38%9ee891920b34397369b895d195d4a9b%2%\" />"
 		"</schematic>";
@@ -593,16 +593,9 @@ int main(int argc, char *argv[])
 		nodes_buffer[i]->init(); //dont called from constructor to be shure tha all nodes are instancieated
 		nodes_buffer[i]->enabled = true;
 	}
-	//UPDATE ALL STATIC NODES
-	for (size_t i = 0; i < node_amount; i++) {
-		if (nodes_buffer[i]->is_value_static) {
-			nodes_buffer[i]->updated_values = true;
-			nodes_buffer[i]->update();
-		}
-	}
-	//FINISH WITH LOADING NODES
+		//FINISH WITH LOADING NODES
 	std::cout << node_amount << " NODES LOADED : SCHMEATIC SIMULATION IS STARTING" << std::endl;
-
+	bool first_iteration = true;
 
 
 	//START MAINLOOP
@@ -611,7 +604,7 @@ int main(int argc, char *argv[])
 	{
 		//STORE TIME AT LOOP START
 		start_loop_ticks = getTick();
-	
+
 		//UPDATE ALL NODES 
 		if (delta_time > 0) {
 			for (int i = 0; i < node_amount; i++)
@@ -621,7 +614,20 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
-		                            
+
+
+		//UPDATE ALL STATIC NODES
+		if (first_iteration) {
+			for (size_t i = 0; i < node_amount; i++) {
+				if (nodes_buffer[i]->is_value_static) {
+					nodes_buffer[i]->updated_values = true;
+					nodes_buffer[i]->update();
+				}
+				first_iteration = false;
+			}
+		}
+
+		//CHECK FOR SERIAL EVENTS
 		main_serial_update_loop();
 	//GET TIME AND CALC DELTATIME FOR THE NEXT ITERATION
 		 end_loop_ticks = getTick();

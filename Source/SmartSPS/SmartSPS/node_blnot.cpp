@@ -30,8 +30,7 @@ void node_blnot::update(float timestep)
 		//p2_c_output = (p0_a_input & p1_b_input);
 		p1_b_output = !p0_a_input;
 
-		if(p1_b_output != output_updated){
-			output_updated = p1_b_output;
+	
 		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
 			for (size_t i = 0; i < connection_count; i++) {
 				switch ((p_connections + i)->input_pos) {
@@ -47,7 +46,7 @@ void node_blnot::update(float timestep)
 				}
 			}
 		}
-	}
+	
 }
 
 void node_blnot::init()
@@ -55,7 +54,7 @@ void node_blnot::init()
 	updated_values = true;
 	node_blnot::p0_a_input = false;
 	node_blnot::p1_b_output = false;
-	node_blnot::output_updated = true;
+
 }
 
 void node_blnot::load_node_parameters(std::string params)

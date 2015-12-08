@@ -13,7 +13,7 @@ public:
 	void  set_connection(int pos, base_node* ptr, int dest_pos);
 	virtual void serial_income(std::string message);
 	//PARAMS
-
+	
 	
 	//VALUES
 	float p0_interval_input; //interval
