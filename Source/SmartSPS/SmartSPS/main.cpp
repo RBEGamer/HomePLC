@@ -239,6 +239,12 @@ base_node** nodes_buffer;
 int end_loop_ticks = 0;
 int start_loop_ticks = 0;
 float average_delta_time = 0.0f;
+float delta_time = 0.0f; //current updatetime in loop
+bool break_update_cycle = false; //if false the programm exits
+float serial_update_timer = 0.0f;
+float serial_update_timer_max = 0.9f; //check for serial updates all
+std::string* connection_string;//holds all connection inforamtion
+std::stringstream ss;
 
 
 void processing_serial_query(base_node* bn[]) {
@@ -373,11 +379,10 @@ uint32_t getTick() {
 	return theTick;
 }
 
-std::stringstream ss;
 
 
 
-std::string* connection_string;//holds all connection inforamtion
+
 
 void process_xml_nodes(std::string*  kvp, int element_count) {
 	std::cout << "XML NODE CONTENT: " << kvp[element_count].c_str() << std::endl;
@@ -493,14 +498,11 @@ void main_serial_update_loop() {
 
 int main(int argc, char *argv[])
 {
-
 	std::cout << "TOTAL SYSTEM RAM : " << (getTotalSystemMemory()/1024)/1024 << "MB" <<  std::endl;
 
 	//INIT SERIAL STUFF
-	float delta_time = 0.0f; //current updatetime in loop
-	bool break_update_cycle = false; //if false the programm exits
-	float serial_update_timer = 0.0f;
-	float serial_update_timer_max = 0.9f;
+ 	
+
 //INIT SERIAL DEVICE
 	std::cout << "STARTING MAIN UPDATE LOOP" << std::endl;
 	Ret = LS.Open("/dev/ttyUSB0", 9600);                                     

@@ -19,7 +19,7 @@ public:
 	float p0_input_a;
 	float p1_input_b;
 	bool p3_output;
-
+	bool last_state_p3 = false;
 
 
 
