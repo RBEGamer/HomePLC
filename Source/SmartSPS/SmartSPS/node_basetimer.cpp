@@ -48,7 +48,7 @@ void node_basetimer::update(float timestep)
 				//update value in in the connected node connector
 				if ((p_connections + i)->connector_node_ptr != NULL) {
 					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p4_outtime_output);
-					std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
 				}
 				break;
 
@@ -57,7 +57,7 @@ void node_basetimer::update(float timestep)
 					//update value in in the connected node connector
 					if ((p_connections + i)->connector_node_ptr != NULL) {
 						(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p5_running_output);
-						std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+						//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
 					}
 				
 				}
