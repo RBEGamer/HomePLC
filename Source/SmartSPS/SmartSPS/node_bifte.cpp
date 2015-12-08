@@ -35,7 +35,7 @@ void node_bifte::update(float timestep)
 			p3_value_output = p2_ifelse_input;
 		}
 
-		std::cout << "update bifte to " << p3_value_output << std::endl;
+		//std::cout << "update bifte to " << p3_value_output << std::endl;
 		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
 		for (size_t i = 0; i < connection_count; i++) {
 			switch ((p_connections + i)->input_pos) {

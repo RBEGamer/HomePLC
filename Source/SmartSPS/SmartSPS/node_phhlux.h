@@ -21,7 +21,7 @@ public:
 							//CONECTION
 	int p0_brightnes_input; //pos 0
 
-
+	int last_bright;
 
 	void set_value(int position, float value);
 	void set_value(int position, int value);

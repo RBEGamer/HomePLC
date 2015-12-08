@@ -55,6 +55,7 @@ void node_blor::update(float timestep)
 
 void node_blor::init()
 {
+	
 	node_blor::p0_a_input = false;
 	node_blor::p1_b_input = false;
 	node_blor::p2_c_output = false;

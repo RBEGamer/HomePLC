@@ -525,7 +525,17 @@ int main(int argc, char *argv[])
 
 
 	//XML BIS NODES PARSEN
-	std::string xml_input_string = "<?xml version=\"1.0\"?><schematic><node nid=\"1\" npos=\"-19.79573,11.62813\" nsi=\"nbdi\" ncon=\"1:0:2:0%\" nparam=\"GPIO1%\" /><node nid=\"2\" npos=\"-2.739578,2.544342\" nsi=\"nbdo\" ncon=\"\" nparam=\"GPIO2%\" /></schematic>";
+	std::string xml_input_string = "<?xml version=\"1.0\"?>"
+		"<schematic>"
+		"<node nid=\"1\" npos=\"-19.79573,11.62813\" nsi=\"nbcofl\" ncon=\"1:0:2:0%\" nparam=\"20.0%\" />"
+		"<node nid=\"2\" npos=\"-19.79573,11.62813\" nsi=\"basetimer\" ncon=\"2:5:3:0%2:5:4:0%\" nparam=\"%\" />"
+		"<node nid=\"3\" npos=\"-19.79573,11.62813\" nsi=\"blnot\" ncon=\"3:1:2:1%\" nparam=\"%\" />"
+		"<node nid=\"4\" npos=\"-19.79573,11.62813\" nsi=\"blft\" ncon=\"4:1:5:0%\" nparam=\"%\" />"
+		"<node nid=\"5\" npos=\"-19.79573,11.62813\" nsi=\"bifte\" ncon=\"5:3:8:0%\" nparam=\"%\" />"
+		"<node nid=\"6\" npos=\"-19.79573,11.62813\" nsi=\"nbcoin\" ncon=\"6:0:5:1%\" nparam=\"0%\" />"
+		"<node nid=\"7\" npos=\"-19.79573,11.62813\" nsi=\"nbcoin\" ncon=\"7:0:5:2%\" nparam=\"255%\" />"
+		"<node nid=\"8\" npos=\"-19.79573,11.62813\" nsi=\"phhlux\" ncon=\"%\" nparam=\"192.168.178.38%9ee891920b34397369b895d195d4a9b%2%\" />"
+		"</schematic>";
 	if (xml_input_string == "") { return 1; }
 #if defined(DEBUG)
 	std::cout << "XML RAW INPUT : " << xml_input_string.c_str() << std::endl;
@@ -616,10 +626,11 @@ int main(int argc, char *argv[])
 	//GET TIME AND CALC DELTATIME FOR THE NEXT ITERATION
 		 end_loop_ticks = getTick();
 		delta_time = (end_loop_ticks - start_loop_ticks) / 1000.0f;
-#if defined(DEBUG)
+
 		average_delta_time += delta_time;
 		average_delta_time = average_delta_time / 2;
-		std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
+#if defined(DEBUG)
+	//	std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
 #endif
 	}
 

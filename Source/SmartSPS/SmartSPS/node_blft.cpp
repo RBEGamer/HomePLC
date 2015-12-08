@@ -28,30 +28,31 @@ void node_blft::update(float timestep)
 
 
 
-		if ( p0_a_input ) {
+		if (p0_a_input) {
 			p1_b_output = !p1_b_output;
-		
-		}
-	
-	//	p1_b_output = p0_a_input;
-		
-		
 
 
-		
 
-		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
-		for (size_t i = 0; i < connection_count; i++) {
-			switch ((p_connections + i)->input_pos) {
-			case 1:
-				//update value in in the connected node connector
-				if ((p_connections + i)->connector_node_ptr != NULL) {
-					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p1_b_output);
-					std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+			//	p1_b_output = p0_a_input;
+
+
+
+
+
+
+				//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
+			for (size_t i = 0; i < connection_count; i++) {
+				switch ((p_connections + i)->input_pos) {
+				case 1:
+					//update value in in the connected node connector
+					if ((p_connections + i)->connector_node_ptr != NULL) {
+						(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p1_b_output);
+						std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+					}
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
 			}
 		}
 	}

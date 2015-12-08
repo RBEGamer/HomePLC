@@ -50,6 +50,7 @@ void node_blnot::update(float timestep)
 
 void node_blnot::init()
 {
+	updated_values = true;
 	node_blnot::p0_a_input = false;
 	node_blnot::p1_b_output = false;
 }

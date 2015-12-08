@@ -55,97 +55,97 @@ void node_phhlux::update(float timestep)
 {
 	if (updated_values) {
 		updated_values = false;
-		
+		if (p0_brightnes_input != last_bright) {
+
+			last_bright = p0_brightnes_input;
 
 
-		
 
 
-
-		std::string cmd = "";
-		if (p0_brightnes_input < 0) { p0_brightnes_input = 0; }
-		if (p0_brightnes_input > 255) { p0_brightnes_input = 255; }
-		if (p0_brightnes_input == 0) {
-			cmd = "{\"on\":false";
-			cmd.append("}");
-		}
-		else {
-			cmd = "{\"on\":true, \"bri\" : ";
-			cmd.append(int_to_string(p0_brightnes_input));
-			cmd.append("}");
-		}
-		std::string ln1 = "PUT /api/";
-		ln1.append(username);
-		ln1.append("/lights/");
-		ln1.append(light_id);
-		ln1.append("/state HTTP/1.1\r\nkeep-alive\r\nHost: ");
-		ln1.append(ip_address);
-		ln1.append("\r\nContent-Length: ");
-		ln1.append(int_to_string(cmd.size()));
-		ln1.append("\r\nContent-Type: text/plain;charset=UTF-8\r\n\r\n");
-		ln1.append(cmd);
-		ln1.append("\r\n");
-
-
-		struct sockaddr_in server;
-		struct hostent *host_info;
-		in_addr_t addr;
-		int sock;
-		char buffer[8192];
-		int count;
+			std::string cmd = "";
+			if (p0_brightnes_input < 0) { p0_brightnes_input = 0; }
+			if (p0_brightnes_input > 255) { p0_brightnes_input = 255; }
+			if (p0_brightnes_input == 0) {
+				cmd = "{\"on\":false";
+				cmd.append("}");
+			}
+			else {
+				cmd = "{\"on\":true, \"bri\" : ";
+				cmd.append(int_to_string(p0_brightnes_input));
+				cmd.append("}");
+			}
+			std::string ln1 = "PUT /api/";
+			ln1.append(username);
+			ln1.append("/lights/");
+			ln1.append(light_id);
+			ln1.append("/state HTTP/1.1\r\nkeep-alive\r\nHost: ");
+			ln1.append(ip_address);
+			ln1.append("\r\nContent-Length: ");
+			ln1.append(int_to_string(cmd.size()));
+			ln1.append("\r\nContent-Type: text/plain;charset=UTF-8\r\n\r\n");
+			ln1.append(cmd);
+			ln1.append("\r\n");
 
 
-		/* Erzeuge das Socket */
-		sock = socket(PF_INET, SOCK_STREAM, 0);
-		if (sock < 0) {
-			perror("failed to create socket");
-			exit(1);
-		}
+			struct sockaddr_in server;
+			struct hostent *host_info;
+			in_addr_t addr;
+			int sock;
+			char buffer[8192];
+			int count;
 
-		/* Erzeuge die Socketadresse des Servers
-		* Sie besteht aus Typ, IP-Adresse und Portnummer */
-		memset(&server, 0, sizeof(server));
-		addr = inet_addr(ip_address.c_str());
-		if (addr != INADDR_NONE) {
-			/* argv[1] ist eine numerische IP-Adresse */
-			memcpy((char *)&server.sin_addr, &addr, sizeof(addr));
-		}
-		else {
-			/* Wandle den Servernamen in eine IP-Adresse um */
-			host_info = gethostbyname(ip_address.c_str());
-			if (NULL == host_info) {
-				fprintf(stderr, "unknown server: %s\n", ip_address.c_str());
+
+			/* Erzeuge das Socket */
+			sock = socket(PF_INET, SOCK_STREAM, 0);
+			if (sock < 0) {
+				perror("failed to create socket");
 				exit(1);
 			}
-			memcpy((char *)&server.sin_addr, host_info->h_addr, host_info->h_length);
+
+			/* Erzeuge die Socketadresse des Servers
+			* Sie besteht aus Typ, IP-Adresse und Portnummer */
+			memset(&server, 0, sizeof(server));
+			addr = inet_addr(ip_address.c_str());
+			if (addr != INADDR_NONE) {
+				/* argv[1] ist eine numerische IP-Adresse */
+				memcpy((char *)&server.sin_addr, &addr, sizeof(addr));
+			}
+			else {
+				/* Wandle den Servernamen in eine IP-Adresse um */
+				host_info = gethostbyname(ip_address.c_str());
+				if (NULL == host_info) {
+					fprintf(stderr, "unknown server: %s\n", ip_address.c_str());
+					exit(1);
+				}
+				memcpy((char *)&server.sin_addr, host_info->h_addr, host_info->h_length);
+			}
+
+			server.sin_family = AF_INET;
+			server.sin_port = htons(80);
+
+			/* Baue die Verbindung zum Server auf */
+			if (connect(sock, (struct sockaddr*)&server, sizeof(server)) < 0) {
+				perror("can't connect to server");
+				exit(1);
+			}
+
+			/* Erzeuge und sende den http GET request */
+			//	sprintf(buffer, "GET %s HTTP/1.0\r\n\r\n", 80);
+
+			send(sock, ln1.c_str(), ln1.size(), 0);
+			//	std::cout << ln1 << std::endl;
+				/* Hole die Serverantwort und gib sie auf Konsole aus */
+			//	do {
+				//	count = recv(sock, buffer, sizeof(buffer), 0);
+					//write(1, buffer, count);
+				//} while (count > 0)
+
+				/* Schlieﬂe Verbindung und Socket */
+			closesocket(sock);
+
+			std::cout << "update hue lux :" << light_id << " to " << p0_brightnes_input << std::endl;
+
 		}
-
-		server.sin_family = AF_INET;
-		server.sin_port = htons(80);
-
-		/* Baue die Verbindung zum Server auf */
-		if (connect(sock, (struct sockaddr*)&server, sizeof(server)) < 0) {
-			perror("can't connect to server");
-			exit(1);
-		}
-
-		/* Erzeuge und sende den http GET request */
-		//	sprintf(buffer, "GET %s HTTP/1.0\r\n\r\n", 80);
-
-		send(sock, ln1.c_str(), ln1.size(), 0);
-	//	std::cout << ln1 << std::endl;
-		/* Hole die Serverantwort und gib sie auf Konsole aus */
-	//	do {
-		//	count = recv(sock, buffer, sizeof(buffer), 0);
-			//write(1, buffer, count);
-		//} while (count > 0)
-
-		/* Schlieﬂe Verbindung und Socket */
-		closesocket(sock);
-		
-		std::cout << "update hue lux :" << light_id << " to " << p0_brightnes_input << std::endl;
-
-		
 	}
 }
 
@@ -156,7 +156,7 @@ void node_phhlux::init()
 {
 	p0_brightnes_input = 0;
 	//updated_values = true;
-
+	last_bright = -1;
 
 
 
