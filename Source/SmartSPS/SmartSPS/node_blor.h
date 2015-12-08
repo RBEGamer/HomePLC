@@ -19,7 +19,7 @@ public:
 	bool p0_a_input; //pos 0
 	bool p1_b_input;
 	bool p2_c_output;
-
+	bool output_updated;
 
 
 

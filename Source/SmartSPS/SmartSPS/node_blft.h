@@ -20,7 +20,7 @@ public:
 	bool p1_b_output;
 	bool last_state;
 	bool last_reset_state;
-
+	bool outuput_updated;
 
 
 	void set_value(int position, float value);

@@ -19,7 +19,7 @@ public:
 	std::string p0_input_a;
 	std::string p1_input_b;
 	bool p3_output;
-
+	bool last_p3_output;
 
 
 

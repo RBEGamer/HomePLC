@@ -35,19 +35,22 @@ void node_blxor::update(float timestep)
 			p2_c_output = false;
 		}
 
+		if (p2_c_output != output_updated) {
+			output_updated = p2_c_output;
 
-		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
-		for (size_t i = 0; i < connection_count; i++) {
-			switch ((p_connections + i)->input_pos) {
-			case 2:
-				//update value in in the connected node connector
-				if ((p_connections + i)->connector_node_ptr != NULL) {
-					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p2_c_output);
-					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+			//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
+			for (size_t i = 0; i < connection_count; i++) {
+				switch ((p_connections + i)->input_pos) {
+				case 2:
+					//update value in in the connected node connector
+					if ((p_connections + i)->connector_node_ptr != NULL) {
+						(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p2_c_output);
+						//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+					}
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
 			}
 		}
 	}
@@ -58,6 +61,7 @@ void node_blxor::init()
 	node_blxor::p0_a_input = false;
 	node_blxor::p1_b_input = false;
 	node_blxor::p2_c_output = false;
+	node_blxor::output_updated = true;
 }
 
 void node_blxor::load_node_parameters(std::string params)

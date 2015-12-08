@@ -20,6 +20,7 @@ public:
 	bool p1_b_input;
 	bool p2_c_output;
 
+	bool updated_outuput;
 
 
 

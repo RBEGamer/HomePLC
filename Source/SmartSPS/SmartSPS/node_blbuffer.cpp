@@ -30,19 +30,21 @@ void node_blbuffer::update(float timestep)
 		//p2_c_output = (p0_a_input & p1_b_input);
 		p1_b_output = p0_a_input;
 
-
-		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
-		for (size_t i = 0; i <connection_count; i++) {
-			switch ((p_connections + i)->input_pos) {
-			case 1:
-				//update value in in the connected node connector
-				if ((p_connections + i)->connector_node_ptr != NULL) {
-					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p1_b_output);
-					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+		if (p1_b_output != outuput_updated) {
+			outuput_updated = p1_b_output;
+			//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
+			for (size_t i = 0; i < connection_count; i++) {
+				switch ((p_connections + i)->input_pos) {
+				case 1:
+					//update value in in the connected node connector
+					if ((p_connections + i)->connector_node_ptr != NULL) {
+						(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p1_b_output);
+						//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+					}
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
 			}
 		}
 	}
@@ -52,6 +54,7 @@ void node_blbuffer::init()
 {
 	node_blbuffer::p0_a_input = false;
 	node_blbuffer::p1_b_output = false;
+	node_blbuffer::outuput_updated = true;
 }
 
 void node_blbuffer::load_node_parameters(std::string params)

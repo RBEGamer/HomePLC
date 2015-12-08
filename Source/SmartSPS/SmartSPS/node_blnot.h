@@ -18,7 +18,8 @@ public:
 	//VALUES
 	bool p0_a_input; //pos 0
 	bool p1_b_output;
-
+	bool output_updated;
+	
 
 
 

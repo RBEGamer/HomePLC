@@ -41,19 +41,21 @@ void node_strcomp::update(float timestep)
 			p3_output = false;
 		}
 
-
-		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
-		for (size_t i = 0; i < connection_count; i++) {
-			switch ((p_connections + i)->input_pos) {
-			case 2:
-				//update value in in the connected node connector
-				if ((p_connections + i)->connector_node_ptr != NULL) {
-					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p3_output);
-					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+		if (last_p3_output != p3_output) {
+			last_p3_output = p3_output;
+			//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
+			for (size_t i = 0; i < connection_count; i++) {
+				switch ((p_connections + i)->input_pos) {
+				case 2:
+					//update value in in the connected node connector
+					if ((p_connections + i)->connector_node_ptr != NULL) {
+						(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p3_output);
+						//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+					}
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
 			}
 		}
 	}
@@ -64,6 +66,7 @@ void node_strcomp::init()
 	node_strcomp::p0_input_a = "";
 	node_strcomp::p1_input_b = "";
 	node_strcomp::p3_output = false;
+	node_strcomp::last_p3_output = true;
 }
 
 void node_strcomp::load_node_parameters(std::string params)
