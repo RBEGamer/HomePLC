@@ -134,13 +134,13 @@ void node_phhlux::update(float timestep)
 
 			send(sock, ln1.c_str(), ln1.size(), 0);
 			//	std::cout << ln1 << std::endl;
-				/* Hole die Serverantwort und gib sie auf Konsole aus */
+			/* Hole die Serverantwort und gib sie auf Konsole aus */
 			//	do {
-				//	count = recv(sock, buffer, sizeof(buffer), 0);
-					//write(1, buffer, count);
-				//} while (count > 0)
+			//	count = recv(sock, buffer, sizeof(buffer), 0);
+			//write(1, buffer, count);
+			//} while (count > 0)
 
-				/* Schlieﬂe Verbindung und Socket */
+			/* Schlieﬂe Verbindung und Socket */
 			closesocket(sock);
 
 			std::cout << "update hue lux :" << light_id << " to " << p0_brightnes_input << std::endl;
@@ -215,18 +215,18 @@ void node_phhlux::set_connection(int pos, base_node * ptr, int dest_pos)
 {
 
 	if (ptr != NULL) {
-	
 
-			//FORSCHLEIFE 
-			for (size_t i = 0; i < connection_count; i++)
-			{
-				if ((p_connections + i)->connector_node_ptr == NULL) {
-					(p_connections + i)->connector_node_ptr = ptr;
-					(p_connections + i)->output_pos = dest_pos;
-					(p_connections + i)->input_pos = pos;
-					break;
-				}
-			
+
+		//FORSCHLEIFE 
+		for (size_t i = 0; i < connection_count; i++)
+		{
+			if ((p_connections + i)->connector_node_ptr == NULL) {
+				(p_connections + i)->connector_node_ptr = ptr;
+				(p_connections + i)->output_pos = dest_pos;
+				(p_connections + i)->input_pos = pos;
+				break;
+			}
+
 		}
 	}
 }
@@ -279,7 +279,7 @@ void node_phhlux::set_value(int position, std::string value)
 	switch (position)
 	{
 	case 0: if (value != "") { p0_brightnes_input = 100; }
-		   else { p0_brightnes_input = 0; } break;
+			else { p0_brightnes_input = 0; } break;
 
 
 	default:uv = false; break;
@@ -323,5 +323,5 @@ bool node_phhlux::get_value_b(int position)
 
 std::string node_phhlux::get_value_s(int position)
 {
-	
+
 }

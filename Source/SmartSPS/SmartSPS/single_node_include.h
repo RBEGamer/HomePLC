@@ -7,7 +7,7 @@
 
 #include <string>
 #include <sstream>
-
+#include <math.h>
 template <typename T>
 std::string NumberToString(T pNumber)
 {

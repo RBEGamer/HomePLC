@@ -96,7 +96,7 @@ void node_bnidisp::set_connection(int pos, base_node * ptr, int dest_pos)
 void node_bnidisp::serial_income(std::string message)
 {
 	//pasres_message
-	updated_values = "";
+	//updated_values = "";
 }
 
 void node_bnidisp::set_value(int position, float value)

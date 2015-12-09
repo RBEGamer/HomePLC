@@ -39,6 +39,7 @@
     <ClCompile Include="serialib.cpp" />
     <ClCompile Include="serial_management.cpp" />
     <ClCompile Include="node_basetimer.cpp" />
+    <ClCompile Include="node_simplemath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_node.h" />
@@ -81,6 +82,7 @@
     <ClInclude Include="serial_management.h" />
     <ClInclude Include="single_node_include.h" />
     <ClInclude Include="node_basetimer.h" />
+    <ClInclude Include="node_simplemath.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />

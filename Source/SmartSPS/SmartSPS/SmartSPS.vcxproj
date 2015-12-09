@@ -115,6 +115,7 @@
     <ClCompile Include="node_nbsttoi.cpp" />
     <ClCompile Include="node_opwemare.cpp" />
     <ClCompile Include="node_phhlux.cpp" />
+    <ClCompile Include="node_simplemath.cpp" />
     <ClCompile Include="node_strcomp.cpp" />
     <ClCompile Include="node_tstoint.cpp" />
     <ClCompile Include="serialib.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="node_nbsttoi.h" />
     <ClInclude Include="node_opwemare.h" />
     <ClInclude Include="node_phhlux.h" />
+    <ClInclude Include="node_simplemath.h" />
     <ClInclude Include="node_strcomp.h" />
     <ClInclude Include="node_tstoint.h" />
     <ClInclude Include="serialib.h" />

@@ -94,7 +94,7 @@ void node_bndmx::set_connection(int pos, base_node * ptr, int dest_pos)
 void node_bndmx::serial_income(std::string message)
 {
 	//pasres_message
-	p0_value_input_state = 1;
+	
 }
 
 void node_bndmx::set_value(int position, float value)

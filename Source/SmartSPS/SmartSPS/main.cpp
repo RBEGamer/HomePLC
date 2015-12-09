@@ -11,17 +11,17 @@
 #include <fcntl.h>			//Used for UART
 #include <termios.h>		//Used for UART
 #include <string>
-
-
-
 #include <unistd.h>
-
-size_t getTotalSystemMemory()
-{
-	long pages = sysconf(_SC_PHYS_PAGES);
-	long page_size = sysconf(_SC_PAGE_SIZE);
-	return pages * page_size;
-}
+#include<netinet/in.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <stdlib.h>
+#include <string.h>
+#include <arpa/inet.h>
+#define closesocket(s) close(s)
+#include <math.h>
 
 
 #endif
@@ -30,17 +30,10 @@ size_t getTotalSystemMemory()
 #if defined(_WIN_)
 #include <iostream>
 #include <windows.h>
-
-size_t getTotalSystemMemory()
-{
-	MEMORYSTATUSEX status;
-	status.dwLength = sizeof(status);
-	GlobalMemoryStatusEx(&status);
-	return status.ullTotalPhys;
-}
-
-
 #endif
+
+
+
 
 
 #if defined(_MAC_)
@@ -51,6 +44,147 @@ size_t getTotalSystemMemory()
 
 
 
+
+//INIT STATIC VARIABLES
+std::deque<std::string> serial_management::recieve_queue = std::deque<std::string>();
+std::deque<std::string> serial_management::send_queue = std::deque<std::string>();
+int uart0_filestream = -1;
+serialib LS;                                                            // Object of the serialib class
+int Ret;             //returns the recieved serial chars                                                   // Used for return values
+char Buffer[128]; //for the serial recieve
+base_node** nodes_buffer;
+int end_loop_ticks = 0;
+int start_loop_ticks = 0;
+float average_delta_time = 0.0f;
+float delta_time = 0.0f; //current updatetime in loop
+bool break_update_cycle = false; //if false the programm exits
+float serial_update_timer = 0.0f;
+float serial_update_timer_max = 0.9f; //check for serial updates all
+std::string* connection_string;//holds all connection inforamtion
+std::stringstream ss;
+
+
+size_t getTotalSystemMemory()
+{
+#if defined(_LINUX_)
+	long pages = sysconf(_SC_PHYS_PAGES);
+	long page_size = sysconf(_SC_PAGE_SIZE);
+	return pages * page_size;
+#endif
+#if defined(_WIN_)
+	MEMORYSTATUSEX status;
+	status.dwLength = sizeof(status);
+	GlobalMemoryStatusEx(&status);
+	return status.ullTotalPhys;
+#endif
+}
+
+std::string request_schematic() {
+std::cout << "STARTIC DOWNLOADING NEWEST SCHEMATIC VERSION" << std::endl;
+	char result;
+	struct sockaddr_in server;
+	struct hostent *host_info;
+	in_addr_t addr;
+	int sock;
+	char buffer[256];
+	int count;
+
+	int iResult = 0;
+	std::string opm_url = "localhost";
+	std::string ret_str = "";
+	/* Erzeuge das Socket */
+	sock = socket(PF_INET, SOCK_STREAM, 0);
+	if (sock < 0) {
+		return "";
+		exit(1);
+	}
+
+	/* Erzeuge die Socketadresse des Servers
+	* Sie besteht aus Typ, IP-Adresse und Portnummer */
+	memset(&server, 0, sizeof(server));
+	addr = inet_addr(opm_url.c_str());
+	if (addr != INADDR_NONE) {
+		/* argv[1] ist eine numerische IP-Adresse */
+		memcpy((char *)&server.sin_addr, &addr, sizeof(addr));
+	}
+	else {
+		/* Wandle den Servernamen in eine IP-Adresse um */
+		host_info = gethostbyname(opm_url.c_str());
+		if (NULL == host_info) {
+			return "";
+
+		}
+		memcpy((char *)&server.sin_addr, host_info->h_addr, host_info->h_length);
+	}
+
+	server.sin_family = AF_INET;
+	server.sin_port = htons(80);
+
+	/* Baue die Verbindung zum Server auf */
+	if (connect(sock, (struct sockaddr*)&server, sizeof(server)) < 0) {
+		return "";
+
+	}
+
+
+
+	std::string ln1 = "GET /test.html";
+	ln1.append(" HTTP/1.0\r\nHost: ");
+	ln1.append(opm_url);
+	ln1.append("\r\nAccept: text/html\r\n\r\n");
+
+
+
+
+	char recvbuf1[4096];
+	int recvbuflen1 = 4096;
+	int rf = 0;
+
+
+	iResult = send(sock, ln1.c_str(), ln1.size(), 0);
+
+	int end = -1;
+	int flen = -1;
+	std::string str1 = "";
+	int contentSize = 0;
+	while (true)
+	{
+		rf = recv(sock, recvbuf1, recvbuflen1, 0);
+		if (end == -1) {
+			contentSize += rf;
+			str1 += recvbuf1;
+			end = str1.find("\r\n\r\n"); //data begin
+			if (end != -1)
+			{
+				end += 4;
+				char* start_content_key = strstr(recvbuf1, "Content-Length:") + 15; //cl begin
+				char* end_content_key = strstr(start_content_key, "\r\n"); //cl end
+				std::string clen;
+				clen.append(start_content_key, end_content_key);
+				flen = atoi(clen.c_str());
+				int s = str1.size();
+				int off = rf - (contentSize - end);
+				contentSize = rf - off;
+				//ret_str += (recvbuf1 + off);
+			}
+		}
+		else {
+			int size = std::min(rf, flen - contentSize);
+			contentSize += size;
+			//ret_str.append(&recvbuf1+flen - size, recvbuf1);
+			if (contentSize >= flen) { break; };
+		}
+	}
+
+	closesocket(sock);
+
+
+	char* _start_content_key = strstr(recvbuf1, "\r\n\r\n") +4;
+	ret_str.append(_start_content_key);
+	return ret_str;
+	
+
+}
 
 namespace xml_parser {
 
@@ -184,7 +318,9 @@ namespace xml_parser {
 	//CHECK PASSED---------------------------------------------------------
 	//prepare the xml input : replace some charakters,
 	void prepare_xml_input(std::string& xml_input) {
-		replaceAll(xml_input, std::string(char(39), sizeof(char)), std::string(char(34), sizeof(char))); //replace " with '
+		//replaceAll(xml_input, std::string(char(39), sizeof(char)), std::string(char(34), sizeof(char))); //replace " with '
+		replaceAll(xml_input, "", "\r\n");
+		replaceAll(xml_input, "", "\n");
 		replaceAll(xml_input, "\" = \"", "\"=\"");
 		replaceAll(xml_input, " = ", "=");
 		replaceAll(xml_input, "> <", "><");
@@ -226,25 +362,6 @@ namespace xml_parser {
 
 }
 
-
-
-//INIT STATIC VARIABLES
-std::deque<std::string> serial_management::recieve_queue = std::deque<std::string>();
-std::deque<std::string> serial_management::send_queue = std::deque<std::string>();
-int uart0_filestream = -1;
-serialib LS;                                                            // Object of the serialib class
-int Ret;             //returns the recieved serial chars                                                   // Used for return values
-char Buffer[128]; //for the serial recieve
-base_node** nodes_buffer;
-int end_loop_ticks = 0;
-int start_loop_ticks = 0;
-float average_delta_time = 0.0f;
-float delta_time = 0.0f; //current updatetime in loop
-bool break_update_cycle = false; //if false the programm exits
-float serial_update_timer = 0.0f;
-float serial_update_timer_max = 0.9f; //check for serial updates all
-std::string* connection_string;//holds all connection inforamtion
-std::stringstream ss;
 
 
 void processing_serial_query(base_node* bn[]) {
@@ -371,12 +488,17 @@ int count_connections(std::string _cstring, int target_count_id) {
 
 
 uint32_t getTick() {
+#if defined(_LINUX_)
 	struct timespec ts;
 	unsigned theTick = 0U;
 	clock_gettime(CLOCK_REALTIME, &ts);
 	theTick = ts.tv_nsec / 1000000;
 	theTick += ts.tv_sec * 1000;
 	return theTick;
+#endif
+#if defined(_WIN_)
+	return getTickCount();
+#endif
 }
 
 
@@ -386,84 +508,60 @@ uint32_t getTick() {
 
 void process_xml_nodes(std::string*  kvp, int element_count) {
 	std::cout << "XML NODE CONTENT: " << kvp[element_count].c_str() << std::endl;
-
 	int nid = -1;
 	std::string  nsi ="";
 	std::string nparam = "";
-
-
 	std::string result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "nid");
 	if (result == "") { return; }
 	nid = atoi(result.c_str());
 	if (nid < 0) { return; }
-
 	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "nsi");
 	if (result == "") { return; }
 	nsi = result;
 	if (nsi == "") { return; }
-
 	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "ncon");
-
 	connection_string->append(result);
-
 	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "nparam");
-
 	nparam = result;
 
-
-	//CHECK IF ALL DATA VALID
-	//TODO: ADD ALL OTHERS
-	//TODO:wqa  ADD TIMER NODE
 	if (nsi == "nbdi") { nodes_buffer[element_count] = new node_nbdi(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbdo") { nodes_buffer[element_count] = new node_nbdo(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "bndmx") { nodes_buffer[element_count] = new node_bndmx(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "bnidisp") { nodes_buffer[element_count] = new node_bnidisp(nid, true, count_connections(*connection_string, nid), nparam, false); return; };
-
 	if (nsi == "bland") { nodes_buffer[element_count] = new node_bland(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "blor") { nodes_buffer[element_count] = new node_blor(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "blxor") { nodes_buffer[element_count] = new node_blxor(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "blnot") { nodes_buffer[element_count] = new node_blnot(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "blbuffer") { nodes_buffer[element_count] = new node_blbuffer(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
 	if (nsi == "bifte") { nodes_buffer[element_count] = new node_bifte(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "biftest") { nodes_buffer[element_count] = new node_biftest(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "biftefl") { nodes_buffer[element_count] = new node_biftefl(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
 	if (nsi == "intcomp") { nodes_buffer[element_count] = new node_intcomp(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "floatcomp") { nodes_buffer[element_count] = new node_floatcomp(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "strcomp") { nodes_buffer[element_count] = new node_strcomp(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
 	if (nsi == "blfrs") { nodes_buffer[element_count] = new node_blfrs(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "blft") { nodes_buffer[element_count] = new node_blft(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
-
 	if (nsi == "nbcoin") { nodes_buffer[element_count] = new node_nbcoin(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
 	if (nsi == "nbcost") { nodes_buffer[element_count] = new node_nbcost(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
 	if (nsi == "nbcofl") { nodes_buffer[element_count] = new node_nbcofl(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
 	if (nsi == "nbcobot") { nodes_buffer[element_count] = new node_nbcobot(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
 	if (nsi == "nbcobof") { nodes_buffer[element_count] = new node_nbcobof(nid, false, count_connections(*connection_string, nid), nparam, true); return; };
-
 	if (nsi == "nbsttoi") { nodes_buffer[element_count] = new node_nbsttoi(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbsttof") { nodes_buffer[element_count] = new node_nbsttof(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbitof") { nodes_buffer[element_count] = new node_nbitof(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbftoi") { nodes_buffer[element_count] = new node_nbftoi(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbinttostr") { nodes_buffer[element_count] = new node_nbinttostr(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "nbfltostr") { nodes_buffer[element_count] = new node_nbfltostr(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
 	if (nsi == "ctimest") { nodes_buffer[element_count] = new node_ctimest(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "tstoint") { nodes_buffer[element_count] = new node_tstoint(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
 	if (nsi == "basetimer") { nodes_buffer[element_count] = new node_basetimer(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
-
-
+	if (nsi == "simplemath") { nodes_buffer[element_count] = new node_simplemath(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "phhlux") { nodes_buffer[element_count] = new node_phhlux(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "opwemare") { nodes_buffer[element_count] = new node_opwemare(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
 }
 
 void main_serial_update_loop() {
@@ -523,19 +621,9 @@ int main(int argc, char *argv[])
 	connection_string = new std::string();//create string
 
 
+		//XML BIS NODES PARSEN
+		std::string xml_input_string = request_schematic();
 
-	//XML BIS NODES PARSEN
-	std::string xml_input_string = "<?xml version=\"1.0\"?>"
-		"<schematic>"
-		"<node nid=\"1\" npos=\"-19.79573,11.62813\" nsi=\"nbcofl\" ncon=\"1:0:2:0%\" nparam=\"3.0%\" />"
-		"<node nid=\"2\" npos=\"-19.79573,11.62813\" nsi=\"basetimer\" ncon=\"2:5:3:0%2:5:4:0%\" nparam=\"%\" />"
-		"<node nid=\"3\" npos=\"-19.79573,11.62813\" nsi=\"blnot\" ncon=\"3:1:2:1%\" nparam=\"%\" />"
-		"<node nid=\"4\" npos=\"-19.79573,11.62813\" nsi=\"blft\" ncon=\"4:1:5:0%\" nparam=\"%\" />"
-		"<node nid=\"5\" npos=\"-19.79573,11.62813\" nsi=\"bifte\" ncon=\"5:3:8:0%\" nparam=\"%\" />"
-		"<node nid=\"6\" npos=\"-19.79573,11.62813\" nsi=\"nbcoin\" ncon=\"6:0:5:1%\" nparam=\"20%\" />"
-		"<node nid=\"7\" npos=\"-19.79573,11.62813\" nsi=\"nbcoin\" ncon=\"7:0:5:2%\" nparam=\"255%\" />"
-		"<node nid=\"8\" npos=\"-19.79573,11.62813\" nsi=\"phhlux\" ncon=\"%\" nparam=\"192.168.178.38%9ee891920b34397369b895d195d4a9b%2%\" />"
-		"</schematic>";
 	if (xml_input_string == "") { return 1; }
 #if defined(DEBUG)
 	std::cout << "XML RAW INPUT : " << xml_input_string.c_str() << std::endl;
