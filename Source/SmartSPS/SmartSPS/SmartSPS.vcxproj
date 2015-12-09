@@ -117,6 +117,9 @@
     <ClCompile Include="node_phhlux.cpp" />
     <ClCompile Include="node_simplemath.cpp" />
     <ClCompile Include="node_strcomp.cpp" />
+    <ClCompile Include="node_stringappend.cpp" />
+    <ClCompile Include="node_stringoffset.cpp" />
+    <ClCompile Include="node_stringsplit.cpp" />
     <ClCompile Include="node_tstoint.cpp" />
     <ClCompile Include="serialib.cpp" />
     <ClCompile Include="serial_management.cpp" />
@@ -166,6 +169,9 @@
     <ClInclude Include="node_phhlux.h" />
     <ClInclude Include="node_simplemath.h" />
     <ClInclude Include="node_strcomp.h" />
+    <ClInclude Include="node_stringappend.h" />
+    <ClInclude Include="node_stringoffset.h" />
+    <ClInclude Include="node_stringsplit.h" />
     <ClInclude Include="node_tstoint.h" />
     <ClInclude Include="serialib.h" />
     <ClInclude Include="serial_management.h" />

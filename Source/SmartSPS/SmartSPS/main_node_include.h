@@ -45,6 +45,10 @@
 #include "node_nbftoi.h" //CONVERTS FLOATS TO INTS
 #include "node_nbinttostr.h" //CONVERT INT TO STRING
 #include "node_nbfltostr.h" //CONVERT FLOAT TO STRING
+//string operations
+#include "node_stringappend.h"
+#include "node_stringsplit.h"
+#include "node_stringoffset.h"
 //TIME
 #include "node_ctimest.h" // GETS THE CURRENT TIMESTAMP AS INT
 #include "node_tstoint.h" //CONVERTS A TIMESTAMP TO SINGLE INTS

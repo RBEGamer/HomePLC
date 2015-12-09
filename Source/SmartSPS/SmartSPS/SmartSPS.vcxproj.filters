@@ -40,6 +40,9 @@
     <ClCompile Include="serial_management.cpp" />
     <ClCompile Include="node_basetimer.cpp" />
     <ClCompile Include="node_simplemath.cpp" />
+    <ClCompile Include="node_stringappend.cpp" />
+    <ClCompile Include="node_stringoffset.cpp" />
+    <ClCompile Include="node_stringsplit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_node.h" />
@@ -83,6 +86,9 @@
     <ClInclude Include="single_node_include.h" />
     <ClInclude Include="node_basetimer.h" />
     <ClInclude Include="node_simplemath.h" />
+    <ClInclude Include="node_stringappend.h" />
+    <ClInclude Include="node_stringoffset.h" />
+    <ClInclude Include="node_stringsplit.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />

@@ -562,6 +562,13 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "simplemath") { nodes_buffer[element_count] = new node_simplemath(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "phhlux") { nodes_buffer[element_count] = new node_phhlux(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "opwemare") { nodes_buffer[element_count] = new node_opwemare(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+
+	if (nsi == "stringappend") { nodes_buffer[element_count] = new node_stringappend(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "stringsplit") { nodes_buffer[element_count] = new node_stringsplit(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "stringoffset") { nodes_buffer[element_count] = new node_stringoffset(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+
+
 }
 
 void main_serial_update_loop() {
