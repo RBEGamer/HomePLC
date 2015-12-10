@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+    <file name="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\serial_management.cpp">
+        <error source="T013" severity="info" line="1" message="no copyright notice found" />
+        <error source="L001" severity="info" line="6" message="trailing whitespace" />
+        <error source="L002" severity="info" line="6" message="horizontal tab used" />
+        <error source="L002" severity="info" line="15" message="horizontal tab used" />
+        <error source="L002" severity="info" line="16" message="horizontal tab used" />
+        <error source="L002" severity="info" line="17" message="horizontal tab used" />
+        <error source="L002" severity="info" line="18" message="horizontal tab used" />
+        <error source="T011" severity="info" line="18" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="23" message="horizontal tab used" />
+        <error source="L002" severity="info" line="24" message="horizontal tab used" />
+        <error source="L002" severity="info" line="25" message="horizontal tab used" />
+        <error source="L002" severity="info" line="26" message="horizontal tab used" />
+        <error source="T011" severity="info" line="26" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="31" message="horizontal tab used" />
+        <error source="L002" severity="info" line="32" message="horizontal tab used" />
+        <error source="T012" severity="info" line="32" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="33" message="horizontal tab used" />
+        <error source="L002" severity="info" line="34" message="horizontal tab used" />
+        <error source="L002" severity="info" line="35" message="horizontal tab used" />
+        <error source="T011" severity="info" line="35" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="36" message="horizontal tab used" />
+        <error source="L002" severity="info" line="41" message="horizontal tab used" />
+        <error source="L002" severity="info" line="42" message="horizontal tab used" />
+        <error source="T012" severity="info" line="42" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="43" message="horizontal tab used" />
+        <error source="L002" severity="info" line="44" message="horizontal tab used" />
+        <error source="L002" severity="info" line="45" message="horizontal tab used" />
+        <error source="L002" severity="info" line="46" message="horizontal tab used" />
+        <error source="T011" severity="info" line="46" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="47" message="horizontal tab used" />
+        <error source="L002" severity="info" line="52" message="horizontal tab used" />
+        <error source="L003" severity="info" line="55" message="trailing empty line(s)" />
+    </file>
+</checkstyle>

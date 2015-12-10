@@ -1,0 +1,867 @@
+<Root>
+<Comments>
+<c f="1" b="45" e="45"/>
+<c f="1" b="46" e="45"/>
+<c f="1" b="52" e="52"/>
+<c f="1" b="53" e="52"/>
+</Comments>
+<Macros/>
+<Comments/>
+<Macros/>
+<tun>
+<cr access="none" depth="0" kind="class" name="serial_management" id="56f8d2440cfa21e3259d0e22a807d301_786cc65125835cb503bda12ea0be9c48" file="2" linestart="5" lineend="19">
+<cr access="public" kind="class" name="serial_management" id="56f8d2440cfa21e3259d0e22a807d301_63adae5f3432923eac4af25375e68586" file="2" linestart="5" lineend="5"/>
+<asd access="public"/>
+<c name="serial_management" id="56f8d2440cfa21e3259d0e22a807d301_5aa0a773a28758d1ace525d6d582078d" file="2" linestart="8" lineend="8" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+</c>
+<d name="~serial_management" id="56f8d2440cfa21e3259d0e22a807d301_e4dcca7dd622e83a8d51521764485446" file="2" linestart="9" lineend="9" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+</d>
+<v name="recieve_queue" proto="std::deque&lt;std::string&gt;" id="56f8d2440cfa21e3259d0e22a807d301_4940c122426af84b87f428d27aeef566" file="2" linestart="10" lineend="10" storage="static" access2="public">
+<ety>
+<tss>
+<templatebase id="b96bec3a1545cbd14343ee76fb1343d4_936b3721bb2dae502758d4d22ace95d0"/>
+<template_arguments>
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</template_arguments>
+</tss>
+</ety>
+<Stmt>
+
+</Stmt>
+</v>
+<v name="send_queue" proto="std::deque&lt;std::string&gt;" id="56f8d2440cfa21e3259d0e22a807d301_84bbced3ef4f9f315b276a19c734bba3" file="2" linestart="11" lineend="11" storage="static" access2="public">
+<ety>
+<tss>
+<templatebase id="b96bec3a1545cbd14343ee76fb1343d4_936b3721bb2dae502758d4d22ace95d0"/>
+<template_arguments>
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</template_arguments>
+</tss>
+</ety>
+<Stmt>
+
+</Stmt>
+</v>
+<m name="add_to_send_queue" id="56f8d2440cfa21e3259d0e22a807d301_13b9d5817da2fbe69b42475bc0058da6" file="2" linestart="12" lineend="12" access="public" storage="static" hasbody="true">
+<fpt cc="cdecl" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="msg" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="add_to_revieved_queue" id="56f8d2440cfa21e3259d0e22a807d301_bb1e4cf7f0e2096a688f04b77988df50" file="2" linestart="13" lineend="13" access="public" storage="static" hasbody="true">
+<fpt cc="cdecl" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="msg" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="get_recieved" id="56f8d2440cfa21e3259d0e22a807d301_bb75da4c3c87ad18ac3b5e66a2e8c391" file="2" linestart="14" lineend="14" access="public" storage="static" hasbody="true">
+<fpt cc="cdecl" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fpt>
+</m>
+<m name="get_message_to_send" id="56f8d2440cfa21e3259d0e22a807d301_dccccb107f980824850d1701d3a85ea7" file="2" linestart="15" lineend="15" access="public" storage="static" hasbody="true">
+<fpt cc="cdecl" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fpt>
+</m>
+<m name="update" id="56f8d2440cfa21e3259d0e22a807d301_ea3697643e5e483b8343e8df2dddd04e" file="2" linestart="16" lineend="16" access="public" storage="static" hasbody="true">
+<fpt cc="cdecl" proto="void">
+<bt name="void"/>
+</fpt>
+</m>
+<asd access="private"/>
+<c name="serial_management" id="56f8d2440cfa21e3259d0e22a807d301_220eae282954937c7ab1d7d645e841fe" file="2" linestart="5" lineend="5" copyconst="true" implicit="true" access="public" inline="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="" proto="const serial_management &amp;" isRef="true" isLiteral="true" access2="none">
+<lrf>
+<QualType const="true">
+<rt>
+<cr id="56f8d2440cfa21e3259d0e22a807d301_786cc65125835cb503bda12ea0be9c48"/>
+</rt>
+</QualType>
+</lrf>
+<Stmt>
+
+</Stmt>
+</p>
+</c>
+</cr>
+<c name="serial_management" id="93fe68423b74235a6e05d61899d9458c_5aa0a773a28758d1ace525d6d582078d" file="1" linestart="4" lineend="7" previous="56f8d2440cfa21e3259d0e22a807d301_5aa0a773a28758d1ace525d6d582078d" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<Stmt>
+<u lb="5" cb="1" le="7" ce="1"/>
+
+</Stmt>
+</c>
+<d name="~serial_management" id="93fe68423b74235a6e05d61899d9458c_e4dcca7dd622e83a8d51521764485446" file="1" linestart="9" lineend="11" previous="56f8d2440cfa21e3259d0e22a807d301_e4dcca7dd622e83a8d51521764485446" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<Stmt>
+<u lb="10" cb="1" le="11" ce="1"/>
+
+</Stmt>
+</d>
+<m name="add_to_send_queue" id="93fe68423b74235a6e05d61899d9458c_13b9d5817da2fbe69b42475bc0058da6" file="1" linestart="13" lineend="19" previous="56f8d2440cfa21e3259d0e22a807d301_13b9d5817da2fbe69b42475bc0058da6" access="public" hasbody="true" isdef="true">
+<fpt cc="cdecl" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="msg" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="14" cb="1" le="19" ce="1">
+<if lb="15" cb="2" le="18" ce="2">
+<ocx lb="15" cb="6" le="15" ce="13" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_31fec7456625b374178468e3b034d24e">
+<exp pvirg="true"/>
+<n32 lb="15" cb="10">
+<drx lb="15" cb="10" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_31fec7456625b374178468e3b034d24e" nm="operator!=">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="15" cb="6">
+<drx lb="15" cb="6" kind="lvalue" nm="msg"/>
+</n32>
+<n32 lb="15" cb="13">
+<n52 lb="15" cb="13">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<u lb="15" cb="17" le="18" ce="2">
+<mce lb="16" cb="3" le="16" ce="46" nbparm="1" id="b96bec3a1545cbd14343ee76fb1343d4_7b088e6815bcd37bf4b0044c8dedcf73">
+<exp pvirg="true"/>
+<mex lb="16" cb="3" le="16" ce="33" id="b96bec3a1545cbd14343ee76fb1343d4_7b088e6815bcd37bf4b0044c8dedcf73" nm="push_back" point="1">
+<drx lb="16" cb="3" le="16" ce="22" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_84bbced3ef4f9f315b276a19c734bba3" nm="send_queue"/>
+</mex>
+<n32 lb="16" cb="43">
+<drx lb="16" cb="43" kind="lvalue" nm="msg"/>
+</n32>
+</mce>
+<ocx lb="17" cb="3" le="17" ce="55" nbparm="2" id="8b87011946485c1b08b5457c0a17b599_d33445cdb753f92a6c0b97ecb40fd870">
+<exp pvirg="true"/>
+<n32 lb="17" cb="47">
+<drx lb="17" cb="47" kind="lvalue" id="8b87011946485c1b08b5457c0a17b599_d33445cdb753f92a6c0b97ecb40fd870" nm="operator&lt;&lt;"/>
+</n32>
+<ocx lb="17" cb="3" le="17" ce="16" nbparm="2" id="8b87011946485c1b08b5457c0a17b599_a8b001da139eef9b7b8dd07e8c06f59d">
+<exp pvirg="true"/>
+<n32 lb="17" cb="13">
+<drx lb="17" cb="13" kind="lvalue" id="8b87011946485c1b08b5457c0a17b599_a8b001da139eef9b7b8dd07e8c06f59d" nm="operator&lt;&lt;">
+<template_arguments>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<drx lb="17" cb="3" le="17" ce="8" kind="lvalue" id="c91f05a696e2667c8ee47ccfafe8e7bf_fbe8f6ba0143c688ba07f32590d95a55" nm="cout"/>
+<n32 lb="17" cb="16">
+<n52 lb="17" cb="16">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<n32 lb="17" cb="50" le="17" ce="55">
+<drx lb="17" cb="50" le="17" ce="55" kind="lvalue" id="8b87011946485c1b08b5457c0a17b599_519f22e86fa75f44ad68a8158aae2a36" nm="endl">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+</ocx>
+</u>
+</if>
+</u>
+
+</Stmt>
+</m>
+<m name="add_to_revieved_queue" id="93fe68423b74235a6e05d61899d9458c_bb1e4cf7f0e2096a688f04b77988df50" file="1" linestart="21" lineend="27" previous="56f8d2440cfa21e3259d0e22a807d301_bb1e4cf7f0e2096a688f04b77988df50" access="public" hasbody="true" isdef="true">
+<fpt cc="cdecl" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="msg" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="22" cb="1" le="27" ce="1">
+<if lb="23" cb="2" le="26" ce="2">
+<ocx lb="23" cb="6" le="23" ce="13" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_31fec7456625b374178468e3b034d24e">
+<exp pvirg="true"/>
+<n32 lb="23" cb="10">
+<drx lb="23" cb="10" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_31fec7456625b374178468e3b034d24e" nm="operator!=">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="23" cb="6">
+<drx lb="23" cb="6" kind="lvalue" nm="msg"/>
+</n32>
+<n32 lb="23" cb="13">
+<n52 lb="23" cb="13">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<u lb="23" cb="17" le="26" ce="2">
+<mce lb="24" cb="3" le="24" ce="49" nbparm="1" id="b96bec3a1545cbd14343ee76fb1343d4_7b088e6815bcd37bf4b0044c8dedcf73">
+<exp pvirg="true"/>
+<mex lb="24" cb="3" le="24" ce="36" id="b96bec3a1545cbd14343ee76fb1343d4_7b088e6815bcd37bf4b0044c8dedcf73" nm="push_back" point="1">
+<drx lb="24" cb="3" le="24" ce="22" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_4940c122426af84b87f428d27aeef566" nm="recieve_queue"/>
+</mex>
+<n32 lb="24" cb="46">
+<drx lb="24" cb="46" kind="lvalue" nm="msg"/>
+</n32>
+</mce>
+<ocx lb="25" cb="3" le="25" ce="54" nbparm="2" id="8b87011946485c1b08b5457c0a17b599_d33445cdb753f92a6c0b97ecb40fd870">
+<exp pvirg="true"/>
+<n32 lb="25" cb="46">
+<drx lb="25" cb="46" kind="lvalue" id="8b87011946485c1b08b5457c0a17b599_d33445cdb753f92a6c0b97ecb40fd870" nm="operator&lt;&lt;"/>
+</n32>
+<ocx lb="25" cb="3" le="25" ce="16" nbparm="2" id="8b87011946485c1b08b5457c0a17b599_a8b001da139eef9b7b8dd07e8c06f59d">
+<exp pvirg="true"/>
+<n32 lb="25" cb="13">
+<drx lb="25" cb="13" kind="lvalue" id="8b87011946485c1b08b5457c0a17b599_a8b001da139eef9b7b8dd07e8c06f59d" nm="operator&lt;&lt;">
+<template_arguments>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<drx lb="25" cb="3" le="25" ce="8" kind="lvalue" id="c91f05a696e2667c8ee47ccfafe8e7bf_fbe8f6ba0143c688ba07f32590d95a55" nm="cout"/>
+<n32 lb="25" cb="16">
+<n52 lb="25" cb="16">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<n32 lb="25" cb="49" le="25" ce="54">
+<drx lb="25" cb="49" le="25" ce="54" kind="lvalue" id="8b87011946485c1b08b5457c0a17b599_519f22e86fa75f44ad68a8158aae2a36" nm="endl">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+</ocx>
+</u>
+</if>
+</u>
+
+</Stmt>
+</m>
+<m name="get_recieved" id="93fe68423b74235a6e05d61899d9458c_bb75da4c3c87ad18ac3b5e66a2e8c391" file="1" linestart="29" lineend="37" previous="56f8d2440cfa21e3259d0e22a807d301_bb75da4c3c87ad18ac3b5e66a2e8c391" access="public" hasbody="true" isdef="true">
+<fpt cc="cdecl" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fpt>
+<Stmt>
+<u lb="30" cb="1" le="37" ce="1">
+<dst lb="31" cb="2" le="31" ce="22">
+<exp pvirg="true"/>
+<Var nm="tmp" value="true">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<n37 lb="31" cb="14" le="31" ce="20">
+<n10 lb="31" cb="14" le="31" ce="20">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_e3eb16c4c3462a2d9004e988dec04a31">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<mte lb="31" cb="20">
+<exp pvirg="true"/>
+<n8 lb="31" cb="20" >
+<temp/>
+<n32 lb="31" cb="20">
+<n10 lb="31" cb="20">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_27c29e5ae4008e8e02d1117a50805d4f">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<n32 lb="31" cb="20">
+<n52 lb="31" cb="20">
+<slit/>
+</n52>
+</n32>
+</n10>
+</n32>
+</n8>
+</mte>
+</n10>
+</n37>
+</Var>
+</dst>
+<if lb="32" cb="2" le="35" ce="2">
+<uo lb="32" cb="6" le="32" ce="46" kind="!">
+<mce lb="32" cb="7" le="32" ce="46" nbparm="0" id="b96bec3a1545cbd14343ee76fb1343d4_4d4a4af48bed28c3376043523c5de07b">
+<exp pvirg="true"/>
+<mex lb="32" cb="7" le="32" ce="40" id="b96bec3a1545cbd14343ee76fb1343d4_4d4a4af48bed28c3376043523c5de07b" nm="empty" point="1">
+<n32 lb="32" cb="7" le="32" ce="26">
+<drx lb="32" cb="7" le="32" ce="26" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_4940c122426af84b87f428d27aeef566" nm="recieve_queue"/>
+</n32>
+</mex>
+</mce>
+</uo>
+<u lb="32" cb="49" le="35" ce="2">
+<ocx lb="33" cb="3" le="33" ce="48" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_d7d0ac7a3f487eb2ef39fc0aabf361a8">
+<exp pvirg="true"/>
+<n32 lb="33" cb="7">
+<drx lb="33" cb="7" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_d7d0ac7a3f487eb2ef39fc0aabf361a8" nm="operator="/>
+</n32>
+<drx lb="33" cb="3" kind="lvalue" nm="tmp"/>
+<n32 lb="33" cb="9" le="33" ce="48">
+<mce lb="33" cb="9" le="33" ce="48" nbparm="0" id="b96bec3a1545cbd14343ee76fb1343d4_993fa0446378ac8ae15bf2deea8d51ee">
+<exp pvirg="true"/>
+<mex lb="33" cb="9" le="33" ce="42" id="b96bec3a1545cbd14343ee76fb1343d4_993fa0446378ac8ae15bf2deea8d51ee" nm="front" point="1">
+<drx lb="33" cb="9" le="33" ce="28" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_4940c122426af84b87f428d27aeef566" nm="recieve_queue"/>
+</mex>
+</mce>
+</n32>
+</ocx>
+<mce lb="34" cb="3" le="34" ce="46" nbparm="0" id="b96bec3a1545cbd14343ee76fb1343d4_aa21369cd1680056dee7300dec8a9119">
+<exp pvirg="true"/>
+<mex lb="34" cb="3" le="34" ce="36" id="b96bec3a1545cbd14343ee76fb1343d4_aa21369cd1680056dee7300dec8a9119" nm="pop_front" point="1">
+<drx lb="34" cb="3" le="34" ce="22" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_4940c122426af84b87f428d27aeef566" nm="recieve_queue"/>
+</mex>
+</mce>
+</u>
+</if>
+<rx lb="36" cb="2" le="36" ce="9" pvirg="true">
+<n10 lb="36" cb="9">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_e3eb16c4c3462a2d9004e988dec04a31">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<n32 lb="36" cb="9">
+<drx lb="36" cb="9" kind="lvalue" nm="tmp"/>
+</n32>
+</n10>
+</rx>
+</u>
+
+</Stmt>
+</m>
+<m name="get_message_to_send" id="93fe68423b74235a6e05d61899d9458c_dccccb107f980824850d1701d3a85ea7" file="1" linestart="39" lineend="48" previous="56f8d2440cfa21e3259d0e22a807d301_dccccb107f980824850d1701d3a85ea7" access="public" hasbody="true" isdef="true">
+<fpt cc="cdecl" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fpt>
+<Stmt>
+<u lb="40" cb="1" le="48" ce="1">
+<dst lb="41" cb="2" le="41" ce="22">
+<exp pvirg="true"/>
+<Var nm="tmp" value="true">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<n37 lb="41" cb="14" le="41" ce="20">
+<n10 lb="41" cb="14" le="41" ce="20">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_e3eb16c4c3462a2d9004e988dec04a31">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<mte lb="41" cb="20">
+<exp pvirg="true"/>
+<n8 lb="41" cb="20" >
+<temp/>
+<n32 lb="41" cb="20">
+<n10 lb="41" cb="20">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_27c29e5ae4008e8e02d1117a50805d4f">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<n32 lb="41" cb="20">
+<n52 lb="41" cb="20">
+<slit/>
+</n52>
+</n32>
+</n10>
+</n32>
+</n8>
+</mte>
+</n10>
+</n37>
+</Var>
+</dst>
+<if lb="42" cb="2" le="46" ce="2">
+<uo lb="42" cb="6" le="42" ce="43" kind="!">
+<mce lb="42" cb="7" le="42" ce="43" nbparm="0" id="b96bec3a1545cbd14343ee76fb1343d4_4d4a4af48bed28c3376043523c5de07b">
+<exp pvirg="true"/>
+<mex lb="42" cb="7" le="42" ce="37" id="b96bec3a1545cbd14343ee76fb1343d4_4d4a4af48bed28c3376043523c5de07b" nm="empty" point="1">
+<n32 lb="42" cb="7" le="42" ce="26">
+<drx lb="42" cb="7" le="42" ce="26" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_84bbced3ef4f9f315b276a19c734bba3" nm="send_queue"/>
+</n32>
+</mex>
+</mce>
+</uo>
+<u lb="42" cb="46" le="46" ce="2">
+<ocx lb="43" cb="3" le="43" ce="45" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_d7d0ac7a3f487eb2ef39fc0aabf361a8">
+<exp pvirg="true"/>
+<n32 lb="43" cb="7">
+<drx lb="43" cb="7" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_d7d0ac7a3f487eb2ef39fc0aabf361a8" nm="operator="/>
+</n32>
+<drx lb="43" cb="3" kind="lvalue" nm="tmp"/>
+<n32 lb="43" cb="9" le="43" ce="45">
+<mce lb="43" cb="9" le="43" ce="45" nbparm="0" id="b96bec3a1545cbd14343ee76fb1343d4_993fa0446378ac8ae15bf2deea8d51ee">
+<exp pvirg="true"/>
+<mex lb="43" cb="9" le="43" ce="39" id="b96bec3a1545cbd14343ee76fb1343d4_993fa0446378ac8ae15bf2deea8d51ee" nm="front" point="1">
+<drx lb="43" cb="9" le="43" ce="28" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_84bbced3ef4f9f315b276a19c734bba3" nm="send_queue"/>
+</mex>
+</mce>
+</n32>
+</ocx>
+<mce lb="44" cb="3" le="44" ce="43" nbparm="0" id="b96bec3a1545cbd14343ee76fb1343d4_aa21369cd1680056dee7300dec8a9119">
+<exp pvirg="true"/>
+<mex lb="44" cb="3" le="44" ce="33" id="b96bec3a1545cbd14343ee76fb1343d4_aa21369cd1680056dee7300dec8a9119" nm="pop_front" point="1">
+<drx lb="44" cb="3" le="44" ce="22" kind="lvalue" id="56f8d2440cfa21e3259d0e22a807d301_84bbced3ef4f9f315b276a19c734bba3" nm="send_queue"/>
+</mex>
+</mce>
+</u>
+</if>
+<rx lb="47" cb="2" le="47" ce="9" pvirg="true">
+<n10 lb="47" cb="9">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_e3eb16c4c3462a2d9004e988dec04a31">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<n32 lb="47" cb="9">
+<drx lb="47" cb="9" kind="lvalue" nm="tmp"/>
+</n32>
+</n10>
+</rx>
+</u>
+
+</Stmt>
+</m>
+<m name="update" id="93fe68423b74235a6e05d61899d9458c_ea3697643e5e483b8343e8df2dddd04e" file="1" linestart="50" lineend="53" previous="56f8d2440cfa21e3259d0e22a807d301_ea3697643e5e483b8343e8df2dddd04e" access="public" hasbody="true" isdef="true">
+<fpt cc="cdecl" proto="void">
+<bt name="void"/>
+</fpt>
+<Stmt>
+<u lb="51" cb="1" le="53" ce="1"/>
+
+</Stmt>
+</m>
+</tun>
+</Root>

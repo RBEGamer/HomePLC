@@ -40,15 +40,13 @@ void node_simplemath::update(float timestep)
 		}
 
 		if (p0_operation == "dif") {
-			if (p1_b_input > 0 && p1_b_input > 0) {
+			if (p1_b_input > 0 && p1_b_input != 0) {
 				p2_c_output = p0_a_input / p1_b_input;
 			}
 			else if (p1_b_input == 0 && p0_a_input == 0) {
-				
+				p2_c_output = INFINITY;
 			}
-			else if (p1_b_input == 0 && p0_a_input > 0) {
-
-			}
+			
 			
 
 			if (p0_operation == "mod") {
@@ -189,8 +187,10 @@ void node_simplemath::set_value(int position, bool value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  p0_a_input = 1.0f;  break;
-	case 1:  p1_b_input = 1.0f;  break;
+	case 0:  if (value) { p0_a_input = 1.0f; }
+			 else { p0_a_input = 0.0f; }  break;
+	case 1:  if (value) { p1_b_input = 1.0f; }
+			 else { p1_b_input = 0.0f; }  break;
 	default:uv = false; break;
 	}
 	updated_values = uv;

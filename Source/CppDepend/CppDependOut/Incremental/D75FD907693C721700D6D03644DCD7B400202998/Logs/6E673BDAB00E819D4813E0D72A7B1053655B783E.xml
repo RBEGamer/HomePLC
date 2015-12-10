@@ -1,0 +1,21 @@
+<log>
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="4" col="49" msg="unused parameter &apos;con_count&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="26" col="30" msg="unused parameter &apos;timestep&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="34" col="50" msg="unused parameter &apos;params&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="38" col="43" msg="unused parameter &apos;message&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="43" col="36" msg="unused parameter &apos;pos&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="43" col="53" msg="unused parameter &apos;ptr&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="43" col="62" msg="unused parameter &apos;dest_pos&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="47" col="31" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="47" col="47" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="51" col="31" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="51" col="45" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="55" col="31" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="55" col="46" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="59" col="31" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="59" col="53" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="63" col="34" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="68" col="32" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="73" col="33" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp" line="78" col="40" msg="unused parameter &apos;position&apos;" />
+</log>

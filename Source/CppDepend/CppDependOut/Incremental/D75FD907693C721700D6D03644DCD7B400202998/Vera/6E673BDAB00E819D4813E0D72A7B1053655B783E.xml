@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+    <file name="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\base_node.cpp">
+        <error source="T013" severity="info" line="1" message="no copyright notice found" />
+        <error source="L002" severity="info" line="6" message="horizontal tab used" />
+        <error source="L002" severity="info" line="7" message="horizontal tab used" />
+        <error source="L002" severity="info" line="8" message="horizontal tab used" />
+        <error source="L002" severity="info" line="12" message="horizontal tab used" />
+        <error source="T011" severity="info" line="13" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="18" message="horizontal tab used" />
+        <error source="L002" severity="info" line="19" message="horizontal tab used" />
+        <error source="L002" severity="info" line="65" message="horizontal tab used" />
+        <error source="L002" severity="info" line="70" message="horizontal tab used" />
+        <error source="L002" severity="info" line="75" message="horizontal tab used" />
+        <error source="L002" severity="info" line="80" message="horizontal tab used" />
+        <error source="L003" severity="info" line="82" message="trailing empty line(s)" />
+    </file>
+</checkstyle>

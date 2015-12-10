@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+    <file name="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_basiccounter.cpp">
+        <error source="T013" severity="info" line="1" message="no copyright notice found" />
+        <error source="L004" severity="info" line="3" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="5" message="horizontal tab used" />
+        <error source="L002" severity="info" line="6" message="horizontal tab used" />
+        <error source="L002" severity="info" line="7" message="horizontal tab used" />
+        <error source="L002" severity="info" line="8" message="horizontal tab used" />
+        <error source="L002" severity="info" line="9" message="horizontal tab used" />
+        <error source="L002" severity="info" line="10" message="horizontal tab used" />
+        <error source="L005" severity="info" line="14" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="17" message="horizontal tab used" />
+        <error source="T003" severity="info" line="17" message="keyword &apos;delete&apos; not followed by a single space" />
+        <error source="L002" severity="info" line="24" message="horizontal tab used" />
+        <error source="L002" severity="info" line="27" message="horizontal tab used" />
+        <error source="L002" severity="info" line="28" message="horizontal tab used" />
+        <error source="L001" severity="info" line="30" message="trailing whitespace" />
+        <error source="L002" severity="info" line="30" message="horizontal tab used" />
+        <error source="L005" severity="info" line="31" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="33" message="horizontal tab used" />
+        <error source="L002" severity="info" line="34" message="horizontal tab used" />
+        <error source="L002" severity="info" line="35" message="horizontal tab used" />
+        <error source="L002" severity="info" line="36" message="horizontal tab used" />
+        <error source="L002" severity="info" line="37" message="horizontal tab used" />
+        <error source="L002" severity="info" line="38" message="horizontal tab used" />
+        <error source="L002" severity="info" line="39" message="horizontal tab used" />
+        <error source="L004" severity="info" line="39" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="40" message="horizontal tab used" />
+        <error source="L004" severity="info" line="40" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="41" message="horizontal tab used" />
+        <error source="T011" severity="info" line="41" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="42" message="horizontal tab used" />
+        <error source="L002" severity="info" line="43" message="horizontal tab used" />
+        <error source="L002" severity="info" line="44" message="horizontal tab used" />
+        <error source="L002" severity="info" line="45" message="horizontal tab used" />
+        <error source="T011" severity="info" line="45" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="46" message="horizontal tab used" />
+        <error source="T011" severity="info" line="46" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="47" message="horizontal tab used" />
+        <error source="T011" severity="info" line="47" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="52" message="horizontal tab used" />
+        <error source="L002" severity="info" line="53" message="horizontal tab used" />
+        <error source="L002" severity="info" line="54" message="horizontal tab used" />
+        <error source="L002" severity="info" line="55" message="horizontal tab used" />
+        <error source="L002" severity="info" line="56" message="horizontal tab used" />
+        <error source="L005" severity="info" line="65" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="69" message="horizontal tab used" />
+        <error source="L001" severity="info" line="72" message="trailing whitespace" />
+        <error source="L002" severity="info" line="72" message="horizontal tab used" />
+        <error source="L002" severity="info" line="73" message="horizontal tab used" />
+        <error source="L002" severity="info" line="74" message="horizontal tab used" />
+        <error source="L002" severity="info" line="75" message="horizontal tab used" />
+        <error source="L002" severity="info" line="76" message="horizontal tab used" />
+        <error source="L002" severity="info" line="77" message="horizontal tab used" />
+        <error source="L002" severity="info" line="78" message="horizontal tab used" />
+        <error source="L002" severity="info" line="79" message="horizontal tab used" />
+        <error source="L002" severity="info" line="80" message="horizontal tab used" />
+        <error source="T011" severity="info" line="80" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="81" message="horizontal tab used" />
+        <error source="L002" severity="info" line="83" message="horizontal tab used" />
+        <error source="T011" severity="info" line="83" message="closing curly bracket not in the same line or column" />
+        <error source="L001" severity="info" line="91" message="trailing whitespace" />
+        <error source="L002" severity="info" line="91" message="horizontal tab used" />
+        <error source="L001" severity="info" line="96" message="trailing whitespace" />
+        <error source="L002" severity="info" line="96" message="horizontal tab used" />
+        <error source="L001" severity="info" line="101" message="trailing whitespace" />
+        <error source="L002" severity="info" line="101" message="horizontal tab used" />
+        <error source="L005" severity="info" line="110" message="too many consecutive empty lines" />
+    </file>
+</checkstyle>

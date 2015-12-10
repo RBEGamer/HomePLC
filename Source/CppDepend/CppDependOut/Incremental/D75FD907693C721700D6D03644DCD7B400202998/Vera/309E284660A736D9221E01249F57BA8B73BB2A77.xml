@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+    <file name="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\connector.cpp">
+        <error source="T013" severity="info" line="1" message="no copyright notice found" />
+        <error source="L002" severity="info" line="5" message="horizontal tab used" />
+        <error source="L002" severity="info" line="6" message="horizontal tab used" />
+        <error source="L002" severity="info" line="7" message="horizontal tab used" />
+        <error source="L002" severity="info" line="17" message="horizontal tab used" />
+        <error source="L002" severity="info" line="18" message="horizontal tab used" />
+        <error source="L002" severity="info" line="19" message="horizontal tab used" />
+    </file>
+</checkstyle>

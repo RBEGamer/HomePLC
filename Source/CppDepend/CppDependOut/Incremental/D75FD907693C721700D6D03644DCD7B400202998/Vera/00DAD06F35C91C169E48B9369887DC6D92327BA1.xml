@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+    <file name="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\serialib.cpp">
+        <error source="T013" severity="info" line="1" message="no copyright notice found" />
+        <error source="L005" severity="info" line="21" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="37" message="horizontal tab used" />
+        <error source="L005" severity="info" line="41" message="too many consecutive empty lines" />
+        <error source="L005" severity="info" line="46" message="too many consecutive empty lines" />
+        <error source="L004" severity="info" line="49" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="94" message="horizontal tab used" />
+        <error source="L002" severity="info" line="95" message="horizontal tab used" />
+        <error source="L004" severity="info" line="95" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="96" message="horizontal tab used" />
+        <error source="L002" severity="info" line="97" message="horizontal tab used" />
+        <error source="L002" severity="info" line="98" message="horizontal tab used" />
+        <error source="T019" severity="info" line="98" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="99" message="horizontal tab used" />
+        <error source="L002" severity="info" line="100" message="horizontal tab used" />
+        <error source="T011" severity="info" line="100" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="102" message="horizontal tab used" />
+        <error source="L002" severity="info" line="103" message="horizontal tab used" />
+        <error source="L004" severity="info" line="103" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="104" message="horizontal tab used" />
+        <error source="L002" severity="info" line="105" message="horizontal tab used" />
+        <error source="T012" severity="info" line="105" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="106" message="horizontal tab used" />
+        <error source="L004" severity="info" line="106" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="106" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="107" message="horizontal tab used" />
+        <error source="L002" severity="info" line="108" message="horizontal tab used" />
+        <error source="L002" severity="info" line="109" message="horizontal tab used" />
+        <error source="L002" severity="info" line="110" message="horizontal tab used" />
+        <error source="L002" severity="info" line="111" message="horizontal tab used" />
+        <error source="L002" severity="info" line="112" message="horizontal tab used" />
+        <error source="L002" severity="info" line="113" message="horizontal tab used" />
+        <error source="L002" severity="info" line="114" message="horizontal tab used" />
+        <error source="L002" severity="info" line="115" message="horizontal tab used" />
+        <error source="L002" severity="info" line="116" message="horizontal tab used" />
+        <error source="L002" severity="info" line="117" message="horizontal tab used" />
+        <error source="L002" severity="info" line="118" message="horizontal tab used" />
+        <error source="L002" severity="info" line="119" message="horizontal tab used" />
+        <error source="L002" severity="info" line="120" message="horizontal tab used" />
+        <error source="L002" severity="info" line="121" message="horizontal tab used" />
+        <error source="L002" severity="info" line="122" message="horizontal tab used" />
+        <error source="L002" severity="info" line="123" message="horizontal tab used" />
+        <error source="L002" severity="info" line="124" message="horizontal tab used" />
+        <error source="L002" severity="info" line="125" message="horizontal tab used" />
+        <error source="L002" severity="info" line="126" message="horizontal tab used" />
+        <error source="L002" severity="info" line="127" message="horizontal tab used" />
+        <error source="L002" severity="info" line="128" message="horizontal tab used" />
+        <error source="L002" severity="info" line="129" message="horizontal tab used" />
+        <error source="T012" severity="info" line="129" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="130" message="horizontal tab used" />
+        <error source="T019" severity="info" line="130" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="132" message="horizontal tab used" />
+        <error source="L002" severity="info" line="133" message="horizontal tab used" />
+        <error source="L002" severity="info" line="134" message="horizontal tab used" />
+        <error source="L002" severity="info" line="135" message="horizontal tab used" />
+        <error source="L002" severity="info" line="136" message="horizontal tab used" />
+        <error source="L002" severity="info" line="137" message="horizontal tab used" />
+        <error source="L002" severity="info" line="138" message="horizontal tab used" />
+        <error source="T012" severity="info" line="138" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="139" message="horizontal tab used" />
+        <error source="L004" severity="info" line="139" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="139" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="140" message="horizontal tab used" />
+        <error source="L001" severity="info" line="143" message="trailing whitespace" />
+        <error source="L002" severity="info" line="144" message="horizontal tab used" />
+        <error source="L004" severity="info" line="144" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="147" message="horizontal tab used" />
+        <error source="L002" severity="info" line="148" message="horizontal tab used" />
+        <error source="L002" severity="info" line="149" message="horizontal tab used" />
+        <error source="L004" severity="info" line="149" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="149" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="150" message="horizontal tab used" />
+        <error source="L004" severity="info" line="150" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="152" message="horizontal tab used" />
+        <error source="L002" severity="info" line="153" message="horizontal tab used" />
+        <error source="L004" severity="info" line="153" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="154" message="horizontal tab used" />
+        <error source="L002" severity="info" line="155" message="horizontal tab used" />
+        <error source="L002" severity="info" line="156" message="horizontal tab used" />
+        <error source="L002" severity="info" line="157" message="horizontal tab used" />
+        <error source="L002" severity="info" line="158" message="horizontal tab used" />
+        <error source="L002" severity="info" line="159" message="horizontal tab used" />
+        <error source="L002" severity="info" line="160" message="horizontal tab used" />
+        <error source="L002" severity="info" line="161" message="horizontal tab used" />
+        <error source="L002" severity="info" line="162" message="horizontal tab used" />
+        <error source="L002" severity="info" line="163" message="horizontal tab used" />
+        <error source="L002" severity="info" line="164" message="horizontal tab used" />
+        <error source="L002" severity="info" line="165" message="horizontal tab used" />
+        <error source="L002" severity="info" line="166" message="horizontal tab used" />
+        <error source="L002" severity="info" line="167" message="horizontal tab used" />
+        <error source="L002" severity="info" line="168" message="horizontal tab used" />
+        <error source="L002" severity="info" line="169" message="horizontal tab used" />
+        <error source="L002" severity="info" line="170" message="horizontal tab used" />
+        <error source="L002" severity="info" line="171" message="horizontal tab used" />
+        <error source="L004" severity="info" line="171" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="172" message="horizontal tab used" />
+        <error source="L002" severity="info" line="173" message="horizontal tab used" />
+        <error source="L004" severity="info" line="173" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="174" message="horizontal tab used" />
+        <error source="L002" severity="info" line="175" message="horizontal tab used" />
+        <error source="L002" severity="info" line="176" message="horizontal tab used" />
+        <error source="L004" severity="info" line="176" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="177" message="horizontal tab used" />
+        <error source="L002" severity="info" line="178" message="horizontal tab used" />
+        <error source="L002" severity="info" line="189" message="horizontal tab used" />
+        <error source="L002" severity="info" line="192" message="horizontal tab used" />
+        <error source="L005" severity="info" line="197" message="too many consecutive empty lines" />
+        <error source="L005" severity="info" line="203" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="213" message="horizontal tab used" />
+        <error source="L002" severity="info" line="214" message="horizontal tab used" />
+        <error source="T012" severity="info" line="214" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="215" message="horizontal tab used" />
+        <error source="T019" severity="info" line="215" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="216" message="horizontal tab used" />
+        <error source="L002" severity="info" line="219" message="horizontal tab used" />
+        <error source="L002" severity="info" line="220" message="horizontal tab used" />
+        <error source="T019" severity="info" line="220" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="221" message="horizontal tab used" />
+        <error source="L005" severity="info" line="226" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="240" message="horizontal tab used" />
+        <error source="L002" severity="info" line="241" message="horizontal tab used" />
+        <error source="T012" severity="info" line="241" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="242" message="horizontal tab used" />
+        <error source="T019" severity="info" line="242" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="243" message="horizontal tab used" />
+        <error source="L002" severity="info" line="246" message="horizontal tab used" />
+        <error source="L002" severity="info" line="247" message="horizontal tab used" />
+        <error source="L002" severity="info" line="248" message="horizontal tab used" />
+        <error source="T019" severity="info" line="248" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="249" message="horizontal tab used" />
+        <error source="L005" severity="info" line="257" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="268" message="horizontal tab used" />
+        <error source="L002" severity="info" line="269" message="horizontal tab used" />
+        <error source="T012" severity="info" line="269" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="270" message="horizontal tab used" />
+        <error source="T019" severity="info" line="270" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="271" message="horizontal tab used" />
+        <error source="L002" severity="info" line="274" message="horizontal tab used" />
+        <error source="L002" severity="info" line="275" message="horizontal tab used" />
+        <error source="T019" severity="info" line="275" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="276" message="horizontal tab used" />
+        <error source="L005" severity="info" line="281" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="296" message="horizontal tab used" />
+        <error source="L002" severity="info" line="297" message="horizontal tab used" />
+        <error source="L002" severity="info" line="298" message="horizontal tab used" />
+        <error source="T012" severity="info" line="298" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="299" message="horizontal tab used" />
+        <error source="L004" severity="info" line="299" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="299" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="300" message="horizontal tab used" />
+        <error source="T012" severity="info" line="300" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="301" message="horizontal tab used" />
+        <error source="T019" severity="info" line="301" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="302" message="horizontal tab used" />
+        <error source="L004" severity="info" line="302" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="302" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="303" message="horizontal tab used" />
+        <error source="L002" severity="info" line="306" message="horizontal tab used" />
+        <error source="L002" severity="info" line="307" message="horizontal tab used" />
+        <error source="L002" severity="info" line="308" message="horizontal tab used" />
+        <error source="L004" severity="info" line="308" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="309" message="horizontal tab used" />
+        <error source="L002" severity="info" line="310" message="horizontal tab used" />
+        <error source="L004" severity="info" line="310" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="311" message="horizontal tab used" />
+        <error source="L002" severity="info" line="312" message="horizontal tab used" />
+        <error source="L002" severity="info" line="313" message="horizontal tab used" />
+        <error source="T011" severity="info" line="313" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="314" message="horizontal tab used" />
+        <error source="L002" severity="info" line="315" message="horizontal tab used" />
+        <error source="L005" severity="info" line="320" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="333" message="horizontal tab used" />
+        <error source="L002" severity="info" line="334" message="horizontal tab used" />
+        <error source="L002" severity="info" line="335" message="horizontal tab used" />
+        <error source="L002" severity="info" line="336" message="horizontal tab used" />
+        <error source="L004" severity="info" line="336" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="337" message="horizontal tab used" />
+        <error source="L002" severity="info" line="338" message="horizontal tab used" />
+        <error source="L002" severity="info" line="339" message="horizontal tab used" />
+        <error source="L002" severity="info" line="340" message="horizontal tab used" />
+        <error source="L002" severity="info" line="341" message="horizontal tab used" />
+        <error source="L002" severity="info" line="342" message="horizontal tab used" />
+        <error source="L002" severity="info" line="343" message="horizontal tab used" />
+        <error source="L002" severity="info" line="344" message="horizontal tab used" />
+        <error source="L002" severity="info" line="345" message="horizontal tab used" />
+        <error source="L004" severity="info" line="345" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="346" message="horizontal tab used" />
+        <error source="L002" severity="info" line="347" message="horizontal tab used" />
+        <error source="L004" severity="info" line="347" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="347" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="348" message="horizontal tab used" />
+        <error source="L002" severity="info" line="349" message="horizontal tab used" />
+        <error source="L004" severity="info" line="364" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="366" message="horizontal tab used" />
+        <error source="L002" severity="info" line="367" message="horizontal tab used" />
+        <error source="T019" severity="info" line="367" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="369" message="horizontal tab used" />
+        <error source="L002" severity="info" line="370" message="horizontal tab used" />
+        <error source="L002" severity="info" line="371" message="horizontal tab used" />
+        <error source="L002" severity="info" line="372" message="horizontal tab used" />
+        <error source="L002" severity="info" line="373" message="horizontal tab used" />
+        <error source="L002" severity="info" line="375" message="horizontal tab used" />
+        <error source="L002" severity="info" line="376" message="horizontal tab used" />
+        <error source="L004" severity="info" line="376" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="377" message="horizontal tab used" />
+        <error source="L004" severity="info" line="377" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="378" message="horizontal tab used" />
+        <error source="L004" severity="info" line="378" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="379" message="horizontal tab used" />
+        <error source="L001" severity="info" line="380" message="trailing whitespace" />
+        <error source="L002" severity="info" line="380" message="horizontal tab used" />
+        <error source="L004" severity="info" line="380" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="381" message="horizontal tab used" />
+        <error source="L002" severity="info" line="382" message="horizontal tab used" />
+        <error source="L002" severity="info" line="384" message="horizontal tab used" />
+        <error source="L002" severity="info" line="385" message="horizontal tab used" />
+        <error source="L002" severity="info" line="386" message="horizontal tab used" />
+        <error source="L002" severity="info" line="387" message="horizontal tab used" />
+        <error source="L002" severity="info" line="388" message="horizontal tab used" />
+        <error source="L002" severity="info" line="389" message="horizontal tab used" />
+        <error source="L004" severity="info" line="389" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="390" message="horizontal tab used" />
+        <error source="L002" severity="info" line="391" message="horizontal tab used" />
+        <error source="L004" severity="info" line="391" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="391" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="392" message="horizontal tab used" />
+        <error source="L002" severity="info" line="393" message="horizontal tab used" />
+        <error source="L002" severity="info" line="394" message="horizontal tab used" />
+        <error source="L002" severity="info" line="395" message="horizontal tab used" />
+        <error source="L002" severity="info" line="396" message="horizontal tab used" />
+        <error source="T011" severity="info" line="396" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="397" message="horizontal tab used" />
+        <error source="L002" severity="info" line="398" message="horizontal tab used" />
+        <error source="L002" severity="info" line="415" message="horizontal tab used" />
+        <error source="L002" severity="info" line="416" message="horizontal tab used" />
+        <error source="L002" severity="info" line="417" message="horizontal tab used" />
+        <error source="T012" severity="info" line="417" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="418" message="horizontal tab used" />
+        <error source="L004" severity="info" line="418" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="418" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="419" message="horizontal tab used" />
+        <error source="L004" severity="info" line="419" message="line is longer than 100 characters" />
+        <error source="T012" severity="info" line="419" message="negation operator used in its short form" />
+        <error source="L002" severity="info" line="420" message="horizontal tab used" />
+        <error source="T019" severity="info" line="420" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="421" message="horizontal tab used" />
+        <error source="L004" severity="info" line="421" message="line is longer than 100 characters" />
+        <error source="T019" severity="info" line="421" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="422" message="horizontal tab used" />
+        <error source="L002" severity="info" line="425" message="horizontal tab used" />
+        <error source="L002" severity="info" line="426" message="horizontal tab used" />
+        <error source="L002" severity="info" line="427" message="horizontal tab used" />
+        <error source="L002" severity="info" line="428" message="horizontal tab used" />
+        <error source="L004" severity="info" line="428" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="429" message="horizontal tab used" />
+        <error source="L002" severity="info" line="430" message="horizontal tab used" />
+        <error source="L004" severity="info" line="430" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="431" message="horizontal tab used" />
+        <error source="L004" severity="info" line="431" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="432" message="horizontal tab used" />
+        <error source="T019" severity="info" line="432" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="433" message="horizontal tab used" />
+        <error source="L004" severity="info" line="433" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="434" message="horizontal tab used" />
+        <error source="L004" severity="info" line="434" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="435" message="horizontal tab used" />
+        <error source="L002" severity="info" line="436" message="horizontal tab used" />
+        <error source="T019" severity="info" line="436" message="full block {} expected in the control structure" />
+        <error source="L002" severity="info" line="437" message="horizontal tab used" />
+        <error source="T011" severity="info" line="437" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="438" message="horizontal tab used" />
+        <error source="L002" severity="info" line="439" message="horizontal tab used" />
+        <error source="L005" severity="info" line="444" message="too many consecutive empty lines" />
+        <error source="L005" severity="info" line="450" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="458" message="horizontal tab used" />
+        <error source="L005" severity="info" line="463" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="470" message="horizontal tab used" />
+        <error source="L002" severity="info" line="472" message="horizontal tab used" />
+        <error source="L002" severity="info" line="474" message="horizontal tab used" />
+        <error source="L004" severity="info" line="490" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="495" message="horizontal tab used" />
+        <error source="L004" severity="info" line="499" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="506" message="horizontal tab used" />
+        <error source="L002" severity="info" line="507" message="horizontal tab used" />
+        <error source="L002" severity="info" line="508" message="horizontal tab used" />
+        <error source="L002" severity="info" line="509" message="horizontal tab used" />
+        <error source="L004" severity="info" line="509" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="510" message="horizontal tab used" />
+        <error source="L002" severity="info" line="511" message="horizontal tab used" />
+        <error source="L004" severity="info" line="511" message="line is longer than 100 characters" />
+        <error source="L002" severity="info" line="512" message="horizontal tab used" />
+        <error source="L002" severity="info" line="513" message="horizontal tab used" />
+        <error source="L002" severity="info" line="514" message="horizontal tab used" />
+        <error source="T011" severity="info" line="514" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="515" message="horizontal tab used" />
+        <error source="L003" severity="info" line="517" message="trailing empty line(s)" />
+    </file>
+</checkstyle>

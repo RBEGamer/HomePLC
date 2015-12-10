@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+    <file name="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_bnidisp.cpp">
+        <error source="T013" severity="info" line="1" message="no copyright notice found" />
+        <error source="L005" severity="info" line="4" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="7" message="horizontal tab used" />
+        <error source="L002" severity="info" line="8" message="horizontal tab used" />
+        <error source="L002" severity="info" line="9" message="horizontal tab used" />
+        <error source="L002" severity="info" line="10" message="horizontal tab used" />
+        <error source="L002" severity="info" line="11" message="horizontal tab used" />
+        <error source="L002" severity="info" line="12" message="horizontal tab used" />
+        <error source="L002" severity="info" line="21" message="horizontal tab used" />
+        <error source="L002" severity="info" line="22" message="horizontal tab used" />
+        <error source="L001" severity="info" line="23" message="trailing whitespace" />
+        <error source="L002" severity="info" line="23" message="horizontal tab used" />
+        <error source="L002" severity="info" line="24" message="horizontal tab used" />
+        <error source="L002" severity="info" line="25" message="horizontal tab used" />
+        <error source="L004" severity="info" line="25" message="line is longer than 100 characters" />
+        <error source="L001" severity="info" line="26" message="trailing whitespace" />
+        <error source="L002" severity="info" line="26" message="horizontal tab used" />
+        <error source="L002" severity="info" line="27" message="horizontal tab used" />
+        <error source="T011" severity="info" line="27" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="36" message="horizontal tab used" />
+        <error source="L002" severity="info" line="37" message="horizontal tab used" />
+        <error source="L002" severity="info" line="38" message="horizontal tab used" />
+        <error source="L002" severity="info" line="39" message="horizontal tab used" />
+        <error source="L002" severity="info" line="40" message="horizontal tab used" />
+        <error source="L002" severity="info" line="41" message="horizontal tab used" />
+        <error source="L002" severity="info" line="42" message="horizontal tab used" />
+        <error source="L002" severity="info" line="43" message="horizontal tab used" />
+        <error source="L002" severity="info" line="44" message="horizontal tab used" />
+        <error source="L002" severity="info" line="45" message="horizontal tab used" />
+        <error source="L002" severity="info" line="46" message="horizontal tab used" />
+        <error source="L002" severity="info" line="47" message="horizontal tab used" />
+        <error source="L002" severity="info" line="48" message="horizontal tab used" />
+        <error source="L002" severity="info" line="49" message="horizontal tab used" />
+        <error source="L002" severity="info" line="50" message="horizontal tab used" />
+        <error source="L002" severity="info" line="51" message="horizontal tab used" />
+        <error source="L002" severity="info" line="52" message="horizontal tab used" />
+        <error source="L002" severity="info" line="53" message="horizontal tab used" />
+        <error source="L002" severity="info" line="54" message="horizontal tab used" />
+        <error source="L002" severity="info" line="55" message="horizontal tab used" />
+        <error source="L002" severity="info" line="56" message="horizontal tab used" />
+        <error source="L002" severity="info" line="57" message="horizontal tab used" />
+        <error source="L002" severity="info" line="58" message="horizontal tab used" />
+        <error source="L002" severity="info" line="59" message="horizontal tab used" />
+        <error source="L002" severity="info" line="60" message="horizontal tab used" />
+        <error source="T011" severity="info" line="60" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="61" message="horizontal tab used" />
+        <error source="L002" severity="info" line="62" message="horizontal tab used" />
+        <error source="L002" severity="info" line="63" message="horizontal tab used" />
+        <error source="T011" severity="info" line="63" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="64" message="horizontal tab used" />
+        <error source="T011" severity="info" line="64" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="65" message="horizontal tab used" />
+        <error source="L002" severity="info" line="66" message="horizontal tab used" />
+        <error source="L002" severity="info" line="67" message="horizontal tab used" />
+        <error source="T011" severity="info" line="67" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="68" message="horizontal tab used" />
+        <error source="T011" severity="info" line="68" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="69" message="horizontal tab used" />
+        <error source="L002" severity="info" line="70" message="horizontal tab used" />
+        <error source="L002" severity="info" line="71" message="horizontal tab used" />
+        <error source="T011" severity="info" line="71" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="72" message="horizontal tab used" />
+        <error source="L005" severity="info" line="76" message="too many consecutive empty lines" />
+        <error source="L002" severity="info" line="80" message="horizontal tab used" />
+        <error source="L001" severity="info" line="83" message="trailing whitespace" />
+        <error source="L002" severity="info" line="83" message="horizontal tab used" />
+        <error source="L002" severity="info" line="84" message="horizontal tab used" />
+        <error source="L002" severity="info" line="85" message="horizontal tab used" />
+        <error source="L002" severity="info" line="86" message="horizontal tab used" />
+        <error source="L002" severity="info" line="87" message="horizontal tab used" />
+        <error source="L002" severity="info" line="88" message="horizontal tab used" />
+        <error source="L002" severity="info" line="89" message="horizontal tab used" />
+        <error source="L002" severity="info" line="90" message="horizontal tab used" />
+        <error source="L002" severity="info" line="91" message="horizontal tab used" />
+        <error source="T011" severity="info" line="91" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="93" message="horizontal tab used" />
+        <error source="L002" severity="info" line="94" message="horizontal tab used" />
+        <error source="T011" severity="info" line="94" message="closing curly bracket not in the same line or column" />
+        <error source="L002" severity="info" line="98" message="horizontal tab used" />
+        <error source="L002" severity="info" line="99" message="horizontal tab used" />
+        <error source="L002" severity="info" line="105" message="horizontal tab used" />
+        <error source="L002" severity="info" line="106" message="horizontal tab used" />
+        <error source="L002" severity="info" line="107" message="horizontal tab used" />
+        <error source="L002" severity="info" line="108" message="horizontal tab used" />
+        <error source="L002" severity="info" line="109" message="horizontal tab used" />
+        <error source="L002" severity="info" line="110" message="horizontal tab used" />
+        <error source="L002" severity="info" line="111" message="horizontal tab used" />
+        <error source="L002" severity="info" line="116" message="horizontal tab used" />
+        <error source="L002" severity="info" line="117" message="horizontal tab used" />
+        <error source="L002" severity="info" line="118" message="horizontal tab used" />
+        <error source="L002" severity="info" line="119" message="horizontal tab used" />
+        <error source="L002" severity="info" line="120" message="horizontal tab used" />
+        <error source="L002" severity="info" line="121" message="horizontal tab used" />
+        <error source="L002" severity="info" line="122" message="horizontal tab used" />
+        <error source="L002" severity="info" line="123" message="horizontal tab used" />
+        <error source="L002" severity="info" line="129" message="horizontal tab used" />
+        <error source="L002" severity="info" line="130" message="horizontal tab used" />
+        <error source="L002" severity="info" line="131" message="horizontal tab used" />
+        <error source="L002" severity="info" line="132" message="horizontal tab used" />
+        <error source="L002" severity="info" line="133" message="horizontal tab used" />
+        <error source="L002" severity="info" line="134" message="horizontal tab used" />
+        <error source="L002" severity="info" line="135" message="horizontal tab used" />
+        <error source="L002" severity="info" line="136" message="horizontal tab used" />
+        <error source="L002" severity="info" line="142" message="horizontal tab used" />
+        <error source="L002" severity="info" line="143" message="horizontal tab used" />
+        <error source="L002" severity="info" line="144" message="horizontal tab used" />
+        <error source="L002" severity="info" line="145" message="horizontal tab used" />
+        <error source="L002" severity="info" line="148" message="horizontal tab used" />
+        <error source="L002" severity="info" line="149" message="horizontal tab used" />
+        <error source="L002" severity="info" line="150" message="horizontal tab used" />
+    </file>
+</checkstyle>

@@ -1,0 +1,2415 @@
+<Root>
+<Comments>
+<c f="1" b="24" e="24"/>
+<c f="1" b="27" e="24"/>
+<c f="1" b="75" e="75"/>
+<c f="1" b="76" e="75"/>
+<c f="1" b="79" e="79"/>
+<c f="1" b="80" e="79"/>
+<c f="1" b="82" e="82"/>
+<c f="1" b="83" e="82"/>
+<c f="1" b="115" e="115"/>
+<c f="1" b="116" e="115"/>
+<c f="1" b="124" e="124"/>
+<c f="1" b="125" e="124"/>
+<c f="1" b="148" e="148"/>
+<c f="1" b="149" e="148"/>
+</Comments>
+<Macros>
+<m f="1" bl="80" bc="53" el="80" ec="53"/>
+<m f="1" bl="145" bc="13" el="145" ec="13"/>
+<m f="1" bl="151" bc="51" el="151" ec="51"/>
+</Macros>
+<Comments>
+<c f="2" b="15" e="15"/>
+<c f="2" b="16" e="15"/>
+<c f="2" b="18" e="18"/>
+<c f="2" b="19" e="18"/>
+</Comments>
+<Macros/>
+<tun>
+<ft name="NumberToString" id="8d5cd486e7b4a7c915017515504f9207_c78556f0d1cac22b7803514ab39c1510" file="3" linestart="11" lineend="17">
+<template_parameters>
+<ttp name="T" id="8d5cd486e7b4a7c915017515504f9207_e6a3814013861e8641b0ed1cd6ca03eb" depth="0" index="0" proto="type-parameter-0-0"/>
+</template_parameters>
+<f name="NumberToString" id="8d5cd486e7b4a7c915017515504f9207_a1bb3dece6acba37b3d41ad0f804e9b1" file="3" linestart="12" lineend="17" access="none" hasbody="true" isdef="true">
+<fpt cc="cdecl" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fpt>
+<p name="pNumber" proto="T" access2="none">
+<ttp/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="13" cb="1" le="17" ce="1">
+<dst lb="14" cb="2" le="14" ce="32">
+<exp pvirg="true"/>
+<Var nm="oOStrStream" value="true">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_95a628997c78cce13a730fe75069da30"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<n10 lb="14" cb="21">
+<typeptr id="f8cde389d894239cdbfb2bdecf21b2f2_bc7a96dd5056bb80c533a4e80969ffeb">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<n12>
+<exp pvirg="true"/>
+</n12>
+</n10>
+</Var>
+</dst>
+<xop lb="15" cb="2" le="15" ce="17" kind="&lt;&lt;">
+<drx lb="15" cb="2" kind="lvalue" nm="oOStrStream"/>
+<drx lb="15" cb="17" kind="lvalue" nm="pNumber"/>
+</xop>
+<rx lb="16" cb="2" le="16" ce="25" pvirg="true">
+<n37 lb="16" cb="9" le="16" ce="25">
+<n10 lb="16" cb="9" le="16" ce="25">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_e3eb16c4c3462a2d9004e988dec04a31">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<mte lb="16" cb="9" le="16" ce="25">
+<exp pvirg="true"/>
+<n8 lb="16" cb="9" le="16" ce="25" >
+<temp/>
+<mce lb="16" cb="9" le="16" ce="25" nbparm="0" id="f8cde389d894239cdbfb2bdecf21b2f2_81a462bd0ca031ef7830c3304dd28335">
+<exp pvirg="true"/>
+<mex lb="16" cb="9" le="16" ce="21" id="f8cde389d894239cdbfb2bdecf21b2f2_81a462bd0ca031ef7830c3304dd28335" nm="str" point="1">
+<n32 lb="16" cb="9">
+<drx lb="16" cb="9" kind="lvalue" nm="oOStrStream"/>
+</n32>
+</mex>
+</mce>
+</n8>
+</mte>
+</n10>
+</n37>
+</rx>
+</u>
+
+</Stmt>
+</f>
+</ft>
+<cr access="none" depth="1" kind="class" name="node_floatcomp" id="2da8e79bbff8637cf7be631aa82c8b11_3b13d225dda6433f8da56000e5fe9631" file="2" linestart="3" lineend="38">
+<base access="public">
+<rt>
+<cr id="074314e675be735a1ae744a3e4956f5f_00dde26814b8e1d9df07d127b22cf7e7"/>
+</rt>
+</base>
+<cr access="public" kind="class" name="node_floatcomp" id="2da8e79bbff8637cf7be631aa82c8b11_8f8b65f30cad6698ac4efd7b136d6b6f" file="2" linestart="3" lineend="3"/>
+<asd access="public"/>
+<c name="node_floatcomp" id="2da8e79bbff8637cf7be631aa82c8b11_b221e228471e41d067447fa973dee83a" file="2" linestart="6" lineend="6" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="id" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="us" proto="bool" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="bool"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="con_count" proto="const int" const="true" isLiteral="true" isPrimitive="true" access2="none">
+<QualType const="true">
+<bt name="int"/>
+</QualType>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="params" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="is_static" proto="bool" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="bool"/>
+<Stmt>
+
+</Stmt>
+</p>
+</c>
+<d name="~node_floatcomp" id="2da8e79bbff8637cf7be631aa82c8b11_e5af239eb912d7f1e9bd4745e055ac9c" file="2" linestart="7" lineend="7" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+</d>
+<m name="update" id="2da8e79bbff8637cf7be631aa82c8b11_2a08bd55f4185a1b2d7c20ed4253b51a" file="2" linestart="8" lineend="8" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="timestep" proto="float" isLiteral="true" isPrimitive="true" init="true" access2="none">
+<bt name="float"/>
+<Stmt>
+<n40 lb="8" cb="31">
+<flit/>
+</n40>
+
+</Stmt>
+</p>
+</m>
+<m name="init" id="2da8e79bbff8637cf7be631aa82c8b11_95ac152fae359e4517e887a6190b7f3c" file="2" linestart="9" lineend="9" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+</m>
+<m name="load_node_parameters" id="2da8e79bbff8637cf7be631aa82c8b11_94c555f3d8603f29aa386bee75b84f14" file="2" linestart="10" lineend="10" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="params" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<fl name="p_connections" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" file="2" linestart="11" lineend="11" isPtr="true" isLiteral="true" access="public" proto="connector *">
+<pt>
+<rt>
+<cr id="3a487166d4ceb1d6c8e4aea6eaa3500c_70b8421ed2c291729143f2061ed4c450"/>
+</rt>
+</pt>
+</fl>
+<fl name="connection_count" id="2da8e79bbff8637cf7be631aa82c8b11_12d75cd69329e3bd4df36447b740b86b" file="2" linestart="12" lineend="12" isLiteral="true" access="public" proto="int">
+<bt name="int"/>
+</fl>
+<m name="set_connection" id="2da8e79bbff8637cf7be631aa82c8b11_18f8b7d7f21c5a798f4e1cb52bd7c044" file="2" linestart="13" lineend="13" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="pos" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="ptr" proto="base_node *" isPtr="true" isLiteral="true" access2="none">
+<pt>
+<rt>
+<cr id="074314e675be735a1ae744a3e4956f5f_00dde26814b8e1d9df07d127b22cf7e7"/>
+</rt>
+</pt>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="dest_pos" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="serial_income" id="2da8e79bbff8637cf7be631aa82c8b11_6c290b499dfb1bd20bf12d7ebbf64a5d" file="2" linestart="14" lineend="14" virtual="true" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="message" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<fl name="comp_node" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" file="2" linestart="16" lineend="16" access="public" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fl>
+<fl name="p0_input_a" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" file="2" linestart="19" lineend="19" isLiteral="true" access="public" proto="float">
+<bt name="float"/>
+</fl>
+<fl name="p1_input_b" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" file="2" linestart="20" lineend="20" isLiteral="true" access="public" proto="float">
+<bt name="float"/>
+</fl>
+<fl name="p3_output" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" file="2" linestart="21" lineend="21" isLiteral="true" access="public" proto="bool">
+<bt name="bool"/>
+</fl>
+<fl name="last_state_p3" id="2da8e79bbff8637cf7be631aa82c8b11_acf8d6115f516a3c234db5386081a3e1" file="2" linestart="22" lineend="22" isLiteral="true" access="public" proto="bool">
+<bt name="bool"/>
+</fl>
+<m name="set_value" id="2da8e79bbff8637cf7be631aa82c8b11_151c2a3c30713b63c11b4e409f048d36" file="2" linestart="26" lineend="26" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="float" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="float"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="set_value" id="2da8e79bbff8637cf7be631aa82c8b11_74b42af4e4f3f476e815e2e71085b232" file="2" linestart="27" lineend="27" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="set_value" id="2da8e79bbff8637cf7be631aa82c8b11_f4d204f5baa3d813588aa95b7a0835c4" file="2" linestart="28" lineend="28" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="bool" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="bool"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="set_value" id="2da8e79bbff8637cf7be631aa82c8b11_051df0b5b10b74106d8c8c7900ce70d1" file="2" linestart="29" lineend="29" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="get_value_f" id="2da8e79bbff8637cf7be631aa82c8b11_d5395eb4c4e252adb042ecf7c91c9dcb" file="2" linestart="31" lineend="31" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="float">
+<bt name="float"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="get_value_i" id="2da8e79bbff8637cf7be631aa82c8b11_7ff19f30ebe0b557b9dcc8213e279b2b" file="2" linestart="32" lineend="32" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="int">
+<bt name="int"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="get_value_b" id="2da8e79bbff8637cf7be631aa82c8b11_60479f0652448139757f5392a0dc5b90" file="2" linestart="33" lineend="33" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="bool">
+<bt name="bool"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<m name="get_value_s" id="2da8e79bbff8637cf7be631aa82c8b11_356df45d7cd6b799eeafacbcab463a48" file="2" linestart="34" lineend="34" access="public" hasbody="true">
+<fpt cc="x86_thiscall" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<asd access="private"/>
+<m name="operator=" id="2da8e79bbff8637cf7be631aa82c8b11_ea6b0a0788a309a6932d4169565287ba" file="2" linestart="3" implicit="true" operator="true" access="public" inline="true">
+<fpt cc="x86_thiscall" proto="node_floatcomp &amp;">
+<lrf>
+<rt>
+<cr id="2da8e79bbff8637cf7be631aa82c8b11_3b13d225dda6433f8da56000e5fe9631"/>
+</rt>
+</lrf>
+</fpt>
+<p name="" proto="const node_floatcomp &amp;" isRef="true" isLiteral="true" access2="none">
+<lrf>
+<QualType const="true">
+<rt>
+<cr id="2da8e79bbff8637cf7be631aa82c8b11_3b13d225dda6433f8da56000e5fe9631"/>
+</rt>
+</QualType>
+</lrf>
+<Stmt>
+
+</Stmt>
+</p>
+</m>
+<c name="node_floatcomp" id="2da8e79bbff8637cf7be631aa82c8b11_b92d775f81fddca25d29dff2e58b05ee" file="2" linestart="3" lineend="3" copyconst="true" implicit="true" access="public" inline="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="" proto="const node_floatcomp &amp;" isRef="true" isLiteral="true" access2="none">
+<lrf>
+<QualType const="true">
+<rt>
+<cr id="2da8e79bbff8637cf7be631aa82c8b11_3b13d225dda6433f8da56000e5fe9631"/>
+</rt>
+</QualType>
+</lrf>
+<Stmt>
+
+</Stmt>
+</p>
+</c>
+</cr>
+<c name="node_floatcomp" id="3647c6c7c38f291e34140db841c38353_b221e228471e41d067447fa973dee83a" file="1" linestart="3" lineend="11" previous="2da8e79bbff8637cf7be631aa82c8b11_b221e228471e41d067447fa973dee83a" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="id" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="us" proto="bool" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="bool"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="con_count" proto="const int" const="true" isLiteral="true" isPrimitive="true" access2="none">
+<QualType const="true">
+<bt name="int"/>
+</QualType>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="params" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="is_static" proto="bool" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="bool"/>
+<Stmt>
+
+</Stmt>
+</p>
+<BaseInit>
+<n10 lb="3" cb="17">
+<typeptr id="074314e675be735a1ae744a3e4956f5f_3b25ba3e0be801ee0cd8dcc133dc2666"/>
+<temp/>
+</n10>
+
+</BaseInit>
+<Stmt>
+<u lb="4" cb="1" le="11" ce="1">
+<xop lb="5" cb="2" le="5" ce="20" kind="=">
+<mex lb="5" cb="2" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_bc73203259e8b2025811b504fb0329c1" nm="is_value_static" arrow="1">
+<n32 lb="5" cb="2">
+<n19 lb="5" cb="2"/>
+</n32>
+</mex>
+<n32 lb="5" cb="20">
+<drx lb="5" cb="20" kind="lvalue" nm="is_static"/>
+</n32>
+</xop>
+<xop lb="6" cb="2" le="6" ce="8" kind="=">
+<mex lb="6" cb="2" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_b207ea8fc5dfc4210593779a5905db7c" nm="nid" arrow="1">
+<n32 lb="6" cb="2">
+<n19 lb="6" cb="2"/>
+</n32>
+</mex>
+<n32 lb="6" cb="8">
+<drx lb="6" cb="8" kind="lvalue" nm="id"/>
+</n32>
+</xop>
+<xop lb="7" cb="2" le="7" ce="23" kind="=">
+<mex lb="7" cb="2" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_a80e33a53a25a696952f95a33fdcc5d1" nm="use_serial_recieve" arrow="1">
+<n32 lb="7" cb="2">
+<n19 lb="7" cb="2"/>
+</n32>
+</mex>
+<n32 lb="7" cb="23">
+<drx lb="7" cb="23" kind="lvalue" nm="us"/>
+</n32>
+</xop>
+<xop lb="8" cb="2" le="8" ce="21" kind="=">
+<mex lb="8" cb="2" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_12d75cd69329e3bd4df36447b740b86b" nm="connection_count" arrow="1">
+<n19 lb="8" cb="2"/>
+</mex>
+<n32 lb="8" cb="21">
+<drx lb="8" cb="21" kind="lvalue" nm="con_count"/>
+</n32>
+</xop>
+<xop lb="9" cb="2" le="9" ce="43" kind="=">
+<mex lb="9" cb="2" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="9" cb="2"/>
+</mex>
+<new lb="9" cb="18" le="9" ce="43">
+<typeptr id="3a487166d4ceb1d6c8e4aea6eaa3500c_6d3aa11db53226eb830d14b943b64482"/>
+<exp pvirg="true"/>
+<n32 lb="9" cb="32">
+<n32 lb="9" cb="32">
+<drx lb="9" cb="32" kind="lvalue" nm="con_count"/>
+</n32>
+</n32>
+<n10 lb="9" cb="22" le="9" ce="43">
+<typeptr id="3a487166d4ceb1d6c8e4aea6eaa3500c_6d3aa11db53226eb830d14b943b64482"/>
+<temp/>
+</n10>
+</new>
+</xop>
+<n37 lb="10" cb="2" le="10" ce="29">
+<mce lb="10" cb="2" le="10" ce="29" nbparm="1" id="2da8e79bbff8637cf7be631aa82c8b11_94c555f3d8603f29aa386bee75b84f14">
+<exp pvirg="true"/>
+<mex lb="10" cb="2" id="2da8e79bbff8637cf7be631aa82c8b11_94c555f3d8603f29aa386bee75b84f14" nm="load_node_parameters" arrow="1">
+<n19 lb="10" cb="2"/>
+</mex>
+<n8 lb="10" cb="23" >
+<temp/>
+<n10 lb="10" cb="23">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_3053f3db86d2b4d3af8b039438cb09cc">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<n32 lb="10" cb="23">
+<drx lb="10" cb="23" kind="lvalue" nm="params"/>
+</n32>
+</n10>
+</n8>
+</mce>
+</n37>
+</u>
+
+</Stmt>
+</c>
+<d name="~node_floatcomp" id="3647c6c7c38f291e34140db841c38353_e5af239eb912d7f1e9bd4745e055ac9c" file="1" linestart="15" lineend="18" previous="2da8e79bbff8637cf7be631aa82c8b11_e5af239eb912d7f1e9bd4745e055ac9c" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<Stmt>
+<u lb="16" cb="1" le="18" ce="1">
+<n13 lb="17" cb="2" le="17" ce="22">
+<exp pvirg="true"/>
+<n32 lb="17" cb="8" le="17" ce="22">
+<n46 lb="17" cb="8" le="17" ce="22">
+<exp pvirg="true"/>
+<mex lb="17" cb="9" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="17" cb="9"/>
+</mex>
+</n46>
+</n32>
+</n13>
+</u>
+
+</Stmt>
+</d>
+<m name="update" id="3647c6c7c38f291e34140db841c38353_2a08bd55f4185a1b2d7c20ed4253b51a" file="1" linestart="20" lineend="91" previous="2da8e79bbff8637cf7be631aa82c8b11_2a08bd55f4185a1b2d7c20ed4253b51a" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="timestep" proto="float" isLiteral="true" isPrimitive="true" init="true" access2="none">
+<bt name="float"/>
+<Stmt>
+<n40 lb="8" cb="31">
+<flit/>
+</n40>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="21" cb="1" le="91" ce="1">
+<if lb="27" cb="2" le="90" ce="2">
+<n32 lb="27" cb="6">
+<mex lb="27" cb="6" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_aa0d8783f6cc18f5f12968eb56d9885e" nm="updated_values" arrow="1">
+<n32 lb="27" cb="6">
+<n19 lb="27" cb="6"/>
+</n32>
+</mex>
+</n32>
+<u lb="27" cb="22" le="90" ce="2">
+<xop lb="28" cb="3" le="28" ce="20" kind="=">
+<mex lb="28" cb="3" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_aa0d8783f6cc18f5f12968eb56d9885e" nm="updated_values" arrow="1">
+<n32 lb="28" cb="3">
+<n19 lb="28" cb="3"/>
+</n32>
+</mex>
+<n9 lb="28" cb="20"/>
+</xop>
+<xop lb="29" cb="3" le="29" ce="19" kind="=">
+<mex lb="29" cb="3" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_acf8d6115f516a3c234db5386081a3e1" nm="last_state_p3" arrow="1">
+<n19 lb="29" cb="3"/>
+</mex>
+<n32 lb="29" cb="19">
+<mex lb="29" cb="19" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="29" cb="19"/>
+</mex>
+</n32>
+</xop>
+<if lb="30" cb="3" le="36" ce="3" else="true" elselb="34" elsecb="8">
+<xop lb="30" cb="7" le="30" ce="42" kind="&amp;&amp;">
+<ocx lb="30" cb="7" le="30" ce="20" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b">
+<exp pvirg="true"/>
+<n32 lb="30" cb="17">
+<drx lb="30" cb="17" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b" nm="operator==">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="30" cb="7">
+<mex lb="30" cb="7" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" nm="comp_node" arrow="1">
+<n19 lb="30" cb="7"/>
+</mex>
+</n32>
+<n32 lb="30" cb="20">
+<n52 lb="30" cb="20">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<xop lb="30" cb="28" le="30" ce="42" kind="==">
+<n32 lb="30" cb="28">
+<mex lb="30" cb="28" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="30" cb="28"/>
+</mex>
+</n32>
+<n32 lb="30" cb="42">
+<mex lb="30" cb="42" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="30" cb="42"/>
+</mex>
+</n32>
+</xop>
+</xop>
+<u lb="30" cb="54" le="33" ce="3">
+<xop lb="32" cb="4" le="32" ce="16" kind="=">
+<mex lb="32" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="32" cb="4"/>
+</mex>
+<n9 lb="32" cb="16"/>
+</xop>
+</u>
+<u lb="34" cb="8" le="36" ce="3">
+<xop lb="35" cb="4" le="35" ce="16" kind="=">
+<mex lb="35" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="35" cb="4"/>
+</mex>
+<n9 lb="35" cb="16"/>
+</xop>
+</u>
+</if>
+<if lb="38" cb="3" le="43" ce="3" else="true" elselb="41" elsecb="8">
+<xop lb="38" cb="7" le="38" ce="42" kind="&amp;&amp;">
+<ocx lb="38" cb="7" le="38" ce="20" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b">
+<exp pvirg="true"/>
+<n32 lb="38" cb="17">
+<drx lb="38" cb="17" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b" nm="operator==">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="38" cb="7">
+<mex lb="38" cb="7" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" nm="comp_node" arrow="1">
+<n19 lb="38" cb="7"/>
+</mex>
+</n32>
+<n32 lb="38" cb="20">
+<n52 lb="38" cb="20">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<xop lb="38" cb="28" le="38" ce="42" kind="&gt;=">
+<n32 lb="38" cb="28">
+<mex lb="38" cb="28" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="38" cb="28"/>
+</mex>
+</n32>
+<n32 lb="38" cb="42">
+<mex lb="38" cb="42" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="38" cb="42"/>
+</mex>
+</n32>
+</xop>
+</xop>
+<u lb="38" cb="54" le="40" ce="3">
+<xop lb="39" cb="4" le="39" ce="16" kind="=">
+<mex lb="39" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="39" cb="4"/>
+</mex>
+<n9 lb="39" cb="16"/>
+</xop>
+</u>
+<u lb="41" cb="8" le="43" ce="3">
+<xop lb="42" cb="4" le="42" ce="16" kind="=">
+<mex lb="42" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="42" cb="4"/>
+</mex>
+<n9 lb="42" cb="16"/>
+</xop>
+</u>
+</if>
+<if lb="45" cb="3" le="50" ce="3" else="true" elselb="48" elsecb="8">
+<xop lb="45" cb="7" le="45" ce="42" kind="&amp;&amp;">
+<ocx lb="45" cb="7" le="45" ce="20" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b">
+<exp pvirg="true"/>
+<n32 lb="45" cb="17">
+<drx lb="45" cb="17" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b" nm="operator==">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="45" cb="7">
+<mex lb="45" cb="7" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" nm="comp_node" arrow="1">
+<n19 lb="45" cb="7"/>
+</mex>
+</n32>
+<n32 lb="45" cb="20">
+<n52 lb="45" cb="20">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<xop lb="45" cb="28" le="45" ce="42" kind="&lt;=">
+<n32 lb="45" cb="28">
+<mex lb="45" cb="28" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="45" cb="28"/>
+</mex>
+</n32>
+<n32 lb="45" cb="42">
+<mex lb="45" cb="42" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="45" cb="42"/>
+</mex>
+</n32>
+</xop>
+</xop>
+<u lb="45" cb="54" le="47" ce="3">
+<xop lb="46" cb="4" le="46" ce="16" kind="=">
+<mex lb="46" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="46" cb="4"/>
+</mex>
+<n9 lb="46" cb="16"/>
+</xop>
+</u>
+<u lb="48" cb="8" le="50" ce="3">
+<xop lb="49" cb="4" le="49" ce="16" kind="=">
+<mex lb="49" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="49" cb="4"/>
+</mex>
+<n9 lb="49" cb="16"/>
+</xop>
+</u>
+</if>
+<if lb="52" cb="3" le="57" ce="3" else="true" elselb="55" elsecb="8">
+<xop lb="52" cb="7" le="52" ce="40" kind="&amp;&amp;">
+<ocx lb="52" cb="7" le="52" ce="20" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b">
+<exp pvirg="true"/>
+<n32 lb="52" cb="17">
+<drx lb="52" cb="17" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b" nm="operator==">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="52" cb="7">
+<mex lb="52" cb="7" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" nm="comp_node" arrow="1">
+<n19 lb="52" cb="7"/>
+</mex>
+</n32>
+<n32 lb="52" cb="20">
+<n52 lb="52" cb="20">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<xop lb="52" cb="27" le="52" ce="40" kind="&lt;">
+<n32 lb="52" cb="27">
+<mex lb="52" cb="27" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="52" cb="27"/>
+</mex>
+</n32>
+<n32 lb="52" cb="40">
+<mex lb="52" cb="40" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="52" cb="40"/>
+</mex>
+</n32>
+</xop>
+</xop>
+<u lb="52" cb="52" le="54" ce="3">
+<xop lb="53" cb="4" le="53" ce="16" kind="=">
+<mex lb="53" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="53" cb="4"/>
+</mex>
+<n9 lb="53" cb="16"/>
+</xop>
+</u>
+<u lb="55" cb="8" le="57" ce="3">
+<xop lb="56" cb="4" le="56" ce="16" kind="=">
+<mex lb="56" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="56" cb="4"/>
+</mex>
+<n9 lb="56" cb="16"/>
+</xop>
+</u>
+</if>
+<if lb="59" cb="3" le="64" ce="3" else="true" elselb="62" elsecb="8">
+<xop lb="59" cb="7" le="59" ce="40" kind="&amp;&amp;">
+<ocx lb="59" cb="7" le="59" ce="20" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b">
+<exp pvirg="true"/>
+<n32 lb="59" cb="17">
+<drx lb="59" cb="17" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b" nm="operator==">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="59" cb="7">
+<mex lb="59" cb="7" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" nm="comp_node" arrow="1">
+<n19 lb="59" cb="7"/>
+</mex>
+</n32>
+<n32 lb="59" cb="20">
+<n52 lb="59" cb="20">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<xop lb="59" cb="27" le="59" ce="40" kind="&gt;">
+<n32 lb="59" cb="27">
+<mex lb="59" cb="27" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="59" cb="27"/>
+</mex>
+</n32>
+<n32 lb="59" cb="40">
+<mex lb="59" cb="40" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="59" cb="40"/>
+</mex>
+</n32>
+</xop>
+</xop>
+<u lb="59" cb="52" le="61" ce="3">
+<xop lb="60" cb="4" le="60" ce="16" kind="=">
+<mex lb="60" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="60" cb="4"/>
+</mex>
+<n9 lb="60" cb="16"/>
+</xop>
+</u>
+<u lb="62" cb="8" le="64" ce="3">
+<xop lb="63" cb="4" le="63" ce="16" kind="=">
+<mex lb="63" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="63" cb="4"/>
+</mex>
+<n9 lb="63" cb="16"/>
+</xop>
+</u>
+</if>
+<if lb="66" cb="3" le="71" ce="3" else="true" elselb="69" elsecb="8">
+<xop lb="66" cb="7" le="66" ce="42" kind="&amp;&amp;">
+<ocx lb="66" cb="7" le="66" ce="20" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b">
+<exp pvirg="true"/>
+<n32 lb="66" cb="17">
+<drx lb="66" cb="17" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_5131af1fd6653c51a1e18ff0060d835b" nm="operator==">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="66" cb="7">
+<mex lb="66" cb="7" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" nm="comp_node" arrow="1">
+<n19 lb="66" cb="7"/>
+</mex>
+</n32>
+<n32 lb="66" cb="20">
+<n52 lb="66" cb="20">
+<slit/>
+</n52>
+</n32>
+</ocx>
+<xop lb="66" cb="28" le="66" ce="42" kind="!=">
+<n32 lb="66" cb="28">
+<mex lb="66" cb="28" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="66" cb="28"/>
+</mex>
+</n32>
+<n32 lb="66" cb="42">
+<mex lb="66" cb="42" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="66" cb="42"/>
+</mex>
+</n32>
+</xop>
+</xop>
+<u lb="66" cb="54" le="68" ce="3">
+<xop lb="67" cb="4" le="67" ce="16" kind="=">
+<mex lb="67" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="67" cb="4"/>
+</mex>
+<n9 lb="67" cb="16"/>
+</xop>
+</u>
+<u lb="69" cb="8" le="71" ce="3">
+<xop lb="70" cb="4" le="70" ce="16" kind="=">
+<mex lb="70" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="70" cb="4"/>
+</mex>
+<n9 lb="70" cb="16"/>
+</xop>
+</u>
+</if>
+<if lb="73" cb="3" le="89" ce="3">
+<xop lb="73" cb="7" le="73" ce="24" kind="!=">
+<n32 lb="73" cb="7">
+<n32 lb="73" cb="7">
+<mex lb="73" cb="7" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_acf8d6115f516a3c234db5386081a3e1" nm="last_state_p3" arrow="1">
+<n19 lb="73" cb="7"/>
+</mex>
+</n32>
+</n32>
+<n32 lb="73" cb="24">
+<n32 lb="73" cb="24">
+<mex lb="73" cb="24" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="73" cb="24"/>
+</mex>
+</n32>
+</n32>
+</xop>
+<u lb="73" cb="35" le="89" ce="3">
+<xop lb="74" cb="4" le="74" ce="20" kind="=">
+<mex lb="74" cb="4" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_acf8d6115f516a3c234db5386081a3e1" nm="last_state_p3" arrow="1">
+<n19 lb="74" cb="4"/>
+</mex>
+<n32 lb="74" cb="20">
+<mex lb="74" cb="20" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="74" cb="20"/>
+</mex>
+</n32>
+</xop>
+<fx lb="76" cb="4" le="88" ce="4">
+<dst lb="76" cb="9" le="76" ce="21">
+<exp pvirg="true"/>
+<Var nm="i" value="true">
+<Tdef>
+<bt name="unsigned int"/>
+</Tdef>
+<n32 lb="76" cb="20">
+<n45 lb="76" cb="20"/>
+</n32>
+</Var>
+</dst>
+<xop lb="76" cb="23" le="76" ce="27" kind="&lt;">
+<n32 lb="76" cb="23">
+<drx lb="76" cb="23" kind="lvalue" nm="i"/>
+</n32>
+<n32 lb="76" cb="27">
+<n32 lb="76" cb="27">
+<mex lb="76" cb="27" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_12d75cd69329e3bd4df36447b740b86b" nm="connection_count" arrow="1">
+<n19 lb="76" cb="27"/>
+</mex>
+</n32>
+</n32>
+</xop>
+<uo lb="76" cb="45" le="76" ce="46" kind="++">
+<drx lb="76" cb="45" kind="lvalue" nm="i"/>
+</uo>
+<u lb="76" cb="50" le="88" ce="4">
+<sy lb="77" cb="5" le="87" ce="5">
+<n32 lb="77" cb="13" le="77" ce="34">
+<mex lb="77" cb="13" le="77" ce="34" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_1fee9b66b978a78cd81921fb06747dbb" nm="input_pos" arrow="1">
+<n46 lb="77" cb="13" le="77" ce="31">
+<exp pvirg="true"/>
+<xop lb="77" cb="14" le="77" ce="30" kind="+">
+<n32 lb="77" cb="14">
+<mex lb="77" cb="14" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="77" cb="14"/>
+</mex>
+</n32>
+<n32 lb="77" cb="30">
+<drx lb="77" cb="30" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+</n32>
+<u lb="77" cb="45" le="87" ce="5">
+<cax lb="78" cb="5" le="83" ce="6">
+<n45 lb="78" cb="10">
+<flit/>
+</n45>
+<if lb="80" cb="6" le="83" ce="6">
+<xop lb="80" cb="10" le="80" ce="53" kind="!=">
+<n32 lb="80" cb="10" le="80" ce="31">
+<mex lb="80" cb="10" le="80" ce="31" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_a12419cee578da2323a351fa413fd61d" nm="connector_node_ptr" arrow="1">
+<n46 lb="80" cb="10" le="80" ce="28">
+<exp pvirg="true"/>
+<xop lb="80" cb="11" le="80" ce="27" kind="+">
+<n32 lb="80" cb="11">
+<mex lb="80" cb="11" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="80" cb="11"/>
+</mex>
+</n32>
+<n32 lb="80" cb="27">
+<drx lb="80" cb="27" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+</n32>
+<n32 lb="80" cb="53">
+<n45 lb="80" cb="53"/>
+</n32>
+</xop>
+<u lb="80" cb="59" le="83" ce="6">
+<mce lb="81" cb="7" le="81" ce="100" nbparm="2" id="074314e675be735a1ae744a3e4956f5f_3e2b747c76d220e892239702fad8c843">
+<exp pvirg="true"/>
+<mex lb="81" cb="7" le="81" ce="48" id="074314e675be735a1ae744a3e4956f5f_3e2b747c76d220e892239702fad8c843" nm="set_value" arrow="1">
+<n32 lb="81" cb="7" le="81" ce="28">
+<mex lb="81" cb="7" le="81" ce="28" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_a12419cee578da2323a351fa413fd61d" nm="connector_node_ptr" arrow="1">
+<n46 lb="81" cb="7" le="81" ce="25">
+<exp pvirg="true"/>
+<xop lb="81" cb="8" le="81" ce="24" kind="+">
+<n32 lb="81" cb="8">
+<mex lb="81" cb="8" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="81" cb="8"/>
+</mex>
+</n32>
+<n32 lb="81" cb="24">
+<drx lb="81" cb="24" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+</n32>
+</mex>
+<n32 lb="81" cb="58" le="81" ce="79">
+<mex lb="81" cb="58" le="81" ce="79" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_acb84d94a3ecf1b9b345c87a778ce663" nm="output_pos" arrow="1">
+<n46 lb="81" cb="58" le="81" ce="76">
+<exp pvirg="true"/>
+<xop lb="81" cb="59" le="81" ce="75" kind="+">
+<n32 lb="81" cb="59">
+<mex lb="81" cb="59" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="81" cb="59"/>
+</mex>
+</n32>
+<n32 lb="81" cb="75">
+<drx lb="81" cb="75" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+</n32>
+<n32 lb="81" cb="91">
+<mex lb="81" cb="91" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="81" cb="91"/>
+</mex>
+</n32>
+</mce>
+</u>
+</if>
+</cax>
+<bks lb="84" cb="6"/>
+<dx lb="85" cb="5" le="86" ce="6">
+<bks lb="86" cb="6"/>
+</dx>
+</u>
+</sy>
+</u>
+</fx>
+</u>
+</if>
+</u>
+</if>
+</u>
+
+</Stmt>
+</m>
+<m name="init" id="3647c6c7c38f291e34140db841c38353_95ac152fae359e4517e887a6190b7f3c" file="1" linestart="93" lineend="99" previous="2da8e79bbff8637cf7be631aa82c8b11_95ac152fae359e4517e887a6190b7f3c" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<Stmt>
+<u lb="94" cb="1" le="99" ce="1">
+<xop lb="95" cb="2" le="95" ce="31" kind="=">
+<mex lb="95" cb="2" le="95" ce="18" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="95" cb="18"/>
+</mex>
+<n32 lb="95" cb="31">
+<n45 lb="95" cb="31">
+<flit/>
+</n45>
+</n32>
+</xop>
+<xop lb="96" cb="2" le="96" ce="31" kind="=">
+<mex lb="96" cb="2" le="96" ce="18" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="96" cb="18"/>
+</mex>
+<n32 lb="96" cb="31">
+<n45 lb="96" cb="31"/>
+</n32>
+</xop>
+<xop lb="97" cb="2" le="97" ce="30" kind="=">
+<mex lb="97" cb="2" le="97" ce="18" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_288df7f0001f75b7cff695f7e1ad1d34" nm="p3_output" arrow="1">
+<n19 lb="97" cb="18"/>
+</mex>
+<n9 lb="97" cb="30"/>
+</xop>
+<xop lb="98" cb="2" le="98" ce="34" kind="=">
+<mex lb="98" cb="2" le="98" ce="18" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_acf8d6115f516a3c234db5386081a3e1" nm="last_state_p3" arrow="1">
+<n19 lb="98" cb="18"/>
+</mex>
+<n9 lb="98" cb="34"/>
+</xop>
+</u>
+
+</Stmt>
+</m>
+<m name="load_node_parameters" id="3647c6c7c38f291e34140db841c38353_94c555f3d8603f29aa386bee75b84f14" file="1" linestart="101" lineend="138" previous="2da8e79bbff8637cf7be631aa82c8b11_94c555f3d8603f29aa386bee75b84f14" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="params" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="102" cb="1" le="138" ce="1">
+<dst lb="103" cb="2" le="103" ce="42">
+<exp pvirg="true"/>
+<Var nm="start_param">
+<pt>
+<QualType const="true">
+<bt name="char"/>
+</QualType>
+</pt>
+<mce lb="103" cb="28" le="103" ce="41" nbparm="0" id="43e57e2314d98c3481e7c5229eab5466_65d516408dbbf5d49be55f4917fbb4c6">
+<exp pvirg="true"/>
+<mex lb="103" cb="28" le="103" ce="35" id="43e57e2314d98c3481e7c5229eab5466_65d516408dbbf5d49be55f4917fbb4c6" nm="c_str" point="1">
+<n32 lb="103" cb="28">
+<drx lb="103" cb="28" kind="lvalue" nm="params"/>
+</n32>
+</mex>
+</mce>
+</Var>
+</dst>
+<dst lb="104" cb="2" le="104" ce="27">
+<exp pvirg="true"/>
+<Var nm="end_param">
+<pt>
+<QualType const="true">
+<bt name="char"/>
+</QualType>
+</pt>
+<n32 lb="104" cb="26">
+<n45 lb="104" cb="26">
+<flit/>
+</n45>
+</n32>
+</Var>
+</dst>
+<dst lb="105" cb="2" le="105" ce="31">
+<exp pvirg="true"/>
+<Var nm="param_result" value="true">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<n37 lb="105" cb="14" le="105" ce="29">
+<n10 lb="105" cb="14" le="105" ce="29">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_e3eb16c4c3462a2d9004e988dec04a31">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<mte lb="105" cb="29">
+<exp pvirg="true"/>
+<n8 lb="105" cb="29" >
+<temp/>
+<n32 lb="105" cb="29">
+<n10 lb="105" cb="29">
+<typeptr id="43e57e2314d98c3481e7c5229eab5466_27c29e5ae4008e8e02d1117a50805d4f">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</typeptr>
+<temp/>
+<n32 lb="105" cb="29">
+<n52 lb="105" cb="29">
+<slit/>
+</n52>
+</n32>
+</n10>
+</n32>
+</n8>
+</mte>
+</n10>
+</n37>
+</Var>
+</dst>
+<dst lb="106" cb="2" le="106" ce="23">
+<exp pvirg="true"/>
+<Var nm="param_counter" value="true">
+<bt name="int"/>
+<n45 lb="106" cb="22"/>
+</Var>
+</dst>
+<wy lb="107" cb="2" le="137" ce="2">
+<n9 lb="107" cb="9"/>
+<u lb="108" cb="2" le="137" ce="2">
+<if lb="109" cb="3" le="136" ce="3" else="true" elselb="134" elsecb="8">
+<xop lb="109" cb="7" le="109" ce="22" kind="!=">
+<n32 lb="109" cb="7">
+<drx lb="109" cb="7" kind="lvalue" nm="start_param"/>
+</n32>
+<n32 lb="109" cb="22">
+<n45 lb="109" cb="22"/>
+</n32>
+</xop>
+<u lb="109" cb="25" le="133" ce="3">
+<xop lb="110" cb="4" le="110" ce="39" kind="=">
+<drx lb="110" cb="4" kind="lvalue" nm="end_param"/>
+<ce lb="110" cb="16" le="110" ce="39" nbparm="2" id="fda75f95bafa42f31addc62168c6e189_e01ae34037b4829e4e4fcf5792abc563">
+<exp pvirg="true"/>
+<n32 lb="110" cb="16">
+<drx lb="110" cb="16" kind="lvalue" id="fda75f95bafa42f31addc62168c6e189_e01ae34037b4829e4e4fcf5792abc563" nm="strstr"/>
+</n32>
+<n32 lb="110" cb="23">
+<drx lb="110" cb="23" kind="lvalue" nm="start_param"/>
+</n32>
+<n32 lb="110" cb="36">
+<n52 lb="110" cb="36">
+<slit/>
+</n52>
+</n32>
+</ce>
+</xop>
+<if lb="111" cb="4" le="132" ce="4" else="true" elselb="130" elsecb="9">
+<xop lb="111" cb="8" le="111" ce="21" kind="!=">
+<n32 lb="111" cb="8">
+<drx lb="111" cb="8" kind="lvalue" nm="end_param"/>
+</n32>
+<n32 lb="111" cb="21">
+<n45 lb="111" cb="21"/>
+</n32>
+</xop>
+<u lb="111" cb="24" le="129" ce="4">
+<ocx lb="112" cb="5" le="112" ce="20" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_b6c2592d20ed546095b7f9ce9bd38aee">
+<exp pvirg="true"/>
+<n32 lb="112" cb="18">
+<drx lb="112" cb="18" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_b6c2592d20ed546095b7f9ce9bd38aee" nm="operator="/>
+</n32>
+<drx lb="112" cb="5" kind="lvalue" nm="param_result"/>
+<n32 lb="112" cb="20">
+<n52 lb="112" cb="20"/>
+</n32>
+</ocx>
+<mce lb="113" cb="5" le="113" ce="47" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_346a1bd5b37e137685acb08424c33cfa">
+<exp pvirg="true"/>
+<mex lb="113" cb="5" le="113" ce="18" id="43e57e2314d98c3481e7c5229eab5466_346a1bd5b37e137685acb08424c33cfa" nm="append" point="1">
+<drx lb="113" cb="5" kind="lvalue" nm="param_result"/>
+</mex>
+<n32 lb="113" cb="25">
+<drx lb="113" cb="25" kind="lvalue" nm="start_param"/>
+</n32>
+<n32 lb="113" cb="38">
+<drx lb="113" cb="38" kind="lvalue" nm="end_param"/>
+</n32>
+</mce>
+<if lb="114" cb="5" le="128" ce="5" else="true" elselb="126" elsecb="10">
+<ocx lb="114" cb="9" le="114" ce="25" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_31fec7456625b374178468e3b034d24e">
+<exp pvirg="true"/>
+<n32 lb="114" cb="22">
+<drx lb="114" cb="22" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_31fec7456625b374178468e3b034d24e" nm="operator!=">
+<template_arguments>
+<bt name="char"/>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_76e43d9fa50c2ce16dafa9452550a098">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+<rt>
+<cts id="1b9b5f13fc50919fc1cbcbc41c4276ce_07566aa809aee0bdf1c0fac16e19fa85">
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</cts>
+</rt>
+</template_arguments>
+</drx>
+</n32>
+<n32 lb="114" cb="9">
+<drx lb="114" cb="9" kind="lvalue" nm="param_result"/>
+</n32>
+<n32 lb="114" cb="25">
+<n52 lb="114" cb="25"/>
+</n32>
+</ocx>
+<u lb="114" cb="29" le="125" ce="5">
+<sy lb="116" cb="6" le="122" ce="6">
+<n32 lb="116" cb="14">
+<drx lb="116" cb="14" kind="lvalue" nm="param_counter"/>
+</n32>
+<u lb="117" cb="6" le="122" ce="6">
+<cax lb="118" cb="6" le="118" ce="26">
+<n45 lb="118" cb="11"/>
+<ocx lb="118" cb="14" le="118" ce="26" nbparm="2" id="43e57e2314d98c3481e7c5229eab5466_d7d0ac7a3f487eb2ef39fc0aabf361a8">
+<exp pvirg="true"/>
+<n32 lb="118" cb="24">
+<drx lb="118" cb="24" kind="lvalue" id="43e57e2314d98c3481e7c5229eab5466_d7d0ac7a3f487eb2ef39fc0aabf361a8" nm="operator="/>
+</n32>
+<mex lb="118" cb="14" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_d060d7c7058856322138c6656fc29544" nm="comp_node" arrow="1">
+<n19 lb="118" cb="14"/>
+</mex>
+<n32 lb="118" cb="26">
+<drx lb="118" cb="26" kind="lvalue" nm="param_result"/>
+</n32>
+</ocx>
+</cax>
+<bks lb="118" cb="40"/>
+<dx lb="120" cb="6" le="121" ce="7">
+<bks lb="121" cb="7"/>
+</dx>
+</u>
+</sy>
+<uo lb="123" cb="6" le="123" ce="19" kind="++">
+<drx lb="123" cb="6" kind="lvalue" nm="param_counter"/>
+</uo>
+<xop lb="124" cb="6" le="124" ce="32" kind="=">
+<drx lb="124" cb="6" kind="lvalue" nm="start_param"/>
+<xop lb="124" cb="20" le="124" ce="32" kind="+">
+<n32 lb="124" cb="20">
+<drx lb="124" cb="20" kind="lvalue" nm="end_param"/>
+</n32>
+<n45 lb="124" cb="32">
+<flit/>
+</n45>
+</xop>
+</xop>
+</u>
+<u lb="126" cb="10" le="128" ce="5">
+<bks lb="127" cb="6"/>
+</u>
+</if>
+</u>
+<u lb="130" cb="9" le="132" ce="4">
+<bks lb="131" cb="5"/>
+</u>
+</if>
+</u>
+<u lb="134" cb="8" le="136" ce="3">
+<bks lb="135" cb="4"/>
+</u>
+</if>
+</u>
+</wy>
+</u>
+
+</Stmt>
+</m>
+<m name="set_connection" id="3647c6c7c38f291e34140db841c38353_18f8b7d7f21c5a798f4e1cb52bd7c044" file="1" linestart="142" lineend="160" previous="2da8e79bbff8637cf7be631aa82c8b11_18f8b7d7f21c5a798f4e1cb52bd7c044" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="pos" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="ptr" proto="base_node *" isPtr="true" isLiteral="true" access2="none">
+<pt>
+<rt>
+<cr id="074314e675be735a1ae744a3e4956f5f_00dde26814b8e1d9df07d127b22cf7e7"/>
+</rt>
+</pt>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="dest_pos" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="143" cb="1" le="160" ce="1">
+<if lb="145" cb="2" le="159" ce="2">
+<xop lb="145" cb="6" le="145" ce="13" kind="!=">
+<n32 lb="145" cb="6">
+<drx lb="145" cb="6" kind="lvalue" nm="ptr"/>
+</n32>
+<n32 lb="145" cb="13">
+<n45 lb="145" cb="13">
+<flit/>
+</n45>
+</n32>
+</xop>
+<u lb="145" cb="19" le="159" ce="2">
+<fx lb="149" cb="3" le="157" ce="3">
+<dst lb="149" cb="8" le="149" ce="20">
+<exp pvirg="true"/>
+<Var nm="i" value="true">
+<Tdef>
+<bt name="unsigned int"/>
+</Tdef>
+<n32 lb="149" cb="19">
+<n45 lb="149" cb="19"/>
+</n32>
+</Var>
+</dst>
+<xop lb="149" cb="22" le="149" ce="26" kind="&lt;">
+<n32 lb="149" cb="22">
+<drx lb="149" cb="22" kind="lvalue" nm="i"/>
+</n32>
+<n32 lb="149" cb="26">
+<n32 lb="149" cb="26">
+<mex lb="149" cb="26" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_12d75cd69329e3bd4df36447b740b86b" nm="connection_count" arrow="1">
+<n19 lb="149" cb="26"/>
+</mex>
+</n32>
+</n32>
+</xop>
+<uo lb="149" cb="44" le="149" ce="45" kind="++">
+<drx lb="149" cb="44" kind="lvalue" nm="i"/>
+</uo>
+<u lb="150" cb="3" le="157" ce="3">
+<if lb="151" cb="4" le="156" ce="4">
+<xop lb="151" cb="8" le="151" ce="51" kind="==">
+<n32 lb="151" cb="8" le="151" ce="29">
+<mex lb="151" cb="8" le="151" ce="29" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_a12419cee578da2323a351fa413fd61d" nm="connector_node_ptr" arrow="1">
+<n46 lb="151" cb="8" le="151" ce="26">
+<exp pvirg="true"/>
+<xop lb="151" cb="9" le="151" ce="25" kind="+">
+<n32 lb="151" cb="9">
+<mex lb="151" cb="9" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="151" cb="9"/>
+</mex>
+</n32>
+<n32 lb="151" cb="25">
+<drx lb="151" cb="25" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+</n32>
+<n32 lb="151" cb="51">
+<n45 lb="151" cb="51"/>
+</n32>
+</xop>
+<u lb="151" cb="57" le="156" ce="4">
+<xop lb="152" cb="5" le="152" ce="47" kind="=">
+<mex lb="152" cb="5" le="152" ce="26" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_a12419cee578da2323a351fa413fd61d" nm="connector_node_ptr" arrow="1">
+<n46 lb="152" cb="5" le="152" ce="23">
+<exp pvirg="true"/>
+<xop lb="152" cb="6" le="152" ce="22" kind="+">
+<n32 lb="152" cb="6">
+<mex lb="152" cb="6" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="152" cb="6"/>
+</mex>
+</n32>
+<n32 lb="152" cb="22">
+<drx lb="152" cb="22" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+<n32 lb="152" cb="47">
+<drx lb="152" cb="47" kind="lvalue" nm="ptr"/>
+</n32>
+</xop>
+<xop lb="153" cb="5" le="153" ce="39" kind="=">
+<mex lb="153" cb="5" le="153" ce="26" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_acb84d94a3ecf1b9b345c87a778ce663" nm="output_pos" arrow="1">
+<n46 lb="153" cb="5" le="153" ce="23">
+<exp pvirg="true"/>
+<xop lb="153" cb="6" le="153" ce="22" kind="+">
+<n32 lb="153" cb="6">
+<mex lb="153" cb="6" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="153" cb="6"/>
+</mex>
+</n32>
+<n32 lb="153" cb="22">
+<drx lb="153" cb="22" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+<n32 lb="153" cb="39">
+<drx lb="153" cb="39" kind="lvalue" nm="dest_pos"/>
+</n32>
+</xop>
+<xop lb="154" cb="5" le="154" ce="38" kind="=">
+<mex lb="154" cb="5" le="154" ce="26" kind="lvalue" id="3a487166d4ceb1d6c8e4aea6eaa3500c_1fee9b66b978a78cd81921fb06747dbb" nm="input_pos" arrow="1">
+<n46 lb="154" cb="5" le="154" ce="23">
+<exp pvirg="true"/>
+<xop lb="154" cb="6" le="154" ce="22" kind="+">
+<n32 lb="154" cb="6">
+<mex lb="154" cb="6" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_467867d1f68de44f3d98e970d7a3e868" nm="p_connections" arrow="1">
+<n19 lb="154" cb="6"/>
+</mex>
+</n32>
+<n32 lb="154" cb="22">
+<drx lb="154" cb="22" kind="lvalue" nm="i"/>
+</n32>
+</xop>
+</n46>
+</mex>
+<n32 lb="154" cb="38">
+<drx lb="154" cb="38" kind="lvalue" nm="pos"/>
+</n32>
+</xop>
+<bks lb="155" cb="5"/>
+</u>
+</if>
+</u>
+</fx>
+</u>
+</if>
+</u>
+
+</Stmt>
+</m>
+<m name="serial_income" id="3647c6c7c38f291e34140db841c38353_6c290b499dfb1bd20bf12d7ebbf64a5d" file="1" linestart="161" lineend="163" previous="2da8e79bbff8637cf7be631aa82c8b11_6c290b499dfb1bd20bf12d7ebbf64a5d" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="message" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="162" cb="1" le="163" ce="1"/>
+
+</Stmt>
+</m>
+<m name="set_value" id="3647c6c7c38f291e34140db841c38353_151c2a3c30713b63c11b4e409f048d36" file="1" linestart="165" lineend="175" previous="2da8e79bbff8637cf7be631aa82c8b11_151c2a3c30713b63c11b4e409f048d36" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="float" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="float"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="166" cb="1" le="175" ce="1">
+<dst lb="167" cb="2" le="167" ce="16">
+<exp pvirg="true"/>
+<Var nm="uv" value="true">
+<bt name="bool"/>
+<n9 lb="167" cb="12"/>
+</Var>
+</dst>
+<sy lb="168" cb="2" le="173" ce="2">
+<n32 lb="168" cb="10">
+<drx lb="168" cb="10" kind="lvalue" nm="position"/>
+</n32>
+<u lb="169" cb="2" le="173" ce="2">
+<cax lb="170" cb="2" le="170" ce="24">
+<n45 lb="170" cb="7">
+<flit/>
+</n45>
+<xop lb="170" cb="11" le="170" ce="24" kind="=">
+<mex lb="170" cb="11" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="170" cb="11"/>
+</mex>
+<n32 lb="170" cb="24">
+<drx lb="170" cb="24" kind="lvalue" nm="value"/>
+</n32>
+</xop>
+</cax>
+<bks lb="170" cb="32"/>
+<cax lb="171" cb="2" le="171" ce="23">
+<n45 lb="171" cb="7">
+<flit/>
+</n45>
+<xop lb="171" cb="10" le="171" ce="23" kind="=">
+<mex lb="171" cb="10" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="171" cb="10"/>
+</mex>
+<n32 lb="171" cb="23">
+<drx lb="171" cb="23" kind="lvalue" nm="value"/>
+</n32>
+</xop>
+</cax>
+<bks lb="171" cb="30"/>
+<dx lb="172" cb="2" le="172" ce="15">
+<xop lb="172" cb="10" le="172" ce="15" kind="=">
+<drx lb="172" cb="10" kind="lvalue" nm="uv"/>
+<n9 lb="172" cb="15"/>
+</xop>
+</dx>
+<bks lb="172" cb="22"/>
+</u>
+</sy>
+<xop lb="174" cb="2" le="174" ce="19" kind="=">
+<mex lb="174" cb="2" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_aa0d8783f6cc18f5f12968eb56d9885e" nm="updated_values" arrow="1">
+<n32 lb="174" cb="2">
+<n19 lb="174" cb="2"/>
+</n32>
+</mex>
+<n32 lb="174" cb="19">
+<drx lb="174" cb="19" kind="lvalue" nm="uv"/>
+</n32>
+</xop>
+</u>
+
+</Stmt>
+</m>
+<m name="set_value" id="3647c6c7c38f291e34140db841c38353_74b42af4e4f3f476e815e2e71085b232" file="1" linestart="177" lineend="187" previous="2da8e79bbff8637cf7be631aa82c8b11_74b42af4e4f3f476e815e2e71085b232" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="178" cb="1" le="187" ce="1">
+<dst lb="179" cb="2" le="179" ce="16">
+<exp pvirg="true"/>
+<Var nm="uv" value="true">
+<bt name="bool"/>
+<n9 lb="179" cb="12"/>
+</Var>
+</dst>
+<sy lb="180" cb="2" le="185" ce="2">
+<n32 lb="180" cb="10">
+<drx lb="180" cb="10" kind="lvalue" nm="position"/>
+</n32>
+<u lb="181" cb="2" le="185" ce="2">
+<cax lb="182" cb="2" le="182" ce="23">
+<n45 lb="182" cb="7">
+<flit/>
+</n45>
+<xop lb="182" cb="10" le="182" ce="23" kind="=">
+<mex lb="182" cb="10" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="182" cb="10"/>
+</mex>
+<n32 lb="182" cb="23">
+<n32 lb="182" cb="23">
+<drx lb="182" cb="23" kind="lvalue" nm="value"/>
+</n32>
+</n32>
+</xop>
+</cax>
+<bks lb="182" cb="31"/>
+<cax lb="183" cb="2" le="183" ce="22">
+<n45 lb="183" cb="7">
+<flit/>
+</n45>
+<xop lb="183" cb="9" le="183" ce="22" kind="=">
+<mex lb="183" cb="9" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="183" cb="9"/>
+</mex>
+<n32 lb="183" cb="22">
+<n32 lb="183" cb="22">
+<drx lb="183" cb="22" kind="lvalue" nm="value"/>
+</n32>
+</n32>
+</xop>
+</cax>
+<bks lb="183" cb="29"/>
+<dx lb="184" cb="2" le="184" ce="15">
+<xop lb="184" cb="10" le="184" ce="15" kind="=">
+<drx lb="184" cb="10" kind="lvalue" nm="uv"/>
+<n9 lb="184" cb="15"/>
+</xop>
+</dx>
+<bks lb="184" cb="22"/>
+</u>
+</sy>
+<xop lb="186" cb="2" le="186" ce="19" kind="=">
+<mex lb="186" cb="2" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_aa0d8783f6cc18f5f12968eb56d9885e" nm="updated_values" arrow="1">
+<n32 lb="186" cb="2">
+<n19 lb="186" cb="2"/>
+</n32>
+</mex>
+<n32 lb="186" cb="19">
+<drx lb="186" cb="19" kind="lvalue" nm="uv"/>
+</n32>
+</xop>
+</u>
+
+</Stmt>
+</m>
+<m name="set_value" id="3647c6c7c38f291e34140db841c38353_f4d204f5baa3d813588aa95b7a0835c4" file="1" linestart="189" lineend="201" previous="2da8e79bbff8637cf7be631aa82c8b11_f4d204f5baa3d813588aa95b7a0835c4" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="bool" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="bool"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="190" cb="1" le="201" ce="1">
+<dst lb="191" cb="2" le="191" ce="16">
+<exp pvirg="true"/>
+<Var nm="uv" value="true">
+<bt name="bool"/>
+<n9 lb="191" cb="12"/>
+</Var>
+</dst>
+<sy lb="192" cb="2" le="199" ce="2">
+<n32 lb="192" cb="10">
+<drx lb="192" cb="10" kind="lvalue" nm="position"/>
+</n32>
+<u lb="193" cb="2" le="199" ce="2">
+<cax lb="194" cb="2" le="195" ce="31">
+<n45 lb="194" cb="7">
+<flit/>
+</n45>
+<if lb="194" cb="11" le="195" ce="31" else="true" elselb="195" elsecb="10">
+<n32 lb="194" cb="15">
+<drx lb="194" cb="15" kind="lvalue" nm="value"/>
+</n32>
+<u lb="194" cb="22" le="194" ce="43">
+<xop lb="194" cb="24" le="194" ce="37" kind="=">
+<mex lb="194" cb="24" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="194" cb="24"/>
+</mex>
+<n40 lb="194" cb="37">
+<flit/>
+</n40>
+</xop>
+</u>
+<u lb="195" cb="10" le="195" ce="31">
+<xop lb="195" cb="12" le="195" ce="25" kind="=">
+<mex lb="195" cb="12" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="195" cb="12"/>
+</mex>
+<n40 lb="195" cb="25"/>
+</xop>
+</u>
+</if>
+</cax>
+<bks lb="195" cb="34"/>
+<cax lb="196" cb="2" le="197" ce="32">
+<n45 lb="196" cb="7">
+<flit/>
+</n45>
+<if lb="196" cb="9" le="197" ce="32" else="true" elselb="197" elsecb="11">
+<n32 lb="196" cb="13">
+<drx lb="196" cb="13" kind="lvalue" nm="value"/>
+</n32>
+<u lb="196" cb="20" le="196" ce="41">
+<xop lb="196" cb="22" le="196" ce="35" kind="=">
+<mex lb="196" cb="22" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="196" cb="22"/>
+</mex>
+<n40 lb="196" cb="35"/>
+</xop>
+</u>
+<u lb="197" cb="11" le="197" ce="32">
+<xop lb="197" cb="13" le="197" ce="26" kind="=">
+<mex lb="197" cb="13" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="197" cb="13"/>
+</mex>
+<n40 lb="197" cb="26"/>
+</xop>
+</u>
+</if>
+</cax>
+<bks lb="197" cb="34"/>
+<dx lb="198" cb="2" le="198" ce="15">
+<xop lb="198" cb="10" le="198" ce="15" kind="=">
+<drx lb="198" cb="10" kind="lvalue" nm="uv"/>
+<n9 lb="198" cb="15"/>
+</xop>
+</dx>
+<bks lb="198" cb="22"/>
+</u>
+</sy>
+<xop lb="200" cb="2" le="200" ce="19" kind="=">
+<mex lb="200" cb="2" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_aa0d8783f6cc18f5f12968eb56d9885e" nm="updated_values" arrow="1">
+<n32 lb="200" cb="2">
+<n19 lb="200" cb="2"/>
+</n32>
+</mex>
+<n32 lb="200" cb="19">
+<drx lb="200" cb="19" kind="lvalue" nm="uv"/>
+</n32>
+</xop>
+</u>
+
+</Stmt>
+</m>
+<m name="set_value" id="3647c6c7c38f291e34140db841c38353_051df0b5b10b74106d8c8c7900ce70d1" file="1" linestart="203" lineend="213" previous="2da8e79bbff8637cf7be631aa82c8b11_051df0b5b10b74106d8c8c7900ce70d1" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="void">
+<bt name="void"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<p name="value" proto="std::string" access2="none">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="204" cb="1" le="213" ce="1">
+<dst lb="205" cb="2" le="205" ce="16">
+<exp pvirg="true"/>
+<Var nm="uv" value="true">
+<bt name="bool"/>
+<n9 lb="205" cb="12"/>
+</Var>
+</dst>
+<sy lb="206" cb="2" le="211" ce="2">
+<n32 lb="206" cb="10">
+<drx lb="206" cb="10" kind="lvalue" nm="position"/>
+</n32>
+<u lb="207" cb="2" le="211" ce="2">
+<cax lb="208" cb="2" le="208" ce="42">
+<n45 lb="208" cb="7">
+<flit/>
+</n45>
+<xop lb="208" cb="11" le="208" ce="42" kind="=">
+<mex lb="208" cb="11" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_6981569522e55db166fa70293742cb0b" nm="p0_input_a" arrow="1">
+<n19 lb="208" cb="11"/>
+</mex>
+<n32 lb="208" cb="24" le="208" ce="42">
+<ce lb="208" cb="24" le="208" ce="42" nbparm="1" id="5bc8d08962c836b7a35a3a1b4c03a96b_c4c9e07ba16f9cb54e6019f5aa37ed6b">
+<exp pvirg="true"/>
+<n32 lb="208" cb="24">
+<drx lb="208" cb="24" kind="lvalue" id="5bc8d08962c836b7a35a3a1b4c03a96b_c4c9e07ba16f9cb54e6019f5aa37ed6b" nm="atof"/>
+</n32>
+<mce lb="208" cb="29" le="208" ce="41" nbparm="0" id="43e57e2314d98c3481e7c5229eab5466_65d516408dbbf5d49be55f4917fbb4c6">
+<exp pvirg="true"/>
+<mex lb="208" cb="29" le="208" ce="35" id="43e57e2314d98c3481e7c5229eab5466_65d516408dbbf5d49be55f4917fbb4c6" nm="c_str" point="1">
+<n32 lb="208" cb="29">
+<drx lb="208" cb="29" kind="lvalue" nm="value"/>
+</n32>
+</mex>
+</mce>
+</ce>
+</n32>
+</xop>
+</cax>
+<bks lb="208" cb="46"/>
+<cax lb="209" cb="2" le="209" ce="41">
+<n45 lb="209" cb="7">
+<flit/>
+</n45>
+<xop lb="209" cb="10" le="209" ce="41" kind="=">
+<mex lb="209" cb="10" kind="lvalue" id="2da8e79bbff8637cf7be631aa82c8b11_fbe4187e07bbcff28352125211fadf5c" nm="p1_input_b" arrow="1">
+<n19 lb="209" cb="10"/>
+</mex>
+<n32 lb="209" cb="23" le="209" ce="41">
+<ce lb="209" cb="23" le="209" ce="41" nbparm="1" id="5bc8d08962c836b7a35a3a1b4c03a96b_c4c9e07ba16f9cb54e6019f5aa37ed6b">
+<exp pvirg="true"/>
+<n32 lb="209" cb="23">
+<drx lb="209" cb="23" kind="lvalue" id="5bc8d08962c836b7a35a3a1b4c03a96b_c4c9e07ba16f9cb54e6019f5aa37ed6b" nm="atof"/>
+</n32>
+<mce lb="209" cb="28" le="209" ce="40" nbparm="0" id="43e57e2314d98c3481e7c5229eab5466_65d516408dbbf5d49be55f4917fbb4c6">
+<exp pvirg="true"/>
+<mex lb="209" cb="28" le="209" ce="34" id="43e57e2314d98c3481e7c5229eab5466_65d516408dbbf5d49be55f4917fbb4c6" nm="c_str" point="1">
+<n32 lb="209" cb="28">
+<drx lb="209" cb="28" kind="lvalue" nm="value"/>
+</n32>
+</mex>
+</mce>
+</ce>
+</n32>
+</xop>
+</cax>
+<bks lb="209" cb="44"/>
+<dx lb="210" cb="2" le="210" ce="15">
+<xop lb="210" cb="10" le="210" ce="15" kind="=">
+<drx lb="210" cb="10" kind="lvalue" nm="uv"/>
+<n9 lb="210" cb="15"/>
+</xop>
+</dx>
+<bks lb="210" cb="22"/>
+</u>
+</sy>
+<xop lb="212" cb="2" le="212" ce="19" kind="=">
+<mex lb="212" cb="2" kind="lvalue" id="074314e675be735a1ae744a3e4956f5f_aa0d8783f6cc18f5f12968eb56d9885e" nm="updated_values" arrow="1">
+<n32 lb="212" cb="2">
+<n19 lb="212" cb="2"/>
+</n32>
+</mex>
+<n32 lb="212" cb="19">
+<drx lb="212" cb="19" kind="lvalue" nm="uv"/>
+</n32>
+</xop>
+</u>
+
+</Stmt>
+</m>
+<m name="get_value_f" id="3647c6c7c38f291e34140db841c38353_d5395eb4c4e252adb042ecf7c91c9dcb" file="1" linestart="223" lineend="226" previous="2da8e79bbff8637cf7be631aa82c8b11_d5395eb4c4e252adb042ecf7c91c9dcb" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="float">
+<bt name="float"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="224" cb="1" le="226" ce="1"/>
+
+</Stmt>
+</m>
+<m name="get_value_i" id="3647c6c7c38f291e34140db841c38353_7ff19f30ebe0b557b9dcc8213e279b2b" file="1" linestart="228" lineend="231" previous="2da8e79bbff8637cf7be631aa82c8b11_7ff19f30ebe0b557b9dcc8213e279b2b" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="int">
+<bt name="int"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="229" cb="1" le="231" ce="1"/>
+
+</Stmt>
+</m>
+<m name="get_value_b" id="3647c6c7c38f291e34140db841c38353_60479f0652448139757f5392a0dc5b90" file="1" linestart="233" lineend="236" previous="2da8e79bbff8637cf7be631aa82c8b11_60479f0652448139757f5392a0dc5b90" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="bool">
+<bt name="bool"/>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="234" cb="1" le="236" ce="1"/>
+
+</Stmt>
+</m>
+<m name="get_value_s" id="3647c6c7c38f291e34140db841c38353_356df45d7cd6b799eeafacbcab463a48" file="1" linestart="238" lineend="241" previous="2da8e79bbff8637cf7be631aa82c8b11_356df45d7cd6b799eeafacbcab463a48" access="public" hasbody="true" isdef="true">
+<fpt cc="x86_thiscall" proto="std::string">
+<ety>
+<Tdef>
+<tss>
+<templatebase id="43e57e2314d98c3481e7c5229eab5466_6ecc822215ca97386606c5e8e95c56fb"/>
+<template_arguments>
+<bt name="char"/>
+<tss>
+<templatebase id="1b9b5f13fc50919fc1cbcbc41c4276ce_bf3447e13ccfc57e5fa847f5d78e7639"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+<tss>
+<templatebase id="6296f70cc969544ce1f87c96145b57ec_07566aa809aee0bdf1c0fac16e19fa85"/>
+<template_arguments>
+<bt name="char"/>
+</template_arguments>
+</tss>
+</template_arguments>
+</tss>
+</Tdef>
+</ety>
+</fpt>
+<p name="position" proto="int" isLiteral="true" isPrimitive="true" access2="none">
+<bt name="int"/>
+<Stmt>
+
+</Stmt>
+</p>
+<Stmt>
+<u lb="239" cb="1" le="241" ce="1"/>
+
+</Stmt>
+</m>
+</tun>
+</Root>

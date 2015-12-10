@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<InfoWarnings>
+  <Info>Begin full analysis with CppDepend v6.0.0.9010</Info>
+  <Info>The parser used is Clang</Info>
+  <Info>2 Cores are used, you can change this value from the menu Tools-&gt;Options-&gt;Parser Configuration</Info>
+  <Info>CppCheck is enabled.You can disable it from 'Project Properties=&gt;Plugins Tab'</Info>
+  <Info>Vera++ is enabled.You can disable it from 'Project Properties=&gt;Plugins Tab'</Info>
+  <ClangError>Project:SmartSPS=&gt;'sys/time.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_ctimest.cpp:2:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'sys/time.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS/serialib.h:24:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'netinet/in.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_opwemare.cpp:3:9</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'sys/socket.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_opwemare.cpp:5:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'netinet/in.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_opwemare.cpp:6:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'netdb.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_opwemare.cpp:7:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'arpa/inet.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_opwemare.cpp:10:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'netinet/in.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_phhlux.cpp:8:9</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'sys/socket.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_phhlux.cpp:10:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'netinet/in.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_phhlux.cpp:11:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'netdb.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_phhlux.cpp:12:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'arpa/inet.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_phhlux.cpp:15:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'sys/time.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_tstoint.cpp:3:10</ClangError>
+  <ClangError>Project:SmartSPS=&gt;'sys/time.h' file not found at C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS/serialib.h:24:10</ClangError>
+  <Warning>The project SmartSPS contains 14 Clang errors, to see them you can activate the Clang parsing errors tab.</Warning>
+  <Info>No dependency cycle detected in Projects referencement graph.</Info>
+  <Info>CppDepend analysis done. Duration: 00:04</Info>
+</InfoWarnings>
