@@ -111,9 +111,9 @@ void node_bifte::set_value(int position, int value)
 	switch (position)
 	{
 	case 0:  if (value > 0) { p0_toggle_input = true; }
-			 else { p0_toggle_input = false; }std::cout << "got update at pos 0 to value " << p0_toggle_input << std::endl;  break;
-	case 1: p1_iftrue_input = value; std::cout << "got update at pos 1 to value " << p1_iftrue_input << std::endl; break;
-	case 2: p2_ifelse_input = value; std::cout << "got update at pos 2 to value " << p2_ifelse_input << std::endl; break;
+			 else { p0_toggle_input = false; }  break;
+	case 1: p1_iftrue_input = value;  break;
+	case 2: p2_ifelse_input = value;  break;
 	default:uv = false; break;
 	}
 	updated_values = uv;

@@ -1,0 +1,9 @@
+<node nid="1" nsi="nbcofl" ncon="1:0:2:0%" nparam=".0%" />
+<node nid="2" nsi="basetimer" ncon="2:5:3:0%2:5:4:0%" nparam="%" />
+<node nid="3" nsi="blnot" ncon="3:1:2:1%" nparam="%" />
+<node nid="4" nsi="blft" ncon="4:1:5:0%" nparam="%" />
+<node nid="5" nsi="bifte" ncon="5:3:8:0%" nparam="%" />
+<node nid="6" nsi="nbcoin" ncon="6:0:5:1%" nparam="20%" />
+<node nid="7" nsi="nbcoin" ncon="7:0:5:2%" nparam="255%" />
+<node nid="8" nsi="phhlux" ncon="%" nparam="192.168.178.38%9ee891920b34397369b895d195d4a9b%1%" />
+
