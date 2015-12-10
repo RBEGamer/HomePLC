@@ -83,6 +83,7 @@
   <ItemGroup>
     <ClCompile Include="base_node.cpp" />
     <ClCompile Include="node_basetimer.cpp" />
+    <ClCompile Include="node_basiccounter.cpp" />
     <ClCompile Include="node_bifte.cpp" />
     <ClCompile Include="node_biftefl.cpp" />
     <ClCompile Include="node_biftest.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="base_node.h" />
     <ClInclude Include="galik.h" />
     <ClInclude Include="node_basetimer.h" />
+    <ClInclude Include="node_basiccounter.h" />
     <ClInclude Include="node_bifte.h" />
     <ClInclude Include="node_biftefl.h" />
     <ClInclude Include="node_biftest.h" />

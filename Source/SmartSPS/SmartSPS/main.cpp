@@ -523,7 +523,16 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "") { return; }
 	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "ncon");
-	connection_string->append(result);
+
+	if (result == "") {}
+	else if(result == "%"){}
+	else{ connection_string->append(result);}
+
+
+		
+	
+
+//	xml_parser::replaceAll(*connection_string, "%%", "%");
 	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "nparam");
 	nparam = result;
@@ -562,11 +571,10 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "simplemath") { nodes_buffer[element_count] = new node_simplemath(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "phhlux") { nodes_buffer[element_count] = new node_phhlux(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "opwemare") { nodes_buffer[element_count] = new node_opwemare(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
-
-
 	if (nsi == "stringappend") { nodes_buffer[element_count] = new node_stringappend(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "stringsplit") { nodes_buffer[element_count] = new node_stringsplit(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 	if (nsi == "stringoffset") { nodes_buffer[element_count] = new node_stringoffset(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
+	if (nsi == "basiccounter") { nodes_buffer[element_count] = new node_basiccounter(nid, false, count_connections(*connection_string, nid), nparam, false); return; };
 
 
 }
@@ -633,12 +641,12 @@ int main(int argc, char *argv[])
 
 	if (xml_input_string == "") { return 1; }
 #if defined(DEBUG)
-	std::cout << "XML RAW INPUT : " << xml_input_string.c_str() << std::endl;
+//	std::cout << "XML RAW INPUT : " << xml_input_string.c_str() << std::endl;
 #endif
 
 	xml_parser::prepare_xml_input(xml_input_string);
 #if defined(DEBUG)
-	std::cout << "XML PREPARED INPUT : " << xml_input_string.c_str() << std::endl;
+//	std::cout << "XML PREPARED INPUT : " << xml_input_string.c_str() << std::endl;
 #endif
 
 
@@ -654,7 +662,7 @@ int main(int argc, char *argv[])
 	xml_root_node_content_string = xml_parser::get_xml_root_node_content(xml_input_string, "schematic");
 	if (xml_root_node_content_string == "") { return 3; }
 #if defined(DEBUG)
-	std::cout << "XML ROOT(SCHEMATIC) NODE CONTENT : " << xml_root_node_content_string.c_str() << std::endl;
+	//std::cout << "XML ROOT(SCHEMATIC) NODE CONTENT : " << xml_root_node_content_string.c_str() << std::endl;
 #endif
 
 
@@ -671,15 +679,6 @@ int main(int argc, char *argv[])
 	xml_parser::get_element_content(xml_root_node_content_string, "node", process_xml_nodes);
 
 
-	//CREATE NODE INSTANCES WITH THE SPCIFIC ID
-	//<- <NID> <user_serial_recieve> <count of connections> <params> <is_static_value>
-	//nodes_buffer[0] = new node_nbdi(1, true, count_connections(connection_string,1), "14%eqri%1%", false);  //INOPUT
-	//nodes_buffer[1] = new node_opwemare(2, false, count_connections(connection_string, 2), "25d86d23507280aa2bc0ce79d269ebb8%2925533%sunset%", false);  //INOPUT
-	//nodes_buffer[2] = new node_nbsttoi(3, false, count_connections(connection_string, 3), "", false);
-	//nodes_buffer[3] = new node_ctimest(4, false, count_connections(connection_string, 4), "", false);
-	//nodes_buffer[9] = new node_phhlux(7, false, count_connections(connection_string, 7), "192.168.178.38%9ee891920b34397369b895d195d4a9b%2%", false); //PHILIPS HUE LUX
-	//nodes_buffer[4] = new node_tstoint(5, false, count_connections(connection_string, 5), "", false);
-	//nodes_buffer[10] = new node_opwemare(11, false, count_connections(connection_string, 11), "25d86d23507280aa2bc0ce79d269ebb8%2925533%sunset%", false);
 
 	//MAKE CONNECTION TO INSTANCES
 	make_connections(nodes_buffer, node_amount, *connection_string); //CREATE CONNECTIONS FOR THE INPUTNODE

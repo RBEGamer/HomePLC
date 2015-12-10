@@ -34,13 +34,12 @@ void node_tstoint::update(float timestep)
 		struct tm * ptm = localtime(&tt);
 		char buf[30];
 		strftime(buf, 30, "%m:%d:%Y:%H:%M:%S", ptm);
-		//std::cout << buf << std::endl;
+		std::cout << buf << std::endl;
 		
 		const char* start = buf;
 		const char* end = strstr(buf, ":");
 		tmp.append(start, end);
 		p2_month = atoi(tmp.c_str());
-//		std::cout << p2_month << std::endl;
 		start = end+1;
 		end = strstr(start, ":");
 		tmp = "";
@@ -66,6 +65,13 @@ void node_tstoint::update(float timestep)
 		tmp = "";
 		tmp.append(start);
 		p4_seconds = atoi(tmp.c_str());
+
+		//free(start);
+		//free(end);
+
+		p7_date_string = NumberToString(p1_day) + "." + NumberToString(p2_month) + "." + NumberToString(p3_year);
+		p8_time_string = NumberToString(p6_hour) + ":" + NumberToString(p5_minutes);
+		p9_time_string_seconds = NumberToString(p6_hour) + ":" + NumberToString(p5_minutes) + ":" + NumberToString(p4_seconds);
 		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
 		for (size_t i = 0; i <connection_count; i++) {
 			switch ((p_connections + i)->input_pos) {
@@ -116,6 +122,29 @@ void node_tstoint::update(float timestep)
 					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
 				}
 				break;
+			case 7:
+				//update value in in the connected node connector
+				if ((p_connections + i)->connector_node_ptr != NULL) {
+					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p7_date_string);
+					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+				}
+				break;
+			case 8:
+				//update value in in the connected node connector
+				if ((p_connections + i)->connector_node_ptr != NULL) {
+					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p8_time_string);
+					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+				}
+				break;
+			case 9:
+				//update value in in the connected node connector
+				if ((p_connections + i)->connector_node_ptr != NULL) {
+					(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p9_time_string_seconds);
+					//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+				}
+				break;
+
+				
 			default:
 				break;
 			}
@@ -132,6 +161,9 @@ void node_tstoint::init()
 	node_tstoint::p4_seconds = 0;
 	node_tstoint::p5_minutes = 0;
 	node_tstoint::p6_hour = 0;
+	node_tstoint::p7_date_string = "";
+	node_tstoint::p8_time_string = "";
+	node_tstoint::p9_time_string_seconds = "";
 }
 
 void node_tstoint::load_node_parameters(std::string params)
@@ -204,8 +236,8 @@ void node_tstoint::set_value(int position, std::string value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  if (value != "") { p0_timestamp_input = 1; }
-			 else { p0_timestamp_input = 0; }  break;
+	case 0:  p0_timestamp_input = atoi(value.c_str()); 
+			  break;
 	default:uv = false; break;
 	}
 	updated_values = uv;

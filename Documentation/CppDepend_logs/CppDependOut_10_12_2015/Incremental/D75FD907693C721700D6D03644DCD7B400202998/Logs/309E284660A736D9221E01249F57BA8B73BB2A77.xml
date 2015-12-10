@@ -1,0 +1,3 @@
+<log>
+ <error level="warning" id="warn_self_assignment" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\connector.cpp" line="19" col="12" msg="explicitly assigning value of variable of type &apos;base_node *&apos; to itself" />
+</log>

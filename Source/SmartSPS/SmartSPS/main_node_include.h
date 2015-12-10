@@ -55,6 +55,7 @@
 #include "node_basetimer.h" //A basic timer node DOWNTIMER
 //MATH
 #include "node_simplemath.h" // SIMPLE math with add, saub, mul, dif, mod, min, max, pow
+#include "node_basiccounter.h"
 //PHILIPS HUE
 #include "node_phhlux.h" // PHILIPS HUE LUX LAMPS  <bridge_ip><username><light_id>
 //OpenWeatherMap 

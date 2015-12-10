@@ -1,0 +1,8 @@
+<log>
+ <error level="warning" id="warn_impcast_integer_sign" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_blfrs.cpp" line="9" col="32" msg="implicit conversion changes signedness: &apos;const int&apos; to &apos;unsigned int&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_blfrs.cpp" line="20" col="31" msg="unused parameter &apos;timestep&apos;" />
+ <error level="warning" id="warn_mixed_sign_comparison" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_blfrs.cpp" line="45" col="25" msg="comparison of integers of different signs: &apos;size_t&apos; (aka &apos;unsigned int&apos;) and &apos;int&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_blfrs.cpp" line="71" col="51" msg="unused parameter &apos;params&apos;" />
+ <error level="warning" id="warn_mixed_sign_comparison" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_blfrs.cpp" line="85" col="25" msg="comparison of integers of different signs: &apos;size_t&apos; (aka &apos;unsigned int&apos;) and &apos;int&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_blfrs.cpp" line="99" col="44" msg="unused parameter &apos;message&apos;" />
+</log>

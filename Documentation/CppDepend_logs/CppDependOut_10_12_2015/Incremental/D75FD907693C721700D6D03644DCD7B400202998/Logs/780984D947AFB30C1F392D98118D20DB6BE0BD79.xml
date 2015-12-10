@@ -1,0 +1,20 @@
+<log>
+ <error level="warning" id="warn_impcast_integer_sign" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="9" col="32" msg="implicit conversion changes signedness: &apos;const int&apos; to &apos;unsigned int&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="20" col="33" msg="unused parameter &apos;timestep&apos;" />
+ <error level="warning" id="warn_mixed_sign_comparison" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="31" col="24" msg="comparison of integers of different signs: &apos;size_t&apos; (aka &apos;unsigned int&apos;) and &apos;int&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="52" col="53" msg="unused parameter &apos;params&apos;" />
+ <error level="warning" id="warn_mixed_sign_comparison" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="64" col="24" msg="comparison of integers of different signs: &apos;size_t&apos; (aka &apos;unsigned int&apos;) and &apos;int&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="77" col="46" msg="unused parameter &apos;message&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="81" col="34" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="81" col="50" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="86" col="34" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="86" col="48" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="91" col="34" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="91" col="49" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="96" col="34" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="96" col="56" msg="unused parameter &apos;value&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="109" col="37" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="114" col="35" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="119" col="36" msg="unused parameter &apos;position&apos;" />
+ <error level="warning" id="warn_unused_parameter" file="C:\Users\root\Desktop\HomePLC\Source\SmartSPS\SmartSPS\node_nbcobof.cpp" line="124" col="43" msg="unused parameter &apos;position&apos;" />
+</log>

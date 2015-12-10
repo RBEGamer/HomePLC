@@ -25,7 +25,9 @@ public:
 	int p5_minutes;
 	int p6_hour;
 
-
+	std::string p7_date_string;
+	std::string p8_time_string;
+	std::string p9_time_string_seconds;
 
 
 	void set_value(int position, float value);
