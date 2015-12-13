@@ -26,21 +26,30 @@ void node_strcomp::update(float timestep)
 
 	if (updated_values) {
 		updated_values = false;
-
+		p3_output = false;
 		if (comp_node == "==" && p0_input_a == p1_input_b) {
 			p3_output = true;
 		}
-		else {
-			p3_output = false;
-		}
+	
 
 		if (comp_node == "!=" && p0_input_a != p1_input_b) {
 			p3_output = true;
 		}
-		else {
-			p3_output = false;
+		
+		if (comp_node == ">" && p0_input_a.size() > p1_input_b.size()) {
+			p3_output = true;
+		}
+		if (comp_node == ">=" && p0_input_a.size() >= p1_input_b.size()) {
+			p3_output = true;
+		}
+		
+		if (comp_node == "<" && p0_input_a.size() < p1_input_b.size()) {
+			p3_output = true;
 		}
 
+		if (comp_node == "<" && p0_input_a.size() <= p1_input_b.size()) {
+			p3_output = true;
+		}
 		if (last_p3_output != p3_output) {
 			last_p3_output = p3_output;
 			//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
