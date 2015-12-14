@@ -641,10 +641,10 @@ void doprocessing(int sock) {
 	}
 
 	std::string http_header = "";
-	http_header.append("HTTP/1.0 200 OK\r\n");
+	http_header.append("HTTP/1.1 200 OK\r\n");
 	http_header.append("Host: 192.168.178.58\r\n");
 	http_header.append("Server: Apache/1.1.1\r\n");
-	http_header.append("Content-Type: text/html; charset=UTF-8\r\n");
+	http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 	http_header.append("Content-Lenght: ");
 	http_header.append(NumberToString(lsize));
 	http_header.append("\r\n");
@@ -741,7 +741,7 @@ void start_debug_server() {
 	std::cout << "START DEBUG SERVER THREAD" << std::endl;
 	debug_data_storage = std::vector<std::string>();
 	debug_data_storage.reserve(512);
-	debug_data_storage.insert(debug_data_storage.end(), std::string("<html><head></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
+	debug_data_storage.insert(debug_data_storage.end(), std::string("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>SmartSPS Debug Log Viewer</title></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
 	debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
 	int iret1 = pthread_create(&t1, NULL, debuge_server_thread, NULL);
 }
@@ -817,19 +817,16 @@ void add_debug_data(int debug_level,std::string key, std::string value) {
 int main(int argc, char *argv[])
 {
 	start_debug_server();
+	add_debug_data(0, "TOTAL_SYSTEM_RAM", NumberToString(((getTotalSystemMemory() / 1024) / 1024)));
 
-	std::cout << "TOTAL SYSTEM RAM : " << (getTotalSystemMemory()/1024)/1024 << "MB" <<  std::endl;
 
-
-	add_debug_data(0, "TEST_KEY", "TEXT VALUE");
-	//INIT SERIAL STUFF
- 	
-	
 //INIT SERIAL DEVICE
-	std::cout << "STARTING MAIN UPDATE LOOP" << std::endl;
+
 	Ret = LS.Open("/dev/ttyUSB0", 9600);                                     
 	if (Ret != 1) {                                                          
-		printf("Error while opening port. Permission problem ?\n");        
+	  
+		add_debug_data(2, "SERIAL_INIT", "Error while opening port. Permission problem ?");
+
 		return Ret;                                                       
 	}
 	std::cout << "NODESERVER V1.2 STARTING THE SERIAL INTERFACE IS: /dev/ttyUSB0" << std::endl;
@@ -844,7 +841,7 @@ int main(int argc, char *argv[])
 	
 	connection_string = new std::string();//create string
 
-
+	add_debug_data(0, "XML_PARSER", "Start parsing xml string");
 		//XML BIS NODES PARSEN
 		std::string xml_input_string = request_schematic();
 
@@ -897,12 +894,14 @@ int main(int argc, char *argv[])
 		nodes_buffer[i]->enabled = true;
 	}
 		//FINISH WITH LOADING NODES
-	std::cout << node_amount << " NODES LOADED : SCHMEATIC SIMULATION IS STARTING" << std::endl;
+	//std::cout << node_amount << " NODES LOADED : SCHMEATIC SIMULATION IS STARTING" << std::endl;
+	add_debug_data(0, "XML_PARSER", "Finishing parsing nodes :" + NumberToString(node_amount) + " Nodes created.");
+	
 	bool first_iteration = true;
 
 
 	//START MAINLOOP
-	std::cout << "STARTING MAIN UPDATE LOOP" << std::endl;
+	add_debug_data(0, "_NODE_", "Starting Main-Loop");
 	while (!break_update_cycle)
 	{
 		//STORE TIME AT LOOP START
@@ -921,6 +920,7 @@ int main(int argc, char *argv[])
 
 		//UPDATE ALL STATIC NODES
 		if (first_iteration) {
+			add_debug_data(0, "_NODE_", "Update static nodes");
 			for (size_t i = 0; i < node_amount; i++) {
 				if (nodes_buffer[i]->is_value_static) {
 					nodes_buffer[i]->updated_values = true;
