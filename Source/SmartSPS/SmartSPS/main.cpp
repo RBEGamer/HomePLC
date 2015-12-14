@@ -775,15 +775,15 @@ void add_debug_data(int debug_level,std::string key, std::string value) {
 	//ADD LEVLE CHECK
 
 	//ADD MESSAGE TYPE
-	/*
-	if (mtype == debug_message_type::INFO) {
-		final_html.append("<tr><b>INFO</b></tr>");
-	}else 	if (mtype == debug_message_type::ERROR) {
-		final_html.append("<tr><b>ERROR</b></tr>");
-	}else 	if (mtype == debug_message_type::WARNING) {
-		final_html.append("<tr><b>WARNING</b></tr>");
+	
+	if (debug_level == 0) {
+		final_html.append("<tr><b> <p style=\"color : green\">INFO</p></b></tr>");
+	}else 	if (debug_level == 2) {
+		final_html.append("<tr><b><p style=\"color : red\">ERROR</p></b></tr>");
+	}else 	if (debug_level == 1) {
+		final_html.append("<tr><b><p style=\"color : yellow\">WARNING</p></b></tr>");
 	}
-	*/
+	
 		final_html.append("<tr><b>INFO</b></tr>");
 
 		final_html.append("<td>");
