@@ -65,6 +65,13 @@ std::string* connection_string;//holds all connection inforamtion
 std::stringstream ss;
 int node_amount = 0;
 bool first_iteration = true;
+pthread_mutex_t state_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+enum programm_todo_state
+{
+	reload, stop, none
+};
+programm_todo_state current_todo_state;
 
 size_t getTotalSystemMemory()
 {
@@ -615,6 +622,7 @@ namespace debug_server
 {
 	std::vector<std::string> debug_data_storage;
 	pthread_mutex_t t1_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 	pthread_t t1;
 	std::string final_html;
 	enum debug_level_enum
@@ -770,6 +778,17 @@ namespace debug_server
 			// std::cout << http_header << std::endl;
 		}
 		else if (requested_data == "/reload") {
+			
+			volatile bool got_lock = false;
+			while (!got_lock) {
+				if (pthread_mutex_trylock(&state_mutex) == 0) {
+					got_lock = true;
+					current_todo_state = reload;
+					pthread_mutex_unlock(&state_mutex);
+				}
+			}
+
+
 			std::string html_message = "<html><header></header><body><h1>RELOAD SCHEMATIC</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
@@ -784,6 +803,14 @@ namespace debug_server
 			write(sock, http_header.c_str(), http_header.size());
 		}
 		else if (requested_data == "/shutdown") {
+			volatile bool got_lock = false;
+			while (!got_lock) {
+				if (pthread_mutex_trylock(&state_mutex) == 0) {
+					got_lock = true;
+					current_todo_state = stop;
+					pthread_mutex_unlock(&state_mutex);
+				}
+			}
 			std::string html_message = "<html><header></header><body><h1>SHUTDOWN</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
@@ -1051,15 +1078,34 @@ int main(int argc, char *argv[])
 
 
 
-
+	current_todo_state = none;
 	
 	reload_schematic();
 
 
 	//START MAINLOOP
 	debug_server::add_debug_data(0, "_NODE_", "Starting Main-Loop");
+	break_update_cycle = false;
 	while (!break_update_cycle)
 	{
+		
+
+		volatile bool got_lock = false;
+		while (!got_lock) {
+			if (pthread_mutex_trylock(&state_mutex) == 0) {
+				got_lock = true;
+				if (current_todo_state == stop) {
+					current_todo_state = none;
+					break_update_cycle = true;
+				}
+				else if (current_todo_state == reload) {
+					reload_schematic();
+				}
+				pthread_mutex_unlock(&state_mutex);
+			}
+		}
+
+
 		//STORE TIME AT LOOP START
 		start_loop_ticks = getTick();
 
