@@ -75,7 +75,7 @@ void node_strcomp::init()
 	node_strcomp::p0_input_a = "";
 	node_strcomp::p1_input_b = "";
 	node_strcomp::p3_output = false;
-	node_strcomp::last_p3_output = true;
+	node_strcomp::last_p3_output = false;
 }
 
 void node_strcomp::load_node_parameters(std::string params)

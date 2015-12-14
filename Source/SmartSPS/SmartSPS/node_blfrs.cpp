@@ -17,6 +17,8 @@ node_blfrs::~node_blfrs()
 	delete(p_connections);
 }
 
+
+
 void node_blfrs::update(float timestep)
 {
 
@@ -26,33 +28,55 @@ void node_blfrs::update(float timestep)
 
 	if (updated_values) {
 		updated_values = false;
-
+		update_v = false;
+		
+		
+		if (last_set_a)
+		{
+			if (last_state_a != p0_a_input)
+			{	
+				last_state_a = p0_a_input;
+				if (p0_a_input)
+				{
+					p2_c_output = true;	
+					std::cout << "RS SET TO TRUE" << std::endl;
+					update_v = true;
+				}
+			}
+		}
+		
+		if (last_set_b)
+		{
+			if (last_state_b != p1_b_input)
+			{	
+				last_state_b = p1_b_input;
+				if (p1_b_input)
+				{
+					p2_c_output = false;
+					std::cout << "RS SET TO FALSE" << std::endl;
+					update_v = true;
+				}
+			}
+		}
 		//p2_c_output = (p0_a_input & p1_b_input);
-		if (last_set_a) {
-			if (p0_a_input) {
-				p2_c_output = true;
-			}
-		}
-		else {
-			if (p1_b_input) {
-				p2_c_output = false;
-			}
-		}
-
-		if (p2_c_output != outuput_updated) {
-			outuput_updated = p2_c_output;
-			//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
-			for (size_t i = 0; i < connection_count; i++) {
-				switch ((p_connections + i)->input_pos) {
-				case 2:
-					//update value in in the connected node connector
-					if ((p_connections + i)->connector_node_ptr != NULL) {
-						(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p2_c_output);
-						//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+		
+		if (update_v)
+		{
+			if (p2_c_output != outuput_updated) {
+				outuput_updated = p2_c_output;
+				//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
+				for (size_t i = 0; i < connection_count; i++) {
+					switch ((p_connections + i)->input_pos) {
+					case 2:
+						//update value in in the connected node connector
+						if ((p_connections + i)->connector_node_ptr != NULL) {
+							(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p2_c_output);
+							//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+						}
+						break;
+					default:
+						break;
 					}
-					break;
-				default:
-					break;
 				}
 			}
 		}
@@ -64,8 +88,12 @@ void node_blfrs::init()
 	node_blfrs::p0_a_input = false;
 	node_blfrs::p1_b_input = false;
 	node_blfrs::last_set_a = false; //wenn false wurde zuletzt der reset gesetzt
+	last_set_b = false;
 	node_blfrs::p2_c_output = false;
 	node_blfrs::outuput_updated = true;
+	last_state_a = false;
+	last_state_b = false;
+	update_v = false;
 }
 
 void node_blfrs::load_node_parameters(std::string params)
@@ -106,9 +134,9 @@ void node_blfrs::set_value(int position, float value)
 	switch (position)
 	{
 	case 0:  if (value > 0.0f) { p0_a_input = true; }
-			 else { p0_a_input = false; } last_set_a = true;  break;
+			 else { p0_a_input = false; } last_set_a = true;last_set_b = false; break;
 	case 1: if (value > 0.0f) { p1_b_input = true; }
-			else { p1_b_input = false; }  last_set_a = false; break;
+			else { p1_b_input = false; }  last_set_a = false;last_set_b = true; break;
 	default:uv = false;  last_set_a = false; break;
 	}
 	updated_values = uv;
@@ -120,9 +148,9 @@ void node_blfrs::set_value(int position, int value)
 	switch (position)
 	{
 	case 0:  if (value > 0) { p0_a_input = true; }
-			 else { p0_a_input = false; }  last_set_a = true;  break;
+			 else { p0_a_input = false; }  last_set_a = true;last_set_b = false; break;
 	case 1: if (value > 0) { p1_b_input = true; }
-			else { p1_b_input = false; } last_set_a = false; break;
+			else { p1_b_input = false; } last_set_a = false;last_set_b = true; break;
 	default:uv = false; last_set_a = false;  break;
 	}
 	updated_values = uv;
@@ -133,8 +161,8 @@ void node_blfrs::set_value(int position, bool value)
 	bool uv = true;
 	switch (position)
 	{
-	case 0:  p0_a_input = value;  last_set_a = true; break;
-	case 1:  p1_b_input = value; last_set_a = false;  break;
+	case 0:  p0_a_input = value;  last_set_a = true;last_set_b = false; break;
+	case 1:  p1_b_input = value; last_set_a = false;last_set_b = true; break;
 	default:uv = false;  last_set_a = false; break;
 	}
 	updated_values = uv;
@@ -146,9 +174,9 @@ void node_blfrs::set_value(int position, std::string value)
 	switch (position)
 	{
 	case 0:  if (value != "") { p0_a_input = true; }
-			 else { p0_a_input = false; } last_set_a = true;  break;
+			 else { p0_a_input = false; } last_set_a = true;last_set_b = false; break;
 	case 1: if (value != "") { p1_b_input = true; }
-			else { p1_b_input = false; } last_set_a = false; break;
+			else { p1_b_input = false; } last_set_a = false;last_set_b = true; break;
 	default:uv = false; last_set_a = false; break;
 	}
 	updated_values = uv;

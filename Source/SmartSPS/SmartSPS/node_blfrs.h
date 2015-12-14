@@ -21,8 +21,10 @@ public:
 	bool last_set_a;
 	bool p2_c_output;
 	bool outuput_updated;
-
-
+	bool last_state_a;
+	bool last_state_b;
+	bool update_v;
+	bool last_set_b;
 
 	void set_value(int position, float value);
 	void set_value(int position, int value);

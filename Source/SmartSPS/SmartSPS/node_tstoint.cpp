@@ -34,7 +34,7 @@ void node_tstoint::update(float timestep)
 		struct tm * ptm = localtime(&tt);
 		char buf[30];
 		strftime(buf, 30, "%m:%d:%Y:%H:%M:%S", ptm);
-		std::cout << buf << std::endl;
+	//	std::cout << buf << std::endl;
 		
 		const char* start = buf;
 		const char* end = strstr(buf, ":");

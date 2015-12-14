@@ -22,7 +22,8 @@
 #include <arpa/inet.h>
 #define closesocket(s) close(s)
 #include <math.h>
-
+#include <vector>
+#include "pthread.h"
 
 #endif
 
@@ -76,6 +77,20 @@ size_t getTotalSystemMemory()
 	status.dwLength = sizeof(status);
 	GlobalMemoryStatusEx(&status);
 	return status.ullTotalPhys;
+#endif
+}
+
+uint32_t getTick() {
+#if defined(_LINUX_)
+	struct timespec ts;
+	unsigned theTick = 0U;
+	clock_gettime(CLOCK_REALTIME, &ts);
+	theTick = ts.tv_nsec / 1000000;
+	theTick += ts.tv_sec * 1000;
+	return theTick;
+#endif
+#if defined(_WIN_)
+	return getTickCount();
 #endif
 }
 
@@ -364,6 +379,10 @@ namespace xml_parser {
 
 
 
+
+
+
+
 void processing_serial_query(base_node* bn[]) {
 	
 	std::string message = serial_management::get_recieved();
@@ -487,25 +506,6 @@ int count_connections(std::string _cstring, int target_count_id) {
 }
 
 
-uint32_t getTick() {
-#if defined(_LINUX_)
-	struct timespec ts;
-	unsigned theTick = 0U;
-	clock_gettime(CLOCK_REALTIME, &ts);
-	theTick = ts.tv_nsec / 1000000;
-	theTick += ts.tv_sec * 1000;
-	return theTick;
-#endif
-#if defined(_WIN_)
-	return getTickCount();
-#endif
-}
-
-
-
-
-
-
 void process_xml_nodes(std::string*  kvp, int element_count) {
 	std::cout << "XML NODE CONTENT: " << kvp[element_count].c_str() << std::endl;
 	int nid = -1;
@@ -609,13 +609,107 @@ void main_serial_update_loop() {
 }
 
 
+// global variable to share data
+
+std::vector<std::string> debug_data_storage;
+pthread_mutex_t t1_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_t t1;
+std::string final_html;
+
+
+// This function will run concurrently.
+
+void* debuge_server_thread(void *ptr) {
+	sleep(1);
+}
+
+void start_debug_server() {
+	std::cout << "START DEBUG SERVER THREAD" << std::endl;
+	debug_data_storage = std::vector<std::string>();
+	debug_data_storage.insert(debug_data_storage.end(), std::string("<html><head></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
+	debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
+	int iret1 = pthread_create(&t1, NULL, debuge_server_thread, NULL);
+}
+
+void stop_debug_server() {
+	std::cout << "STOP DEBUG SERVER THREAD" << std::endl;
+	 pthread_mutex_unlock(&t1_mutex);
+	pthread_join(t1, NULL);
+	debug_data_storage.clear();
+}
+
+void add_debug_data(int debug_level,std::string key, std::string value) {
+	if (key == "") { return; }
+	if (debug_level < 0) { return;}
+
+	final_html = "";
+
+	final_html.append("<table border=\"0\"><tr>");
+
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	time_t tt = tv.tv_sec;
+	struct tm * ptm = localtime(&tt);
+	char buf[30];
+	strftime(buf, 30, "%m:%d:%Y-%H:%M:%S", ptm);
+	final_html.append("<td>");
+	final_html.append(buf);
+	final_html.append("</td>");
+
+
+	//ADD LEVLE CHECK
+
+	//ADD MESSAGE TYPE
+	/*
+	if (mtype == debug_message_type::INFO) {
+		final_html.append("<tr><b>INFO</b></tr>");
+	}else 	if (mtype == debug_message_type::ERROR) {
+		final_html.append("<tr><b>ERROR</b></tr>");
+	}else 	if (mtype == debug_message_type::WARNING) {
+		final_html.append("<tr><b>WARNING</b></tr>");
+	}
+	*/
+		final_html.append("<tr><b>INFO</b></tr>");
+
+		final_html.append("<td>");
+		final_html.append(key);
+		final_html.append("</td><td>");
+		final_html.append(value);
+		final_html.append("</td></tr></table>");
+		
+
+	
+	//LOCK 
+
+		
+		volatile bool got_lock = false;
+			while(!got_lock) {
+				if (pthread_mutex_trylock(&t1_mutex) == 0) {
+					got_lock = true;
+					debug_data_storage.insert(debug_data_storage.end() - 1, final_html);
+					pthread_mutex_unlock(&t1_mutex);
+				}
+			}
+		
+			
+		
+		
+
+	//DELOCK
+}
+
+
 int main(int argc, char *argv[])
 {
+	start_debug_server();
+
 	std::cout << "TOTAL SYSTEM RAM : " << (getTotalSystemMemory()/1024)/1024 << "MB" <<  std::endl;
 
+
+	add_debug_data(0, "TEST_KEY", "TEXT VALUE");
 	//INIT SERIAL STUFF
  	
-
+	
 //INIT SERIAL DEVICE
 	std::cout << "STARTING MAIN UPDATE LOOP" << std::endl;
 	Ret = LS.Open("/dev/ttyUSB0", 9600);                                     
@@ -743,6 +837,8 @@ int main(int argc, char *argv[])
 	delete[] nodes_buffer;
 	//----- CLOSE THE UART -----
 	LS.Close();
+	stop_debug_server();
+
 	std::cout << "EXIT NODESERVER WITH EXITCODE 0" << std::endl;
 	return 0;
 }
