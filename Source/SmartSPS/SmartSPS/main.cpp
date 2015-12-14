@@ -623,8 +623,8 @@ debug_level_enum current_debug_level;
 // This function will run concurrently.
 
 void add_debug_data(int debug_level, std::string key, std::string value) {
-	if (key == "") { return; }
-	if (debug_level < -1) { return; }
+
+	
 	switch (current_debug_level)
 	{
 	case ERROR:
@@ -658,19 +658,21 @@ void add_debug_data(int debug_level, std::string key, std::string value) {
 	//ADD MESSAGE TYPE
 
 	if (debug_level == 0) {
-		final_html.append("<td><b> <p style=\"color : green\">INFO</p></b></td>");
+		final_html.append("<td width=\"100px\" ><b> <p style=\"color : green\">INFO</p></b></td>");
 	}
 	else 	if (debug_level == 2) {
-		final_html.append("<td><b><p style=\"color : red\">ERROR</p></b></td>");
+		final_html.append("<td width=\"100px\" ><b><p style=\"color : red\">ERROR</p></b></td>");
 	}
 	else 	if (debug_level == 1) {
-		final_html.append("<td><b><p style=\"color : yellow\">WARNING</p></b></td>");
+		final_html.append("<td width=\"100px\" ><b><p style=\"color : yellow\">WARNING</p></b></td>");
+	}else if (debug_level == -1) {
+		final_html.append("<td width=\"100px\" ><b> <p style=\"color : green\">SYS-INFO</p></b></td>");
 	}
 
 
-	final_html.append("<td>");
+	final_html.append("<td  width=\"150px\" >");
 	final_html.append(key);
-	final_html.append("</td><td>");
+	final_html.append("</td><td  width=\"400px\" >");
 	final_html.append(value);
 	final_html.append("</td></tr></table>");
 
@@ -764,9 +766,21 @@ void doprocessing(int sock) {
 		write(sock, http_header.c_str(), http_header.size());
 		// std::cout << http_header << std::endl;
 	}
+	else if (requested_data == "/reload") {
+		std::string html_message = "<html><header></header><body><h1>RELOAD SCHEMATIC</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
+		std::string http_header = "";
+		http_header.append("HTTP/1.1 200 OK\r\n");
+		http_header.append("Host: 192.168.178.58\r\n");
+		http_header.append("Server: Apache/1.1.1\r\n");
+		http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+		http_header.append("Content-Lenght: ");
+		http_header.append(NumberToString(html_message.size()));
+		http_header.append("\r\n");
+		http_header.append("\r\n");
+		http_header.append(html_message);
+		write(sock, http_header.c_str(), http_header.size());
+	}
 	else {
-	
-	
 		std::string html_message = "<html><header></header><body><h1>HELP ERR 404</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 		std::string http_header = "";
 		http_header.append("HTTP/1.1 200 OK\r\n");
@@ -857,13 +871,14 @@ void* debuge_server_thread(void *ptr) {
 	} /* end of while */
 }
 
-void start_debug_server() {
+void start_debug_server(debug_level_enum _current_debug_level) {
+	current_debug_level = _current_debug_level;
 	std::cout << "START DEBUG SERVER THREAD" << std::endl;
 	debug_data_storage = std::vector<std::string>();
 	debug_data_storage.reserve(512);
 	debug_data_storage.insert(debug_data_storage.end(), std::string("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>SmartSPS Debug Log Viewer</title></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
 	debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
-
+	
 	std::string plattform = "UNKNOWN";
 #if defined(_WIN_)
 	plattform = "WINDOWS";
@@ -899,7 +914,7 @@ void start_debug_server() {
 		default:
 			break;
 		}
-	add_debug_data(-1, "SYSTEM INFORMATION", "RAM:" + NumberToString(((getTotalSystemMemory() / 1024) / 1024)) + "MB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
+	add_debug_data(-1, "TARGET", "RAM:" + NumberToString(((getTotalSystemMemory() / 1024) / 1024)) + "MB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
 
 
 
@@ -917,9 +932,8 @@ void stop_debug_server() {
 
 int main(int argc, char *argv[])
 {
-	current_debug_level = INFO;
-;
-	start_debug_server();
+
+	start_debug_server(INFO);
 
 
 
