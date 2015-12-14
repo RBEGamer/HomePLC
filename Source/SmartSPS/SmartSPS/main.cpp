@@ -954,6 +954,7 @@ namespace debug_server
 
 
 bool reload_schematic() {
+	debug_server::add_debug_data(0, "_NODE_", "RELOADING SCHEMATIC BY USER COMMAND");
 	//pointer aufräumen wenn nötig 
 	//sch laden
 	connection_string = new std::string();//create string
