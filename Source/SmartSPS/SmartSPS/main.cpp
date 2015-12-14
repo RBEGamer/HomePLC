@@ -777,14 +777,14 @@ void add_debug_data(int debug_level,std::string key, std::string value) {
 	//ADD MESSAGE TYPE
 	
 	if (debug_level == 0) {
-		final_html.append("<tr><b> <p style=\"color : green\">INFO</p></b></tr>");
+		final_html.append("<td><b> <p style=\"color : green\">INFO</p></b></td>");
 	}else 	if (debug_level == 2) {
-		final_html.append("<tr><b><p style=\"color : red\">ERROR</p></b></tr>");
+		final_html.append("<td><b><p style=\"color : red\">ERROR</p></b></td>");
 	}else 	if (debug_level == 1) {
-		final_html.append("<tr><b><p style=\"color : yellow\">WARNING</p></b></tr>");
+		final_html.append("<td><b><p style=\"color : yellow\">WARNING</p></b></td>");
 	}
 	
-		final_html.append("<tr><b>INFO</b></tr>");
+	
 
 		final_html.append("<td>");
 		final_html.append(key);
