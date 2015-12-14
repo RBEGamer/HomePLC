@@ -622,7 +622,7 @@ namespace debug_server
 {
 	std::vector<std::string> debug_data_storage;
 	pthread_mutex_t t1_mutex = PTHREAD_MUTEX_INITIALIZER;
-
+	int sockfd, portno, clilen;
 	pthread_t t1;
 	std::string final_html;
 	enum debug_level_enum
@@ -851,7 +851,7 @@ namespace debug_server
 	}
 
 	void* debuge_server_thread(void *ptr) {
-		int sockfd, newsockfd, portno, clilen;
+		int newsockfd;
 		char buffer[256];
 		struct sockaddr_in serv_addr, cli_addr;
 		int n, pid;
@@ -887,7 +887,7 @@ namespace debug_server
 		clilen = sizeof(cli_addr);
 
 		while (1) {
-			newsockfd = accept(sockfd, NULL, NULL);
+		
 
 			if (newsockfd < 0) {
 				perror("ERROR on accept");
@@ -895,22 +895,22 @@ namespace debug_server
 			}
 
 			/* Create child process */
-			pid = fork();
+		//	pid = fork();
 
-			if (pid < 0) {
-				perror("ERROR on fork");
-				exit(1);
-			}
+	//		if (pid < 0) {
+		//		perror("ERROR on fork");
+			//	exit(1);
+		//	}
 
-			if (pid == 0) {
+	//		if (pid == 0) {
 				/* This is the client process */
-				close(sockfd);
-				doprocessing(newsockfd);
-				exit(0);
-			}
-			else {
-				close(newsockfd);
-			}
+			//	close(sockfd);
+				doprocessing(accept(sockfd, NULL, NULL));
+	//			exit(0);
+			//}
+		//	else {
+		//		close(newsockfd);
+//			}
 
 		} /* end of while */
 	}
@@ -968,6 +968,7 @@ namespace debug_server
 	void stop_debug_server() {
 		std::cout << "STOP DEBUG SERVER THREAD" << std::endl;
 		pthread_mutex_unlock(&t1_mutex);
+		closesocket(sockfd);
 		pthread_join(t1, NULL);
 		debug_data_storage.clear();
 	}
@@ -1027,7 +1028,7 @@ bool reload_schematic() {
 	//CREATE DYNAMIC BASENODE ARRAY TO HOLD THE SCHEMATIC
 
 	 if (nodes_buffer) {
-		 delete[] nodes_buffer;
+	//	 delete[] nodes_buffer;
 	 }
 
 	nodes_buffer = new base_node*[node_amount];
@@ -1052,58 +1053,29 @@ bool reload_schematic() {
 
 
 
-
-
-int main(int argc, char *argv[])
-{
-
-	debug_server::start_debug_server(debug_server::INFO);
-
-
-
-//INIT SERIAL DEVICE
-
-	Ret = LS.Open("/dev/ttyUSB0", 9600);                                     
-	if (Ret != 1) {                                                          
-	  
-		debug_server::add_debug_data(2, "SERIAL_INIT", "Error while opening port. Permission problem ?");
-
-		return Ret;                                                       
-	}
-	std::cout << "NODESERVER V1.2 STARTING THE SERIAL INTERFACE IS: /dev/ttyUSB0" << std::endl;
-	serial_management::add_to_send_queue("0_bnid_0_SmartSPS 1.2\n");
-	#if defined(DEBUG)
-	serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
-	#endif
-
-
-
-	current_todo_state = none;
-	
-	reload_schematic();
-
-
+void main_loop() {
 	//START MAINLOOP
 	debug_server::add_debug_data(0, "_NODE_", "Starting Main-Loop");
 	break_update_cycle = false;
 	while (!break_update_cycle)
 	{
-		
 
-		volatile bool got_lock = false;
-		while (!got_lock) {
+
+		
+	
 			if (pthread_mutex_trylock(&state_mutex) == 0) {
-				got_lock = true;
+			
 				if (current_todo_state == stop) {
-					current_todo_state = none;
+
 					break_update_cycle = true;
 				}
 				else if (current_todo_state == reload) {
-					reload_schematic();
+
+					break_update_cycle = true;
 				}
 				pthread_mutex_unlock(&state_mutex);
 			}
-		}
+		
 
 
 		//STORE TIME AT LOOP START
@@ -1134,15 +1106,15 @@ int main(int argc, char *argv[])
 
 		//CHECK FOR SERIAL EVENTS
 		main_serial_update_loop();
-	//GET TIME AND CALC DELTATIME FOR THE NEXT ITERATION
-		 end_loop_ticks = getTick();
+		//GET TIME AND CALC DELTATIME FOR THE NEXT ITERATION
+		end_loop_ticks = getTick();
 		delta_time = (end_loop_ticks - start_loop_ticks) / 1000.0f;
 
 		average_delta_time += delta_time;
 		average_delta_time = average_delta_time / 2;
-#if defined(DEBUG)
-	//	std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
-#endif
+
+			std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
+
 	}
 
 
@@ -1152,6 +1124,48 @@ int main(int argc, char *argv[])
 
 	std::cout << "LEAVING MAIN UPDATE LOOP AND CLEANUP" << std::endl;
 	delete[] nodes_buffer;
+}
+
+int main(int argc, char *argv[])
+{
+
+	debug_server::start_debug_server(debug_server::INFO);
+
+
+
+//INIT SERIAL DEVICE
+
+	Ret = LS.Open("/dev/ttyUSB0", 9600);                                     
+	if (Ret != 1) {                                                          
+	  
+		debug_server::add_debug_data(2, "SERIAL_INIT", "Error while opening port. Permission problem ?");
+
+		return Ret;                                                       
+	}
+	std::cout << "NODESERVER V1.2 STARTING THE SERIAL INTERFACE IS: /dev/ttyUSB0" << std::endl;
+	serial_management::add_to_send_queue("0_bnid_0_SmartSPS 1.2\n");
+	#if defined(DEBUG)
+	serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
+	#endif
+
+
+
+	current_todo_state = reload;
+	
+
+
+enter:
+
+	main_loop();
+
+	if (current_todo_state == reload) {
+
+		current_todo_state = none;
+		reload_schematic();
+		goto enter;
+	}
+	
+
 	//----- CLOSE THE UART -----
 	LS.Close();
 	debug_server::stop_debug_server();
