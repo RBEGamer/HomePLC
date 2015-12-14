@@ -615,52 +615,172 @@ std::vector<std::string> debug_data_storage;
 pthread_mutex_t t1_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_t t1;
 std::string final_html;
-
-
+enum debug_level_enum
+{
+	ERROR, WARNING, INFO
+};
+debug_level_enum current_debug_level;
 // This function will run concurrently.
+
+void add_debug_data(int debug_level, std::string key, std::string value) {
+	if (key == "") { return; }
+	if (debug_level < -1) { return; }
+	switch (current_debug_level)
+	{
+	case ERROR:
+		if (debug_level == 0 || debug_level == 1) { return; }
+		break;
+	case WARNING:
+		if (debug_level == 0) { return; }
+		break;
+	case INFO:
+		break;
+	default:
+		break;
+	}
+	final_html = "";
+
+	final_html.append("<table border=\"1\"><tr>");
+
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	time_t tt = tv.tv_sec;
+	struct tm * ptm = localtime(&tt);
+	char buf[30];
+	strftime(buf, 30, "%m:%d:%Y-%H:%M:%S", ptm);
+	final_html.append("<td width=\"100px\">");
+	final_html.append(buf);
+	final_html.append("</td>");
+
+
+	//ADD LEVLE CHECK
+
+	//ADD MESSAGE TYPE
+
+	if (debug_level == 0) {
+		final_html.append("<td><b> <p style=\"color : green\">INFO</p></b></td>");
+	}
+	else 	if (debug_level == 2) {
+		final_html.append("<td><b><p style=\"color : red\">ERROR</p></b></td>");
+	}
+	else 	if (debug_level == 1) {
+		final_html.append("<td><b><p style=\"color : yellow\">WARNING</p></b></td>");
+	}
+
+
+	final_html.append("<td>");
+	final_html.append(key);
+	final_html.append("</td><td>");
+	final_html.append(value);
+	final_html.append("</td></tr></table>");
+
+
+
+	//LOCK 
+
+
+	volatile bool got_lock = false;
+	while (!got_lock) {
+		if (pthread_mutex_trylock(&t1_mutex) == 0) {
+			got_lock = true;
+			debug_data_storage.insert(debug_data_storage.end() - 1, final_html);
+			pthread_mutex_unlock(&t1_mutex);
+		}
+	}
+
+
+
+
+
+	//DELOCK
+}
+
 
 void doprocessing(int sock) {
 	int n;
 	char buffer[256];
 	bzero(buffer, 256);
-	n = read(sock, buffer, 255);
+	
 
-	if (n < 0) {
-		perror("ERROR reading from socket");
-		exit(1);
-	}
-
-
-
-
-	//count log size
-	int lsize = 0;
-	for (size_t i = 0; i < debug_data_storage.size(); i++)
+	volatile bool found = false;
+	int end = -1;
+	std::string com_buffer = "";
+	std::string requested_data = "";
+	while (!found)
 	{
-		lsize += debug_data_storage.at(i).size();
+		n = read(sock, buffer, 255);
+
+		if (n < 0) {
+			perror("ERROR reading from socket");
+			exit(1);
+		}
+
+
+		if (n > 0) {
+			com_buffer += buffer;
+			end = com_buffer.find("\r\n\r\n");
+			if (end != -1) {
+				const char* start = com_buffer.c_str();
+				start = strstr(start, "GET ");
+				if(start != 0)
+				{		
+					start += 4;
+					const char* end = strstr(start, " HTTP/");
+					if (end != 0) {
+						requested_data.append(start, end);
+						found = true;
+					}
+				}
+			}
+		}
 	}
-
-	std::string http_header = "";
-	http_header.append("HTTP/1.1 200 OK\r\n");
-	http_header.append("Host: 192.168.178.58\r\n");
-	http_header.append("Server: Apache/1.1.1\r\n");
-	http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
-	http_header.append("Content-Lenght: ");
-	http_header.append(NumberToString(lsize));
-	http_header.append("\r\n");
+	
 
 
 
-	http_header.append("\r\n");
+	std::cout << requested_data << std::endl;
 
-	for (size_t i = 0; i < debug_data_storage.size(); i++)
-	{
-		http_header.append(debug_data_storage.at(i));
+
+	//SEND DEBUG HEADERS
+	if (requested_data == "/debug" || requested_data == "/") {
+		int lsize = 0;
+		for (size_t i = 0; i < debug_data_storage.size(); i++)
+		{
+			lsize += debug_data_storage.at(i).size();
+		}
+		std::string http_header = "";
+		http_header.append("HTTP/1.1 200 OK\r\n");
+		http_header.append("Host: 192.168.178.58\r\n");
+		http_header.append("Server: Apache/1.1.1\r\n");
+		http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+		http_header.append("Content-Lenght: ");
+		http_header.append(NumberToString(lsize));
+		http_header.append("\r\n");
+		http_header.append("\r\n");
+		for (size_t i = 0; i < debug_data_storage.size(); i++)
+		{
+			http_header.append(debug_data_storage.at(i));
+		}
+		write(sock, http_header.c_str(), http_header.size());
+		// std::cout << http_header << std::endl;
 	}
-
-	 write(sock,http_header.c_str(), http_header.size());
-	 std::cout << http_header << std::endl;
-
+	else {
+	
+	
+		std::string html_message = "<html><header></header><body><h1>HELP ERR 404</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
+		std::string http_header = "";
+		http_header.append("HTTP/1.1 200 OK\r\n");
+		http_header.append("Host: 192.168.178.58\r\n");
+		http_header.append("Server: Apache/1.1.1\r\n");
+		http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+		http_header.append("Content-Lenght: ");
+		http_header.append(NumberToString(html_message.size()));
+		http_header.append("\r\n");
+		http_header.append("\r\n");
+		http_header.append(html_message);
+		write(sock, http_header.c_str(), http_header.size());
+	
+	}
 
 
 
@@ -743,6 +863,46 @@ void start_debug_server() {
 	debug_data_storage.reserve(512);
 	debug_data_storage.insert(debug_data_storage.end(), std::string("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>SmartSPS Debug Log Viewer</title></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
 	debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
+
+	std::string plattform = "UNKNOWN";
+#if defined(_WIN_)
+	plattform = "WINDOWS";
+#endif
+#if defined(_MAC_)
+	plattform = "MAC OSX";
+#endif
+#if defined(_LINUX_)
+	plattform = "LINUX";
+#endif
+
+	std::string build_config = "UNKNOWN";
+#if defined(DEBUG)
+	build_config = "DEBUG";
+#endif
+#if defined(RELEASE)
+	build_config = "RELEASE";
+#endif
+
+	std::string debuglevel_string = "UNKNOWN";
+
+		switch (current_debug_level)
+		{
+		case ERROR:
+			debuglevel_string = "ERROR";
+			break;
+		case WARNING:
+			debuglevel_string = "WARNING";
+			break;
+		case INFO:
+			debuglevel_string = "INFO";
+			break;
+		default:
+			break;
+		}
+	add_debug_data(-1, "SYSTEM INFORMATION", "RAM:" + NumberToString(((getTotalSystemMemory() / 1024) / 1024)) + "MB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
+
+
+
 	int iret1 = pthread_create(&t1, NULL, debuge_server_thread, NULL);
 }
 
@@ -753,71 +913,14 @@ void stop_debug_server() {
 	debug_data_storage.clear();
 }
 
-void add_debug_data(int debug_level,std::string key, std::string value) {
-	if (key == "") { return; }
-	if (debug_level < 0) { return;}
-
-	final_html = "";
-
-	final_html.append("<table border=\"1\" width=\"500px\"><tr>");
-
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	time_t tt = tv.tv_sec;
-	struct tm * ptm = localtime(&tt);
-	char buf[30];
-	strftime(buf, 30, "%m:%d:%Y-%H:%M:%S", ptm);
-	final_html.append("<td>");
-	final_html.append(buf);
-	final_html.append("</td>");
-
-
-	//ADD LEVLE CHECK
-
-	//ADD MESSAGE TYPE
-	
-	if (debug_level == 0) {
-		final_html.append("<td><b> <p style=\"color : green\">INFO</p></b></td>");
-	}else 	if (debug_level == 2) {
-		final_html.append("<td><b><p style=\"color : red\">ERROR</p></b></td>");
-	}else 	if (debug_level == 1) {
-		final_html.append("<td><b><p style=\"color : yellow\">WARNING</p></b></td>");
-	}
-	
-	
-
-		final_html.append("<td>");
-		final_html.append(key);
-		final_html.append("</td><td>");
-		final_html.append(value);
-		final_html.append("</td></tr></table>");
-		
-
-	
-	//LOCK 
-
-		
-		volatile bool got_lock = false;
-			while(!got_lock) {
-				if (pthread_mutex_trylock(&t1_mutex) == 0) {
-					got_lock = true;
-					debug_data_storage.insert(debug_data_storage.end() - 1, final_html);
-					pthread_mutex_unlock(&t1_mutex);
-				}
-			}
-		
-			
-		
-		
-
-	//DELOCK
-}
 
 
 int main(int argc, char *argv[])
 {
+	current_debug_level = INFO;
+;
 	start_debug_server();
-	add_debug_data(0, "TOTAL_SYSTEM_RAM", NumberToString(((getTotalSystemMemory() / 1024) / 1024)));
+
 
 
 //INIT SERIAL DEVICE
