@@ -766,6 +766,7 @@ namespace debug_server
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Connection: clos\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(lsize));
 			http_header.append("\r\n");
@@ -794,6 +795,7 @@ namespace debug_server
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -801,6 +803,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
 		}
 		else if (requested_data == "/shutdown") {
 			volatile bool got_lock = false;
@@ -816,6 +819,7 @@ namespace debug_server
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -823,6 +827,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
 		}
 		else {
 			std::string html_message = "<html><header></header><body><h1>HELP ERR 404</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a><br><a href='/shutdown'>SHUTDOWN</a><br><a href='/reload'>RELOAD SCHEMATIC</a></body></html>";
@@ -830,6 +835,7 @@ namespace debug_server
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -837,7 +843,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
-
+			closesocket(sock);
 		}
 
 
@@ -968,6 +974,7 @@ namespace debug_server
 	void stop_debug_server() {
 		std::cout << "STOP DEBUG SERVER THREAD" << std::endl;
 		pthread_mutex_unlock(&t1_mutex);
+		pthread_mutex_unlock(&state_mutex);
 		closesocket(sockfd);
 		pthread_join(t1, NULL);
 		debug_data_storage.clear();
@@ -1114,7 +1121,9 @@ void main_loop() {
 		average_delta_time = average_delta_time / 2;
 
 			std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
-
+			if (delta_time <= 0.1) {
+				usleep(50 + (delta_time*100)*10);
+			}
 	}
 
 
