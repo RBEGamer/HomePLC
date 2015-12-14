@@ -8,6 +8,6 @@ Features:
 + Webservice integration (OpenWeatherMap,Philips Hue, Netatmo)
 + Din Rail Case for integration into exisitng PLC Systems
 + Planned Smartfone-App to override devices manually
-+ Debug beserver to monitor all device states
++ Debug webserver at <ip>:5555
 
 You can programm the system over the build in web app. The programming system is node based, you can connect multible nodes to create dataflows and device control paths.
