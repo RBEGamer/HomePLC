@@ -31,6 +31,11 @@
 #if defined(_WIN_)
 #include <iostream>
 #include <windows.h>
+#include <string>
+#include <vector>
+#include <vector>
+#include <thread>
+#include <ctime> //timer class 
 #endif
 
 
