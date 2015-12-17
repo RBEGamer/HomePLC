@@ -550,7 +550,7 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	result = xml_parser::get_element_attributes(kvp[element_count], "nparam");
 	nparam = result;
 
-	if (nsi == "nbdi") { nodes_buffer[element_count] = new node_nbdi(nid, true, count_connections(*connection_string, nid), nparam, false, true); return; };
+	if (nsi == "nbdi") { nodes_buffer[element_count] = new node_nbdi(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "nbdo") { nodes_buffer[element_count] = new node_nbdo(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "bndmx") { nodes_buffer[element_count] = new node_bndmx(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "bnidisp") { nodes_buffer[element_count] = new node_bnidisp(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
