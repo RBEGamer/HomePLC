@@ -1,6 +1,6 @@
 #include "node_bifte.h"
 
-node_bifte::node_bifte(int id, bool us, const int con_count, std::string params, bool is_static)
+node_bifte::node_bifte(int id, bool us, const int con_count, std::string params, bool is_static, bool ut)
 {
 	is_value_static = is_static;
 	nid = id;
@@ -8,6 +8,7 @@ node_bifte::node_bifte(int id, bool us, const int con_count, std::string params,
 	connection_count = con_count;
 	p_connections = new connector[con_count]();
 	load_node_parameters(params);
+	use_timer = ut;
 }
 
 

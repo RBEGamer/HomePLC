@@ -3,7 +3,7 @@
 class node_bnidisp : public base_node
 {
 public:
-	node_bnidisp(int id, bool us, const int con_count, std::string params, bool is_static);
+	node_bnidisp(int id, bool us, const int con_count, std::string params, bool is_static, bool ut);
 	~node_bnidisp();
 	void update(float timestep = 0.0f);
 	void init();

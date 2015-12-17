@@ -1,12 +1,13 @@
 #include "node_blft.h"
 
-node_blft::node_blft(int id, bool us, const int con_count, std::string params,bool is_static)
+node_blft::node_blft(int id, bool us, const int con_count, std::string params,bool is_static, bool ut)
 {
 	is_value_static = is_static;
 	nid = id;
 	use_serial_recieve = us;
 	connection_count = con_count;
 	p_connections = new connector[con_count]();
+	use_timer = ut;
 }
 
 

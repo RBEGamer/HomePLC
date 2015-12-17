@@ -3,7 +3,7 @@
 class node_ctimest : public base_node
 {
 public:
-	node_ctimest(int id, bool us, const int con_count, std::string params, bool is_static);
+	node_ctimest(int id, bool us, const int con_count, std::string params, bool is_static, bool ut);
 	~node_ctimest();
 	void update(float timestep = 0.0f);
 	void init();

@@ -3,7 +3,7 @@
 class node_nbcobot : public base_node
 {
 public:
-	node_nbcobot(int id, bool us, const int con_count, std::string params, bool is_static);
+	node_nbcobot(int id, bool us, const int con_count, std::string params, bool is_static, bool ut);
 	~node_nbcobot();
 	void update(float timestep = 0.0f);
 	void init();

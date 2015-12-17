@@ -8,6 +8,7 @@ node_strcomp::node_strcomp(int id, bool us, const int con_count, std::string par
 	connection_count = con_count;
 	p_connections = new connector[con_count]();
 	load_node_parameters(params);
+	use_timer = ut;
 }
 
 

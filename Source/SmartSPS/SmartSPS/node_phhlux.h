@@ -3,7 +3,7 @@
 class node_phhlux : public base_node
 {
 public:
-	node_phhlux(int id, bool us, const int con_count, std::string params, bool is_static);
+	node_phhlux(int id, bool us, const int con_count, std::string params, bool is_static, bool ut);
 	~node_phhlux();
 	void update(float timestep = 0.0f);
 	void init();

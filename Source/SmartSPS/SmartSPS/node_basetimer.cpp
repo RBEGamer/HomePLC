@@ -1,6 +1,6 @@
 #include "node_basetimer.h"
 
-node_basetimer::node_basetimer(int id, bool us, const int con_count, std::string params, bool is_static)
+node_basetimer::node_basetimer(int id, bool us, const int con_count, std::string params, bool is_static, bool us)
 {
 	is_value_static = is_static;
 	nid = id;
@@ -8,6 +8,7 @@ node_basetimer::node_basetimer(int id, bool us, const int con_count, std::string
 	connection_count = con_count;
 	p_connections = new connector[con_count]();
 	load_node_parameters(params);
+	use_timer = us;
 }
 
 

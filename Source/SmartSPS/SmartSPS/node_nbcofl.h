@@ -3,7 +3,7 @@
 class node_nbcofl : public base_node
 {
 public:
-	node_nbcofl(int id, bool us, const int con_count, std::string params, bool is_static);
+	node_nbcofl(int id, bool us, const int con_count, std::string params, bool is_static, bool ut);
 	~node_nbcofl();
 	void update(float timestep = 0.0f);
 	void init();

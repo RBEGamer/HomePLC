@@ -1,11 +1,12 @@
 #include "base_node.h"
 
 
-base_node::base_node(int id, bool us, const int con_count, bool is_static)
+base_node::base_node(int id, bool us, const int con_count, bool is_static,  bool ut)
 {
 	nid = id;
 	use_serial_recieve = us;
 	is_value_static = is_static;
+	use_timer = ut;
 }
 
 base_node::base_node() {

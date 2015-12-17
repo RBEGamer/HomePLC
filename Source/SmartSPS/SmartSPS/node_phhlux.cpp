@@ -37,7 +37,7 @@ std::string int_to_string(const int& port) {
 	ss << port;
 	return ss.str();
 }
-node_phhlux::node_phhlux(int id, bool us, const int con_count, std::string params, bool is_static)
+node_phhlux::node_phhlux(int id, bool us, const int con_count, std::string params, bool is_static, bool ut)
 {
 	is_value_static = is_static;
 	nid = id;
@@ -45,6 +45,7 @@ node_phhlux::node_phhlux(int id, bool us, const int con_count, std::string param
 	connection_count = con_count;
 	p_connections = new connector[con_count]();
 	load_node_parameters(params);
+	use_timer = ut;
 }
 
 node_phhlux::~node_phhlux()

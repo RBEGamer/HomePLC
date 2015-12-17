@@ -4,7 +4,7 @@
 class base_node
 {
 public:
-	 base_node(int id, bool us, const int con_count, bool is_static);
+	 base_node(int id, bool us, const int con_count, bool is_static,  bool us);
 	 base_node();
 	 base_node(int id);
 	 virtual ~base_node();
@@ -15,6 +15,7 @@ public:
 	int nid;
 	bool is_value_static;
 	bool use_serial_recieve;
+	bool use_timer;
 	virtual void load_node_parameters(std::string params);
 	virtual void serial_income(std::string message);
 	virtual void  set_connection(int pos, base_node* ptr, int dest_pos);
