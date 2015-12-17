@@ -77,6 +77,7 @@ void node_strcomp::init()
 	node_strcomp::p1_input_b = "";
 	node_strcomp::p3_output = false;
 	node_strcomp::last_p3_output = false;
+	update();
 }
 
 void node_strcomp::load_node_parameters(std::string params)
@@ -116,6 +117,7 @@ void node_strcomp::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -141,6 +143,7 @@ void node_strcomp::set_connection(int pos, base_node * ptr, int dest_pos)
 }
 void node_strcomp::serial_income(std::string message)
 {
+	update();
 }
 
 void node_strcomp::set_value(int position, float value)
@@ -155,6 +158,7 @@ void node_strcomp::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_strcomp::set_value(int position, int value)
@@ -169,6 +173,7 @@ void node_strcomp::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_strcomp::set_value(int position, bool value)
@@ -183,6 +188,7 @@ void node_strcomp::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_strcomp::set_value(int position, std::string value)
@@ -195,6 +201,7 @@ void node_strcomp::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 

@@ -160,7 +160,7 @@ void node_phhlux::init()
 	last_bright = -1;
 
 
-
+	update();
 
 
 
@@ -208,6 +208,7 @@ void node_phhlux::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -235,6 +236,7 @@ void node_phhlux::serial_income(std::string message)
 {
 	//pasres_message
 	updated_values = true;
+	update();
 }
 
 void node_phhlux::set_value(int position, float value)
@@ -247,6 +249,7 @@ void node_phhlux::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_phhlux::set_value(int position, int value)
@@ -258,6 +261,7 @@ void node_phhlux::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_phhlux::set_value(int position, bool value)
@@ -271,6 +275,7 @@ void node_phhlux::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_phhlux::set_value(int position, std::string value)
@@ -286,6 +291,7 @@ void node_phhlux::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 float node_phhlux::get_value_f(int position)

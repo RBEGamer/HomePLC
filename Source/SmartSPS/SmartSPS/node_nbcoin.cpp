@@ -47,7 +47,7 @@ void node_nbcoin::update(float timestep)
 
 void node_nbcoin::init()
 {
-	
+	update();
 }
 
 void node_nbcoin::load_node_parameters(std::string params)
@@ -86,6 +86,7 @@ void node_nbcoin::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -110,26 +111,27 @@ void node_nbcoin::set_connection(int pos, base_node * ptr, int dest_pos)
 
 void node_nbcoin::serial_income(std::string message)
 {
+	update();
 }
 
 void node_nbcoin::set_value(int position, float value)
 {
-
+	update();
 }
 
 void node_nbcoin::set_value(int position, int value)
 {
-
+	update();
 }
 
 void node_nbcoin::set_value(int position, bool value)
 {
-
+	update();
 }
 
 void node_nbcoin::set_value(int position, std::string value)
 {
-
+	update();
 }
 
 

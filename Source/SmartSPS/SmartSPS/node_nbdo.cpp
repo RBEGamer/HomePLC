@@ -32,7 +32,9 @@ void node_nbdo::update(float timestep)
 
 void node_nbdo::init()
 {
+	update();
 }
+
 
 void node_nbdo::load_node_parameters(std::string params)
 {
@@ -73,6 +75,7 @@ void node_nbdo::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -100,6 +103,7 @@ void node_nbdo::serial_income(std::string message)
 {
 	//pasres_message
 	updated_values = true;
+	update();
 }
 
 void node_nbdo::set_value(int position, float value)
@@ -112,6 +116,7 @@ void node_nbdo::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_nbdo::set_value(int position, int value)
@@ -124,6 +129,7 @@ void node_nbdo::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_nbdo::set_value(int position, bool value)
@@ -136,6 +142,7 @@ void node_nbdo::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_nbdo::set_value(int position, std::string value)
@@ -151,6 +158,7 @@ void node_nbdo::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 float node_nbdo::get_value_f(int position)

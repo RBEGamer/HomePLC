@@ -95,6 +95,7 @@ void node_intcomp::init()
 	node_intcomp::p1_input_b = 0;
 	node_intcomp::p3_output = false;
 	node_intcomp::last_state_p3 = true;
+	update();
 }
 
 void node_intcomp::load_node_parameters(std::string params)
@@ -134,6 +135,7 @@ void node_intcomp::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -171,6 +173,7 @@ void node_intcomp::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_intcomp::set_value(int position, int value)
@@ -183,6 +186,7 @@ void node_intcomp::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_intcomp::set_value(int position, bool value)
@@ -197,6 +201,7 @@ void node_intcomp::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_intcomp::set_value(int position, std::string value)
@@ -209,6 +214,7 @@ void node_intcomp::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 

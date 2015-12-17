@@ -47,12 +47,12 @@ void node_nbcobot::update(float timestep)
 
 void node_nbcobot::init()
 {
-
+	update();
 }
 
 void node_nbcobot::load_node_parameters(std::string params)
 {
-
+	update();
 }
 
 
@@ -77,26 +77,27 @@ void node_nbcobot::set_connection(int pos, base_node * ptr, int dest_pos)
 
 void node_nbcobot::serial_income(std::string message)
 {
+	update();
 }
 
 void node_nbcobot::set_value(int position, float value)
 {
-
+	update();
 }
 
 void node_nbcobot::set_value(int position, int value)
 {
-
+	update();
 }
 
 void node_nbcobot::set_value(int position, bool value)
 {
-
+	update();
 }
 
 void node_nbcobot::set_value(int position, std::string value)
 {
-
+	update();
 }
 
 

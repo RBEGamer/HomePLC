@@ -92,6 +92,7 @@ void node_simplemath::init()
 	p0_a_input = false;
 	p1_b_input = false;
 	p2_c_output = false;
+	update();
 }
 
 void node_simplemath::load_node_parameters(std::string params)
@@ -132,6 +133,7 @@ void node_simplemath::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -169,6 +171,7 @@ void node_simplemath::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_simplemath::set_value(int position, int value)
@@ -181,6 +184,7 @@ void node_simplemath::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_simplemath::set_value(int position, bool value)
@@ -195,6 +199,7 @@ void node_simplemath::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_simplemath::set_value(int position, std::string value)
@@ -209,6 +214,7 @@ void node_simplemath::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 

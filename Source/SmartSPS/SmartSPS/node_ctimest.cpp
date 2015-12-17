@@ -72,11 +72,12 @@ void node_ctimest::init()
 {
 	p0_curr_timestamp_output = 0;
 	saved_timestamp = -1;
+	update();
 }
 
 void node_ctimest::load_node_parameters(std::string params)
 {
-	
+	update();
 }
 
 
@@ -110,18 +111,22 @@ void node_ctimest::serial_income(std::string message)
 
 void node_ctimest::set_value(int position, float value)
 {
+	update();
 }
 
 void node_ctimest::set_value(int position, int value)
 {
+	update();
 }
 
 void node_ctimest::set_value(int position, bool value)
 {
+	update();
 }
 
 void node_ctimest::set_value(int position, std::string value)
 {
+	update();
 }
 
 float node_ctimest::get_value_f(int position)

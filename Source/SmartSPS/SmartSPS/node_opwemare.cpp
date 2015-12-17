@@ -67,6 +67,7 @@ void node_opwemare::init()
 {
 	node_opwemare::p1_data_output_state = "";
 	node_opwemare::p0_value_toggle_state = true; //DEBUG
+	update();
 }
 
 void node_opwemare::load_node_parameters(std::string params)
@@ -107,6 +108,7 @@ void node_opwemare::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -133,7 +135,7 @@ void node_opwemare::set_connection(int pos, base_node * ptr, int dest_pos)
 
 void node_opwemare::serial_income(std::string message)
 {
-	
+	update();
 
 
 }
@@ -294,6 +296,7 @@ void node_opwemare::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_opwemare::set_value(int position, int value)
@@ -306,6 +309,7 @@ void node_opwemare::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_opwemare::set_value(int position, bool value)
@@ -318,6 +322,7 @@ void node_opwemare::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_opwemare::set_value(int position, std::string value)
@@ -333,6 +338,7 @@ void node_opwemare::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 float node_opwemare::get_value_f(int position)

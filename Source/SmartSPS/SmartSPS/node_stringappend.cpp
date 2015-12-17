@@ -59,11 +59,12 @@ void node_stringappend::init()
 	p1_b_input = "";
 	p2_c_output = "";
 	last_output_value = "";
+	update();
 }
 
 void node_stringappend::load_node_parameters(std::string params)
 {
-
+	update();
 }
 
 
@@ -85,6 +86,7 @@ void node_stringappend::set_connection(int pos, base_node * ptr, int dest_pos)
 }
 void node_stringappend::serial_income(std::string message)
 {
+	update();
 }
 
 void node_stringappend::set_value(int position, float value)
@@ -97,6 +99,7 @@ void node_stringappend::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_stringappend::set_value(int position, int value)
@@ -109,6 +112,7 @@ void node_stringappend::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_stringappend::set_value(int position, bool value)
@@ -123,6 +127,7 @@ void node_stringappend::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_stringappend::set_value(int position, std::string value)
@@ -135,6 +140,7 @@ void node_stringappend::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 

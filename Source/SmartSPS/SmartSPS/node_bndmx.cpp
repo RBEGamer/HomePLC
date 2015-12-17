@@ -28,6 +28,7 @@ void node_bndmx::update(float timestep)
 
 void node_bndmx::init()
 {
+	update();
 }
 
 void node_bndmx::load_node_parameters(std::string params)
@@ -108,6 +109,7 @@ void node_bndmx::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_bndmx::set_value(int position, int value)
@@ -119,6 +121,7 @@ void node_bndmx::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_bndmx::set_value(int position, bool value)
@@ -132,6 +135,7 @@ void node_bndmx::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 void node_bndmx::set_value(int position, std::string value)
@@ -146,6 +150,7 @@ void node_bndmx::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
+	update();
 }
 
 float node_bndmx::get_value_f(int position)

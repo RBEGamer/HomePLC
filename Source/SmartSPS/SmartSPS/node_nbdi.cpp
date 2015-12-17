@@ -48,6 +48,7 @@ void node_nbdi::update(float timestep)
 void node_nbdi::init()
 {
 	node_nbdi::p0_value_output_state = false;
+	update();
 }
 
 void node_nbdi::load_node_parameters(std::string params)
@@ -85,6 +86,7 @@ void node_nbdi::load_node_parameters(std::string params)
 			break;
 		}
 	}
+	update();
 }
 
 
@@ -121,24 +123,28 @@ void node_nbdi::serial_income(std::string message)
 		updated_values = true;
 	}
 
-
+	update();
 	
 }
 
 void node_nbdi::set_value(int position, float value)
 {
+	update();
 }
 
 void node_nbdi::set_value(int position, int value)
 {
+	update();
 }
 
 void node_nbdi::set_value(int position, bool value)
 {
+	update();
 }
 
 void node_nbdi::set_value(int position, std::string value)
 {
+	update();
 }
 
 float node_nbdi::get_value_f(int position)
