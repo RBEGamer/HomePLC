@@ -53,7 +53,7 @@ Serial.println("register_eqri_" + String(modul_id));
 // the loop function runs over and over again forever
 void loop() {
 if(modul_id > 0){
-  }
+  
 
    while (Serial.available()) {
     delay(3);  //delay to allow buffer to fill 
@@ -86,7 +86,7 @@ if(getValue(readString, '_', 0).toInt() == modul_id){
   }
     readString="";
   } 
- 
+ }
 }
 
 
