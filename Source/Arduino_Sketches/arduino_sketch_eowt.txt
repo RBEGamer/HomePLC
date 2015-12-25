@@ -4,6 +4,7 @@
 OneWire oneWire(DS18B20_PIN);          // OneWire Referenz setzen
 DallasTemperature sensors(&oneWire);   // DS18B20 initialisieren
 int modul_id;
+float* s_temp = 0;
 void setup() {
 
   // Serielle Ausgabe starten 
@@ -28,6 +29,16 @@ delay(20);
 
 
   sensors.begin();  // DS18B20 starten
+
+
+  s_temp = new float[sensors.getDeviceCount()];
+   sensors.requestTemperatures();
+
+    for(byte i=0;i<sensors.getDeviceCount();i++){ // Temperatur ausgeben
+       show_temperature(i,sensors.getTempCByIndex(i)); 
+
+  }
+  
  }
 
 
@@ -35,16 +46,19 @@ void loop(){
 if(modul_id > 0){
   sensors.requestTemperatures(); // Temperatursensor(en) auslesen
   for(byte i=0;i<sensors.getDeviceCount();i++){ // Temperatur ausgeben
-    show_temperature(i,sensors.getTempCByIndex(i));  
+    if(s_temp[i] != sensors.getTempCByIndex(i)){
+    show_temperature(i,sensors.getTempCByIndex(i)); 
+      }
+     
   }
   
-  delay(10000);  // 5s Pause bis zur nächsten Messung
+  delay(2000);  // 5s Pause bis zur nächsten Messung
 }
 }
 
 // Temperatur ausgeben
 void show_temperature(byte num,float temp){
-  
+  s_temp[num] = temp;
   Serial.println(String(modul_id) + "_eowt_" + String(num) + "_" + String(temp));
 
 
