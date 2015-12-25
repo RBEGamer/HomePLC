@@ -39,7 +39,8 @@ digitalWrite(10, HIGH);       // turn on pullup resistors
 pinMode(9, INPUT);           // set pin to input
 digitalWrite(9, HIGH);       // turn on pullup resistors
 
-
+pinMode(7, OUTPUT); 
+digitalWrite(7, LOW); 
   modul_id = -1;
 if(digitalRead(9) == 1){modul_id +=1;}
 if(digitalRead(10) == 1){modul_id +=2;}
@@ -60,6 +61,7 @@ A4_ls = digitalRead(A4);
 A5_ls = digitalRead(A5);
 A6_ls = digitalRead(A6);
 A7_ls = digitalRead(A7);
+digitalWrite(7, HIGH);
 }
 
 // the loop function runs over and over again forever
@@ -70,14 +72,14 @@ delay(100);
 
 
 
-if(digitalRead(A0) !=  A0_ls){A0_ls = digitalRead(A0);Serial.println(String(modul_id) + "_eqri_0_" + String(A0_ls));delay(10);}
-else if(digitalRead(A1) !=  A1_ls){A1_ls = digitalRead(A1);Serial.println(String(modul_id) + "_eqri_1_" + String(A1_ls));delay(10);}
-else if(digitalRead(A2) !=  A2_ls){A2_ls = digitalRead(A2);Serial.println(String(modul_id) + "_eqri_2_" + String(A2_ls));delay(10);}
-else if(digitalRead(A3) !=  A3_ls){A3_ls = digitalRead(A3);Serial.println(String(modul_id) + "_eqri_3_" + String(A3_ls));delay(10);}
-else if(digitalRead(A4) !=  A4_ls){A4_ls = digitalRead(A4);Serial.println(String(modul_id) + "_eqri_4_" + String(A4_ls));delay(10);}
-else if(digitalRead(A5) !=  A5_ls){A5_ls = digitalRead(A5);Serial.println(String(modul_id) + "_eqri_5_" + String(A5_ls));delay(10);}
-else if(digitalRead(A6) !=  A6_ls){A6_ls = digitalRead(A6);Serial.println(String(modul_id) + "_eqri_6_" + String(A6_ls));delay(10);}
-else if(digitalRead(A7) !=  A7_ls){A7_ls = digitalRead(A7);Serial.println(String(modul_id) + "_eqri_7_" + String(A7_ls));delay(10);}
+if(digitalRead(A0) !=  A0_ls){digitalWrite(7, LOW); A0_ls = digitalRead(A0);Serial.println(String(modul_id) + "_eqri_0_" + String(A0_ls));delay(10);digitalWrite(7, HIGH);}
+else if(digitalRead(A1) !=  A1_ls){digitalWrite(7, LOW); A1_ls = digitalRead(A1);Serial.println(String(modul_id) + "_eqri_1_" + String(A1_ls));delay(10);digitalWrite(7, HIGH);}
+else if(digitalRead(A2) !=  A2_ls){digitalWrite(7, LOW); A2_ls = digitalRead(A2);Serial.println(String(modul_id) + "_eqri_2_" + String(A2_ls));delay(10);digitalWrite(7, HIGH);}
+else if(digitalRead(A3) !=  A3_ls){digitalWrite(7, LOW); A3_ls = digitalRead(A3);Serial.println(String(modul_id) + "_eqri_3_" + String(A3_ls));delay(10);digitalWrite(7, HIGH);}
+else if(digitalRead(A4) !=  A4_ls){digitalWrite(7, LOW); A4_ls = digitalRead(A4);Serial.println(String(modul_id) + "_eqri_4_" + String(A4_ls));delay(10);digitalWrite(7, HIGH);}
+else if(digitalRead(A5) !=  A5_ls){digitalWrite(7, LOW); A5_ls = digitalRead(A5);Serial.println(String(modul_id) + "_eqri_5_" + String(A5_ls));delay(10);digitalWrite(7, HIGH);}
+else if(digitalRead(A6) !=  A6_ls){digitalWrite(7, LOW); A6_ls = digitalRead(A6);Serial.println(String(modul_id) + "_eqri_6_" + String(A6_ls));delay(10);digitalWrite(7, HIGH);}
+else if(digitalRead(A7) !=  A7_ls){digitalWrite(7, LOW); A7_ls = digitalRead(A7);Serial.println(String(modul_id) + "_eqri_7_" + String(A7_ls));delay(10);digitalWrite(7, HIGH);}
 
 
 
