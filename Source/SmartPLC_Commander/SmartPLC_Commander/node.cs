@@ -29,7 +29,7 @@ namespace SmartPLC_Commander
         public string param_properties;
 
         public string connection_string;
-
+        public string extention_name;
 
         public void create_property_plane(ref Panel parameter_panel, ref Label ltitle, ref Label lnid, ref Label lnsi)
         {
@@ -72,8 +72,7 @@ namespace SmartPLC_Commander
 
 
 
-                //if typ -....
-
+              
                 //string ohne bereich = normale textbox
                 if (split_construct[1] == "string" && split_construct.Length == 3)
                 {
@@ -82,8 +81,19 @@ namespace SmartPLC_Commander
                     textbox_tmp.Location = new Point(70, 20 + (40 * param_id));
                     textbox_tmp.Size = new Size(100, 20);
                     textbox_tmp.Name = "param_" + param_id.ToString();
-                    parameter_panel.Controls.Add(textbox_tmp);
 
+                    if (split_construct[2].ToLower().Replace(" ", "") == "msi")
+                    {
+                        if (extention_name != "") {
+                            textbox_tmp.Text = extention_name;
+                            textbox_tmp.ReadOnly = true;
+                        }
+                    }
+                    else
+                    {
+                        textbox_tmp.Text = "";
+                    }
+                    parameter_panel.Controls.Add(textbox_tmp);
                 }
                 //string mit breich = combobox
                 else if (split_construct[1] == "string" && split_construct.Length == 4 && split_construct[3].Contains(" "))

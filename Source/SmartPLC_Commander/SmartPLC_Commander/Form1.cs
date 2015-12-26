@@ -94,11 +94,12 @@ namespace SmartPLC_Commander
                         tnode.category = splitted_content[3];
                         tnode.xml_name = splitted_content[1];
                         tnode.title = splitted_content[2];
-                        tnode.description = splitted_content[12];
-                        tnode.param_properties = splitted_content[11];
-                        tnode.output_con_string = splitted_content[10];
-                        tnode.input_con_string = splitted_content[9];
+                        tnode.description = splitted_content[13];
+                        tnode.param_properties = splitted_content[12];
+                        tnode.output_con_string = splitted_content[11];
+                        tnode.input_con_string = splitted_content[10];
                         tnode.idnr = i;
+                        tnode.extention_name = splitted_content[9];
                         loaded_nodes.Add(tnode);
 
 
@@ -187,10 +188,11 @@ namespace SmartPLC_Commander
                         tnode.category = splitted_content[3];
                         tnode.xml_name = splitted_content[1];
                         tnode.title = splitted_content[2];
-                        tnode.description = splitted_content[12];
-                        tnode.param_properties = splitted_content[11];
-                        tnode.output_con_string = splitted_content[10];
-                        tnode.input_con_string = splitted_content[9];
+                        tnode.description = splitted_content[13];
+                        tnode.param_properties = splitted_content[12];
+                        tnode.output_con_string = splitted_content[11];
+                        tnode.input_con_string = splitted_content[10];
+                        tnode.extention_name = splitted_content[9];
                         tnode.idnr = i;
                         loaded_nodes.Add(tnode);
 
