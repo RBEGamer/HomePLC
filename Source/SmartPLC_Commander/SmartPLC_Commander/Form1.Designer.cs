@@ -47,8 +47,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.parameter_panel_form = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // treeView1
@@ -207,11 +209,35 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Parameters";
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DecimalPlaces = 1;
+            this.numericUpDown1.Increment = new decimal(new int[] {
+            12,
+            0,
+            0,
+            65536});
+            this.numericUpDown1.Location = new System.Drawing.Point(499, 110);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            -1591546464,
+            7525,
+            0,
+            -2147483648});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 3;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 427);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
@@ -222,6 +248,7 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,6 +276,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel parameter_panel_form;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 
