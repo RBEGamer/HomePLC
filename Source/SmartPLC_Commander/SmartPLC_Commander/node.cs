@@ -41,16 +41,48 @@ namespace SmartPLC_Commander
             //  List<System.Windows.Forms> forms = new List<System.Windows.Forms>();
             //param_properties auslesen nach [0,type,desc,()]
             //fdazu passend die elementer erstelln und nach 0 anordnen
-            int param_id = 0;
 
-            //CREATE LABEL
-            Label lable_tmp = new Label();
-            lable_tmp.Enabled = true;
-            lable_tmp.Location = new Point(6, 25 + (40 * param_id));
-            lable_tmp.Text = "PARAM 0";
-            lable_tmp.Name = "desc_param_";
-            lable_tmp.Size = new Size(60, 13);
-            parameter_panel.Controls.Add(lable_tmp);
+            if(param_properties == "") { return; } //dan gibts nichts zu laden
+            string[] split_comma = param_properties.Split('%');
+
+            for (int i = 0; i < split_comma.Length; i++)
+            {
+                if(split_comma[i] == "") { break; } //reach end ?
+                string param_construct = split_comma[i];
+                param_construct =  param_construct.Substring(1, param_construct.Length - 2);
+                string[] split_construct = param_construct.Split(',');
+
+
+                // 0 = paramid 
+                //1 = typ
+                //2 = desc
+                //3 = range ()c
+
+
+                int param_id = Int16.Parse(split_construct[0]);
+                //CREATE LABEL
+                Label lable_tmp = new Label();
+                lable_tmp.Enabled = true;
+                lable_tmp.Location = new Point(6, 25 + (40 * param_id));
+                lable_tmp.Text = split_construct[2];
+                lable_tmp.Name = "desc_param_" +param_id.ToString();
+                lable_tmp.Size = new Size(60, 13);
+                parameter_panel.Controls.Add(lable_tmp);
+
+
+
+
+                //if typ -....
+
+            }
+
+
+
+
+
+
+ 
+          /*
             //VREATE TEXTBOX
             TextBox textbox_tmp = new TextBox();
             textbox_tmp.Enabled = true;
@@ -58,7 +90,7 @@ namespace SmartPLC_Commander
             textbox_tmp.Size = new Size(100, 20);
             textbox_tmp.Name = "param_" + param_id.ToString();
             parameter_panel.Controls.Add(textbox_tmp);
-
+            */
 
 
 
