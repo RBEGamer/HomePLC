@@ -31,6 +31,22 @@ namespace SmartPLC_Commander
         public string connection_string;
         public string extention_name;
 
+        public node(){
+            pos = new transform();
+            xml_name = "";
+            title = "";
+            nid = -1;
+            category = "";
+            description = "";
+            param_string = "";
+            input_con_string = "";
+            output_con_string = "";
+            param_properties = "";
+            connection_string = "";
+            extention_name = "";
+    }
+
+      
         public void create_property_plane(ref Panel parameter_panel, ref Label ltitle, ref Label lnid, ref Label lnsi)
         {
 
@@ -50,14 +66,7 @@ namespace SmartPLC_Commander
                 if(split_comma[i] == "") { break; } //reach end ?
                 string param_construct = split_comma[i];
                 param_construct =  param_construct.Substring(1, param_construct.Length - 2);
-                string[] split_construct = param_construct.Split(',');
-
-
-                // 0 = paramid 
-                //1 = typ
-                //2 = desc
-                //3 = range ()c
-
+                string[] split_construct = param_construct.Split(','); 
 
                 int param_id = Int16.Parse(split_construct[0]);
                 //CREATE LABEL
@@ -65,14 +74,14 @@ namespace SmartPLC_Commander
                 lable_tmp.Enabled = true;
                 lable_tmp.Location = new Point(6, 25 + (40 * param_id));
                 lable_tmp.Text = split_construct[2];
-                lable_tmp.Name = "desc_param_" +param_id.ToString();
+                lable_tmp.Name = "desc_" +param_id.ToString();
                 lable_tmp.Size = new Size(60, 13);
                 parameter_panel.Controls.Add(lable_tmp);
-
-
-
-
               
+
+
+
+
                 //string ohne bereich = normale textbox
                 if (split_construct[1] == "string" && split_construct.Length == 3)
                 {
@@ -214,27 +223,55 @@ namespace SmartPLC_Commander
 
 
 
-                /*
-                  //VREATE TEXTBOX
-                  TextBox textbox_tmp = new TextBox();
-                  textbox_tmp.Enabled = true;
-                  textbox_tmp.Location = new Point(70,20+ (40* param_id));
-                  textbox_tmp.Size = new Size(100, 20);
-                  textbox_tmp.Name = "param_" + param_id.ToString();
-                  parameter_panel.Controls.Add(textbox_tmp);
-                  */
-
-
+             
 
 
                 load_parameters(ref parameter_panel);
+            if (param_string == "" || !param_string.Contains("%")) {
+                save_parameters(ref parameter_panel);
+            }
         }
 
         public void load_parameters(ref Panel param_panel)
         {
+
+            if(param_string == "" || !param_string.Contains("%")) { return; }
+            string[] split_param = param_string.Split('%');
+            for (int i = 0; i < split_param.Length; i++)
+            {
+               if( param_panel.Controls["param_" + i.ToString()] != null)
+                {
+
+                    //TYPE DIFFERENT
+                    param_panel.Controls["param_" + i.ToString()].Text = split_param[i];
+                }
+
+            }
+
+
+
             //wenn string != ""
             //durchsteppen und in die boxen schreiben
 
         }
+
+        public void save_parameters(ref Panel param_panel)
+        {
+            param_string = "";
+
+            for (int i = 0; i < param_panel.Controls.Count; i++)
+            {
+                ///LABELS ENTFEREN
+                if (param_panel.Controls[i].Name.Contains("param_")) {
+                    param_string += param_panel.Controls[i].Text + "%";
+                }
+                
+            }
+            if (param_string == "") {
+                param_string = "%";
+            }
+            MessageBox.Show(param_string);
+        }
+
     }
 }
