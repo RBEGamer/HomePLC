@@ -118,9 +118,21 @@ namespace SmartPLC_Commander
                     tnud.Name = "param_" + param_id.ToString();
                     tnud.Size = new Size(100, 20);
                     tnud.Location = new Point(70, 20 + (40 * param_id));
-                    tnud.Minimum = int.MinValue;
-                    tnud.Maximum = int.MaxValue;
-                    tnud.Value = 0;
+                    if (split_construct[2].ToLower().Replace(" ", "") == "mid")
+                    {
+                        tnud.Maximum = 65536;
+                        tnud.Minimum = 1;
+                        tnud.Value = 1;
+                    }
+                    else {
+                        tnud.Maximum = int.MaxValue;
+                        tnud.Minimum = int.MinValue;
+                        tnud.Value = 0;
+                    }
+                        
+
+                    
+                    
                     tnud.DecimalPlaces = 0;
                     tnud.Increment = 1;
                     parameter_panel.Controls.Add(tnud);
@@ -138,36 +150,84 @@ namespace SmartPLC_Commander
                     tnud.Value = new decimal(0.0f);
                     tnud.Increment = new decimal(0.1f);
                     parameter_panel.Controls.Add(tnud);
+
+
                 }
-             
-                //inht mit num upo down
-              //float mit num upd
+                else if (split_construct[1] == "int" && split_construct.Length == 4 && split_construct[3].Contains("-"))
+                {
+                    string[] values = split_construct[3].Substring(1, split_construct[3].Length - 2).Split('-');
+                    if (values.Length == 0) { break; }
+
+                    NumericUpDown tnud = new NumericUpDown();
+                    tnud.Enabled = true;
+                    tnud.Name = "param_" + param_id.ToString();
+                    tnud.Size = new Size(100, 20);
+                    tnud.Location = new Point(70, 20 + (40 * param_id));
+                    tnud.Minimum = Int32.Parse(values[0]);
+                    tnud.Maximum = Int32.Parse(values[1]);
+                    tnud.Value = Int32.Parse(values[0]);
+                    tnud.DecimalPlaces = 0;
+                    tnud.Increment = 1;
+                    parameter_panel.Controls.Add(tnud);
+                }
+                else if (split_construct[1] == "float" && split_construct.Length == 4 && split_construct[3].Contains("-"))
+                {
+                    string[] values = split_construct[3].Substring(1, split_construct[3].Length - 2).Split('-');
+                    if (values.Length == 0) { break; }
+
+                    NumericUpDown tnud = new NumericUpDown();
+                    tnud.Enabled = true;
+                    tnud.Name = "param_" + param_id.ToString();
+                    tnud.Size = new Size(100, 20);
+                    tnud.Location = new Point(70, 20 + (40 * param_id));
+                    tnud.Minimum = new decimal( float.Parse(values[0]));
+                    tnud.Maximum = new decimal( float.Parse(values[1]));
+                    tnud.Value = new decimal( float.Parse(values[0]));
+                    tnud.DecimalPlaces = 1;
+                    tnud.Increment = new decimal(0.1f);
+                    parameter_panel.Controls.Add(tnud);
+                }else if (split_construct[1] == "bool" && split_construct.Length == 3)
+                {
+
+
+                    CheckBox tchbx = new CheckBox();
+                    tchbx.Name = "param_" + param_id.ToString();
+                    tchbx.Location = new Point(70, 20 + (40 * param_id));
+                    tchbx.Enabled = true;
+                    parameter_panel.Controls.Add(tchbx);
+                }
+
+
+
+
+
+
                 //bool checkbox
 
 
 
-            }
+            } 
 
 
 
 
 
 
- 
-          /*
-            //VREATE TEXTBOX
-            TextBox textbox_tmp = new TextBox();
-            textbox_tmp.Enabled = true;
-            textbox_tmp.Location = new Point(70,20+ (40* param_id));
-            textbox_tmp.Size = new Size(100, 20);
-            textbox_tmp.Name = "param_" + param_id.ToString();
-            parameter_panel.Controls.Add(textbox_tmp);
-            */
+
+                /*
+                  //VREATE TEXTBOX
+                  TextBox textbox_tmp = new TextBox();
+                  textbox_tmp.Enabled = true;
+                  textbox_tmp.Location = new Point(70,20+ (40* param_id));
+                  textbox_tmp.Size = new Size(100, 20);
+                  textbox_tmp.Name = "param_" + param_id.ToString();
+                  parameter_panel.Controls.Add(textbox_tmp);
+                  */
 
 
 
 
-            load_parameters(ref parameter_panel);
+                load_parameters(ref parameter_panel);
         }
 
         public void load_parameters(ref Panel param_panel)
