@@ -32,10 +32,11 @@
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveNodeSchematicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadAdditionalNodeConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,12 +51,14 @@
             // dateiToolStripMenuItem
             // 
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
-            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(12, 23);
             // 
             // nodeToolStripMenuItem
             // 
+            this.nodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadAdditionalNodeConfigurationToolStripMenuItem});
             this.nodeToolStripMenuItem.Name = "nodeToolStripMenuItem";
-            this.nodeToolStripMenuItem.Size = new System.Drawing.Size(156, 20);
+            this.nodeToolStripMenuItem.Size = new System.Drawing.Size(156, 23);
             this.nodeToolStripMenuItem.Text = "Load Node-Configuration";
             this.nodeToolStripMenuItem.Click += new System.EventHandler(this.nodeToolStripMenuItem_Click);
             // 
@@ -65,28 +68,36 @@
             this.dateiToolStripMenuItem,
             this.nodeToolStripMenuItem,
             this.saveNodeSchematicToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.toolStripTextBox1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(821, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(821, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // saveNodeSchematicToolStripMenuItem
+            // 
+            this.saveNodeSchematicToolStripMenuItem.Name = "saveNodeSchematicToolStripMenuItem";
+            this.saveNodeSchematicToolStripMenuItem.Size = new System.Drawing.Size(135, 23);
+            this.saveNodeSchematicToolStripMenuItem.Text = "Save Node-Schematic";
+            this.saveNodeSchematicToolStripMenuItem.Click += new System.EventHandler(this.saveNodeSchematicToolStripMenuItem_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBox1.Text = "192.168.178.58";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // saveNodeSchematicToolStripMenuItem
+            // loadAdditionalNodeConfigurationToolStripMenuItem
             // 
-            this.saveNodeSchematicToolStripMenuItem.Name = "saveNodeSchematicToolStripMenuItem";
-            this.saveNodeSchematicToolStripMenuItem.Size = new System.Drawing.Size(135, 20);
-            this.saveNodeSchematicToolStripMenuItem.Text = "Save Node-Schematic";
-            this.saveNodeSchematicToolStripMenuItem.Click += new System.EventHandler(this.saveNodeSchematicToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 20);
+            this.loadAdditionalNodeConfigurationToolStripMenuItem.Name = "loadAdditionalNodeConfigurationToolStripMenuItem";
+            this.loadAdditionalNodeConfigurationToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
+            this.loadAdditionalNodeConfigurationToolStripMenuItem.Text = "Load additional Node-Configuration";
+            this.loadAdditionalNodeConfigurationToolStripMenuItem.Click += new System.EventHandler(this.loadAdditionalNodeConfigurationToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -114,6 +125,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveNodeSchematicToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem loadAdditionalNodeConfigurationToolStripMenuItem;
     }
 }
 

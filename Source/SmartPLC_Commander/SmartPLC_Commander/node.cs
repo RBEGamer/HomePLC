@@ -8,9 +8,14 @@ namespace SmartPLC_Commander
 {
     class node
     {
+        public struct transform
+        {
+           public  float x, y;
+        }
 
         public int idnr;
         public int nid;
+        public transform pos;
         public string xml_name;
         public string title;
         public string category;

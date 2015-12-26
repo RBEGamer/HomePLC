@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Net;
 
 namespace SmartPLC_Commander
 {
@@ -39,6 +39,8 @@ namespace SmartPLC_Commander
                 if(loaded_nodes[i].xml_name == e.Node.Name) {
                     node tmnode = loaded_nodes[i];
                     tmnode.nid = nid_counter;
+                    tmnode.pos.x = 10.0f;
+                    tmnode.pos.y = 10.0f;
                     schematic_nodes.Add(tmnode);
                 }
             }
@@ -108,7 +110,7 @@ namespace SmartPLC_Commander
                 catch (Exception)
                 {
                     MessageBox.Show("Error while loading ");
-                    throw;
+                   
                 }
               
             }
@@ -123,9 +125,88 @@ namespace SmartPLC_Commander
                 final_string += "<node nid=\"" + n.nid +"\" nsi=\""+ n.xml_name +"\" ncon=\""+ n.connection_string +"\" nparam=\""+ n.param_string +"\" />";
             }
             final_string += "</schematic>";
-
-
             //UPLOAD
+            WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text);
+            upload_request.Method = "POST";
+            upload_request.Credentials = CredentialCache.DefaultCredentials;
+            ((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
+            upload_request.ContentLength = final_string.Length;
+            upload_request.ContentType = "text/html";
+
+           // upload_request.GetRequestStream().Write(final_string, 0, final_string.Length);
+
+
+
+        }
+
+        private void loadAdditionalNodeConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Implemented Node List (.csv)|*.csv";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.Multiselect = false;
+
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                loaded_node_list += " | "+ openFileDialog1.FileName;
+                try
+                {
+                    string[] lines = System.IO.File.ReadAllLines(openFileDialog1.FileName);
+                   // treeView1.BeginUpdate();
+                   // treeView1.Nodes.Clear();
+                    //treeView1.EndUpdate();
+
+                    //loaded_nodes.Clear();
+                    //begin loading nodes to tree view
+                    //the 1 to skip the headline
+                    for (int i = 1; i < lines.Length; i++)
+                    {
+                        string sel_line = lines[i];
+                        string[] splitted_content = sel_line.Split(';');
+
+                        TreeNode tn = new TreeNode();
+                        tn.Name = splitted_content[1];
+                        tn.Text = splitted_content[2];
+
+                        if (treeView1.Nodes["__cat__" + splitted_content[3]] == null)
+                        {
+                            TreeNode tmp_tn = new TreeNode();
+                            tmp_tn.Name = "__cat__" + splitted_content[3];
+                            tmp_tn.Text = splitted_content[3];
+                            treeView1.Nodes.Add(tmp_tn);
+                            treeView1.Nodes["__cat__" + splitted_content[3]].Nodes.Add(tn);
+                        }
+                        else
+                        {
+                            treeView1.Nodes["__cat__" + splitted_content[3]].Nodes.Add(tn);
+                        }
+
+                        //CREATE PRPERTY CLASS
+                        node tnode = new node();
+                        tnode.category = splitted_content[3];
+                        tnode.xml_name = splitted_content[1];
+                        tnode.title = splitted_content[2];
+                        tnode.description = splitted_content[12];
+                        tnode.param_properties = splitted_content[11];
+                        tnode.output_con_string = splitted_content[10];
+                        tnode.input_con_string = splitted_content[9];
+                        tnode.idnr = i;
+                        loaded_nodes.Add(tnode);
+
+
+
+                    }
+
+
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error while loading ");
+             
+                }
+
+            }
         }
     }
 }
