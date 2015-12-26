@@ -4,11 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.Text; 
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
-
+using System.Windows.Forms;
 namespace SmartPLC_Commander
 {
 
@@ -41,7 +41,8 @@ namespace SmartPLC_Commander
                     tmnode.nid = nid_counter;
                     tmnode.pos.x = 10.0f;
                     tmnode.pos.y = 10.0f;
-                    schematic_nodes.Add(tmnode);
+                    schematic_nodes.Add(tmnode); 
+                    tmnode.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
                 }
             }
         }
@@ -208,5 +209,7 @@ namespace SmartPLC_Commander
 
             }
         }
+
+   
     }
 }
