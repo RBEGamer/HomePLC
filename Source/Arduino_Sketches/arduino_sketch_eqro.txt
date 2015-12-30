@@ -16,6 +16,10 @@ String readString;
 int modul_id;
 // the setup function runs once when you press reset or power the board
 void setup() {
+  pinMode(3, OUTPUT); //-> TRANSMIT ENDABLE
+  digitalWrite(3, LOW);
+
+  
    digitalWrite(A4, LOW);
 Serial.begin(9600);
   // initialize digital pin 13 as an output.
@@ -48,10 +52,14 @@ if(digitalRead(10) == 1){modul_id +=2;}
 if(digitalRead(11) == 1){modul_id +=4;}
 if(digitalRead(12) == 1){modul_id +=8;}
 
+
+digitalWrite(3, HIGH);
 Serial.println("register_eqro_" + String(modul_id));
 delay(20);
 Serial.println("register_eqri_" + String(modul_id));
  digitalWrite(A4, HIGH);
+       Serial.flush();
+      digitalWrite(3, LOW);
 }
 
 // the loop function runs over and over again forever
@@ -75,6 +83,7 @@ if(getValue(readString, '_', 0).toInt() == modul_id){
     digitalWrite(A4, LOW);
     if(getValue(readString, '_', 2) == "set"){
        int port = getValue(readString, '_', 4).toInt();
+       digitalWrite(3, HIGH);
       if(getValue(readString, '_', 3) == "h"){   
        if(port == 0){digitalWrite(A0, LOW);Serial.println(String(modul_id) + "_eqri_0_1");}
        if(port == 1){digitalWrite(A1, LOW);Serial.println(String(modul_id) + "_eqri_1_1");}
@@ -86,6 +95,9 @@ if(getValue(readString, '_', 0).toInt() == modul_id){
        if(port == 2){digitalWrite(A2, HIGH);Serial.println(String(modul_id) + "_eqri_2_0");}
        if(port == 3){digitalWrite(A3, HIGH);Serial.println(String(modul_id) + "_eqri_3_0");}
       }
+      Serial.flush();
+      digitalWrite(3, LOW);
+   
       }
       
     }
