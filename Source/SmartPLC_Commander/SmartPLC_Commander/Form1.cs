@@ -19,33 +19,27 @@ namespace SmartPLC_Commander
     {
         List<node> loaded_nodes = new List<node>();
         List<node> schematic_nodes = new List<node>();
+        TreeNode selected_treeview_node = new TreeNode();
         string loaded_node_list = "";
         int nid_counter = 0;
         public Form1()
         {
             InitializeComponent();
-        
+
+            selected_history_tree_node = null;
+            selected_treeview_node = null;
         }
 
-  
-        
-        
+
+
+      
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Name.Contains("__cat__")) { return; }
-            nid_counter++;
-            for (int i = 0; i < loaded_nodes.Count; i++)
-            {
-                if(loaded_nodes[i].xml_name == e.Node.Name) {
-                    node tmnode = loaded_nodes[i];
-                    tmnode.nid = nid_counter;
-                    tmnode.pos.x = 10.0f;
-                    tmnode.pos.y = 10.0f;
-                    schematic_nodes.Add(tmnode); 
-                    tmnode.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
-                }
-            }
+            selected_treeview_node = e.Node;
         }
+
+
+        
 
         private void nodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -128,7 +122,7 @@ namespace SmartPLC_Commander
             }
             final_string += "</schematic>";
             //UPLOAD
-            WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text);
+            WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
             upload_request.Method = "POST";
             upload_request.Credentials = CredentialCache.DefaultCredentials;
             ((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
@@ -212,6 +206,64 @@ namespace SmartPLC_Commander
             }
         }
 
-   
+        TreeNode selected_history_tree_node = new TreeNode();
+        private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            selected_history_tree_node = e.Node;
+            string nid_string = e.Node.Name.Replace("inst_", "");
+            int sel_nid = Int32.Parse(nid_string);
+            for (int i = 0; i < schematic_nodes.Count; i++)
+            {
+                if (schematic_nodes[i].nid == sel_nid) {
+                    schematic_nodes[i].create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
+                }
+
+            }
+        }
+
+
+        //ADD NODE BTN
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(selected_treeview_node == null) { return; }
+            if (selected_treeview_node.Name.Contains("__cat__")) { return; }
+            nid_counter++;
+            for (int i = 0; i < loaded_nodes.Count; i++)
+            {
+                if (loaded_nodes[i].xml_name == selected_treeview_node.Name)
+                {
+                    node tmnode = loaded_nodes[i];
+                    tmnode.nid = nid_counter;
+                    tmnode.pos.x = 10;
+                    tmnode.pos.y = 10;
+                    schematic_nodes.Add(tmnode);
+                    // tmnode.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
+                    TreeNode inst_tree_node_tmp = new TreeNode();
+                    inst_tree_node_tmp.Name = "inst_" + tmnode.nid.ToString();
+                    inst_tree_node_tmp.Text = selected_treeview_node.Text + ":" + tmnode.nid.ToString();
+                    treeView2.Nodes.Add(inst_tree_node_tmp);
+                }
+            }
+            selected_treeview_node = null;
+        }
+
+        //REMOVE NODE BTN
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(selected_history_tree_node == null) { return; }
+            string nid_string = selected_history_tree_node.Name.Replace("inst_", "");
+            int sel_nid = Int32.Parse(nid_string);
+            for (int i = 0; i < schematic_nodes.Count; i++)
+            {
+                if(schematic_nodes[i].nid == sel_nid)
+                {
+                    treeView2.Nodes.Remove(selected_history_tree_node);
+                    schematic_nodes.Remove(schematic_nodes[i]);
+                }
+            }
+            
+
+            selected_history_tree_node = null;
+        }
     }
 }

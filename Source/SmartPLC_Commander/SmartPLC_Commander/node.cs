@@ -11,8 +11,24 @@ namespace SmartPLC_Commander
     {
         public struct transform
         {
-           public  float x, y;
+           public  int x, y;
         }
+
+
+        public struct connection
+        {
+           
+
+            public int x,y;
+            int connection_id;
+            string description;
+            public enum type
+            {
+                input, output, none
+            }
+            public type con_type;
+        }
+
 
         public int idnr;
         public int nid;
@@ -269,10 +285,21 @@ namespace SmartPLC_Commander
         {
 
         }
-       
+
+
+        Rectangle base_rect = new Rectangle();
+
+        public void create_drawable()
+        {
+     
+           
+        }
         public void calc_element_positions()
         {
             //REcht grösse berechnen ->nach anzahl der zeichen in der headline und
+
+            base_rect.Location = new Point(pos.x, pos.y);
+            base_rect.Size = new Size(10, 10);
         }
     }
 }
