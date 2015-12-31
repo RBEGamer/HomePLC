@@ -58,7 +58,7 @@ if(modul_id > 0){
      
   }
   
-  delay(2000);  // 5s Pause bis zur nächsten Messung
+  delay(1000);  // 5s Pause bis zur nächsten Messung
 }
 }
 

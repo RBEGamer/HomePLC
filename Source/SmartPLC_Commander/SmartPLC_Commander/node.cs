@@ -218,14 +218,6 @@ namespace SmartPLC_Commander
             } 
 
 
-
-
-
-
-
-             
-
-
                 load_parameters(ref parameter_panel);
             if (param_string == "" || !param_string.Contains("%")) {
                 save_parameters(ref parameter_panel);
@@ -270,8 +262,17 @@ namespace SmartPLC_Commander
             if (param_string == "") {
                 param_string = "%";
             }
-            MessageBox.Show(param_string);
+           // MessageBox.Show(param_string);
         }
 
+        public void draw_update()
+        {
+
+        }
+       
+        public void calc_element_positions()
+        {
+            //REcht grösse berechnen ->nach anzahl der zeichen in der headline und
+        }
     }
 }
