@@ -28,11 +28,12 @@ namespace SmartPLC_Commander
 
             selected_history_tree_node = null;
             selected_treeview_node = null;
+            timer1.Enabled = false;
         }
 
 
 
-      
+      //LOADED NODE TREEE VIEW
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             selected_treeview_node = e.Node;
@@ -206,6 +207,8 @@ namespace SmartPLC_Commander
             }
         }
 
+
+        //HISTORY TREE VIEW SELECT
         TreeNode selected_history_tree_node = new TreeNode();
         private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -236,12 +239,19 @@ namespace SmartPLC_Commander
                     tmnode.nid = nid_counter;
                     tmnode.pos.x = 10;
                     tmnode.pos.y = 10;
+                    tmnode.create_drawable();
                     schematic_nodes.Add(tmnode);
+                   
                     // tmnode.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
                     TreeNode inst_tree_node_tmp = new TreeNode();
                     inst_tree_node_tmp.Name = "inst_" + tmnode.nid.ToString();
                     inst_tree_node_tmp.Text = selected_treeview_node.Text + ":" + tmnode.nid.ToString();
                     treeView2.Nodes.Add(inst_tree_node_tmp);
+
+                    if (!timer1.Enabled)
+                    {
+                        timer1.Enabled = true;
+                    }
                 }
             }
             selected_treeview_node = null;
@@ -264,6 +274,14 @@ namespace SmartPLC_Commander
             
 
             selected_history_tree_node = null;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < schematic_nodes.Count; i++)
+            {
+                schematic_nodes[i].draw_update();
+            }
         }
     }
 }
