@@ -297,12 +297,20 @@ namespace SmartPLC_Commander
         //DRAWING TIMER
         private void timer1_Tick(object sender, EventArgs e)
         {
+            graphics.FillRectangle(Brushes.White, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
             for (int i = 0; i < schematic_nodes.Count; i++)
             {
                 schematic_nodes[i].draw_update(ref graphics);
             }
 
             pictureBox1.Image = drawing_bitmap;
+            
+        }
+
+        //CLAR ALLL BTN
+        private void button3_Click(object sender, EventArgs e)
+        {
+            schematic_nodes.Clear();
         }
     }
 }

@@ -39,6 +39,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.parameter_panel_form = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.node_nsi_text = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,18 +48,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.node_title_text = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.parameter_panel_form = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.treeView2 = new System.Windows.Forms.TreeView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -145,6 +146,23 @@
             this.panel1.Size = new System.Drawing.Size(276, 495);
             this.panel1.TabIndex = 2;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(42, 112);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 15);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Parameters";
+            // 
+            // parameter_panel_form
+            // 
+            this.parameter_panel_form.Location = new System.Drawing.Point(6, 130);
+            this.parameter_panel_form.Name = "parameter_panel_form";
+            this.parameter_panel_form.Size = new System.Drawing.Size(173, 383);
+            this.parameter_panel_form.TabIndex = 7;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -209,23 +227,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "NODE :";
             // 
-            // parameter_panel_form
-            // 
-            this.parameter_panel_form.Location = new System.Drawing.Point(6, 130);
-            this.parameter_panel_form.Name = "parameter_panel_form";
-            this.parameter_panel_form.Size = new System.Drawing.Size(173, 383);
-            this.parameter_panel_form.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(42, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 15);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Parameters";
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -259,6 +260,15 @@
             this.tabPage2.Text = "NODE LIST";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // treeView2
+            // 
+            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView2.Location = new System.Drawing.Point(3, 3);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(270, 489);
+            this.treeView2.TabIndex = 0;
+            this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.panel1);
@@ -269,33 +279,15 @@
             this.tabPage3.Text = "PROPERTIES";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // treeView2
-            // 
-            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView2.Location = new System.Drawing.Point(3, 3);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(270, 489);
-            this.treeView2.TabIndex = 0;
-            this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
-            // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Location = new System.Drawing.Point(302, 35);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(334, 30);
+            this.panel3.Size = new System.Drawing.Size(490, 30);
             this.panel3.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "ADD SELECTED NODE";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -306,6 +298,16 @@
             this.button2.Text = "REMOVE SELECTED NODE";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(139, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "ADD SELECTED NODE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
@@ -320,6 +322,16 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(328, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "REMOVE ALL NODES";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -380,6 +392,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
