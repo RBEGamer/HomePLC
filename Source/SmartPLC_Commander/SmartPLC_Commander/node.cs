@@ -60,7 +60,7 @@ namespace SmartPLC_Commander
         public string extention_name;
 
 
-        Rectangle base_rect = new Rectangle();
+        public Rectangle base_rect = new Rectangle();
         Rectangle headline_rect = new Rectangle();
         Font text_font = new Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Point);
         public node(){

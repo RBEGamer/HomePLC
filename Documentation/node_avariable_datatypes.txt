@@ -12,6 +12,7 @@ time
 Black
 OrangeRed
 Cyan
+Azure
 Yellow
 Violet
 Plum

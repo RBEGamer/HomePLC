@@ -225,6 +225,9 @@ namespace SmartPLC_Commander
         }
 
 
+     
+ 
+
         //HISTORY TREE VIEW SELECT
         TreeNode selected_history_tree_node = new TreeNode();
         private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
@@ -312,6 +315,57 @@ namespace SmartPLC_Commander
         private void button3_Click(object sender, EventArgs e)
         {
             schematic_nodes.Clear();
+        }
+
+
+        Rectangle mouse_pos_rect;
+        node drag_node = null;
+        Point drag_node_offset = new Point(0,0);
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+      
+            mouse_pos_rect.Location = e.Location;
+            mouse_pos_rect.Size = new Size(1, 1);
+            if (mouse_pos_rect.IntersectsWith(new Rectangle(0, 0, drawing_bitmap.Width, drawing_bitmap.Height)))
+            {
+               
+                for (int i = 0; i < schematic_nodes.Count; i++)
+                {
+                    if (schematic_nodes[i].base_rect.IntersectsWith(mouse_pos_rect))
+                    {
+                        drag_node = schematic_nodes[i];
+                        drag_node_offset.X = (schematic_nodes[i].pos.x - mouse_pos_rect.Location.X);
+                        drag_node_offset.Y = (schematic_nodes[i].pos.y - mouse_pos_rect.Location.Y);
+                        //switch to property plane
+                        drag_node.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
+                        tabControl1.SelectedIndex = 2;
+                    }
+                }
+
+            }
+            //create 1x1 mouse click rect
+            //fist is mouse on image
+            //deltapos von der geklickten zur xy des nodes dmit es nicht springt
+
+
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(drag_node != null)
+            {
+                mouse_pos_rect.Location = e.Location;
+
+                drag_node.pos.x = mouse_pos_rect.X + drag_node_offset.X;
+                drag_node.pos.y = mouse_pos_rect.Y + drag_node_offset.Y;
+                drag_node.create_drawable();
+                // drag_node_offset
+            }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            drag_node = null;
         }
     }
 }
