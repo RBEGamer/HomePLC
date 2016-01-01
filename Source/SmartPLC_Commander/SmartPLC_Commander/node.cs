@@ -61,6 +61,7 @@ namespace SmartPLC_Commander
 
 
         public Rectangle base_rect = new Rectangle();
+        public Rectangle clipping_recht;
         Rectangle headline_rect = new Rectangle();
         Font text_font = new Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Point);
         public node(){
@@ -453,6 +454,9 @@ namespace SmartPLC_Commander
             rect_width = distance_betewenn_con_text + distance_between_border_and_outputtext_end + distance_between_border_and_inputtext_end;
             base_rect.Size = new Size(rect_width, recht_height);
             base_rect.Location = new Point(pos.x, pos.y);
+            clipping_recht.Location = new Point(pos.x- connection_rect_widht, pos.y);
+            clipping_recht.Size = new Size(rect_width+ (2*connection_rect_widht), recht_height);
+
             //CALC HEADLINE TEXT RECT
             headline_rect.Location = base_rect.Location; //TODO: center it
             headline_rect.Size = new Size(title.Length * char_lenght_multiplier, headline_text_distance);

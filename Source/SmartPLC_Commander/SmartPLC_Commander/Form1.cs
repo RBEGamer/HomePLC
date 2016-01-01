@@ -321,6 +321,7 @@ namespace SmartPLC_Commander
         Rectangle mouse_pos_rect;
         node drag_node = null;
         Point drag_node_offset = new Point(0,0);
+        node.connection selected_connection;
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
       
@@ -331,14 +332,29 @@ namespace SmartPLC_Commander
                
                 for (int i = 0; i < schematic_nodes.Count; i++)
                 {
-                    if (schematic_nodes[i].base_rect.IntersectsWith(mouse_pos_rect))
+                    if (schematic_nodes[i].clipping_recht.IntersectsWith(mouse_pos_rect))
                     {
-                        drag_node = schematic_nodes[i];
-                        drag_node_offset.X = (schematic_nodes[i].pos.x - mouse_pos_rect.Location.X);
-                        drag_node_offset.Y = (schematic_nodes[i].pos.y - mouse_pos_rect.Location.Y);
-                        //switch to property plane
-                        drag_node.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
-                        tabControl1.SelectedIndex = 2;
+                        //check if is in base rect
+                        if (schematic_nodes[i].base_rect.IntersectsWith(mouse_pos_rect))
+                        {
+                            drag_node = schematic_nodes[i];
+                            drag_node_offset.X = (schematic_nodes[i].pos.x - mouse_pos_rect.Location.X);
+                            drag_node_offset.Y = (schematic_nodes[i].pos.y - mouse_pos_rect.Location.Y);
+                            //switch to property plane
+                            drag_node.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
+                            tabControl1.SelectedIndex = 2;
+                        }
+                        else
+                        {
+                            //check if mouse on a connector
+                            for (int j = 0; j < schematic_nodes[i].connections.Count; j++)
+                            {
+                                if (schematic_nodes[i].connections[j].drawable_rect.IntersectsWith(mouse_pos_rect)) {
+                                    selected_connection = schematic_nodes[i].connections[j];
+                                    MessageBox.Show(schematic_nodes[i].connections[j].description);
+                                }
+                            }
+                        }
                     }
                 }
 
