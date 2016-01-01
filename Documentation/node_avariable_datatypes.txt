@@ -1,0 +1,10 @@
+[DATATYPES]
+none
+string
+bool
+int
+float
+special
+generic
+color
+time

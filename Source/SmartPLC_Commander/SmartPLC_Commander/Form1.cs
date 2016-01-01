@@ -13,15 +13,20 @@ namespace SmartPLC_Commander
 {
 
  
-
+   
 
     public partial class Form1 : Form
     {
+        Graphics graphics;
+        Image render_image;
+        
+
         List<node> loaded_nodes = new List<node>();
         List<node> schematic_nodes = new List<node>();
         TreeNode selected_treeview_node = new TreeNode();
         string loaded_node_list = "";
         int nid_counter = 0;
+        Bitmap drawing_bitmap = new Bitmap(500, 500);
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +34,16 @@ namespace SmartPLC_Commander
             selected_history_tree_node = null;
             selected_treeview_node = null;
             timer1.Enabled = false;
+
+
+         
+          
+            graphics = Graphics.FromImage(drawing_bitmap);
+           
+            //create bitmap
+            //create hwnd
+            //create instance
+           
         }
 
 
@@ -41,7 +56,7 @@ namespace SmartPLC_Commander
 
 
         
-
+        //LOAD NODE CONFIG
         private void nodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Implemented Node List (.csv)|*.csv";
@@ -112,7 +127,7 @@ namespace SmartPLC_Commander
               
             }
         }
-
+        //SAVE NODE CONFIG
         private void saveNodeSchematicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string final_string = "<?xml version=\"1.0\"?><info schematic-list=\"" + loaded_node_list + "\" date=\""+ System.DateTime.UtcNow.ToString() +"\" /><schematic>";
@@ -136,6 +151,7 @@ namespace SmartPLC_Commander
 
         }
 
+        //LOAD ADDItION NODE CONFIG
         private void loadAdditionalNodeConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Implemented Node List (.csv)|*.csv";
@@ -239,7 +255,9 @@ namespace SmartPLC_Commander
                     tmnode.nid = nid_counter;
                     tmnode.pos.x = 10;
                     tmnode.pos.y = 10;
-                    tmnode.create_drawable();
+
+                    tmnode.create_connection_list();
+                    tmnode.create_drawable(); //actung zuerst create_con_list_aufrufen
                     schematic_nodes.Add(tmnode);
                    
                     // tmnode.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
@@ -276,12 +294,15 @@ namespace SmartPLC_Commander
             selected_history_tree_node = null;
         }
 
+        //DRAWING TIMER
         private void timer1_Tick(object sender, EventArgs e)
         {
             for (int i = 0; i < schematic_nodes.Count; i++)
             {
-                schematic_nodes[i].draw_update();
+                schematic_nodes[i].draw_update(ref graphics);
             }
+
+            pictureBox1.Image = drawing_bitmap;
         }
     }
 }

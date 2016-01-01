@@ -20,16 +20,26 @@ namespace SmartPLC_Commander
            
 
             public int x,y;
-            int connection_id;
-            string description;
+            public int connection_id;
+            public string description;
             public enum type
             {
                 input, output, none
             }
             public type con_type;
+
+            public enum datatype
+            {
+                _none,_string,_bool, _int, _float, _special, _generic, _color
+            }
+            public datatype con_dtype;
+
+            public Color con_color;
+            public Rectangle drawable_rect;
         }
 
 
+        public List<connection> connections = new List<connection>();
         public int idnr;
         public int nid;
         public transform pos;
@@ -46,6 +56,9 @@ namespace SmartPLC_Commander
 
         public string connection_string;
         public string extention_name;
+
+
+        Rectangle base_rect = new Rectangle();
 
         public node(){
             pos = new transform();
@@ -99,7 +112,7 @@ namespace SmartPLC_Commander
 
 
                 //string ohne bereich = normale textbox
-                if (split_construct[1] == "string" && split_construct.Length == 3)
+                if ((split_construct[1] == "string" || split_construct[1] == "special" || split_construct[1] == "generic") && split_construct.Length == 3)
                 {
                     TextBox textbox_tmp = new TextBox();
                     textbox_tmp.Enabled = true;
@@ -283,25 +296,187 @@ namespace SmartPLC_Commander
 
 
 
-        public void draw_update()
+        public void create_connection_list()
+        {
+            connections.Clear();
+
+
+          
+                {
+                if (input_con_string != "")
+                {
+                    string[] splitted_input_string = input_con_string.Split('%');
+                    if (splitted_input_string.Length > 0)
+                    {
+                        for (int i = 0; i < splitted_input_string.Length; i++)
+                        {
+                            if (splitted_input_string[i] == "") { break; }
+                            string[] one_input_string = splitted_input_string[i].Substring(1, splitted_input_string[i].Length - 2).Split(',');
+                            connection tmp_con = new connection();
+                            tmp_con.con_type = connection.type.input;
+                            tmp_con.connection_id = Int32.Parse(one_input_string[0]);
+                            tmp_con.description = one_input_string[2];
+                            if (one_input_string[1] == "" || one_input_string[1].ToLower() == "none") { tmp_con.con_dtype = connection.datatype._none; tmp_con.con_color = Color.Black; }
+                            if (one_input_string[1].ToLower() == "string") { tmp_con.con_dtype = connection.datatype._string; tmp_con.con_color = Color.OrangeRed; }
+                            if (one_input_string[1].ToLower() == "float") { tmp_con.con_dtype = connection.datatype._float; tmp_con.con_color = Color.Cyan; }
+                            if (one_input_string[1].ToLower() == "special") { tmp_con.con_dtype = connection.datatype._special; tmp_con.con_color = Color.Yellow; }
+                            if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = connection.datatype._generic; tmp_con.con_color = Color.Violet; }
+                            if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = connection.datatype._color; tmp_con.con_color = Color.Plum; }
+                            if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = connection.datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
+                            connections.Add(tmp_con);
+                        }
+                    }
+                }
+            }
+
+
+
+
+
+
+
+            {
+                if (output_con_string != "")
+                {
+                    string[] splitted_input_string = output_con_string.Split('%');
+                    if (splitted_input_string.Length > 0)
+                    {
+                        for (int i = 0; i < splitted_input_string.Length; i++)
+                        {
+                            if(splitted_input_string[i] == "") { break; }
+                            string[] one_input_string = splitted_input_string[i].Substring(1, splitted_input_string[i].Length - 2).Split(',');
+                            connection tmp_con = new connection();
+                            tmp_con.con_type = connection.type.output;
+                            tmp_con.connection_id = Int32.Parse(one_input_string[0]);
+                            tmp_con.description = one_input_string[2];
+                            if (one_input_string[1].ToLower() == "string") { tmp_con.con_dtype = connection.datatype._string; tmp_con.con_color = Color.OrangeRed; }
+                            if (one_input_string[1].ToLower() == "float") { tmp_con.con_dtype = connection.datatype._float; tmp_con.con_color = Color.Cyan; }
+                            if (one_input_string[1].ToLower() == "special") { tmp_con.con_dtype = connection.datatype._special; tmp_con.con_color = Color.Yellow; }
+                            if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = connection.datatype._generic; tmp_con.con_color = Color.Violet; }
+                            if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = connection.datatype._color; tmp_con.con_color = Color.Plum; }
+                            if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = connection.datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
+                            connections.Add(tmp_con);
+                        }
+                    }
+                }
+            }
+            //den connectionstring druchgehen und passend splitten
+        }
+
+        public void draw_update(ref Graphics g)
         {
 
+   
+          
+            g.DrawRectangle(new Pen(Color.Green),base_rect);
+
+            for (int i = 0; i < connections.Count; i++)
+            {
+                g.DrawRectangle( new Pen(connections[i].con_color), connections[i].drawable_rect);
+            }
+
+           
+            
         }
 
 
-        Rectangle base_rect = new Rectangle();
+        //FOR RECT WIDTH
+        public int distance_betewenn_con_text = 10; //defult: *3
+        private int distance_between_border_and_inputtext_end = 10;
+        private int distance_between_border_and_outputtext_end = 10;
+        private int char_lenght_multiplier = 2;
+        //FOR RECT HEIGHT
+        public  int headline_text_distance = 10; //default: *3
+        public int distance_between_connections = 10;
 
+        private int connection_rect_widht = 7;
+        private int connection_rect_height = 7;
         public void create_drawable()
         {
-     
-           
+            int rect_width = 3* distance_betewenn_con_text;
+            int recht_height = 3* headline_text_distance;
+
+            int intput_con_amount = 0;
+            int output_con_amount = 0;
+            for (int i = 0; i < connections.Count; i++)
+            {
+
+                connection tmp_con = connections[i];
+
+                if(tmp_con.con_type == connection.type.input)
+                {
+                    intput_con_amount++;
+                    if ((tmp_con.description.Length*char_lenght_multiplier) > distance_between_border_and_inputtext_end)
+                    {
+                        distance_between_border_and_inputtext_end = (tmp_con.description.Length * char_lenght_multiplier);
+                    }
+                }
+
+                if (tmp_con.con_type == connection.type.output)
+                {
+                    output_con_amount++;
+                    if ((tmp_con.description.Length * char_lenght_multiplier) > distance_between_border_and_outputtext_end)
+                    {
+                        distance_between_border_and_outputtext_end = (tmp_con.description.Length * char_lenght_multiplier);
+                    }
+                }
+            }
+
+            if (output_con_amount > intput_con_amount)
+            {
+                recht_height = (distance_between_connections * output_con_amount)+ headline_text_distance;
+            }
+            else {
+                recht_height = (distance_between_connections * intput_con_amount)+ headline_text_distance;
+            }
+            
+            rect_width = distance_betewenn_con_text + distance_between_border_and_outputtext_end + distance_between_border_and_inputtext_end;
+            base_rect.Size = new Size(rect_width, recht_height);
+            base_rect.Location = new Point(pos.x, pos.y);
+
+
+            Point input_cons_start_point = new Point(base_rect.X, base_rect.Y + headline_text_distance);
+            Point output_cons_start_point = new Point(base_rect.X + base_rect.Width, base_rect.Y + headline_text_distance);
+
+            intput_con_amount = 0;
+            output_con_amount = 0;
+            
+            for (int i = 0; i < connections.Count; i++)
+            {
+                connection tmp_con = connections[i];
+                if(tmp_con.con_type == connection.type.input)
+                {
+                    
+                    tmp_con.drawable_rect.Location = new Point(input_cons_start_point.X- connection_rect_widht, input_cons_start_point.Y + (intput_con_amount* distance_between_connections));
+                    tmp_con.drawable_rect.Size = new Size(connection_rect_widht, connection_rect_height);
+                    connections[i] = tmp_con;
+                    intput_con_amount++;
+                }
+
+
+                if (tmp_con.con_type == connection.type.output)
+                {
+                 
+                    tmp_con.drawable_rect.Location = new Point(output_cons_start_point.X, output_cons_start_point.Y + (output_con_amount * distance_between_connections));
+                    tmp_con.drawable_rect.Size = new Size(connection_rect_widht, connection_rect_height);
+                    connections[i] = tmp_con;
+                    output_con_amount++;
+                }
+            }
+
+
+
+
         }
         public void calc_element_positions()
         {
             //REcht grösse berechnen ->nach anzahl der zeichen in der headline und
 
-            base_rect.Location = new Point(pos.x, pos.y);
-            base_rect.Size = new Size(10, 10);
+           
+          
+
+          
+          
         }
     }
 }
