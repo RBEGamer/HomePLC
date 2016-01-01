@@ -134,7 +134,7 @@ namespace SmartPLC_Commander
             foreach (node n in schematic_nodes)
             {
                 //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
-                final_string += "<node nid=\"" + n.nid +"\" nsi=\""+ n.xml_name +"\" ncon=\""+ n.connection_string +"\" nparam=\""+ n.param_string +"\" />";
+                final_string += "<node nid=\"" + n.nid +"\" nsi=\""+ n.xml_name +"\" ncon=\""+ n.connection_string +"\" nparam=\""+ n.param_string +"\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
             }
             final_string += "</schematic>";
             //UPLOAD
