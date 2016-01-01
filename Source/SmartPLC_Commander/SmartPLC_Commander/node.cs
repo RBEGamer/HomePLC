@@ -14,29 +14,32 @@ namespace SmartPLC_Commander
             public int x, y;
         }
 
-
-        public struct connection
+        public enum type
         {
+            input, output, none
+        }
+        public enum datatype
+        {
+            _none, _string, _bool, _int, _float, _special, _generic, _color
+        }
+        public class connection
+        { 
+            public connection()
+            {
 
+            }
+             ~connection()
+            {
 
+            }
             public int x, y;
+            public int parent_node_id;
             public int connection_id;
             public string description;
-            public enum type
-            {
-                input, output, none
-            }
             public type con_type;
-
-            public enum datatype
-            {
-                _none, _string, _bool, _int, _float, _special, _generic, _color
-            }
             public datatype con_dtype;
-
             public Color con_color;
             public Rectangle drawable_rect;
-
             public Rectangle text_rect;
         }
 
@@ -300,6 +303,7 @@ namespace SmartPLC_Commander
 
 
 
+
         public void create_connection_list()
         {
             connections.Clear();
@@ -317,17 +321,18 @@ namespace SmartPLC_Commander
                             if (splitted_input_string[i] == "") { break; }
                             string[] one_input_string = splitted_input_string[i].Substring(1, splitted_input_string[i].Length - 2).Split(',');
                             connection tmp_con = new connection();
-                            tmp_con.con_type = connection.type.input;
+                            tmp_con.parent_node_id = nid;
+                            tmp_con.con_type = type.input;
                             tmp_con.connection_id = Int32.Parse(one_input_string[0]);
                             tmp_con.description = one_input_string[2];
-                            if (one_input_string[1] == "" || one_input_string[1].ToLower() == "none") { tmp_con.con_dtype = connection.datatype._none; tmp_con.con_color = Color.Black; }
-                            if (one_input_string[1].ToLower() == "string") { tmp_con.con_dtype = connection.datatype._string; tmp_con.con_color = Color.OrangeRed; }
-                            if (one_input_string[1].ToLower() == "float") { tmp_con.con_dtype = connection.datatype._float; tmp_con.con_color = Color.Cyan; }
-                            if (one_input_string[1].ToLower() == "special") { tmp_con.con_dtype = connection.datatype._special; tmp_con.con_color = Color.Yellow; }
-                            if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = connection.datatype._generic; tmp_con.con_color = Color.Violet; }
-                            if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = connection.datatype._color; tmp_con.con_color = Color.Plum; }
-                            if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = connection.datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
-                            if (one_input_string[1].ToLower() == "int") { tmp_con.con_dtype = connection.datatype._int; tmp_con.con_color = Color.Azure; }
+                            if (one_input_string[1] == "" || one_input_string[1].ToLower() == "none") { tmp_con.con_dtype = datatype._none; tmp_con.con_color = Color.Black; }
+                            if (one_input_string[1].ToLower() == "string") { tmp_con.con_dtype = datatype._string; tmp_con.con_color = Color.OrangeRed; }
+                            if (one_input_string[1].ToLower() == "float") { tmp_con.con_dtype = datatype._float; tmp_con.con_color = Color.Cyan; }
+                            if (one_input_string[1].ToLower() == "special") { tmp_con.con_dtype = datatype._special; tmp_con.con_color = Color.Yellow; }
+                            if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = datatype._generic; tmp_con.con_color = Color.Violet; }
+                            if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = datatype._color; tmp_con.con_color = Color.Plum; }
+                            if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
+                            if (one_input_string[1].ToLower() == "int") { tmp_con.con_dtype = datatype._int; tmp_con.con_color = Color.Azure; }
                             connections.Add(tmp_con);
                         }
                     }
@@ -351,16 +356,19 @@ namespace SmartPLC_Commander
                             if (splitted_input_string[i] == "") { break; }
                             string[] one_input_string = splitted_input_string[i].Substring(1, splitted_input_string[i].Length - 2).Split(',');
                             connection tmp_con = new connection();
-                            tmp_con.con_type = connection.type.output;
+                            tmp_con.parent_node_id = nid;
+
+
+                            tmp_con.con_type = type.output;
                             tmp_con.connection_id = Int32.Parse(one_input_string[0]);
                             tmp_con.description = one_input_string[2];
-                            if (one_input_string[1].ToLower() == "string") { tmp_con.con_dtype = connection.datatype._string; tmp_con.con_color = Color.OrangeRed; }
-                            if (one_input_string[1].ToLower() == "float") { tmp_con.con_dtype = connection.datatype._float; tmp_con.con_color = Color.Cyan; }
-                            if (one_input_string[1].ToLower() == "special") { tmp_con.con_dtype = connection.datatype._special; tmp_con.con_color = Color.Yellow; }
-                            if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = connection.datatype._generic; tmp_con.con_color = Color.Violet; }
-                            if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = connection.datatype._color; tmp_con.con_color = Color.Plum; }
-                            if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = connection.datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
-                            if (one_input_string[1].ToLower() == "int") { tmp_con.con_dtype = connection.datatype._int; tmp_con.con_color = Color.Azure; }
+                            if (one_input_string[1].ToLower() == "string") { tmp_con.con_dtype = datatype._string; tmp_con.con_color = Color.OrangeRed; }
+                            if (one_input_string[1].ToLower() == "float") { tmp_con.con_dtype = datatype._float; tmp_con.con_color = Color.Cyan; }
+                            if (one_input_string[1].ToLower() == "special") { tmp_con.con_dtype = datatype._special; tmp_con.con_color = Color.Yellow; }
+                            if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = datatype._generic; tmp_con.con_color = Color.Violet; }
+                            if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = datatype._color; tmp_con.con_color = Color.Plum; }
+                            if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
+                            if (one_input_string[1].ToLower() == "int") { tmp_con.con_dtype = datatype._int; tmp_con.con_color = Color.Azure; }
                             connections.Add(tmp_con);
                         }
                     }
@@ -391,13 +399,12 @@ namespace SmartPLC_Commander
                         if (view_rect.IntersectsWith(connections[i].drawable_rect))
                         {
                             g.DrawRectangle(new Pen(connections[i].con_color), connections[i].drawable_rect);
-
-                            if (connections[i].description != "")
+                        }
+                         if (connections[i].description != "" || view_rect.IntersectsWith(connections[i].text_rect))
                             {
-
                                 g.DrawString(connections[i].description, text_font, Brushes.Black, connections[i].text_rect);
                             }
-                        }
+                        
                     }
 
                 }
@@ -431,7 +438,7 @@ namespace SmartPLC_Commander
 
                 connection tmp_con = connections[i];
 
-                if(tmp_con.con_type == connection.type.input)
+                if(tmp_con.con_type == type.input)
                 {
                     intput_con_amount++;
                     if ((tmp_con.description.Length*char_lenght_multiplier) > distance_between_border_and_inputtext_end)
@@ -440,7 +447,7 @@ namespace SmartPLC_Commander
                     }
                 }
 
-                if (tmp_con.con_type == connection.type.output)
+                if (tmp_con.con_type == type.output)
                 {
                     output_con_amount++;
                     if ((tmp_con.description.Length * char_lenght_multiplier) > distance_between_border_and_outputtext_end)
@@ -478,7 +485,7 @@ namespace SmartPLC_Commander
             for (int i = 0; i < connections.Count; i++)
             {
                 connection tmp_con = connections[i];
-                if(tmp_con.con_type == connection.type.input)
+                if(tmp_con.con_type == type.input)
                 {
                     
                     tmp_con.drawable_rect.Location = new Point(input_cons_start_point.X- connection_rect_widht, input_cons_start_point.Y + (intput_con_amount* distance_between_connections));
@@ -493,7 +500,7 @@ namespace SmartPLC_Commander
                 }
 
 
-                if (tmp_con.con_type == connection.type.output)
+                if (tmp_con.con_type == type.output)
                 {
                  
                     tmp_con.drawable_rect.Location = new Point(output_cons_start_point.X, output_cons_start_point.Y + (output_con_amount * distance_between_connections));

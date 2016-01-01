@@ -25,7 +25,7 @@ namespace SmartPLC_Commander
         List<node> schematic_nodes = new List<node>();
         TreeNode selected_treeview_node = new TreeNode();
         string loaded_node_list = "";
-        int nid_counter = 0;
+        int nid_counter = 1;
         Bitmap drawing_bitmap = new Bitmap(500, 500);
      
         public Form1()
@@ -301,12 +301,28 @@ namespace SmartPLC_Commander
         //DRAWING TIMER
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //CLEAR WITH WHITE
             graphics.FillRectangle(Brushes.White, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
+            //DRAW ALL NODES
             for (int i = 0; i < schematic_nodes.Count; i++)
             {
                 schematic_nodes[i].draw_update(ref graphics, new Rectangle(0, 0, drawing_bitmap.Width, drawing_bitmap.Height));
             }
 
+            //DRAW CONNECTION LINES
+
+            for (int j = 0; j < connection_list.Count; j++)
+            {
+                Point point_one = connection_list[j].source.drawable_rect.Location;
+                Point point_four = connection_list[j].target.drawable_rect.Location;
+                //NACH TYP
+                graphics.DrawBezier(Pens.Black, point_one, point_one, point_four, point_four);
+                //connection_list[j].
+
+            }
+
+
+            //DRAW IMAGE
             pictureBox1.Image = drawing_bitmap;
             
         }
@@ -315,13 +331,21 @@ namespace SmartPLC_Commander
         private void button3_Click(object sender, EventArgs e)
         {
             schematic_nodes.Clear();
+            connection_list.Clear();
         }
 
 
         Rectangle mouse_pos_rect;
         node drag_node = null;
         Point drag_node_offset = new Point(0,0);
-        node.connection selected_connection;
+        node.connection selected_connection = null;
+
+         struct connection_pair
+        {
+           public  node.connection source;
+           public  node.connection target;
+        }
+        List<connection_pair> connection_list = new List<connection_pair>();  
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
       
@@ -337,6 +361,7 @@ namespace SmartPLC_Commander
                         //check if is in base rect
                         if (schematic_nodes[i].base_rect.IntersectsWith(mouse_pos_rect))
                         {
+                            selected_connection = null;
                             drag_node = schematic_nodes[i];
                             drag_node_offset.X = (schematic_nodes[i].pos.x - mouse_pos_rect.Location.X);
                             drag_node_offset.Y = (schematic_nodes[i].pos.y - mouse_pos_rect.Location.Y);
@@ -350,7 +375,40 @@ namespace SmartPLC_Commander
                             for (int j = 0; j < schematic_nodes[i].connections.Count; j++)
                             {
                                 if (schematic_nodes[i].connections[j].drawable_rect.IntersectsWith(mouse_pos_rect)) {
-                                    selected_connection = schematic_nodes[i].connections[j];
+
+                                    //WENN NICHT LERR DANN VERBINFUNG MACHEN
+                                    if(selected_connection == null)
+                                    {
+                                        selected_connection = schematic_nodes[i].connections[j];
+                                    }
+                                    else 
+                                    {
+
+                                        node.connection second_clicked_connection = schematic_nodes[i].connections[j];
+                                        if (second_clicked_connection.con_type == node.type.input && selected_connection.con_type == node.type.output)
+                                        {
+                                            connection_pair tmp_cpair = new connection_pair();
+                                            tmp_cpair.source = selected_connection;
+                                            tmp_cpair.target = second_clicked_connection;
+                                          //  if (!connection_list.Contains(tmp_cpair))
+                                          //  {
+                                                connection_list.Add(tmp_cpair);
+                                          //  }
+                                        }
+                                        else if (second_clicked_connection.con_type == node.type.output && selected_connection.con_type == node.type.input) {
+
+                                            connection_pair tmp_cpair = new connection_pair();
+                                            tmp_cpair.source = second_clicked_connection;
+                                            tmp_cpair.target = selected_connection;
+                                            //if (!connection_list.Contains(tmp_cpair))
+                                            //{
+                                               connection_list.Add(tmp_cpair);
+                                            //}
+                                        }
+
+                                        selected_connection = null;
+                                }
+                                    
                                    
                                 }
                             }
