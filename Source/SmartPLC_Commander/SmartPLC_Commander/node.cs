@@ -326,6 +326,7 @@ namespace SmartPLC_Commander
                             if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = connection.datatype._generic; tmp_con.con_color = Color.Violet; }
                             if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = connection.datatype._color; tmp_con.con_color = Color.Plum; }
                             if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = connection.datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
+                            if (one_input_string[1].ToLower() == "int") { tmp_con.con_dtype = connection.datatype._int; tmp_con.con_color = Color.Azure; }
                             connections.Add(tmp_con);
                         }
                     }
@@ -358,6 +359,7 @@ namespace SmartPLC_Commander
                             if (one_input_string[1].ToLower() == "generic") { tmp_con.con_dtype = connection.datatype._generic; tmp_con.con_color = Color.Violet; }
                             if (one_input_string[1].ToLower() == "color") { tmp_con.con_dtype = connection.datatype._color; tmp_con.con_color = Color.Plum; }
                             if (one_input_string[1].ToLower() == "bool") { tmp_con.con_dtype = connection.datatype._bool; tmp_con.con_color = Color.DarkSeaGreen; }
+                            if (one_input_string[1].ToLower() == "int") { tmp_con.con_dtype = connection.datatype._int; tmp_con.con_color = Color.Azure; }
                             connections.Add(tmp_con);
                         }
                     }
