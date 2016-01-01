@@ -27,6 +27,7 @@ namespace SmartPLC_Commander
         string loaded_node_list = "";
         int nid_counter = 0;
         Bitmap drawing_bitmap = new Bitmap(500, 500);
+     
         public Form1()
         {
             InitializeComponent();
@@ -36,14 +37,14 @@ namespace SmartPLC_Commander
             timer1.Enabled = false;
 
 
-         
-          
+
+            drawing_bitmap = new Bitmap(500, 500);
             graphics = Graphics.FromImage(drawing_bitmap);
            
             //create bitmap
             //create hwnd
             //create instance
-           
+
         }
 
 
@@ -300,7 +301,7 @@ namespace SmartPLC_Commander
             graphics.FillRectangle(Brushes.White, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
             for (int i = 0; i < schematic_nodes.Count; i++)
             {
-                schematic_nodes[i].draw_update(ref graphics);
+                schematic_nodes[i].draw_update(ref graphics, new Rectangle(0, 0, drawing_bitmap.Width, drawing_bitmap.Height));
             }
 
             pictureBox1.Image = drawing_bitmap;

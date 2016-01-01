@@ -366,31 +366,35 @@ namespace SmartPLC_Commander
             //den connectionstring druchgehen und passend splitten
         }
 
-        public void draw_update(ref Graphics g)
+        public void draw_update(ref Graphics g,  Rectangle view_rect)
         {
 
-   
-          //DRAW BACKGROUND RECT
-            g.DrawRectangle(new Pen(Color.Green),base_rect);
-            //DRAW HEADLINE
-            if(title != "")
+
+            //BASIC CLIPPING
+            if (base_rect.IntersectsWith(view_rect))
             {
-                g.DrawString(title, text_font, Brushes.Black, headline_rect);
-            }
-          
-            //DRAWW ALL I/O CONNECTIONS
-            for (int i = 0; i < connections.Count; i++)
-            {
-                g.DrawRectangle( new Pen(connections[i].con_color), connections[i].drawable_rect);
-                if(connections[i].description != "")
+                //DRAW BACKGROUND RECT
+                g.DrawRectangle(new Pen(Color.Green), base_rect);
+                //DRAW HEADLINE
+                if (title != "")
                 {
-                    g.DrawString(connections[i].description, text_font, Brushes.Black, connections[i].text_rect);
+                    g.DrawString(title, text_font, Brushes.Black, headline_rect);
                 }
-                 
+
+                //DRAWW ALL I/O CONNECTIONS
+                for (int i = 0; i < connections.Count; i++)
+                {
+
+                    g.DrawRectangle(new Pen(connections[i].con_color), connections[i].drawable_rect);
+                    if (connections[i].description != "")
+                    {
+                        g.DrawString(connections[i].description, text_font, Brushes.Black, connections[i].text_rect);
+                    }
+
+                }
+
+
             }
-          
-           
-            
         }
 
 

@@ -8,3 +8,11 @@ special
 generic
 color
 time
+[COLORS]
+Black
+OrangeRed
+Cyan
+Yellow
+Violet
+Plum
+DarkSeaGreen
