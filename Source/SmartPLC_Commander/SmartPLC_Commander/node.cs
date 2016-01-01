@@ -36,6 +36,8 @@ namespace SmartPLC_Commander
 
             public Color con_color;
             public Rectangle drawable_rect;
+
+            public Rectangle text_rect;
         }
 
 
@@ -59,7 +61,8 @@ namespace SmartPLC_Commander
 
 
         Rectangle base_rect = new Rectangle();
-
+        Rectangle headline_rect = new Rectangle();
+        Font text_font = new Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Point);
         public node(){
             pos = new transform();
             xml_name = "";
@@ -367,30 +370,41 @@ namespace SmartPLC_Commander
         {
 
    
-          
+          //DRAW BACKGROUND RECT
             g.DrawRectangle(new Pen(Color.Green),base_rect);
-
+            //DRAW HEADLINE
+            if(title != "")
+            {
+                g.DrawString(title, text_font, Brushes.Black, headline_rect);
+            }
+          
+            //DRAWW ALL I/O CONNECTIONS
             for (int i = 0; i < connections.Count; i++)
             {
                 g.DrawRectangle( new Pen(connections[i].con_color), connections[i].drawable_rect);
+                if(connections[i].description != "")
+                {
+                    g.DrawString(connections[i].description, text_font, Brushes.Black, connections[i].text_rect);
+                }
+                 
             }
-
+          
            
             
         }
 
 
         //FOR RECT WIDTH
-        public int distance_betewenn_con_text = 10; //defult: *3
-        private int distance_between_border_and_inputtext_end = 10;
-        private int distance_between_border_and_outputtext_end = 10;
-        private int char_lenght_multiplier = 2;
+        public int distance_betewenn_con_text = 20; //defult: *3
+        private int distance_between_border_and_inputtext_end = 20;
+        private int distance_between_border_and_outputtext_end = 20;
+        private int char_lenght_multiplier = 10;
         //FOR RECT HEIGHT
-        public  int headline_text_distance = 10; //default: *3
-        public int distance_between_connections = 10;
+        public  int headline_text_distance = 20; //default: *3
+        public int distance_between_connections = 20;
 
-        private int connection_rect_widht = 7;
-        private int connection_rect_height = 7;
+        private int connection_rect_widht = 15;
+        private int connection_rect_height = 15;
         public void create_drawable()
         {
             int rect_width = 3* distance_betewenn_con_text;
@@ -421,7 +435,7 @@ namespace SmartPLC_Commander
                     }
                 }
             }
-
+            //CALC BASE RECT
             if (output_con_amount > intput_con_amount)
             {
                 recht_height = (distance_between_connections * output_con_amount)+ headline_text_distance;
@@ -433,7 +447,9 @@ namespace SmartPLC_Commander
             rect_width = distance_betewenn_con_text + distance_between_border_and_outputtext_end + distance_between_border_and_inputtext_end;
             base_rect.Size = new Size(rect_width, recht_height);
             base_rect.Location = new Point(pos.x, pos.y);
-
+            //CALC HEADLINE TEXT RECT
+            headline_rect.Location = base_rect.Location; //TODO: center it
+            headline_rect.Size = new Size(title.Length * char_lenght_multiplier, headline_text_distance);
 
             Point input_cons_start_point = new Point(base_rect.X, base_rect.Y + headline_text_distance);
             Point output_cons_start_point = new Point(base_rect.X + base_rect.Width, base_rect.Y + headline_text_distance);
@@ -449,6 +465,11 @@ namespace SmartPLC_Commander
                     
                     tmp_con.drawable_rect.Location = new Point(input_cons_start_point.X- connection_rect_widht, input_cons_start_point.Y + (intput_con_amount* distance_between_connections));
                     tmp_con.drawable_rect.Size = new Size(connection_rect_widht, connection_rect_height);
+
+                    tmp_con.text_rect.Location = new Point(input_cons_start_point.X + connection_rect_widht, tmp_con.drawable_rect.Location.Y);
+                    tmp_con.text_rect.Size = new Size(tmp_con.description.Length * char_lenght_multiplier, connection_rect_height);
+
+
                     connections[i] = tmp_con;
                     intput_con_amount++;
                 }
@@ -459,12 +480,19 @@ namespace SmartPLC_Commander
                  
                     tmp_con.drawable_rect.Location = new Point(output_cons_start_point.X, output_cons_start_point.Y + (output_con_amount * distance_between_connections));
                     tmp_con.drawable_rect.Size = new Size(connection_rect_widht, connection_rect_height);
+
+                    tmp_con.text_rect.Location = new Point(tmp_con.drawable_rect.Location.X-(tmp_con.description.Length * char_lenght_multiplier), tmp_con.drawable_rect.Location.Y);
+                    tmp_con.text_rect.Size = new Size(tmp_con.description.Length * char_lenght_multiplier, connection_rect_height);
+
+
                     connections[i] = tmp_con;
                     output_con_amount++;
                 }
             }
 
+            //calc the headline recht
 
+            //calc the con desc rects
 
 
         }
