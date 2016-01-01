@@ -313,10 +313,29 @@ namespace SmartPLC_Commander
 
             for (int j = 0; j < connection_list.Count; j++)
             {
-                Point point_one = connection_list[j].source.drawable_rect.Location;
-                Point point_four = connection_list[j].target.drawable_rect.Location;
+                Point point_source = new Point(connection_list[j].source.drawable_rect.Location.X + connection_list[j].source.drawable_rect.Size.Width, connection_list[j].source.drawable_rect.Location.Y + (connection_list[j].source.drawable_rect.Size.Width/2));
+                Point point_target = new Point(connection_list[j].target.drawable_rect.Location.X, connection_list[j].target.drawable_rect.Location.Y + (connection_list[j].target.drawable_rect.Size.Width / 2));
+                Point point_middle = new Point(0, 0);
+                if(point_source.X < point_target.X)
+                {
+                    point_middle.X = point_target.X - point_source.X;
+                }
+                else
+                {
+                    point_middle.X = point_source.X - point_target.X;
+                }
+
+                if (point_source.Y < point_target.Y)
+                {
+                    point_middle.Y = point_target.Y - point_source.Y;
+                }
+                else
+                {
+                    point_middle.Y = point_source.Y - point_target.Y;
+                }
+
                 //NACH TYP
-                graphics.DrawBezier(Pens.Black, point_one, point_one, point_four, point_four);
+                graphics.DrawBezier(Pens.Black, point_source, new Point(point_middle.X, point_source.Y), new Point(point_middle.X, point_target.Y), point_target);
                 //connection_list[j].
 
             }
