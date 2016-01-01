@@ -11,15 +11,15 @@ namespace SmartPLC_Commander
     {
         public struct transform
         {
-           public  int x, y;
+            public int x, y;
         }
 
 
         public struct connection
         {
-           
 
-            public int x,y;
+
+            public int x, y;
             public int connection_id;
             public string description;
             public enum type
@@ -30,7 +30,7 @@ namespace SmartPLC_Commander
 
             public enum datatype
             {
-                _none,_string,_bool, _int, _float, _special, _generic, _color
+                _none, _string, _bool, _int, _float, _special, _generic, _color
             }
             public datatype con_dtype;
 
@@ -64,7 +64,7 @@ namespace SmartPLC_Commander
         public Rectangle clipping_recht;
         Rectangle headline_rect = new Rectangle();
         Font text_font = new Font("Arial", 10, FontStyle.Bold, GraphicsUnit.Point);
-        public node(){
+        public node() {
             pos = new transform();
             xml_name = "";
             title = "";
@@ -77,9 +77,9 @@ namespace SmartPLC_Commander
             param_properties = "";
             connection_string = "";
             extention_name = "";
-    }
+        }
 
-      
+
         public void create_property_plane(ref Panel parameter_panel, ref Label ltitle, ref Label lnid, ref Label lnsi)
         {
 
@@ -91,15 +91,15 @@ namespace SmartPLC_Commander
             //param_properties auslesen nach [0,type,desc,()]
             //fdazu passend die elementer erstelln und nach 0 anordnen
 
-            if(param_properties == "") { return; } //dan gibts nichts zu laden
+            if (param_properties == "") { return; } //dan gibts nichts zu laden
             string[] split_comma = param_properties.Split('%');
 
             for (int i = 0; i < split_comma.Length; i++)
             {
-                if(split_comma[i] == "") { break; } //reach end ?
+                if (split_comma[i] == "") { break; } //reach end ?
                 string param_construct = split_comma[i];
-                param_construct =  param_construct.Substring(1, param_construct.Length - 2);
-                string[] split_construct = param_construct.Split(','); 
+                param_construct = param_construct.Substring(1, param_construct.Length - 2);
+                string[] split_construct = param_construct.Split(',');
 
                 int param_id = Int16.Parse(split_construct[0]);
                 //CREATE LABEL
@@ -107,10 +107,10 @@ namespace SmartPLC_Commander
                 lable_tmp.Enabled = true;
                 lable_tmp.Location = new Point(6, 25 + (40 * param_id));
                 lable_tmp.Text = split_construct[2];
-                lable_tmp.Name = "desc_" +param_id.ToString();
+                lable_tmp.Name = "desc_" + param_id.ToString();
                 lable_tmp.Size = new Size(60, 13);
                 parameter_panel.Controls.Add(lable_tmp);
-              
+
 
 
 
@@ -171,10 +171,10 @@ namespace SmartPLC_Commander
                         tnud.Minimum = int.MinValue;
                         tnud.Value = 0;
                     }
-                        
 
-                    
-                    
+
+
+
                     tnud.DecimalPlaces = 0;
                     tnud.Increment = 1;
                     parameter_panel.Controls.Add(tnud);
@@ -222,13 +222,13 @@ namespace SmartPLC_Commander
                     tnud.Name = "param_" + param_id.ToString();
                     tnud.Size = new Size(100, 20);
                     tnud.Location = new Point(70, 20 + (40 * param_id));
-                    tnud.Minimum = new decimal( float.Parse(values[0]));
-                    tnud.Maximum = new decimal( float.Parse(values[1]));
-                    tnud.Value = new decimal( float.Parse(values[0]));
+                    tnud.Minimum = new decimal(float.Parse(values[0]));
+                    tnud.Maximum = new decimal(float.Parse(values[1]));
+                    tnud.Value = new decimal(float.Parse(values[0]));
                     tnud.DecimalPlaces = 1;
                     tnud.Increment = new decimal(0.1f);
                     parameter_panel.Controls.Add(tnud);
-                }else if (split_construct[1] == "bool" && split_construct.Length == 3)
+                } else if (split_construct[1] == "bool" && split_construct.Length == 3)
                 {
 
 
@@ -248,10 +248,10 @@ namespace SmartPLC_Commander
 
 
 
-            } 
+            }
 
 
-                load_parameters(ref parameter_panel);
+            load_parameters(ref parameter_panel);
             if (param_string == "" || !param_string.Contains("%")) {
                 save_parameters(ref parameter_panel);
             }
@@ -260,11 +260,11 @@ namespace SmartPLC_Commander
         public void load_parameters(ref Panel param_panel)
         {
 
-            if(param_string == "" || !param_string.Contains("%")) { return; }
+            if (param_string == "" || !param_string.Contains("%")) { return; }
             string[] split_param = param_string.Split('%');
             for (int i = 0; i < split_param.Length; i++)
             {
-               if( param_panel.Controls["param_" + i.ToString()] != null)
+                if (param_panel.Controls["param_" + i.ToString()] != null)
                 {
 
                     //TYPE DIFFERENT
@@ -290,12 +290,12 @@ namespace SmartPLC_Commander
                 if (param_panel.Controls[i].Name.Contains("param_")) {
                     param_string += param_panel.Controls[i].Text + "%";
                 }
-                
+
             }
             if (param_string == "") {
                 param_string = "%";
             }
-           // MessageBox.Show(param_string);
+            // MessageBox.Show(param_string);
         }
 
 
@@ -305,8 +305,8 @@ namespace SmartPLC_Commander
             connections.Clear();
 
 
-          
-                {
+
+            {
                 if (input_con_string != "")
                 {
                     string[] splitted_input_string = input_con_string.Split('%');
@@ -348,7 +348,7 @@ namespace SmartPLC_Commander
                     {
                         for (int i = 0; i < splitted_input_string.Length; i++)
                         {
-                            if(splitted_input_string[i] == "") { break; }
+                            if (splitted_input_string[i] == "") { break; }
                             string[] one_input_string = splitted_input_string[i].Substring(1, splitted_input_string[i].Length - 2).Split(',');
                             connection tmp_con = new connection();
                             tmp_con.con_type = connection.type.output;
@@ -369,36 +369,43 @@ namespace SmartPLC_Commander
             //den connectionstring druchgehen und passend splitten
         }
 
-        public void draw_update(ref Graphics g,  Rectangle view_rect)
+        public void draw_update(ref Graphics g, Rectangle view_rect)
         {
-
-
-            //BASIC CLIPPING
-            if (base_rect.IntersectsWith(view_rect))
+            if (clipping_recht.IntersectsWith(view_rect))
             {
-                //DRAW BACKGROUND RECT
-                g.DrawRectangle(new Pen(Color.Green), base_rect);
-                //DRAW HEADLINE
-                if (title != "")
-                {
-                    g.DrawString(title, text_font, Brushes.Black, headline_rect);
-                }
 
-                //DRAWW ALL I/O CONNECTIONS
-                for (int i = 0; i < connections.Count; i++)
+                //BASIC CLIPPING
+                if (base_rect.IntersectsWith(view_rect))
                 {
-
-                    g.DrawRectangle(new Pen(connections[i].con_color), connections[i].drawable_rect);
-                    if (connections[i].description != "")
+                    //DRAW BACKGROUND RECT
+                    g.DrawRectangle(new Pen(Color.Green), base_rect);
+                    //DRAW HEADLINE
+                    if (title != "")
                     {
-                        g.DrawString(connections[i].description, text_font, Brushes.Black, connections[i].text_rect);
+                        g.DrawString(title, text_font, Brushes.Black, headline_rect);
+                    }
+
+                    //DRAWW ALL I/O CONNECTIONS
+                    for (int i = 0; i < connections.Count; i++)
+                    {
+                        if (view_rect.IntersectsWith(connections[i].drawable_rect))
+                        {
+                            g.DrawRectangle(new Pen(connections[i].con_color), connections[i].drawable_rect);
+
+                            if (connections[i].description != "")
+                            {
+
+                                g.DrawString(connections[i].description, text_font, Brushes.Black, connections[i].text_rect);
+                            }
+                        }
                     }
 
                 }
 
-
             }
         }
+        
+    
 
 
         //FOR RECT WIDTH
@@ -454,6 +461,7 @@ namespace SmartPLC_Commander
             rect_width = distance_betewenn_con_text + distance_between_border_and_outputtext_end + distance_between_border_and_inputtext_end;
             base_rect.Size = new Size(rect_width, recht_height);
             base_rect.Location = new Point(pos.x, pos.y);
+            //CALC CLIPPING RECT
             clipping_recht.Location = new Point(pos.x- connection_rect_widht, pos.y);
             clipping_recht.Size = new Size(rect_width+ (2*connection_rect_widht), recht_height);
 

@@ -351,7 +351,7 @@ namespace SmartPLC_Commander
                             {
                                 if (schematic_nodes[i].connections[j].drawable_rect.IntersectsWith(mouse_pos_rect)) {
                                     selected_connection = schematic_nodes[i].connections[j];
-                                    MessageBox.Show(schematic_nodes[i].connections[j].description);
+                                   
                                 }
                             }
                         }
