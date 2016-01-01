@@ -335,7 +335,7 @@ namespace SmartPLC_Commander
                 }
 
                 //NACH TYP
-                graphics.DrawBezier(Pens.Black, point_source, new Point(point_middle.X, point_source.Y), new Point(point_middle.X, point_target.Y), point_target);
+                graphics.DrawBezier(new Pen(connection_list[j].source.con_color), point_source, new Point(point_middle.X, point_source.Y), new Point(point_middle.X, point_target.Y), point_target);
                 //connection_list[j].
 
             }
@@ -409,20 +409,45 @@ namespace SmartPLC_Commander
                                             connection_pair tmp_cpair = new connection_pair();
                                             tmp_cpair.source = selected_connection;
                                             tmp_cpair.target = second_clicked_connection;
-                                          //  if (!connection_list.Contains(tmp_cpair))
-                                          //  {
+
+                                            bool exits = false;
+                                            for (int k  = 0; k < connection_list.Count; k++)
+                                            {
+                                                if (connection_list[k].source.connection_id == tmp_cpair.source.connection_id && connection_list[k].source.parent_node_id == tmp_cpair.source.parent_node_id)
+                                                {
+                                                    if (connection_list[k].target.connection_id == tmp_cpair.target.connection_id && connection_list[k].target.parent_node_id == tmp_cpair.target.parent_node_id)
+                                                    {
+                                                        exits = true;
+                                                    }
+                                                }
+                                            }
+
+                                          if (!exits)
+                                         {
                                                 connection_list.Add(tmp_cpair);
-                                          //  }
+                                         }
                                         }
                                         else if (second_clicked_connection.con_type == node.type.output && selected_connection.con_type == node.type.input) {
 
                                             connection_pair tmp_cpair = new connection_pair();
                                             tmp_cpair.source = second_clicked_connection;
                                             tmp_cpair.target = selected_connection;
-                                            //if (!connection_list.Contains(tmp_cpair))
-                                            //{
-                                               connection_list.Add(tmp_cpair);
-                                            //}
+                                            bool exits = false;
+                                            for (int k = 0; k < connection_list.Count; k++)
+                                            {
+                                                if (connection_list[k].source.connection_id == tmp_cpair.source.connection_id && connection_list[k].source.parent_node_id == tmp_cpair.source.parent_node_id)
+                                                {
+                                                    if (connection_list[k].target.connection_id == tmp_cpair.target.connection_id && connection_list[k].target.parent_node_id == tmp_cpair.target.parent_node_id)
+                                                    {
+                                                        exits = true;
+                                                    }
+                                                }
+                                            }
+
+                                            if (!exits)
+                                            {
+                                                connection_list.Add(tmp_cpair);
+                                            }
                                         }
 
                                         selected_connection = null;
@@ -459,6 +484,11 @@ namespace SmartPLC_Commander
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             drag_node = null;
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }
