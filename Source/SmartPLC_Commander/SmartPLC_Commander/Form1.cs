@@ -153,15 +153,15 @@ namespace SmartPLC_Commander
             }
             final_string += "</schematic>";
             //UPLOAD
-            //WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
-            //upload_request.Method = "POST";
-            //upload_request.Credentials = CredentialCache.DefaultCredentials;
-            //((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
-            //upload_request.ContentLength = final_string.Length;
-            //upload_request.ContentType = "text/html";
-            // upload_request.GetRequestStream().Write(final_string, 0, final_string.Length);
+            WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
+            upload_request.Method = "POST";
+            upload_request.Credentials = CredentialCache.DefaultCredentials;
+            ((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
+            upload_request.ContentLength = final_string.Length;
+            upload_request.ContentType = "text/html";
+            upload_request.GetRequestStream().Write(System.Text.Encoding.UTF8.GetBytes(final_string), 0, final_string.Length);
 
-            MessageBox.Show(final_string);
+            //MessageBox.Show(final_string);
 
         }
 
