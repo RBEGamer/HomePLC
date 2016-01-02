@@ -131,24 +131,37 @@ namespace SmartPLC_Commander
         //SAVE NODE CONFIG
         private void saveNodeSchematicToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+
+            //1:0:2:0%
+
+
             string final_string = "<?xml version=\"1.0\"?><info schematic-list=\"" + loaded_node_list + "\" date=\"" + System.DateTime.UtcNow.ToString() + "\" /><schematic>";
             foreach (node n in schematic_nodes)
             {
+                //GENERATE CONNECTION STRING
+                string constring_tmp = "";
+                for (int i = 0; i < connection_list.Count; i++)
+                {
+                    if (connection_list[i].source.parent_node_id == n.nid) {
+                        constring_tmp += connection_list[i].source.parent_node_id.ToString() + ":" + connection_list[i].source.connection_id.ToString() + ":" + connection_list[i].target.parent_node_id.ToString() + ":" + connection_list[i].target.connection_id.ToString() + "%";
+                    }
+                }
+                n.connection_string = constring_tmp;
                 //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
-                final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + n.connection_string + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
+                final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
             }
             final_string += "</schematic>";
             //UPLOAD
-            WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
-            upload_request.Method = "POST";
-            upload_request.Credentials = CredentialCache.DefaultCredentials;
-            ((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
-            upload_request.ContentLength = final_string.Length;
-            upload_request.ContentType = "text/html";
-
+            //WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
+            //upload_request.Method = "POST";
+            //upload_request.Credentials = CredentialCache.DefaultCredentials;
+            //((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
+            //upload_request.ContentLength = final_string.Length;
+            //upload_request.ContentType = "text/html";
             // upload_request.GetRequestStream().Write(final_string, 0, final_string.Length);
 
-
+            MessageBox.Show(final_string);
 
         }
 
