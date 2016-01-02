@@ -59,6 +59,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button3 = new System.Windows.Forms.Button();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -74,7 +75,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(270, 489);
+            this.treeView1.Size = new System.Drawing.Size(270, 651);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -105,10 +106,11 @@
             this.dateiToolStripMenuItem,
             this.nodeToolStripMenuItem,
             this.saveNodeSchematicToolStripMenuItem,
-            this.toolStripTextBox1});
+            this.toolStripTextBox1,
+            this.toolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1005, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -143,7 +145,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(276, 495);
+            this.panel1.Size = new System.Drawing.Size(276, 657);
             this.panel1.TabIndex = 2;
             // 
             // label5
@@ -160,7 +162,7 @@
             // 
             this.parameter_panel_form.Location = new System.Drawing.Point(6, 130);
             this.parameter_panel_form.Name = "parameter_panel_form";
-            this.parameter_panel_form.Size = new System.Drawing.Size(173, 383);
+            this.parameter_panel_form.Size = new System.Drawing.Size(267, 524);
             this.parameter_panel_form.TabIndex = 7;
             // 
             // label2
@@ -235,7 +237,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 35);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(284, 521);
+            this.tabControl1.Size = new System.Drawing.Size(284, 683);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -244,7 +246,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(276, 495);
+            this.tabPage1.Size = new System.Drawing.Size(276, 657);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ADD NODE";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -255,7 +257,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(276, 495);
+            this.tabPage2.Size = new System.Drawing.Size(276, 657);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "NODE LIST";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -265,7 +267,7 @@
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView2.Location = new System.Drawing.Point(3, 3);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(270, 489);
+            this.treeView2.Size = new System.Drawing.Size(270, 651);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
             // 
@@ -274,7 +276,7 @@
             this.tabPage3.Controls.Add(this.panel1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(276, 495);
+            this.tabPage3.Size = new System.Drawing.Size(276, 657);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "PROPERTIES";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -286,7 +288,7 @@
             this.panel3.Controls.Add(this.button1);
             this.panel3.Location = new System.Drawing.Point(302, 35);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(490, 30);
+            this.panel3.Size = new System.Drawing.Size(691, 30);
             this.panel3.TabIndex = 5;
             // 
             // button2
@@ -314,9 +316,10 @@
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
             this.pictureBox1.Location = new System.Drawing.Point(299, 72);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(493, 477);
+            this.pictureBox1.Size = new System.Drawing.Size(694, 646);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
@@ -338,18 +341,26 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(150, 23);
+            this.toolStripMenuItem2.Text = "Load current Scheamatic";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1005, 558);
+            this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "SmartSPS-Commander";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -398,6 +409,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

@@ -161,7 +161,7 @@ namespace SmartPLC_Commander
             upload_request.ContentType = "text/html";
             upload_request.GetRequestStream().Write(System.Text.Encoding.UTF8.GetBytes(final_string), 0, final_string.Length);
 
-            //MessageBox.Show(final_string);
+            MessageBox.Show(final_string);
 
         }
 
@@ -546,6 +546,17 @@ namespace SmartPLC_Commander
                         }
             }
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+            //download current schematic
+            //parse
+            //instante all nodes with right values for variables
+            //call create drawabel
+            //load parameters
+            //create_connection_list
         }
     }
 }

@@ -111,7 +111,7 @@ namespace SmartPLC_Commander
                 lable_tmp.Location = new Point(6, 25 + (40 * param_id));
                 lable_tmp.Text = split_construct[2];
                 lable_tmp.Name = "desc_" + param_id.ToString();
-                lable_tmp.Size = new Size(60, 13);
+                lable_tmp.Size = new Size(94, 13);
                 parameter_panel.Controls.Add(lable_tmp);
 
 
@@ -123,8 +123,8 @@ namespace SmartPLC_Commander
                 {
                     TextBox textbox_tmp = new TextBox();
                     textbox_tmp.Enabled = true;
-                    textbox_tmp.Location = new Point(70, 20 + (40 * param_id));
-                    textbox_tmp.Size = new Size(100, 20);
+                    textbox_tmp.Location = new Point(100, 20 + (40 * param_id));
+                    textbox_tmp.Size = new Size(150, 20);
                     textbox_tmp.Name = "param_" + param_id.ToString();
 
                     if (split_construct[2].ToLower().Replace(" ", "") == "msi")
@@ -148,8 +148,8 @@ namespace SmartPLC_Commander
                     ComboBox tcombp = new ComboBox();
                     tcombp.Enabled = true;
                     tcombp.Name = "param_" + param_id.ToString();
-                    tcombp.Size = new Size(100, 20);
-                    tcombp.Location = new Point(70, 20 + (40 * param_id));
+                    tcombp.Size = new Size(150, 20);
+                    tcombp.Location = new Point(100, 20 + (40 * param_id));
                     tcombp.Items.AddRange(values);
                     tcombp.SelectedIndex = 0;
                     tcombp.Text = values[0];
@@ -161,8 +161,8 @@ namespace SmartPLC_Commander
                     NumericUpDown tnud = new NumericUpDown();
                     tnud.Enabled = true;
                     tnud.Name = "param_" + param_id.ToString();
-                    tnud.Size = new Size(100, 20);
-                    tnud.Location = new Point(70, 20 + (40 * param_id));
+                    tnud.Size = new Size(150, 20);
+                    tnud.Location = new Point(100, 20 + (40 * param_id));
                     if (split_construct[2].ToLower().Replace(" ", "") == "mid")
                     {
                         tnud.Maximum = 65536;
@@ -187,8 +187,8 @@ namespace SmartPLC_Commander
                     NumericUpDown tnud = new NumericUpDown();
                     tnud.Enabled = true;
                     tnud.Name = "param_" + param_id.ToString();
-                    tnud.Size = new Size(100, 20);
-                    tnud.Location = new Point(70, 20 + (40 * param_id));
+                    tnud.Size = new Size(150, 20);
+                    tnud.Location = new Point(100, 20 + (40 * param_id));
                     tnud.Minimum = decimal.MinValue;
                     tnud.Maximum = decimal.MaxValue;
                     tnud.DecimalPlaces = 1;
@@ -206,8 +206,8 @@ namespace SmartPLC_Commander
                     NumericUpDown tnud = new NumericUpDown();
                     tnud.Enabled = true;
                     tnud.Name = "param_" + param_id.ToString();
-                    tnud.Size = new Size(100, 20);
-                    tnud.Location = new Point(70, 20 + (40 * param_id));
+                    tnud.Size = new Size(150, 20);
+                    tnud.Location = new Point(100, 20 + (40 * param_id));
                     tnud.Minimum = Int32.Parse(values[0]);
                     tnud.Maximum = Int32.Parse(values[1]);
                     tnud.Value = Int32.Parse(values[0]);
@@ -223,8 +223,8 @@ namespace SmartPLC_Commander
                     NumericUpDown tnud = new NumericUpDown();
                     tnud.Enabled = true;
                     tnud.Name = "param_" + param_id.ToString();
-                    tnud.Size = new Size(100, 20);
-                    tnud.Location = new Point(70, 20 + (40 * param_id));
+                    tnud.Size = new Size(150, 20);
+                    tnud.Location = new Point(100, 20 + (40 * param_id));
                     tnud.Minimum = new decimal(float.Parse(values[0]));
                     tnud.Maximum = new decimal(float.Parse(values[1]));
                     tnud.Value = new decimal(float.Parse(values[0]));
