@@ -153,15 +153,32 @@ namespace SmartPLC_Commander
             }
             final_string += "</schematic>";
             //UPLOAD
-            WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
-            upload_request.Method = "POST";
-            upload_request.Credentials = CredentialCache.DefaultCredentials;
-            ((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
-            upload_request.ContentLength = final_string.Length;
-            upload_request.ContentType = "text/html";
-            upload_request.GetRequestStream().Write(System.Text.Encoding.UTF8.GetBytes(final_string), 0, final_string.Length);
+            if (!checkBox1.Checked)
+            {
+                WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
+                upload_request.Method = "POST";
+                upload_request.Credentials = CredentialCache.DefaultCredentials;
+                ((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
+                upload_request.ContentLength = final_string.Length;
+                upload_request.ContentType = "text/html";
+                upload_request.GetRequestStream().Write(System.Text.Encoding.UTF8.GetBytes(final_string), 0, final_string.Length);
+            }
+            else
+            {
+                saveFileDialog1.Filter = "Node Schematic (.xml)|*.xml";
+                saveFileDialog1.FilterIndex = 1;
 
-            MessageBox.Show(final_string);
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    System.IO.StreamWriter sw = new System.IO.StreamWriter(saveFileDialog1.FileName);
+                    sw.Write(final_string);
+                    sw.Close();
+                }
+            }
+            //  MessageBox.Show(final_string);
+
+    
 
         }
 
@@ -372,7 +389,6 @@ namespace SmartPLC_Commander
         node drag_node = null;
         Point drag_node_offset = new Point(0, 0);
         node.connection selected_connection = null;
-
         struct connection_pair
         {
             public node.connection source;
@@ -557,6 +573,19 @@ namespace SmartPLC_Commander
             //call create drawabel
             //load parameters
             //create_connection_list
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+            //    saveFileDialog1.Filter = "Node Schematic (.xml)|*.xml";
+           // saveFileDialog1.FilterIndex = 1;
+
+            //download schematic y
+            //instnace nodes
+            //wen pos nicht bekannt dann 10;10
+            //create_connectreions // create drawable // aufrufen
+
         }
     }
 }
