@@ -630,7 +630,7 @@ namespace SmartPLC_Commander
                     int end_exp_pos = split_xml[i].IndexOf("\" ", start_exp_pos+1);
                    
                     string extr_value = split_xml[i].Substring(start_exp_pos, end_exp_pos);
-                }
+                 }
 
             }
 
