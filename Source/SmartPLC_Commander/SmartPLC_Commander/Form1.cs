@@ -577,15 +577,79 @@ namespace SmartPLC_Commander
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
+            string schem_content = "";
+
+            openFileDialog1.Filter = "Node-Schematic (.xml)|*.xml";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.Multiselect = false;
+
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if(openFileDialog1.FileName == "") { MessageBox.Show("enter valid file"); return; }
+
+              
+                try
+                {
+                    schem_content = System.IO.File.ReadAllText(openFileDialog1.FileName);
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("ERROR WHILE LOADING");
+                }
+         
+            }
+
+
+            if(schem_content == "")
+            {
+                return;
+            }
+
+
+            if (!schem_content.StartsWith("<?xml version=\"1.0\"?>")) { MessageBox.Show("StartWith - FAIL"); return; }
+            bool schem_starts = false;
+            int schem_count = 0;
+            string[] split_xml = schem_content.Split('<');
+
+            for (int i = 0; i < split_xml.Length; i++)
+            {
+                if (split_xml[i].StartsWith("?xml")) { /* XML HEAD */}
+
+                if (split_xml[i].StartsWith("info")) { /* XML INFO HEAD */}
+
+                if (split_xml[i].StartsWith("schematic")) { /*Start schem */schem_starts = true; }
+
+                if (split_xml[i].StartsWith("/schematic")) { /*end schem */schem_starts = false; schem_count++; }
+
+                if (split_xml[i].StartsWith("node") && schem_starts) {
+                    /* NODE CONTENT */
+
+                    int start_exp_pos = split_xml[i].IndexOf("nid=\"");
+                    int end_exp_pos = split_xml[i].IndexOf("\" ", start_exp_pos+1);
+                   
+                    string extr_value = split_xml[i].Substring(start_exp_pos, end_exp_pos);
+                }
+
+            }
+
+
 
             //    saveFileDialog1.Filter = "Node Schematic (.xml)|*.xml";
-           // saveFileDialog1.FilterIndex = 1;
+            // saveFileDialog1.FilterIndex = 1;
 
             //download schematic y
             //instnace nodes
             //wen pos nicht bekannt dann 10;10
             //create_connectreions // create drawable // aufrufen
 
+        }
+
+
+        public void reconstruct_connections()
+        {
+            //durch alle nodes -> alle con strings und in die connection list einfügen
         }
     }
 }

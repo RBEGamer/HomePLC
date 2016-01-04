@@ -272,6 +272,9 @@ namespace SmartPLC_Commander
 
                     //TYPE DIFFERENT
                     param_panel.Controls["param_" + i.ToString()].Text = split_param[i];
+
+
+
                 }
 
             }
