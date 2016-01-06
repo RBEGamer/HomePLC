@@ -337,7 +337,7 @@ namespace SmartPLC_Commander
             //DRAW ALL NODES
             for (int i = 0; i < schematic_nodes.Count; i++)
             {
-                schematic_nodes[i].draw_update(ref graphics, new Rectangle(0, 0, drawing_bitmap.Width, drawing_bitmap.Height));
+                schematic_nodes[i].draw_update(ref graphics, new Rectangle(0, 0, drawing_bitmap.Width, drawing_bitmap.Height), ref pos_scoll_offset);
             }
 
             //DRAW CONNECTION LINES
@@ -499,7 +499,9 @@ namespace SmartPLC_Commander
 
 
         }
-
+        Point min_pos_values = new Point(-100,-100);
+        Point max_pos_vlaues = new Point(100,100);
+        Point pos_scoll_offset = new Point(0,0);
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (drag_node != null)
@@ -510,6 +512,38 @@ namespace SmartPLC_Commander
                 drag_node.pos.y = mouse_pos_rect.Y + drag_node_offset.Y;
                 drag_node.create_drawable();
                 // drag_node_offset
+
+                for (int i = 0; i < schematic_nodes.Count; i++)
+                {
+                   if( schematic_nodes[i].base_rect.X < min_pos_values.X) {
+                        min_pos_values.X = schematic_nodes[i].base_rect.X;
+                    }
+                    if (schematic_nodes[i].base_rect.Y < min_pos_values.Y)
+                    {
+                        min_pos_values.Y = schematic_nodes[i].base_rect.Y;
+                    }
+
+
+
+                    if (schematic_nodes[i].base_rect.X > max_pos_vlaues.X)
+                    {
+                        max_pos_vlaues.X = schematic_nodes[i].base_rect.X;
+                    }
+                    if (schematic_nodes[i].base_rect.Y > max_pos_vlaues.Y)
+                    {
+                        max_pos_vlaues.Y = schematic_nodes[i].base_rect.Y;
+                    }
+
+                }
+
+
+
+                hScrollBar1.Maximum = max_pos_vlaues.X;
+                hScrollBar1.Minimum = min_pos_values.X;
+
+                vScrollBar1.Maximum = max_pos_vlaues.Y;
+                vScrollBar1.Minimum = min_pos_values.Y;
+
             }
         }
 
@@ -650,6 +684,44 @@ namespace SmartPLC_Commander
         public void reconstruct_connections()
         {
             //durch alle nodes -> alle con strings und in die connection list einfügen
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+
+        /*
+        TODO errechne  kleinste/grössten x/Y position der nodes errechne daraus die slider min max vlaue und rechne den offset immer zu der pos dazu
+
+    */
+        public int scroll_multiplier = 5;
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            pos_scoll_offset.Y = e.NewValue;
+
+
+            for (int i = 0; i < schematic_nodes.Count; i++)
+            {
+                schematic_nodes[i].pos.y += (e.NewValue - e.OldValue)* scroll_multiplier;
+              
+                schematic_nodes[i].create_drawable();
+            }
+        }
+
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            pos_scoll_offset.X = e.NewValue;
+            for (int i = 0; i < schematic_nodes.Count; i++)
+            {
+                schematic_nodes[i].pos.x += (e.NewValue - e.OldValue)* scroll_multiplier;
+
+                schematic_nodes[i].create_drawable();
+            }
         }
     }
 }

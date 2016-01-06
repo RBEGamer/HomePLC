@@ -380,7 +380,7 @@ namespace SmartPLC_Commander
             //den connectionstring druchgehen und passend splitten
         }
 
-        public void draw_update(ref Graphics g, Rectangle view_rect)
+        public void draw_update(ref Graphics g, Rectangle view_rect, ref Point offset)
         {
             if (clipping_recht.IntersectsWith(view_rect))
             {
