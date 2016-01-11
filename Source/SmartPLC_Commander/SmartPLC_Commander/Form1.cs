@@ -20,7 +20,9 @@ namespace SmartPLC_Commander
         Graphics graphics;
         Image render_image;
 
-
+        int schematic_coount = 0;
+        int schematic_count_min = 0;
+        int schematic_coount_max = 9;
         List<node> loaded_nodes = new List<node>();
         List<node> schematic_nodes = new List<node>();
         TreeNode selected_treeview_node = new TreeNode();
@@ -34,17 +36,22 @@ namespace SmartPLC_Commander
 
             selected_history_tree_node = null;
             selected_treeview_node = null;
+            //ENABLE RENDERTIMER
             timer1.Enabled = false;
-
-
-
-            drawing_bitmap = new Bitmap(500, 500);
+            //CREATE SCHEMATIC BOX
+            comboBox1.Items.Clear();
+            for (int i = schematic_count_min; i < schematic_coount_max; i++)
+            {
+                comboBox1.Items.Add("Schematic " + i.ToString());  
+            }
+            comboBox1.SelectedIndex = 0;
+            //CREATE GRFICS
+            drawing_bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             graphics = Graphics.FromImage(drawing_bitmap);
-
-            //create bitmap
-            //create hwnd
-            //create instance
-
+            //CLEAR PICTURE
+            graphics.FillRectangle(Brushes.DarkGray, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
+            pictureBox1.Image = drawing_bitmap;
+            pictureBox1.Focus();
         }
 
 
@@ -54,9 +61,6 @@ namespace SmartPLC_Commander
         {
             selected_treeview_node = e.Node;
         }
-
-
-
         //LOAD NODE CONFIG
         private void nodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -131,27 +135,39 @@ namespace SmartPLC_Commander
         //SAVE NODE CONFIG
         private void saveNodeSchematicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-
-            //1:0:2:0%
-
-
-            string final_string = "<?xml version=\"1.0\"?><info schematic-list=\"" + loaded_node_list + "\" date=\"" + System.DateTime.UtcNow.ToString() + "\" /><schematic>";
-            foreach (node n in schematic_nodes)
+           //create header string
+            string final_string = "<?xml version=\"1.0\"?><info schematic-list=\"" + loaded_node_list + "\" date=\"" + System.DateTime.UtcNow.ToString() + "\" schematiccount=\"" + schematic_coount + "\" />";
+            for (int j = schematic_count_min; j < schematic_coount_max; j++)
             {
-                //GENERATE CONNECTION STRING
-                string constring_tmp = "";
-                for (int i = 0; i < connection_list.Count; i++)
+
+
+                final_string += "<schematic>";
+                foreach (node n in schematic_nodes)
                 {
-                    if (connection_list[i].source.parent_node_id == n.nid) {
-                        constring_tmp += connection_list[i].source.parent_node_id.ToString() + ":" + connection_list[i].source.connection_id.ToString() + ":" + connection_list[i].target.parent_node_id.ToString() + ":" + connection_list[i].target.connection_id.ToString() + "%";
+                    if(n.schematic_id != j)
+                    {
+                        continue;
                     }
+                    //GENERATE CONNECTION STRING
+                    string constring_tmp = "";
+                    for (int i = 0; i < connection_list.Count; i++)
+                    {
+                        if (connection_list[i].source.parent_node_id == n.nid)
+                        {
+                            constring_tmp += connection_list[i].source.parent_node_id.ToString() + ":" + connection_list[i].source.connection_id.ToString() + ":" + connection_list[i].target.parent_node_id.ToString() + ":" + connection_list[i].target.connection_id.ToString() + "%";
+                        }
+                    }
+                    n.connection_string = constring_tmp;
+                    //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
+                    final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
                 }
-                n.connection_string = constring_tmp;
-                //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
-                final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
+                final_string += "</schematic>";
+
+
             }
-            final_string += "</schematic>";
+          
+
+            final_string += "</xml>";
             //UPLOAD
             if (!checkBox1.Checked)
             {
@@ -181,7 +197,6 @@ namespace SmartPLC_Commander
     
 
         }
-
         //LOAD ADDItION NODE CONFIG
         private void loadAdditionalNodeConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -253,11 +268,6 @@ namespace SmartPLC_Commander
 
             }
         }
-
-
-
-
-
         //HISTORY TREE VIEW SELECT
         TreeNode selected_history_tree_node = new TreeNode();
         private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
@@ -267,15 +277,13 @@ namespace SmartPLC_Commander
             int sel_nid = Int32.Parse(nid_string);
             for (int i = 0; i < schematic_nodes.Count; i++)
             {
-                if (schematic_nodes[i].nid == sel_nid)
+                if (schematic_nodes[i].nid == sel_nid && schematic_nodes[i].schematic_id == comboBox1.SelectedIndex)
                 {
                     schematic_nodes[i].create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
                 }
 
             }
         }
-
-
         //ADD NODE BTN
         private void button1_Click(object sender, EventArgs e)
         {
@@ -290,26 +298,28 @@ namespace SmartPLC_Commander
                     tmnode.nid = nid_counter;
                     tmnode.pos.x = 10;
                     tmnode.pos.y = 10;
-
+                    tmnode.schematic_id = comboBox1.SelectedIndex;
                     tmnode.create_connection_list();
                     tmnode.create_drawable(); //actung zuerst create_con_list_aufrufen
                     schematic_nodes.Add(tmnode);
-
-                    // tmnode.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
-                    TreeNode inst_tree_node_tmp = new TreeNode();
-                    inst_tree_node_tmp.Name = "inst_" + tmnode.nid.ToString();
-                    inst_tree_node_tmp.Text = selected_treeview_node.Text + ":" + tmnode.nid.ToString();
-                    treeView2.Nodes.Add(inst_tree_node_tmp);
-
+                    //set for every node in node schem for all connections the parent_node tho the schem_node
+                    for (int k = 0; k <schematic_nodes.Count; k++)
+                    {
+                        for (int l = 0; l < schematic_nodes[k].connections.Count; l++)
+                        {
+                            schematic_nodes[k].connections[l].parent_node = schematic_nodes[k];
+                        }  
+                    }
+                    update_insta_view();
                     if (!timer1.Enabled)
                     {
                         timer1.Enabled = true;
                     }
                 }
             }
+            
             selected_treeview_node = null;
         }
-
         //REMOVE NODE BTN
         private void button2_Click(object sender, EventArgs e)
         {
@@ -328,46 +338,54 @@ namespace SmartPLC_Commander
 
             selected_history_tree_node = null;
         }
-
         //DRAWING TIMER
         private void timer1_Tick(object sender, EventArgs e)
         {
             //CLEAR WITH WHITE
-            graphics.FillRectangle(Brushes.White, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
+            graphics.FillRectangle(Brushes.DarkGray, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
+         
             //DRAW ALL NODES
             for (int i = 0; i < schematic_nodes.Count; i++)
             {
-                schematic_nodes[i].draw_update(ref graphics, new Rectangle(0, 0, drawing_bitmap.Width, drawing_bitmap.Height), ref pos_scoll_offset);
-            }
+                if (schematic_nodes[i].schematic_id == comboBox1.SelectedIndex)
+                {
+                    schematic_nodes[i].draw_update(ref graphics, new Rectangle(0, 0, drawing_bitmap.Width, drawing_bitmap.Height), ref pos_scoll_offset);
+                }
+              }
 
             //DRAW CONNECTION LINES
 
             for (int j = 0; j < connection_list.Count; j++)
             {
-                Point point_source = new Point(connection_list[j].source.drawable_rect.Location.X + connection_list[j].source.drawable_rect.Size.Width, connection_list[j].source.drawable_rect.Location.Y + (connection_list[j].source.drawable_rect.Size.Width / 2));
-                Point point_target = new Point(connection_list[j].target.drawable_rect.Location.X, connection_list[j].target.drawable_rect.Location.Y + (connection_list[j].target.drawable_rect.Size.Width / 2));
-                Point point_middle = new Point(0, 0);
-                if (point_source.X < point_target.X)
+
+              if(connection_list[j].source.parent_node.schematic_id == comboBox1.SelectedIndex && connection_list[j].target.parent_node.schematic_id == comboBox1.SelectedIndex)
                 {
-                    point_middle.X = point_target.X - point_source.X;
-                }
-                else
-                {
-                    point_middle.X = point_source.X - point_target.X;
+                    Point point_source = new Point(connection_list[j].source.drawable_rect.Location.X + connection_list[j].source.drawable_rect.Size.Width, connection_list[j].source.drawable_rect.Location.Y + (connection_list[j].source.drawable_rect.Size.Width / 2));
+                    Point point_target = new Point(connection_list[j].target.drawable_rect.Location.X, connection_list[j].target.drawable_rect.Location.Y + (connection_list[j].target.drawable_rect.Size.Width / 2));
+                    Point point_middle = new Point(0, 0);
+                    if (point_source.X < point_target.X)
+                    {
+                        point_middle.X = point_target.X - point_source.X;
+                    }
+                    else
+                    {
+                        point_middle.X = point_source.X - point_target.X;
+                    }
+
+                    if (point_source.Y < point_target.Y)
+                    {
+                        point_middle.Y = point_target.Y - point_source.Y;
+                    }
+                    else
+                    {
+                        point_middle.Y = point_source.Y - point_target.Y;
+                    }
+
+                    //NACH TYP
+                    graphics.DrawBezier(new Pen(connection_list[j].source.con_color, 5.0f), point_source, new Point(point_middle.X, point_source.Y), new Point(point_middle.X, point_target.Y), point_target); 
                 }
 
-                if (point_source.Y < point_target.Y)
-                {
-                    point_middle.Y = point_target.Y - point_source.Y;
-                }
-                else
-                {
-                    point_middle.Y = point_source.Y - point_target.Y;
-                }
 
-                //NACH TYP
-                graphics.DrawBezier(new Pen(connection_list[j].source.con_color), point_source, new Point(point_middle.X, point_source.Y), new Point(point_middle.X, point_target.Y), point_target);
-                //connection_list[j].
 
             }
 
@@ -376,23 +394,28 @@ namespace SmartPLC_Commander
             pictureBox1.Image = drawing_bitmap;
 
         }
-
         //CLAR ALLL BTN
         private void button3_Click(object sender, EventArgs e)
         {
             schematic_nodes.Clear();
             connection_list.Clear();
+
+            //clear 
+            treeView2.Nodes.Clear();
+            //cleat_view
+            graphics.FillRectangle(Brushes.DarkGray, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
+            pictureBox1.Image = drawing_bitmap;
         }
 
 
         Rectangle mouse_pos_rect;
         node drag_node = null;
         Point drag_node_offset = new Point(0, 0);
-        node.connection selected_connection = null;
+        connection selected_connection = null;
         struct connection_pair
         {
-            public node.connection source;
-            public node.connection target;
+            public connection source;
+            public connection target;
         }
         List<connection_pair> connection_list = new List<connection_pair>();
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -434,8 +457,8 @@ namespace SmartPLC_Commander
                                     else
                                     {
 
-                                        node.connection second_clicked_connection = schematic_nodes[i].connections[j];
-                                        if (second_clicked_connection.con_type == node.type.input && selected_connection.con_type == node.type.output)
+                                        connection second_clicked_connection = schematic_nodes[i].connections[j];
+                                        if (second_clicked_connection.con_type == type.input && selected_connection.con_type == type.output)
                                         {
                                             connection_pair tmp_cpair = new connection_pair();
                                             tmp_cpair.source = selected_connection;
@@ -458,7 +481,7 @@ namespace SmartPLC_Commander
                                                 connection_list.Add(tmp_cpair);
                                             }
                                         }
-                                        else if (second_clicked_connection.con_type == node.type.output && selected_connection.con_type == node.type.input)
+                                        else if (second_clicked_connection.con_type == type.output && selected_connection.con_type == type.input)
                                         {
 
                                             connection_pair tmp_cpair = new connection_pair();
@@ -502,6 +525,7 @@ namespace SmartPLC_Commander
         Point min_pos_values = new Point(-100,-100);
         Point max_pos_vlaues = new Point(100,100);
         Point pos_scoll_offset = new Point(0,0);
+        //MOUSE MOVE PICTUREBOX
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (drag_node != null)
@@ -546,12 +570,12 @@ namespace SmartPLC_Commander
 
             }
         }
-
+        //MOUSE BUTTON UP PICTUREBOX
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             drag_node = null;
         }
-
+        //MOUSE BUTTONS CLICK PICTUREBOX
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             mouse_pos_rect.Location = e.Location;
@@ -569,16 +593,16 @@ namespace SmartPLC_Commander
                         {
                             if (schematic_nodes[i].connections[j].drawable_rect.IntersectsWith(mouse_pos_rect))
                             {
-                                node.connection tmp_con = schematic_nodes[i].connections[j];
+                                connection tmp_con = schematic_nodes[i].connections[j];
 
                                 for (int k = 0; k < connection_list.Count; k++)
                                 {
-                                    if(tmp_con.con_type == node.type.output) {
+                                    if(tmp_con.con_type == type.output) {
                                         if(tmp_con.connection_id == connection_list[k].source.connection_id && tmp_con.parent_node_id == connection_list[k].source.parent_node_id)
                                         {
                                             connection_list.Remove(connection_list[k]);
                                         }
-                                    }else if (tmp_con.con_type == node.type.input)
+                                    }else if (tmp_con.con_type == type.input)
                                     {
                                         if (tmp_con.connection_id == connection_list[k].target.connection_id && tmp_con.parent_node_id == connection_list[k].target.parent_node_id)
                                         {
@@ -597,20 +621,18 @@ namespace SmartPLC_Commander
             }
 
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        //LOAD SCHEMATIC BTN
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            
+
             //download current schematic
             //parse
             //instante all nodes with right values for variables
             //call create drawabel
             //load parameters
             //create_connection_list
-        }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
+
             string schem_content = "";
 
             openFileDialog1.Filter = "Node-Schematic (.xml)|*.xml";
@@ -693,12 +715,7 @@ namespace SmartPLC_Commander
 
 
 
-
-
-        /*
-        TODO errechne  kleinste/grössten x/Y position der nodes errechne daraus die slider min max vlaue und rechne den offset immer zu der pos dazu
-
-    */
+        //SCROLLING STUFF
         public int scroll_multiplier = 5;
         private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
@@ -712,7 +729,6 @@ namespace SmartPLC_Commander
                 schematic_nodes[i].create_drawable();
             }
         }
-
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             pos_scoll_offset.X = e.NewValue;
@@ -723,5 +739,36 @@ namespace SmartPLC_Commander
                 schematic_nodes[i].create_drawable();
             }
         }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //CHANGE SCHEMATIC SLOT
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            update_insta_view();
+            pictureBox1.Focus();
+
+        }
+        //UPDATE NODE INTA TREE VIEW
+        public void update_insta_view()
+        {
+            treeView2.Nodes.Clear();
+
+            for (int i = 0; i < schematic_nodes.Count; i++)
+            {
+                if (schematic_nodes[i].schematic_id == comboBox1.SelectedIndex)
+                {
+                    if(schematic_nodes[i] == null) { break; }
+                    TreeNode inst_tree_node_tmp = new TreeNode();
+                    inst_tree_node_tmp.Name = "inst_" + schematic_nodes[i].nid.ToString();
+                    inst_tree_node_tmp.Text = schematic_nodes[i].title + ":" + schematic_nodes[i].nid.ToString();
+                    treeView2.Nodes.Add(inst_tree_node_tmp);
+                    inst_tree_node_tmp = null;
+                }
+            }
+        }
+
     }
 }

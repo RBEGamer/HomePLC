@@ -7,41 +7,48 @@ using System.Windows.Forms;
 using System.Drawing;
 namespace SmartPLC_Commander
 {
-    class node
+
+    public class connection
     {
-        public struct transform
+        public connection()
         {
-            public int x, y;
-        }
 
-        public enum type
+        }
+        ~connection()
         {
-            input, output, none
-        }
-        public enum datatype
-        {
-            _none, _string, _bool, _int, _float, _special, _generic, _color
-        }
-        public class connection
-        { 
-            public connection()
-            {
 
-            }
-             ~connection()
-            {
-
-            }
-            public int x, y;
-            public int parent_node_id;
-            public int connection_id;
-            public string description;
-            public type con_type;
-            public datatype con_dtype;
-            public Color con_color;
-            public Rectangle drawable_rect;
-            public Rectangle text_rect;
         }
+        public int x, y;
+        public int parent_node_id;
+        public int connection_id;
+        public string description;
+        public type con_type;
+        public datatype con_dtype;
+        public Color con_color;
+        public Rectangle drawable_rect;
+        public Rectangle text_rect;
+        public  node parent_node;
+
+    }
+
+    public struct transform
+    {
+        public int x, y;
+    }
+
+    public enum type
+    {
+        input, output, none
+    }
+    public enum datatype
+    {
+        _none, _string, _bool, _int, _float, _special, _generic, _color
+    }
+
+    public class node
+    {
+       
+
 
 
         public List<connection> connections = new List<connection>();
@@ -62,7 +69,7 @@ namespace SmartPLC_Commander
         public string connection_string;
         public string extention_name;
 
-
+        public int  schematic_id = -1;
         public Rectangle base_rect = new Rectangle();
         public Rectangle clipping_recht;
         Rectangle headline_rect = new Rectangle();
@@ -328,6 +335,7 @@ namespace SmartPLC_Commander
                             tmp_con.con_type = type.input;
                             tmp_con.connection_id = Int32.Parse(one_input_string[0]);
                             tmp_con.description = one_input_string[2];
+                           
                             if (one_input_string[1] == "" || one_input_string[1].ToLower() == "none") { tmp_con.con_dtype = datatype._none; tmp_con.con_color = Color.Black; }
                             if (one_input_string[1].ToLower() == "string") { tmp_con.con_dtype = datatype._string; tmp_con.con_color = Color.OrangeRed; }
                             if (one_input_string[1].ToLower() == "float") { tmp_con.con_dtype = datatype._float; tmp_con.con_color = Color.Cyan; }
