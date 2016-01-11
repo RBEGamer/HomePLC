@@ -430,7 +430,7 @@ namespace SmartPLC_Commander
         public int distance_betewenn_con_text = 20; //defult: *3
         private int distance_between_border_and_inputtext_end = 20;
         private int distance_between_border_and_outputtext_end = 20;
-        private int char_lenght_multiplier = 10;
+        private int char_lenght_multiplier = 9;
         //FOR RECT HEIGHT
         public  int headline_text_distance = 20; //default: *3
         public int distance_between_connections = 20;

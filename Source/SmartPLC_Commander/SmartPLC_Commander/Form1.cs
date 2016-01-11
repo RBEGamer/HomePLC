@@ -49,12 +49,16 @@ namespace SmartPLC_Commander
             drawing_bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             graphics = Graphics.FromImage(drawing_bitmap);
             //CLEAR PICTURE
-            graphics.FillRectangle(Brushes.DarkGray, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
-            pictureBox1.Image = drawing_bitmap;
+            clear_picture();
             pictureBox1.Focus();
         }
 
-
+        public void clear_picture()
+        {
+            graphics.FillRectangle(Brushes.DarkGray, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
+            pictureBox1.Image = drawing_bitmap;
+          
+        }
 
         //LOADED NODE TREEE VIEW
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -136,7 +140,7 @@ namespace SmartPLC_Commander
         private void saveNodeSchematicToolStripMenuItem_Click(object sender, EventArgs e)
         {
            //create header string
-            string final_string = "<?xml version=\"1.0\"?><info schematic-list=\"" + loaded_node_list + "\" date=\"" + System.DateTime.UtcNow.ToString() + "\" schematiccount=\"" + schematic_coount + "\" />";
+            string final_string = "<?xml version=\"1.0\"?><info schematic-list=\"" + loaded_node_list + "\" date=\"" + System.DateTime.UtcNow.ToString() + "\" schematiccount=\"" + (schematic_coount_max - schematic_count_min).ToString() + "\" />";
             for (int j = schematic_count_min; j < schematic_coount_max; j++)
             {
 
@@ -303,14 +307,8 @@ namespace SmartPLC_Commander
                     tmnode.create_drawable(); //actung zuerst create_con_list_aufrufen
                     schematic_nodes.Add(tmnode);
                     //set for every node in node schem for all connections the parent_node tho the schem_node
-                    for (int k = 0; k <schematic_nodes.Count; k++)
-                    {
-                        for (int l = 0; l < schematic_nodes[k].connections.Count; l++)
-                        {
-                            schematic_nodes[k].connections[l].parent_node = schematic_nodes[k];
-                        }  
-                    }
-                    update_insta_view();
+                    make_connection_reference();
+                     update_insta_view();
                     if (!timer1.Enabled)
                     {
                         timer1.Enabled = true;
@@ -667,6 +665,10 @@ namespace SmartPLC_Commander
             if (!schem_content.StartsWith("<?xml version=\"1.0\"?>")) { MessageBox.Show("StartWith - FAIL"); return; }
             bool schem_starts = false;
             int schem_count = 0;
+            schematic_nodes.Clear();
+            connection_list.Clear();
+            clear_picture();
+            timer1.Enabled = false;
             string[] split_xml = schem_content.Split('<');
 
             for (int i = 0; i < split_xml.Length; i++)
@@ -677,17 +679,86 @@ namespace SmartPLC_Commander
 
                 if (split_xml[i].StartsWith("schematic")) { /*Start schem */schem_starts = true; }
 
-                if (split_xml[i].StartsWith("/schematic")) { /*end schem */schem_starts = false; schem_count++; }
+                if (split_xml[i].StartsWith("/schematic")) { /*end schem */
+                    schem_starts = false; schem_count++; }
 
                 if (split_xml[i].StartsWith("node") && schem_starts) {
                     /* NODE CONTENT */
+                    string node_info_string = split_xml[i];
+                    node tmp = new node();
+                    tmp.schematic_id = schem_count;
 
-                    int start_exp_pos = split_xml[i].IndexOf("nid=\"");
-                    int end_exp_pos = split_xml[i].IndexOf("\" ", start_exp_pos+1);
-                   
-                    string extr_value = split_xml[i].Substring(start_exp_pos, end_exp_pos);
+
+                    int start_exp_pos = -1;
+                    int end_exp_pos = -1;
+                    string extr_value = "";
+                    //READ NID
+                     start_exp_pos = node_info_string.IndexOf("nid=\"")+ "nid=\"".Length;
+                     end_exp_pos = node_info_string.IndexOf("\" ", start_exp_pos);
+                     extr_value = node_info_string.Substring(start_exp_pos, (end_exp_pos-start_exp_pos));
+                    tmp.nid = Int32.Parse(extr_value);
+                    //READ NSI -> nbdi
+                    start_exp_pos = node_info_string.IndexOf("nsi=\"") + "nsi=\"".Length;
+                    end_exp_pos = node_info_string.IndexOf("\" ", start_exp_pos);
+                    extr_value = node_info_string.Substring(start_exp_pos, (end_exp_pos - start_exp_pos));
+                    tmp.xml_name =extr_value;
+                    //ncon
+                    start_exp_pos = node_info_string.IndexOf("ncon=\"") + "ncon=\"".Length;
+                    end_exp_pos = node_info_string.IndexOf("\" ", start_exp_pos);
+                    extr_value = node_info_string.Substring(start_exp_pos, (end_exp_pos - start_exp_pos));
+                    tmp.connection_string = extr_value;
+                    //nparam
+                    start_exp_pos = node_info_string.IndexOf("nparam=\"") + "nparam=\"".Length;
+                    end_exp_pos = node_info_string.IndexOf("\" ", start_exp_pos);
+                    extr_value = node_info_string.Substring(start_exp_pos, (end_exp_pos - start_exp_pos));
+                    tmp.param_string = extr_value;
+                    //pos
+                    start_exp_pos = node_info_string.IndexOf("pos=\"") + "pos=\"".Length;
+                    end_exp_pos = node_info_string.IndexOf("\" ", start_exp_pos);
+                    extr_value = node_info_string.Substring(start_exp_pos, (end_exp_pos - start_exp_pos));
+                    string[] spos = extr_value.Split(';');
+                    tmp.pos.x = Int32.Parse(spos[0]);
+                    tmp.pos.y = Int32.Parse(spos[1]);
+
+
+                    //NOW READ MISSING INFO FROM THE CSV
+                    /*
+                    input_con_string
+                    output_con_string
+                    param_properies string
+                    extern_name
+                    idnr
+                    title
+                    category
+                    description
+    */
+                    for (int l = 0; l < loaded_nodes.Count; l++)
+                    {
+                        if(loaded_nodes[l].xml_name == tmp.xml_name)
+                        {
+                            tmp.idnr = l;
+                            tmp.title = loaded_nodes[l].title;
+                            tmp.description = loaded_nodes[l].description;
+                            tmp.category = loaded_nodes[l].category;
+                            tmp.extention_name = loaded_nodes[l].extention_name;
+                            tmp.param_properties = loaded_nodes[l].param_properties;
+                            tmp.output_con_string = loaded_nodes[l].output_con_string;
+                            tmp.input_con_string = loaded_nodes[l].input_con_string;
+                            break;
+                        }
+                    }
+
+                    //create some lists
+                    tmp.create_connection_list();
+                    tmp.create_drawable();
+                    //add to list
+                    schematic_nodes.Add(tmp);
+                    //some other linking stuff
+                    make_connection_reference();
+                    update_insta_view();
+                    
                  }
-
+                timer1.Enabled = true;
             }
 
 
@@ -743,7 +814,6 @@ namespace SmartPLC_Commander
         {
 
         }
-
         //CHANGE SCHEMATIC SLOT
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -766,6 +836,17 @@ namespace SmartPLC_Commander
                     inst_tree_node_tmp.Text = schematic_nodes[i].title + ":" + schematic_nodes[i].nid.ToString();
                     treeView2.Nodes.Add(inst_tree_node_tmp);
                     inst_tree_node_tmp = null;
+                }
+            }
+        }
+
+        public void make_connection_reference()
+        {
+            for (int k = 0; k < schematic_nodes.Count; k++)
+            {
+                for (int l = 0; l < schematic_nodes[k].connections.Count; l++)
+                {
+                    schematic_nodes[k].connections[l].parent_node = schematic_nodes[k];
                 }
             }
         }
