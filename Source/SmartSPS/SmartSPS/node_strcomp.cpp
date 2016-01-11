@@ -1,6 +1,6 @@
 #include "node_strcomp.h"
 
-node_strcomp::node_strcomp(int id, bool us, const int con_count, std::string params, bool is_static)
+node_strcomp::node_strcomp(int id, bool us, const int con_count, std::string params, bool is_static, bool ut)
 {
 	is_value_static = is_static;
 	nid = id;

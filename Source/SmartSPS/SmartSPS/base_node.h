@@ -4,7 +4,7 @@
 class base_node
 {
 public:
-	 base_node(int id, bool us, const int con_count, bool is_static,  bool us);
+	 base_node(int id, bool us, const int con_count, bool is_static,  bool ut);
 	 base_node();
 	 base_node(int id);
 	 virtual ~base_node();

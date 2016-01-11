@@ -15,7 +15,7 @@ node_bnidisp::node_bnidisp(int id, bool us, const int con_count, std::string par
 
 node_bnidisp::~node_bnidisp()
 {
-	delte[] p_connections;
+	delete(p_connections);
 }
 
 void node_bnidisp::update(float timestep)

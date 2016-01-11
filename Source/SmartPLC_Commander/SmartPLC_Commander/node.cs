@@ -173,8 +173,8 @@ namespace SmartPLC_Commander
                     if (split_construct[2].ToLower().Replace(" ", "") == "mid")
                     {
                         tnud.Maximum = 65536;
-                        tnud.Minimum = 1;
-                        tnud.Value = 1;
+                        tnud.Minimum = 0;
+                        tnud.Value = 0;
                     }
                     else {
                         tnud.Maximum = int.MaxValue;
@@ -247,6 +247,8 @@ namespace SmartPLC_Commander
                     tchbx.Location = new Point(70, 20 + (40 * param_id));
                     tchbx.Enabled = true;
                     parameter_panel.Controls.Add(tchbx);
+
+               
                 }
 
 
@@ -266,6 +268,9 @@ namespace SmartPLC_Commander
                 save_parameters(ref parameter_panel);
             }
         }
+
+
+
 
         public void load_parameters(ref Panel param_panel)
         {
@@ -308,7 +313,7 @@ namespace SmartPLC_Commander
             if (param_string == "") {
                 param_string = "%";
             }
-            // MessageBox.Show(param_string);
+             MessageBox.Show(param_string);
         }
 
 

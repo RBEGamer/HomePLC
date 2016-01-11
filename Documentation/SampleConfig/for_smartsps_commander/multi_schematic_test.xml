@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<info schematic-list="C:\Users\root\Desktop\HomePLC\Documentation\Implmented Nodes.csv" date="11.01.2016 01:01:56" schematiccount="0" />
+<schematic>
+<node nid="2" nsi="nbdi" ncon="" nparam="" pos="10;10" />
+</schematic>
+<schematic>
+<node nid="3" nsi="nbdo" ncon="" nparam="" pos="10;10" />
+</schematic>
+<schematic>
+</schematic>
+<schematic>
+</schematic>
+<schematic>
+</schematic>
+<schematic></schematic><schematic></schematic><schematic></schematic><schematic></schematic></xml>

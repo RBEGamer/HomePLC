@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Windows.Forms;
+using System.Collections.Specialized;
+using System.Net;
+using System.IO;
+
 namespace SmartPLC_Commander
 {
 
@@ -175,13 +179,16 @@ namespace SmartPLC_Commander
             //UPLOAD
             if (!checkBox1.Checked)
             {
-                WebRequest upload_request = WebRequest.Create(toolStripTextBox1.Text + "smartsps/upload_schematic.php");
-                upload_request.Method = "POST";
-                upload_request.Credentials = CredentialCache.DefaultCredentials;
-                ((HttpWebRequest)upload_request).UserAgent = "SmartSPS_Commander";
-                upload_request.ContentLength = final_string.Length;
-                upload_request.ContentType = "text/html";
-                upload_request.GetRequestStream().Write(System.Text.Encoding.UTF8.GetBytes(final_string), 0, final_string.Length);
+                WebClient webClient = new WebClient();
+
+                NameValueCollection formData = new NameValueCollection();
+                formData["data"] = final_string ;
+            
+
+                byte[] responseBytes = webClient.UploadValues("http://192.168.178.58/smartsps/text.php", "POST", formData);
+                string responsefromserver = Encoding.UTF8.GetString(responseBytes);
+                Console.WriteLine(responsefromserver);
+                webClient.Dispose();
             }
             else
             {
@@ -274,6 +281,7 @@ namespace SmartPLC_Commander
         }
         //HISTORY TREE VIEW SELECT
         TreeNode selected_history_tree_node = new TreeNode();
+        node selected_history_node = null;
         private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
         {
             selected_history_tree_node = e.Node;
@@ -283,6 +291,7 @@ namespace SmartPLC_Commander
             {
                 if (schematic_nodes[i].nid == sel_nid && schematic_nodes[i].schematic_id == comboBox1.SelectedIndex)
                 {
+                    selected_history_node = schematic_nodes[i];
                     schematic_nodes[i].create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
                 }
 
@@ -437,6 +446,11 @@ namespace SmartPLC_Commander
                             drag_node_offset.Y = (schematic_nodes[i].pos.y - mouse_pos_rect.Location.Y);
                             //switch to property plane
                             drag_node.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
+                            if(selected_history_node != null)
+                            {
+                                selected_history_node.save_parameters(ref parameter_panel_form);
+                            }
+                            selected_history_node = drag_node;
                             tabControl1.SelectedIndex = 2;
                         }
                         else
@@ -758,7 +772,9 @@ namespace SmartPLC_Commander
                     update_insta_view();
                     
                  }
+                reconstruct_connections();
                 timer1.Enabled = true;
+
             }
 
 
@@ -851,5 +867,14 @@ namespace SmartPLC_Commander
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if(selected_history_node == null)
+            {
+                return;
+            }
+
+            selected_history_node.save_parameters(ref parameter_panel_form);
+        }
     }
 }

@@ -156,7 +156,7 @@ std::cout << "STARTIC DOWNLOADING NEWEST SCHEMATIC VERSION" << std::endl;
 
 
 
-	std::string ln1 = "GET /test.html";
+	std::string ln1 = "GET /smartsps/schematic.xml";
 	ln1.append(" HTTP/1.0\r\nHost: ");
 	ln1.append(opm_url);
 	ln1.append("\r\nAccept: text/html\r\n\r\n");
@@ -567,7 +567,7 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "strcomp") { nodes_buffer[element_count] = new node_strcomp(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "blfrs") { nodes_buffer[element_count] = new node_blfrs(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "blft") { nodes_buffer[element_count] = new node_blft(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
-	if (nsi == "nbcoin") { nodes_buffer[element_count] = new node_nbcoin(nid, false, count_connections(*connection_string, nid), nparam, true, false, false); return; };
+	if (nsi == "nbcoin") { nodes_buffer[element_count] = new node_nbcoin(nid, false, count_connections(*connection_string, nid), nparam, true, false); return; };
 	if (nsi == "nbcost") { nodes_buffer[element_count] = new node_nbcost(nid, false, count_connections(*connection_string, nid), nparam, true, false); return; };
 	if (nsi == "nbcofl") { nodes_buffer[element_count] = new node_nbcofl(nid, false, count_connections(*connection_string, nid), nparam, true, false); return; };
 	if (nsi == "nbcobot") { nodes_buffer[element_count] = new node_nbcobot(nid, false, count_connections(*connection_string, nid), nparam, true, false); return; };
@@ -582,8 +582,8 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "tstoint") { nodes_buffer[element_count] = new node_tstoint(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "basetimer") { nodes_buffer[element_count] = new node_basetimer(nid, false, count_connections(*connection_string, nid), nparam, false, true); return; };
 	if (nsi == "simplemath") { nodes_buffer[element_count] = new node_simplemath(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
-	if (nsi == "phhlux") { nodes_buffer[element_count] = new node_phhlux(nid, false, count_connections(*connection_string, nid), nparam, false, false, false); return; };
-	if (nsi == "opwemare") { nodes_buffer[element_count] = new node_opwemare(nid, false, count_connections(*connection_string, nid), nparam, false, false, false); return; };
+	if (nsi == "phhlux") { nodes_buffer[element_count] = new node_phhlux(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
+	if (nsi == "opwemare") { nodes_buffer[element_count] = new node_opwemare(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "stringappend") { nodes_buffer[element_count] = new node_stringappend(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "stringsplit") { nodes_buffer[element_count] = new node_stringsplit(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "stringoffset") { nodes_buffer[element_count] = new node_stringoffset(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
@@ -1125,7 +1125,7 @@ void main_loop() {
 		average_delta_time += delta_time;
 		average_delta_time = average_delta_time / 2;
 
-			std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
+			//std::cout << "average_frame_delta_time  :" << average_delta_time << std::endl;
 			if (delta_time <= 0.1) {
 				usleep(50 + (delta_time*100)*10);
 			}

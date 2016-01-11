@@ -1,6 +1,6 @@
 #include "node_basetimer.h"
 
-node_basetimer::node_basetimer(int id, bool us, const int con_count, std::string params, bool is_static, bool us)
+node_basetimer::node_basetimer(int id, bool us, const int con_count, std::string params, bool is_static, bool ut)
 {
 	is_value_static = is_static;
 	nid = id;
