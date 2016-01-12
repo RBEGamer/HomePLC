@@ -106,7 +106,7 @@ namespace SmartPLC_Commander
 
             for (int i = 0; i < split_comma.Length; i++)
             {
-                if (split_comma[i] == "") { break; } //reach end ?
+                if (split_comma[i] == "" || split_comma[i] == " ") { continue; } //reach end ?
                 string param_construct = split_comma[i];
                 param_construct = param_construct.Substring(1, param_construct.Length - 2);
                 string[] split_construct = param_construct.Split(',');
@@ -138,7 +138,7 @@ namespace SmartPLC_Commander
                     {
                         if (extention_name != "") {
                             textbox_tmp.Text = extention_name;
-                            textbox_tmp.ReadOnly = true;
+                   
                         }
                     }
                     else
@@ -264,9 +264,7 @@ namespace SmartPLC_Commander
 
 
             load_parameters(ref parameter_panel);
-            if (param_string == "" || !param_string.Contains("%")) {
-                save_parameters(ref parameter_panel);
-            }
+
         }
 
 
@@ -276,7 +274,7 @@ namespace SmartPLC_Commander
         {
 
             if (param_string == "" || !param_string.Contains("%")) { return; }
-            string[] split_param = param_string.Split('%');
+             string[] split_param = param_string.Split('%');
             for (int i = 0; i < split_param.Length; i++)
             {
                 if (param_panel.Controls["param_" + i.ToString()] != null)
@@ -313,7 +311,7 @@ namespace SmartPLC_Commander
             if (param_string == "") {
                 param_string = "%";
             }
-             MessageBox.Show(param_string);
+
         }
 
 

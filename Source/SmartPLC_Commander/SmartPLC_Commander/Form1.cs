@@ -148,8 +148,9 @@ namespace SmartPLC_Commander
             for (int j = schematic_count_min; j < schematic_coount_max; j++)
             {
 
-
+                final_string += "\r\n";
                 final_string += "<schematic>";
+                final_string += "\r\n";
                 foreach (node n in schematic_nodes)
                 {
                     if(n.schematic_id != j)
@@ -168,8 +169,10 @@ namespace SmartPLC_Commander
                     n.connection_string = constring_tmp;
                     //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
                     final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
+                    final_string += "\r\n";
                 }
                 final_string += "</schematic>";
+                final_string += "\r\n";
 
 
             }
@@ -448,7 +451,7 @@ namespace SmartPLC_Commander
                             drag_node.create_property_plane(ref parameter_panel_form, ref node_title_text, ref node_nid_text, ref node_nsi_text);
                             if(selected_history_node != null)
                             {
-                                selected_history_node.save_parameters(ref parameter_panel_form);
+                              //  selected_history_node.save_parameters(ref parameter_panel_form);
                             }
                             selected_history_node = drag_node;
                             tabControl1.SelectedIndex = 2;

@@ -1,20 +1,20 @@
 Class Name;XML NSI;Normal Name;Kategory;Use Serial;Is Static;All setters implemented;pass through extern update impuls;Requires an Extention;Extention-MID;Input-Connections;Output-Connections;Parameters;Description
-node_nbdi;nbdi;Digital Input;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;eqro;;[0,bool,state_out]%;[0,int,mid]%[1,string,msi]%[2,string,gpio_id,(0 1 2 3)]%;Read the state of the selected digital input from a EQRI extention
-node_nbdo;nbdo;Digital Output;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;eqri;[0,bool,state_in]%;;[0,int,mid]%[1,string,msi]%[2,string,gpio_id,(0 1 2 3)]%;Set the state of the selected digital output fromt the connected EQRO extention
+node_nbdi;nbdi;Digital Input;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;eqri;;[0,bool,state_out]%;[0,int,mid]%[1,string,msi]%[2,string,gpio_id,(0 1 2 3)]%;Read the state of the selected digital input from a EQRI extention
+node_nbdo;nbdo;Digital Output;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;eqro;[0,bool,state_in]%;;[0,int,mid]%[1,string,msi]%[2,string,gpio_id,(0 1 2 3)]%;Set the state of the selected digital output fromt the connected EQRO extention
 node_bndmx;bndmx;DMX Output;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;bndmx;[0,int,channel_value]%;;[0,int,mid]%[1,string,msi]%[2,int,channel,(1-255)]%;Write a Value to the dmx bux please use as mid: 0 to use ther internal dmx interface
 node_bndisp;bnidisp;Intern Information Display;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;bnid;[0,string,line_string]%;;[0,int,mid]%[1,string,msi]%[2,string,line_number,(0 1)]%;Writes a string to the selected row of the Display Extenttion if you choose as mid 0 you can write to the intern dispaly
 node_bland;bland;AND Gate;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input A]%[1,bool,input B]%;[2,bool,state_out]%;;A standard AND-Gate. If both inputs are true. The output is true too
 node_blor;blor;OR Gate;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input A]%[1,bool,input B]%;[2,bool,state_out]%;;A standard OR-Gate. If only one of the inputs  true. The output is true too
 node_blxor;blxor;XOR Gate;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input A]%[1,bool,input B]%;[2,bool,state_out]%;;A standard XOR-Gate. If the inputs a different, returns true
-node_blnot;blnot;NOT Gate;Logic;FALSE;FALSE;TRUE;TRUE;FALSE;;[0,bool,input A]%[1,bool,input B]%;[1,bool,state_out]%; ;This gate inverts his input
-node_blbuffer;blbuffer;BUFFER Gate;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input A]%;[1,bool,state_out]%;;This gate returns his input
+node_blnot;blnot;NOT Gate;Logic;FALSE;FALSE;TRUE;TRUE;FALSE;;[0,bool,input]%;[1,bool,state_out]%;;This gate inverts his input
+node_blbuffer;blbuffer;BUFFER Gate;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input]%;[1,bool,state_out]%;;This gate returns his input
 node_bifte;bifte;If then else INT;Flow Control;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input,toggle]%[1,int,value 1]%[2,int,value 2]%;[3,int,value_out]%;;
 node_biftest;biftest;If then else String;Flow Control;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input,toggle]%[1,string,value 1]%[2,string,value 2]%;[3,string,value_out]%;;
 node_biftefl;biftefl;If then else Float;Flow Control;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,input,toggle]%[1,float,value 1]%[2,float,value 2]%;[3,float,value_out]%;;
 node_intcomp;intcomp;Compare Int;Flow Control;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,int,input A]%[1,int,input B]%;[2,bool,state_out]%;[0,string,operation,(==,>=,<=,<,>,!=)]%;
 node_floatcomp;floatcomp;Compare Float;Flow Control;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,float,input A]%[1,float,input B]%;[2,bool,state_out]%;[0,string,operation,(==,>=,<=,<,>,!=)]%;
 node_strcomp;strcomp;Compare String;Flow Control;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,string,input A]%[1,string,input B]%;[2,bool,state_out]%;[0,string,operation,(== >= <= < > !=)]%;
-node_blfrs;blfrs;RS Flip Flop;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,set_state]%[1,bool,reset_state]%;[2,bool,state_out]%; ;This gate represents a Reset/Set logic gatter.Set the output to true with a rising edge on the set input , or to false with a rising edge on the reset input
+node_blfrs;blfrs;RS Flip Flop;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,set_state]%[1,bool,reset_state]%;[2,bool,state_out]%;;This gate represents a Reset/Set logic gatter.Set the output to true with a rising edge on the set input , or to false with a rising edge on the reset input
 node_blft;blft;T Flip Flop;Logic;FALSE;FALSE;TRUE;FALSE;FALSE;;[0,bool,toggle_input]%;[1,bool,state_out]%;;This gate represents a T-FlipFlop logic gate. With a rising edge on the input you can toggle the output value
 node_nbcoin;nbcoin;Constant Int Value;Misc;FALSE;TRUE;TRUE;FALSE;FALSE;;;[0,int,output_value]%;[0,int,constant value]%;
 node_nbcost;nbcost;Constant String Value;Misc;FALSE;TRUE;TRUE;FALSE;FALSE;;;[0,string,output_value]%;[0,string,constant value]%;

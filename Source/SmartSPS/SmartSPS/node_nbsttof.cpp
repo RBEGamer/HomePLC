@@ -52,12 +52,12 @@ void node_nbsttof::init()
 {
 	node_nbsttof::p0_a_input = "";
 	node_nbsttof::p1_b_output = 0;
-	update();
+	
 }
 
 void node_nbsttof::load_node_parameters(std::string params)
 {
-	update();
+
 }
 
 
@@ -83,7 +83,7 @@ void node_nbsttof::set_connection(int pos, base_node * ptr, int dest_pos)
 
 void node_nbsttof::serial_income(std::string message)
 {
-	update();
+
 }
 
 void node_nbsttof::set_value(int position, float value)
@@ -95,7 +95,7 @@ void node_nbsttof::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_nbsttof::set_value(int position, int value)
@@ -107,7 +107,7 @@ void node_nbsttof::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_nbsttof::set_value(int position, bool value)
@@ -120,7 +120,7 @@ void node_nbsttof::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_nbsttof::set_value(int position, std::string value)
@@ -132,7 +132,7 @@ void node_nbsttof::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 

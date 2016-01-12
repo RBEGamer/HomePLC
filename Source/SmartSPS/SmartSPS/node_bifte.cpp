@@ -60,12 +60,12 @@ void node_bifte::init()
 	node_bifte::p1_iftrue_input = 0;
 	node_bifte::p2_ifelse_input = 0;
 	node_bifte::p3_value_output = 0;
-	update();
+	
 }
 
 void node_bifte::load_node_parameters(std::string params)
 {
-	update();
+
 }
 
 
@@ -88,11 +88,11 @@ void node_bifte::set_connection(int pos, base_node * ptr, int dest_pos)
 			}
 		
 	}
-	update();
+	
 }
 void node_bifte::serial_income(std::string message)
 {
-	update();
+
 }
 
 void node_bifte::set_value(int position, float value)
@@ -107,7 +107,7 @@ void node_bifte::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_bifte::set_value(int position, int value)
@@ -122,7 +122,7 @@ void node_bifte::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 	
 }
 
@@ -139,7 +139,7 @@ void node_bifte::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_bifte::set_value(int position, std::string value)
@@ -154,7 +154,7 @@ void node_bifte::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 

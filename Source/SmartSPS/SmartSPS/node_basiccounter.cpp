@@ -55,12 +55,12 @@ void node_basiccounter::init()
 	p2_setzero_input = 0.0f;
 	p3_counterout_output = 0.0f;
 	counter_last_state = true;
-	update();
+	
 }
 
 void node_basiccounter::load_node_parameters(std::string params)
 {
-	update();
+
 }
 
 
@@ -86,28 +86,28 @@ void node_basiccounter::set_connection(int pos, base_node * ptr, int dest_pos)
 }
 void node_basiccounter::serial_income(std::string message)
 {
-	update();
+
 }
 
 
 void node_basiccounter::set_value(int position, float value)
 {
-	update();	
+
 }
 
 void node_basiccounter::set_value(int position, int value)
 {
-	update();
+
 }
 
 void node_basiccounter::set_value(int position, bool value)
 {
-	update();
+
 }
 
 void node_basiccounter::set_value(int position, std::string value)
 {
-	update();
+
 }
 
 

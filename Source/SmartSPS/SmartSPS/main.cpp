@@ -1097,7 +1097,7 @@ void main_loop() {
 		if (delta_time > 0) {
 			for (int i = 0; i < node_amount; i++)
 			{
-				if (nodes_buffer[i]->enabled && nodes_buffer[i]->nid >= 0 && nodes_buffer[i]->use_timer) {
+				if (nodes_buffer[i]->enabled && nodes_buffer[i]->nid >= 0) {//&& nodes_buffer[i]->use_timer) {
 					nodes_buffer[i]->update(delta_time);
 				}
 			}
@@ -1161,6 +1161,7 @@ int main(int argc, char *argv[])
 	#if defined(DEBUG)
 	serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
 	#endif
+	debug_server::add_debug_data(0, "SYSTEM", "Serial-Interface : <b>/dev/tty/USB0 at b9600</b>");
 
 
 

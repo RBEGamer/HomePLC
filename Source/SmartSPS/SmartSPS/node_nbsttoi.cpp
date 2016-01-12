@@ -52,12 +52,12 @@ void node_nbsttoi::init()
 {
 	node_nbsttoi::p0_a_input = "";
 	node_nbsttoi::p1_b_output = 0;
-	update();
+
 }
 
 void node_nbsttoi::load_node_parameters(std::string params)
 {
-	update();
+	
 }
 
 
@@ -82,7 +82,7 @@ void node_nbsttoi::set_connection(int pos, base_node * ptr, int dest_pos)
 
 void node_nbsttoi::serial_income(std::string message)
 {
-	update();
+	
 }
 
 void node_nbsttoi::set_value(int position, float value)
@@ -94,7 +94,7 @@ void node_nbsttoi::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_nbsttoi::set_value(int position, int value)
@@ -106,7 +106,7 @@ void node_nbsttoi::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_nbsttoi::set_value(int position, bool value)
@@ -119,7 +119,7 @@ void node_nbsttoi::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_nbsttoi::set_value(int position, std::string value)
@@ -131,7 +131,7 @@ void node_nbsttoi::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 

@@ -165,12 +165,12 @@ void node_tstoint::init()
 	node_tstoint::p7_date_string = "";
 	node_tstoint::p8_time_string = "";
 	node_tstoint::p9_time_string_seconds = "";
-	update();
+	
 }
 
 void node_tstoint::load_node_parameters(std::string params)
 {
-	update();
+
 }
 
 
@@ -197,7 +197,7 @@ void node_tstoint::set_connection(int pos, base_node * ptr, int dest_pos)
 
 void node_tstoint::serial_income(std::string message)
 {
-	update();
+	
 }
 
 void node_tstoint::set_value(int position, float value)
@@ -209,7 +209,7 @@ void node_tstoint::set_value(int position, float value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_tstoint::set_value(int position, int value)
@@ -221,7 +221,7 @@ void node_tstoint::set_value(int position, int value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+
 }
 
 void node_tstoint::set_value(int position, bool value)
@@ -234,7 +234,7 @@ void node_tstoint::set_value(int position, bool value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 void node_tstoint::set_value(int position, std::string value)
@@ -247,7 +247,7 @@ void node_tstoint::set_value(int position, std::string value)
 	default:uv = false; break;
 	}
 	updated_values = uv;
-	update();
+	
 }
 
 
