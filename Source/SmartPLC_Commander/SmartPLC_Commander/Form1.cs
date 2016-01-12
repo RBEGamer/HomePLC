@@ -143,9 +143,8 @@ namespace SmartPLC_Commander
             for (int j = schematic_count_min; j < schematic_coount_max; j++)
             {
 
-                final_string += "\r\n";
                 final_string += "<schematic>";
-                final_string += "\r\n";
+            
                 foreach (node n in schematic_nodes)
                 {
                     if(n.schematic_id != j)
@@ -164,10 +163,10 @@ namespace SmartPLC_Commander
                     n.connection_string = constring_tmp;
                     //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
                     final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
-                    final_string += "\r\n";
+              
                 }
                 final_string += "</schematic>";
-                final_string += "\r\n";
+           
 
 
             }
@@ -686,7 +685,7 @@ namespace SmartPLC_Commander
                 return;
             }
 
-
+            schem_content = schem_content.Replace("\r\n", "");
             if (!schem_content.StartsWith("<?xml version=\"1.0\"?>")) { MessageBox.Show("StartWith - FAIL"); return; }
             bool schem_starts = false;
             int schem_count = 0;
@@ -783,7 +782,7 @@ namespace SmartPLC_Commander
                     update_insta_view();
                     
                  }
-                reconstruct_connections();
+              
                 timer1.Enabled = true;
 
             }
@@ -797,7 +796,7 @@ namespace SmartPLC_Commander
             //instnace nodes
             //wen pos nicht bekannt dann 10;10
             //create_connectreions // create drawable // aufrufen
-
+            reconstruct_connections();
         }
 
 
@@ -812,6 +811,44 @@ namespace SmartPLC_Commander
 
                 string[] splitted_con_string = con_string.Split('%');
 
+                for (int j = 0; j < splitted_con_string.Length; j++)
+                {
+                    if(splitted_con_string[j] == "" || splitted_con_string[j] == ":::" || splitted_con_string[j] == " ") { continue; }
+                    string[] single_con_string = splitted_con_string[j].Split(':');
+
+                    int source_node = Int32.Parse(single_con_string[0]);
+                    int source_con = Int32.Parse(single_con_string[1]);
+                    int target_node = Int32.Parse(single_con_string[2]);
+                    int target_con= Int32.Parse(single_con_string[3]);
+
+
+                    connection_pair tmp_pair = new connection_pair();
+                    tmp_pair.source = null;
+                    tmp_pair.target = null;
+
+                    for (int k = 0; k < schematic_nodes.Count; k++)
+                    {
+                       
+                        for (int l = 0; l < schematic_nodes[k].connections.Count; l++)
+                        {
+                            if(schematic_nodes[k].connections[l].parent_node_id == source_node && schematic_nodes[k].connections[l].connection_id == source_con)
+                            {
+                                tmp_pair.source = schematic_nodes[k].connections[l];
+                            }
+
+                            if (schematic_nodes[k].connections[l].parent_node_id == target_node && schematic_nodes[k].connections[l].connection_id == target_con)
+                            {
+                                tmp_pair.target = schematic_nodes[k].connections[l];
+                            }
+                        }
+                      
+                    }
+                    if (tmp_pair.source != null && tmp_pair.target != null)
+                    {
+                        connection_list.Add(tmp_pair);
+                    }
+
+                }
 
             }
         }
@@ -887,7 +924,7 @@ namespace SmartPLC_Commander
                 }
             }
         }
-
+        //SAVE PARAM BUTTON
         private void button4_Click(object sender, EventArgs e)
         {
             if(selected_history_node == null)
