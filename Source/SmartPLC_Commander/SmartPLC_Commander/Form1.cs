@@ -33,7 +33,7 @@ namespace SmartPLC_Commander
         string loaded_node_list = "";
         int nid_counter = 1;
         Bitmap drawing_bitmap = new Bitmap(500, 500);
-
+        TreeNode root_node;
         public Form1()
         {
             InitializeComponent();
@@ -56,14 +56,13 @@ namespace SmartPLC_Commander
             clear_picture();
             pictureBox1.Focus();
         }
-
+        //CLEAR PICTUREBOX WITH GREY
         public void clear_picture()
         {
             graphics.FillRectangle(Brushes.DarkGray, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
             pictureBox1.Image = drawing_bitmap;
           
         }
-
         //LOADED NODE TREEE VIEW
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -76,9 +75,9 @@ namespace SmartPLC_Commander
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.Multiselect = false;
 
-
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                root_node = null;
                 loaded_node_list = openFileDialog1.FileName;
                 try
                 {
@@ -106,6 +105,7 @@ namespace SmartPLC_Commander
                             tmp_tn.Text = splitted_content[3];
                             treeView1.Nodes.Add(tmp_tn);
                             treeView1.Nodes["__cat__" + splitted_content[3]].Nodes.Add(tn);
+                            if(root_node != null) { root_node = tn; }
                         }
                         else
                         {
@@ -128,16 +128,11 @@ namespace SmartPLC_Commander
 
 
                     }
-
-
-
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Error while loading ");
-
                 }
-
             }
         }
         //SAVE NODE CONFIG
@@ -305,12 +300,24 @@ namespace SmartPLC_Commander
         {
             if (selected_treeview_node == null) { return; }
             if (selected_treeview_node.Name.Contains("__cat__")) { return; }
-            nid_counter++;
+          
             for (int i = 0; i < loaded_nodes.Count; i++)
             {
                 if (loaded_nodes[i].xml_name == selected_treeview_node.Name)
                 {
-                    node tmnode = loaded_nodes[i];
+                    nid_counter++;
+                    node tmnode = new node();
+                    tmnode.idnr = loaded_nodes[i].idnr;
+                    tmnode.xml_name = loaded_nodes[i].xml_name;
+                    tmnode.title = loaded_nodes[i].title;
+                    tmnode.category = loaded_nodes[i].category;
+                    tmnode.description = loaded_nodes[i].description;
+                    tmnode.param_properties = loaded_nodes[i].param_properties;
+                    tmnode.param_string = loaded_nodes[i].param_string;
+                    tmnode.input_con_string = loaded_nodes[i].input_con_string;
+                    tmnode.output_con_string = loaded_nodes[i].output_con_string;
+                    tmnode.connection_string = loaded_nodes[i].connection_string;
+                    tmnode.extention_name = loaded_nodes[i].extention_name;
                     tmnode.nid = nid_counter;
                     tmnode.pos.x = 10;
                     tmnode.pos.y = 10;
@@ -325,6 +332,8 @@ namespace SmartPLC_Commander
                     {
                         timer1.Enabled = true;
                     }
+                    treeView1.SelectedNode = root_node;
+                    break;
                 }
             }
             
@@ -416,8 +425,7 @@ namespace SmartPLC_Commander
             graphics.FillRectangle(Brushes.DarkGray, 0, 0, drawing_bitmap.Width, drawing_bitmap.Height);
             pictureBox1.Image = drawing_bitmap;
         }
-
-
+        //MOUSE CLICK STUFF
         Rectangle mouse_pos_rect;
         node drag_node = null;
         Point drag_node_offset = new Point(0, 0);
@@ -796,6 +804,16 @@ namespace SmartPLC_Commander
         public void reconstruct_connections()
         {
             //durch alle nodes -> alle con strings und in die connection list einfügen
+            for (int i = 0; i < schematic_nodes.Count; i++)
+            {
+                node sel_tmp_node = schematic_nodes[i];
+                string con_string = sel_tmp_node.connection_string;
+                if(con_string == "" || con_string == " " || con_string == "%") { continue; }
+
+                string[] splitted_con_string = con_string.Split('%');
+
+
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
