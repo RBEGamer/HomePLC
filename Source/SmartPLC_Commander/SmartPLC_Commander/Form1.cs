@@ -415,6 +415,7 @@ namespace SmartPLC_Commander
         //CLAR ALLL BTN
         private void button3_Click(object sender, EventArgs e)
         {
+            nid_counter = 1;
             schematic_nodes.Clear();
             connection_list.Clear();
 

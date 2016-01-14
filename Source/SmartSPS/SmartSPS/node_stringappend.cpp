@@ -38,11 +38,11 @@ void node_stringappend::update(float timestep)
 				//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
 				for (size_t i = 0; i < connection_count; i++) {
 					switch ((p_connections + i)->input_pos) {
-					case 2:
+					case 3:
 						//update value in in the connected node connector
 						if ((p_connections + i)->connector_node_ptr != NULL) {
 							(p_connections + i)->connector_node_ptr->set_value((p_connections + i)->output_pos, p2_c_output);
-							std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
+							//std::cout << "UPDATE NODE OUTPUT CONNECTION : " << nid << "-" << (p_connections + i)->input_pos << " -> " << (p_connections + i)->connector_node_ptr->nid << "-" << (p_connections + i)->output_pos << std::endl;
 						}
 						break;
 					default:

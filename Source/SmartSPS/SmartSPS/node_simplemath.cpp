@@ -40,36 +40,39 @@ void node_simplemath::update(float timestep)
 			p2_c_output = p0_a_input * p1_b_input;
 		}
 
+		if (p0_operation == "mod") {
+			p2_c_output = fmodf(p0_a_input, p1_b_input);
+		}
+
+		if (p0_operation == "pow") {
+				p2_c_output = powf(p0_a_input, p1_b_input);
+		}
+
+		if (p0_operation == "min") {
+			p2_c_output = fminf(p0_a_input, p1_b_input);
+		}
+
+		if (p0_operation == "max") {
+			p2_c_output = fmaxf(p0_a_input, p1_b_input);
+		}
+
+		if (p0_operation == "dim") {
+			p2_c_output = fdimf(p0_a_input, p1_b_input);
+		}
+
+
 		if (p0_operation == "dif") {
 			if (p1_b_input > 0 && p1_b_input != 0) {
 				p2_c_output = p0_a_input / p1_b_input;
 			}
-			else if (p1_b_input == 0 && p0_a_input == 0) {
-				p2_c_output = INFINITY;
-			}
-			
-			
-
-			if (p0_operation == "mod") {
-				p2_c_output = fmodf(p0_a_input, p1_b_input);
-			}
-			
-			if (p0_operation == "pow") {
-				p2_c_output = powf(p0_a_input, p1_b_input);
-			}
-
-			if (p0_operation == "min") {
-				p2_c_output = fminf(p0_a_input, p1_b_input);
-			}
-
-			if (p0_operation == "max") {
-				p2_c_output = fmaxf(p0_a_input, p1_b_input);
-			}
-
-			if (p0_operation == "dim") {
-				p2_c_output = fdimf(p0_a_input, p1_b_input);
-			}
+			//else if (p1_b_input == 0 && p0_a_input == 0) {
+			//	p2_c_output = INFINITY;
+			//}
 		}
+			
+
+			
+		
 		//hier sonst alle weitren node durchgehen //für alle nodes di einen ausgansnode besitzen
 		for (size_t i = 0; i < connection_count; i++) {
 			switch ((p_connections + i)->input_pos) {
