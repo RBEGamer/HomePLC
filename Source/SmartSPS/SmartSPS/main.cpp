@@ -1157,9 +1157,9 @@ int main(int argc, char *argv[])
 		return Ret;                                                       
 	}
 	std::cout << "NODESERVER V1.2 STARTING THE SERIAL INTERFACE IS: /dev/ttyUSB0" << std::endl;
-	serial_management::add_to_send_queue("0_bnid_0_SmartSPS 1.2\n");
+//	serial_management::add_to_send_queue("0_bnid_0_SmartSPS 1.2\n");
 	#if defined(DEBUG)
-	serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
+	//serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
 	#endif
 	debug_server::add_debug_data(0, "SYSTEM", "Serial-Interface : <b>/dev/tty/USB0 at b9600</b>");
 

@@ -387,7 +387,7 @@ namespace SmartPLC_Commander
                     }
                     else
                     {
-                        point_middle.X = point_source.X - point_target.X;
+                        point_middle.X = point_source.X + point_target.X;
                     }
 
                     if (point_source.Y < point_target.Y)
@@ -396,7 +396,7 @@ namespace SmartPLC_Commander
                     }
                     else
                     {
-                        point_middle.Y = point_source.Y - point_target.Y;
+                        point_middle.Y = point_source.Y + point_target.Y;
                     }
 
                     //NACH TYP
