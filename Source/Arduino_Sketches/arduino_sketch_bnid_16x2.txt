@@ -9,6 +9,8 @@ unsigned int interval = 10000;
  bool bgs;
 String readString;
 int modul_id = 0;
+String msg1 = "";
+String msg2 = "";
 // the setup function runs once when you press reset or power the board
 void setup() {
   
@@ -82,10 +84,26 @@ if(getValue(readString, '_', 0).toInt() == modul_id){
   
        int _cursor = getValue(readString, '_', 2).toInt();
        if(_cursor < 2){
-       lcd.setCursor(0,_cursor); //Start at character 4 on line 0 //CHAR LINE
 
-       if(getValue(readString, '_', 3) != ""){
-        lcd.print(getValue(readString, '_', 3));
+      if(_cursor == 0){
+  msg1 = getValue(readString, '_', 3);
+  if(msg1.length() > 0){
+  msg1 = msg1.substring(0, msg1.length()-1);
+  }
+  }else if(_cursor == 1){
+    msg2 = getValue(readString, '_', 3);
+      if(msg2.length() > 0){
+  msg2 = msg2.substring(0, msg2.length()-1);
+  }
+    }
+      
+        lcd.clear();
+        lcd.setCursor(0,0); //Start at character 4 on line 0 //CHAR LINE
+        lcd.print(msg1);
+        lcd.setCursor(0,1); //Start at character 4 on line 0 //CHAR LINE
+        lcd.print(msg2);
+        
+     
         digitalWrite(5, HIGH); 
         lcd.backlight();
         bgs = true;
@@ -97,7 +115,7 @@ if(getValue(readString, '_', 0).toInt() == modul_id){
           lcd.clear();
         }
         digitalWrite(3, LOW);
-    }
+    
   }
     readString="";
   } 
