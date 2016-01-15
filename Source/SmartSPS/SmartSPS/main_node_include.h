@@ -15,6 +15,7 @@
 #include "node_nbdo.h" // 1 GPIO OUTPUT <mid><msi><gpio>
 #include "node_bndmx.h" // 1 Channel DMX Output <mid><msi><channel>
 #include "node_bnidisp.h" //Show Text on Display <mid><msi><line>
+#include "node_eowt.h" //one wire temperature node
 //BASIC LOGIC GATE NODES
 #include "node_bland.h" //NAD GATE
 #include "node_blor.h" //OR GATE
@@ -54,7 +55,7 @@
 #include "node_tstoint.h" //CONVERTS A TIMESTAMP TO SINGLE INTS
 #include "node_basetimer.h" //A basic timer node DOWNTIMER
 //MATH
-#include "node_simplemath.h" // SIMPLE math with add, saub, mul, dif, mod, min, max, pow
+#include "node_simplemath.h" // SIMPLE math with add, saub, mul, dif, mod, min, max, pow -> FLOAT
 #include "node_basiccounter.h"
 //PHILIPS HUE
 #include "node_phhlux.h" // PHILIPS HUE LUX LAMPS  <bridge_ip><username><light_id>

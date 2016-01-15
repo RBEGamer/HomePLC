@@ -44,6 +44,7 @@
     <ClCompile Include="node_stringoffset.cpp" />
     <ClCompile Include="node_stringsplit.cpp" />
     <ClCompile Include="node_basiccounter.cpp" />
+    <ClCompile Include="node_eowt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_node.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="node_stringoffset.h" />
     <ClInclude Include="node_stringsplit.h" />
     <ClInclude Include="node_basiccounter.h" />
+    <ClInclude Include="node_eowt.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />

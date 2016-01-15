@@ -589,7 +589,7 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "stringoffset") { nodes_buffer[element_count] = new node_stringoffset(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "basiccounter") { nodes_buffer[element_count] = new node_basiccounter(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 
-
+	if (nsi == "eowt") { nodes_buffer[element_count] = new node_eowt(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 }
 
 void main_serial_update_loop() {
@@ -969,7 +969,7 @@ namespace debug_server
 		default:
 			break;
 		}
-		add_debug_data(-1, "TARGET", "RAM:" + NumberToString(((getTotalSystemMemory() / 1024) / 1024)) + "MB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
+		add_debug_data(-1, "TARGET", "RAM:" + NumberToString((getTotalSystemMemory() / 1024)) + "KB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
 
 
 

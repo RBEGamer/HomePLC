@@ -35,7 +35,7 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES := base_node.cpp node_basetimer.cpp node_basiccounter.cpp node_bifte.cpp node_biftefl.cpp node_biftest.cpp node_blbuffer.cpp node_blfrs.cpp node_blft.cpp node_blnot.cpp connector.cpp node_bland.cpp node_blor.cpp node_blxor.cpp node_bndmx.cpp node_bnidisp.cpp node_ctimest.cpp node_floatcomp.cpp node_intcomp.cpp node_nbcobof.cpp node_nbcobot.cpp node_nbcofl.cpp node_nbcoin.cpp node_nbcost.cpp node_nbdi.cpp main.cpp node_nbdo.cpp node_nbfltostr.cpp node_nbftoi.cpp node_nbinttostr.cpp node_nbitof.cpp node_nbsttof.cpp node_nbsttoi.cpp node_opwemare.cpp node_phhlux.cpp node_simplemath.cpp node_strcomp.cpp node_stringappend.cpp node_stringoffset.cpp node_stringsplit.cpp node_tstoint.cpp serialib.cpp serial_management.cpp
+SOURCEFILES := base_node.cpp node_basetimer.cpp node_basiccounter.cpp node_bifte.cpp node_biftefl.cpp node_biftest.cpp node_blbuffer.cpp node_blfrs.cpp node_blft.cpp node_blnot.cpp connector.cpp node_bland.cpp node_blor.cpp node_blxor.cpp node_bndmx.cpp node_bnidisp.cpp node_ctimest.cpp node_eowt.cpp node_floatcomp.cpp node_intcomp.cpp node_nbcobof.cpp node_nbcobot.cpp node_nbcofl.cpp node_nbcoin.cpp node_nbcost.cpp node_nbdi.cpp main.cpp node_nbdo.cpp node_nbfltostr.cpp node_nbftoi.cpp node_nbinttostr.cpp node_nbitof.cpp node_nbsttof.cpp node_nbsttoi.cpp node_opwemare.cpp node_phhlux.cpp node_simplemath.cpp node_strcomp.cpp node_stringappend.cpp node_stringoffset.cpp node_stringsplit.cpp node_tstoint.cpp serialib.cpp serial_management.cpp
 EXTERNAL_LIBS := 
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 
