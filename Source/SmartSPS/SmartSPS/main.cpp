@@ -214,6 +214,7 @@ std::cout << "STARTIC DOWNLOADING NEWEST SCHEMATIC VERSION" << std::endl;
 
 }
 
+// TESTED XML PARSER
 namespace xml_parser {
 
 	//CHECK PASSED---------------------------------------------------------
@@ -389,7 +390,448 @@ namespace xml_parser {
 	//CHECK PASSED---------------------------------------------------------
 
 }
+// global variable to share data
+namespace debug_server
+{
+	std::vector<std::string> debug_data_storage;
+	pthread_mutex_t t1_mutex = PTHREAD_MUTEX_INITIALIZER;
+	pthread_mutex_t log_level_mutex = PTHREAD_MUTEX_INITIALIZER;
+	int sockfd, portno, clilen;
+	pthread_t t1;
+	std::string final_html;
+	enum debug_level_enum
+	{
+		ERROR, WARNING, INFO
+	};
+	debug_level_enum current_debug_level;
+	// This function will run concurrently.
 
+	void add_debug_data(int debug_level, std::string key, std::string value) {
+
+
+		switch (current_debug_level)
+		{
+		case ERROR:
+			if (debug_level == 0 || debug_level == 1) { return; }
+			break;
+		case WARNING:
+			if (debug_level == 0) { return; }
+			break;
+		case INFO:
+			break;
+		default:
+			break;
+		}
+		final_html = "";
+
+		final_html.append("<table border=\"1\"><tr>");
+
+		struct timeval tv;
+		gettimeofday(&tv, NULL);
+		time_t tt = tv.tv_sec;
+		struct tm * ptm = localtime(&tt);
+		char buf[30];
+		strftime(buf, 30, "%m:%d:%Y-%H:%M:%S", ptm);
+		final_html.append("<td width=\"100px\">");
+		final_html.append(buf);
+		final_html.append("</td>");
+
+
+		//ADD LEVLE CHECK
+
+		//ADD MESSAGE TYPE
+
+		if (debug_level == 0) {
+			final_html.append("<td width=\"100px\" ><b> <p style=\"color : green\">INFO</p></b></td>");
+		}
+		else 	if (debug_level == 2) {
+			final_html.append("<td width=\"100px\" ><b><p style=\"color : red\">ERROR</p></b></td>");
+		}
+		else 	if (debug_level == 1) {
+			final_html.append("<td width=\"100px\" ><b><p style=\"color : yellow\">WARNING</p></b></td>");
+		}
+		else if (debug_level == -1) {
+			final_html.append("<td width=\"100px\" ><b> <p style=\"color : green\">SYS-INFO</p></b></td>");
+		}
+
+
+		final_html.append("<td  width=\"150px\" >");
+		final_html.append(key);
+		final_html.append("</td><td  width=\"400px\" >");
+		final_html.append(value);
+		final_html.append("</td></tr></table>");
+
+
+
+		//LOCK 
+
+
+		volatile bool got_lock = false;
+		while (!got_lock) {
+			if (pthread_mutex_trylock(&t1_mutex) == 0) {
+				got_lock = true;
+				debug_data_storage.insert(debug_data_storage.end() - 1, final_html);
+				pthread_mutex_unlock(&t1_mutex);
+			}
+		}
+
+
+
+
+
+		//DELOCK
+	}
+
+
+	void doprocessing(int sock) {
+		int n;
+		char buffer[256];
+		bzero(buffer, 256);
+
+
+		volatile bool found = false;
+		int end = -1;
+		std::string com_buffer = "";
+		std::string requested_data = "";
+		while (!found)
+		{
+			n = read(sock, buffer, 255);
+
+			if (n < 0) {
+				perror("ERROR reading from socket");
+				exit(1);
+			}
+
+
+			if (n > 0) {
+				com_buffer += buffer;
+				end = com_buffer.find("\r\n\r\n");
+				if (end != -1) {
+					const char* start = com_buffer.c_str();
+					start = strstr(start, "GET ");
+					if (start != 0)
+					{
+						start += 4;
+						const char* end = strstr(start, " HTTP/");
+						if (end != 0) {
+							requested_data.append(start, end);
+							found = true;
+						}
+					}
+				}
+			}
+		}
+
+
+
+
+		std::cout << requested_data << std::endl;
+
+
+		//SEND DEBUG HEADERS
+		if (requested_data == "/debug" || requested_data == "/") {
+			int lsize = 0;
+			std::string end_msg = "<br>Please see : <a href = '/debug'>DEBUG LOG</a><br><a href = '/shutdown'>SHUTDOWN</a><br><a href = '/reload'>RELOAD SCHEMATIC</ a></body></html>";
+			for (size_t i = 0; i < debug_data_storage.size(); i++)
+			{
+				lsize += debug_data_storage.at(i).size();
+			}
+			lsize += end_msg.size();
+			std::string http_header = "";
+			http_header.append("HTTP/1.1 200 OK\r\n");
+			http_header.append("Host: 192.168.178.58\r\n");
+			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Connection: clos\r\n");
+			http_header.append("Content-Lenght: ");
+			http_header.append(NumberToString(lsize));
+			http_header.append("\r\n");
+			http_header.append("\r\n");
+			for (size_t i = 0; i < debug_data_storage.size(); i++)
+			{
+				http_header.append(debug_data_storage.at(i));
+			}
+			http_header.append("<br>Please see : <a href = '/debug'>DEBUG LOG< / a><br><a href = '/shutdown'>SHUTDOWN< / a><br><a href = '/reload'>RELOAD SCHEMATIC< / a></body></html>");
+
+			write(sock, http_header.c_str(), http_header.size());
+			// std::cout << http_header << std::endl;
+		}
+		else if (requested_data == "/reload") {
+
+			volatile bool got_lock = false;
+			while (!got_lock) {
+				if (pthread_mutex_trylock(&state_mutex) == 0) {
+					got_lock = true;
+					current_todo_state = reload;
+					pthread_mutex_unlock(&state_mutex);
+				}
+			}
+
+
+			std::string html_message = "<html><header></header><body><h1>RELOAD SCHEMATIC</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
+			std::string http_header = "";
+			http_header.append("HTTP/1.1 200 OK\r\n");
+			http_header.append("Host: 192.168.178.58\r\n");
+			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
+			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Content-Lenght: ");
+			http_header.append(NumberToString(html_message.size()));
+			http_header.append("\r\n");
+			http_header.append("\r\n");
+			http_header.append(html_message);
+			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
+		}
+		else if (requested_data == "/shutdown") {
+			volatile bool got_lock = false;
+			while (!got_lock) {
+				if (pthread_mutex_trylock(&state_mutex) == 0) {
+					got_lock = true;
+					current_todo_state = stop;
+					pthread_mutex_unlock(&state_mutex);
+				}
+			}
+			std::string html_message = "<html><header></header><body><h1>SHUTDOWN</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
+			std::string http_header = "";
+			http_header.append("HTTP/1.1 200 OK\r\n");
+			http_header.append("Host: 192.168.178.58\r\n");
+			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
+			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Content-Lenght: ");
+			http_header.append(NumberToString(html_message.size()));
+			http_header.append("\r\n");
+			http_header.append("\r\n");
+			http_header.append(html_message);
+			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
+		}
+		else if (requested_data == "/level=error") {
+			volatile bool got_lock = false;
+			while (!got_lock) {
+				if (pthread_mutex_trylock(&log_level_mutex) == 0) {
+					got_lock = true;
+					current_debug_level = ERROR;
+					pthread_mutex_unlock(&log_level_mutex);
+				}
+			}
+			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO ERROR</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
+			std::string http_header = "";
+			http_header.append("HTTP/1.1 200 OK\r\n");
+			http_header.append("Host: 192.168.178.58\r\n");
+			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
+			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Content-Lenght: ");
+			http_header.append(NumberToString(html_message.size()));
+			http_header.append("\r\n");
+			http_header.append("\r\n");
+			http_header.append(html_message);
+			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
+		}
+		else if (requested_data == "/level=warning") {
+			volatile bool got_lock = false;
+			while (!got_lock) {
+				if (pthread_mutex_trylock(&log_level_mutex) == 0) {
+					got_lock = true;
+					current_debug_level = WARNING;
+					pthread_mutex_unlock(&log_level_mutex);
+				}
+			}
+			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO WARNING</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
+			std::string http_header = "";
+			http_header.append("HTTP/1.1 200 OK\r\n");
+			http_header.append("Host: 192.168.178.58\r\n");
+			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
+			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Content-Lenght: ");
+			http_header.append(NumberToString(html_message.size()));
+			http_header.append("\r\n");
+			http_header.append("\r\n");
+			http_header.append(html_message);
+			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
+		}
+		else if (requested_data == "/level=info") {
+			volatile bool got_lock = false;
+			while (!got_lock) {
+				if (pthread_mutex_trylock(&log_level_mutex) == 0) {
+					got_lock = true;
+					current_debug_level = INFO;
+					pthread_mutex_unlock(&log_level_mutex);
+				}
+			}
+			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO INFO</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
+			std::string http_header = "";
+			http_header.append("HTTP/1.1 200 OK\r\n");
+			http_header.append("Host: 192.168.178.58\r\n");
+			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
+			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Content-Lenght: ");
+			http_header.append(NumberToString(html_message.size()));
+			http_header.append("\r\n");
+			http_header.append("\r\n");
+			http_header.append(html_message);
+			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
+		}
+		else {
+			std::string html_message = "<html><header></header><body><h1>HELP ERR 404</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a><br><a href='/shutdown'>SHUTDOWN</a><br><a href='/reload'>RELOAD SCHEMATIC</a></body></html>";
+			std::string http_header = "";
+			http_header.append("HTTP/1.1 200 OK\r\n");
+			http_header.append("Host: 192.168.178.58\r\n");
+			http_header.append("Server: Apache/1.1.1\r\n");
+			http_header.append("Connection: clos\r\n");
+			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
+			http_header.append("Content-Lenght: ");
+			http_header.append(NumberToString(html_message.size()));
+			http_header.append("\r\n");
+			http_header.append("\r\n");
+			http_header.append(html_message);
+			write(sock, http_header.c_str(), http_header.size());
+			closesocket(sock);
+		}
+
+
+
+
+		if (n < 0) {
+			perror("ERROR writing to socket");
+
+		}
+
+	}
+
+	void* debuge_server_thread(void *ptr) {
+		int newsockfd;
+		char buffer[256];
+		struct sockaddr_in serv_addr, cli_addr;
+		int n, pid;
+
+		/* First call to socket() function */
+		sockfd = socket(AF_INET, SOCK_STREAM, 0);
+
+		if (sockfd < 0) {
+			perror("ERROR opening socket");
+			exit(1);
+		}
+
+		/* Initialize socket structure */
+		bzero((char *)&serv_addr, sizeof(serv_addr));
+		portno = 5555;
+
+		serv_addr.sin_family = AF_INET;
+		serv_addr.sin_addr.s_addr = INADDR_ANY;
+		serv_addr.sin_port = htons(portno);
+
+		/* Now bind the host address using bind() call.*/
+		if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+			perror("ERROR on binding");
+			exit(1);
+		}
+
+		/* Now start listening for the clients, here
+		* process will go in sleep mode and will wait
+		* for the incoming connection
+		*/
+
+		listen(sockfd, 5);
+		clilen = sizeof(cli_addr);
+
+		while (1) {
+
+
+			if (newsockfd < 0) {
+				perror("ERROR on accept");
+				exit(1);
+			}
+
+			/* Create child process */
+			//	pid = fork();
+
+			//		if (pid < 0) {
+			//		perror("ERROR on fork");
+			//	exit(1);
+			//	}
+
+			//		if (pid == 0) {
+			/* This is the client process */
+			//	close(sockfd);
+			doprocessing(accept(sockfd, NULL, NULL));
+			//			exit(0);
+			//}
+			//	else {
+			//		close(newsockfd);
+			//			}
+
+		} /* end of while */
+	}
+
+	void start_debug_server(debug_level_enum _current_debug_level) {
+		current_debug_level = _current_debug_level;
+		std::cout << "START DEBUG SERVER THREAD" << std::endl;
+		debug_data_storage = std::vector<std::string>();
+		debug_data_storage.reserve(512);
+		debug_data_storage.insert(debug_data_storage.end(), std::string("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>SmartSPS Debug Log Viewer</title></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
+		debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
+
+		std::string plattform = "UNKNOWN";
+#if defined(_WIN_)
+		plattform = "WINDOWS";
+#endif
+#if defined(_MAC_)
+		plattform = "MAC OSX";
+#endif
+#if defined(_LINUX_)
+		plattform = "LINUX";
+#endif
+
+		std::string build_config = "UNKNOWN";
+#if defined(DEBUG)
+		build_config = "DEBUG";
+#endif
+#if defined(RELEASE)
+		build_config = "RELEASE";
+#endif
+
+		std::string debuglevel_string = "UNKNOWN";
+
+		switch (current_debug_level)
+		{
+		case ERROR:
+			debuglevel_string = "ERROR";
+			break;
+		case WARNING:
+			debuglevel_string = "WARNING";
+			break;
+		case INFO:
+			debuglevel_string = "INFO";
+			break;
+		default:
+			break;
+		}
+		add_debug_data(-1, "TARGET", "RAM:" + NumberToString((getTotalSystemMemory() / 1024)) + "KB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
+
+
+
+		int iret1 = pthread_create(&t1, NULL, debuge_server_thread, NULL);
+	}
+
+	void stop_debug_server() {
+		std::cout << "STOP DEBUG SERVER THREAD" << std::endl;
+		pthread_mutex_unlock(&t1_mutex);
+		pthread_mutex_unlock(&state_mutex);
+		closesocket(sockfd);
+		pthread_join(t1, NULL);
+		debug_data_storage.clear();
+	}
+
+
+}
 
 
 
@@ -600,10 +1042,10 @@ void main_serial_update_loop() {
 		std::cout << msg << std::endl;
 		if (msg != "") {
 			Ret = LS.WriteString(msg.c_str());
-			usleep(100);// Send the command on the serial port
+			usleep(200);// Send the command on the serial port
 			if (Ret != 1) {                                                           // If the writting operation failed ...
-				printf("Error while writing data\n");                              // ... display a message ...
-
+			//debug_server::add_debug_data(3, "_SERIAL_", "Sending message to bus failed");                             // ... display a message ...
+			std::cout << "_SERIAL_ ERR COULD NOT OPEN" << std::endl;
 			}
 		}
 	}
@@ -622,372 +1064,6 @@ void main_serial_update_loop() {
 }
 
 
-// global variable to share data
-namespace debug_server
-{
-	std::vector<std::string> debug_data_storage;
-	pthread_mutex_t t1_mutex = PTHREAD_MUTEX_INITIALIZER;
-	int sockfd, portno, clilen;
-	pthread_t t1;
-	std::string final_html;
-	enum debug_level_enum
-	{
-		ERROR, WARNING, INFO
-	};
-	debug_level_enum current_debug_level;
-	// This function will run concurrently.
-
-	void add_debug_data(int debug_level, std::string key, std::string value) {
-
-
-		switch (current_debug_level)
-		{
-		case ERROR:
-			if (debug_level == 0 || debug_level == 1) { return; }
-			break;
-		case WARNING:
-			if (debug_level == 0) { return; }
-			break;
-		case INFO:
-			break;
-		default:
-			break;
-		}
-		final_html = "";
-
-		final_html.append("<table border=\"1\"><tr>");
-
-		struct timeval tv;
-		gettimeofday(&tv, NULL);
-		time_t tt = tv.tv_sec;
-		struct tm * ptm = localtime(&tt);
-		char buf[30];
-		strftime(buf, 30, "%m:%d:%Y-%H:%M:%S", ptm);
-		final_html.append("<td width=\"100px\">");
-		final_html.append(buf);
-		final_html.append("</td>");
-
-
-		//ADD LEVLE CHECK
-
-		//ADD MESSAGE TYPE
-
-		if (debug_level == 0) {
-			final_html.append("<td width=\"100px\" ><b> <p style=\"color : green\">INFO</p></b></td>");
-		}
-		else 	if (debug_level == 2) {
-			final_html.append("<td width=\"100px\" ><b><p style=\"color : red\">ERROR</p></b></td>");
-		}
-		else 	if (debug_level == 1) {
-			final_html.append("<td width=\"100px\" ><b><p style=\"color : yellow\">WARNING</p></b></td>");
-		}
-		else if (debug_level == -1) {
-			final_html.append("<td width=\"100px\" ><b> <p style=\"color : green\">SYS-INFO</p></b></td>");
-		}
-
-
-		final_html.append("<td  width=\"150px\" >");
-		final_html.append(key);
-		final_html.append("</td><td  width=\"400px\" >");
-		final_html.append(value);
-		final_html.append("</td></tr></table>");
-
-
-
-		//LOCK 
-
-
-		volatile bool got_lock = false;
-		while (!got_lock) {
-			if (pthread_mutex_trylock(&t1_mutex) == 0) {
-				got_lock = true;
-				debug_data_storage.insert(debug_data_storage.end() - 1, final_html);
-				pthread_mutex_unlock(&t1_mutex);
-			}
-		}
-
-
-
-
-
-		//DELOCK
-	}
-
-
-	void doprocessing(int sock) {
-		int n;
-		char buffer[256];
-		bzero(buffer, 256);
-
-
-		volatile bool found = false;
-		int end = -1;
-		std::string com_buffer = "";
-		std::string requested_data = "";
-		while (!found)
-		{
-			n = read(sock, buffer, 255);
-
-			if (n < 0) {
-				perror("ERROR reading from socket");
-				exit(1);
-			}
-
-
-			if (n > 0) {
-				com_buffer += buffer;
-				end = com_buffer.find("\r\n\r\n");
-				if (end != -1) {
-					const char* start = com_buffer.c_str();
-					start = strstr(start, "GET ");
-					if (start != 0)
-					{
-						start += 4;
-						const char* end = strstr(start, " HTTP/");
-						if (end != 0) {
-							requested_data.append(start, end);
-							found = true;
-						}
-					}
-				}
-			}
-		}
-
-
-
-
-		std::cout << requested_data << std::endl;
-
-
-		//SEND DEBUG HEADERS
-		if (requested_data == "/debug" || requested_data == "/") {
-			int lsize = 0;
-			for (size_t i = 0; i < debug_data_storage.size(); i++)
-			{
-				lsize += debug_data_storage.at(i).size();
-			}
-			std::string http_header = "";
-			http_header.append("HTTP/1.1 200 OK\r\n");
-			http_header.append("Host: 192.168.178.58\r\n");
-			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
-			http_header.append("Connection: clos\r\n");
-			http_header.append("Content-Lenght: ");
-			http_header.append(NumberToString(lsize));
-			http_header.append("\r\n");
-			http_header.append("\r\n");
-			for (size_t i = 0; i < debug_data_storage.size(); i++)
-			{
-				http_header.append(debug_data_storage.at(i));
-			}
-			write(sock, http_header.c_str(), http_header.size());
-			// std::cout << http_header << std::endl;
-		}
-		else if (requested_data == "/reload") {
-			
-			volatile bool got_lock = false;
-			while (!got_lock) {
-				if (pthread_mutex_trylock(&state_mutex) == 0) {
-					got_lock = true;
-					current_todo_state = reload;
-					pthread_mutex_unlock(&state_mutex);
-				}
-			}
-
-
-			std::string html_message = "<html><header></header><body><h1>RELOAD SCHEMATIC</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
-			std::string http_header = "";
-			http_header.append("HTTP/1.1 200 OK\r\n");
-			http_header.append("Host: 192.168.178.58\r\n");
-			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
-			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
-			http_header.append("Content-Lenght: ");
-			http_header.append(NumberToString(html_message.size()));
-			http_header.append("\r\n");
-			http_header.append("\r\n");
-			http_header.append(html_message);
-			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
-		}
-		else if (requested_data == "/shutdown") {
-			volatile bool got_lock = false;
-			while (!got_lock) {
-				if (pthread_mutex_trylock(&state_mutex) == 0) {
-					got_lock = true;
-					current_todo_state = stop;
-					pthread_mutex_unlock(&state_mutex);
-				}
-			}
-			std::string html_message = "<html><header></header><body><h1>SHUTDOWN</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
-			std::string http_header = "";
-			http_header.append("HTTP/1.1 200 OK\r\n");
-			http_header.append("Host: 192.168.178.58\r\n");
-			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
-			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
-			http_header.append("Content-Lenght: ");
-			http_header.append(NumberToString(html_message.size()));
-			http_header.append("\r\n");
-			http_header.append("\r\n");
-			http_header.append(html_message);
-			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
-		}
-		else {
-			std::string html_message = "<html><header></header><body><h1>HELP ERR 404</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a><br><a href='/shutdown'>SHUTDOWN</a><br><a href='/reload'>RELOAD SCHEMATIC</a></body></html>";
-			std::string http_header = "";
-			http_header.append("HTTP/1.1 200 OK\r\n");
-			http_header.append("Host: 192.168.178.58\r\n");
-			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
-			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
-			http_header.append("Content-Lenght: ");
-			http_header.append(NumberToString(html_message.size()));
-			http_header.append("\r\n");
-			http_header.append("\r\n");
-			http_header.append(html_message);
-			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
-		}
-
-
-
-
-		if (n < 0) {
-			perror("ERROR writing to socket");
-
-		}
-
-	}
-
-	void* debuge_server_thread(void *ptr) {
-		int newsockfd;
-		char buffer[256];
-		struct sockaddr_in serv_addr, cli_addr;
-		int n, pid;
-
-		/* First call to socket() function */
-		sockfd = socket(AF_INET, SOCK_STREAM, 0);
-
-		if (sockfd < 0) {
-			perror("ERROR opening socket");
-			exit(1);
-		}
-
-		/* Initialize socket structure */
-		bzero((char *)&serv_addr, sizeof(serv_addr));
-		portno = 5555;
-
-		serv_addr.sin_family = AF_INET;
-		serv_addr.sin_addr.s_addr = INADDR_ANY;
-		serv_addr.sin_port = htons(portno);
-
-		/* Now bind the host address using bind() call.*/
-		if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
-			perror("ERROR on binding");
-			exit(1);
-		}
-
-		/* Now start listening for the clients, here
-		* process will go in sleep mode and will wait
-		* for the incoming connection
-		*/
-
-		listen(sockfd, 5);
-		clilen = sizeof(cli_addr);
-
-		while (1) {
-		
-
-			if (newsockfd < 0) {
-				perror("ERROR on accept");
-				exit(1);
-			}
-
-			/* Create child process */
-		//	pid = fork();
-
-	//		if (pid < 0) {
-		//		perror("ERROR on fork");
-			//	exit(1);
-		//	}
-
-	//		if (pid == 0) {
-				/* This is the client process */
-			//	close(sockfd);
-				doprocessing(accept(sockfd, NULL, NULL));
-	//			exit(0);
-			//}
-		//	else {
-		//		close(newsockfd);
-//			}
-
-		} /* end of while */
-	}
-
-	void start_debug_server(debug_level_enum _current_debug_level) {
-		current_debug_level = _current_debug_level;
-		std::cout << "START DEBUG SERVER THREAD" << std::endl;
-		debug_data_storage = std::vector<std::string>();
-		debug_data_storage.reserve(512);
-		debug_data_storage.insert(debug_data_storage.end(), std::string("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>SmartSPS Debug Log Viewer</title></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
-		debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
-
-		std::string plattform = "UNKNOWN";
-#if defined(_WIN_)
-		plattform = "WINDOWS";
-#endif
-#if defined(_MAC_)
-		plattform = "MAC OSX";
-#endif
-#if defined(_LINUX_)
-		plattform = "LINUX";
-#endif
-
-		std::string build_config = "UNKNOWN";
-#if defined(DEBUG)
-		build_config = "DEBUG";
-#endif
-#if defined(RELEASE)
-		build_config = "RELEASE";
-#endif
-
-		std::string debuglevel_string = "UNKNOWN";
-
-		switch (current_debug_level)
-		{
-		case ERROR:
-			debuglevel_string = "ERROR";
-			break;
-		case WARNING:
-			debuglevel_string = "WARNING";
-			break;
-		case INFO:
-			debuglevel_string = "INFO";
-			break;
-		default:
-			break;
-		}
-		add_debug_data(-1, "TARGET", "RAM:" + NumberToString((getTotalSystemMemory() / 1024)) + "KB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
-
-
-
-		int iret1 = pthread_create(&t1, NULL, debuge_server_thread, NULL);
-	}
-
-	void stop_debug_server() {
-		std::cout << "STOP DEBUG SERVER THREAD" << std::endl;
-		pthread_mutex_unlock(&t1_mutex);
-		pthread_mutex_unlock(&state_mutex);
-		closesocket(sockfd);
-		pthread_join(t1, NULL);
-		debug_data_storage.clear();
-	}
-
-
-}
-
 
 
 
@@ -999,7 +1075,7 @@ bool reload_schematic() {
 	//sch laden
 	connection_string = new std::string();//create string
 
-	debug_server::add_debug_data(0, "XML_PARSER", "Start parsing xml string");
+	debug_server::add_debug_data(0, "_XML_PARSER_", "Start parsing xml string");
 	//XML BIS NODES PARSEN
 	std::string xml_input_string = request_schematic();
 
@@ -1018,7 +1094,7 @@ bool reload_schematic() {
 	xml_version_string = xml_parser::get_xml_version(xml_input_string);
 	if (xml_version_string == "") { return 2; }
 #if defined(DEBUG)
-	std::cout << "XML VERSION : " << xml_version_string.c_str() << std::endl;
+	//std::cout << "XML VERSION : " << xml_version_string.c_str() << std::endl;
 #endif
 
 
@@ -1058,7 +1134,7 @@ bool reload_schematic() {
 	}
 	//FINISH WITH LOADING NODES
 	//std::cout << node_amount << " NODES LOADED : SCHMEATIC SIMULATION IS STARTING" << std::endl;
-	debug_server::add_debug_data(0, "XML_PARSER", "Finishing parsing nodes :" + NumberToString(node_amount) + " Nodes created.");
+	debug_server::add_debug_data(0, "_XML_PARSER_", "Finishing parsing nodes :" + NumberToString(node_amount) + " Nodes created.");
 
 	first_iteration = true;
 }
@@ -1135,8 +1211,8 @@ void main_loop() {
 
 
 
-
-	std::cout << "LEAVING MAIN UPDATE LOOP AND CLEANUP" << std::endl;
+	debug_server::add_debug_data(0, "_SYSTEM_", "Average frame time : " + NumberToString(average_delta_time));
+	debug_server::add_debug_data(0, "_SYSTEM_", "CleanUp");
 	delete[] nodes_buffer;
 }
 
@@ -1152,7 +1228,7 @@ int main(int argc, char *argv[])
 	Ret = LS.Open("/dev/ttyUSB0", 9600);                                     
 	if (Ret != 1) {                                                          
 	  
-		debug_server::add_debug_data(2, "SERIAL_INIT", "Error while opening port. Permission problem ?");
+		debug_server::add_debug_data(2, "_SERIAL_", "Error while opening port. Permission problem ?");
 
 		return Ret;                                                       
 	}
@@ -1161,7 +1237,7 @@ int main(int argc, char *argv[])
 	#if defined(DEBUG)
 	//serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
 	#endif
-	debug_server::add_debug_data(0, "SYSTEM", "Serial-Interface : <b>/dev/tty/USB0 at b9600</b>");
+	debug_server::add_debug_data(0, "_SYSTEM_", "Serial-Interface : <b>/dev/tty/USB0 at b9600</b>");
 
 
 
@@ -1183,8 +1259,10 @@ enter:
 
 	//----- CLOSE THE UART -----
 	LS.Close();
+	debug_server::add_debug_data(0, "_SERIAL_", "Close Serial Connections");
 	debug_server::stop_debug_server();
 
 	std::cout << "EXIT NODESERVER WITH EXITCODE 0" << std::endl;
+
 	return 0;
 }
