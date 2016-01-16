@@ -845,6 +845,12 @@ void signalHandler(int signum)
 	std::cout << "Interrupt signal (" << signum << ") received.\n";
 
 	debug_server::add_debug_data(0, "_SIGNAL_", "Interrupt signal (" + NumberToString(signum)  +  ") received.");
+
+	if(nodes_buffer != NULL)
+	{
+		delete[] nodes_buffer;
+	}
+
 	// cleanup and close up stuff here  
 	// terminate program  
 
@@ -1077,6 +1083,9 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "basiccounter") { nodes_buffer[element_count] = new node_basiccounter(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 
 	if (nsi == "eowt") { nodes_buffer[element_count] = new node_eowt(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
+
+	if (nsi == "nbss") { nodes_buffer[element_count] = new node_nbss(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
+	if (nsi == "nbsr") { nodes_buffer[element_count] = new node_nbsr(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 }
 
 void main_serial_update_loop() {
@@ -1306,6 +1315,7 @@ enter:
 	
 
 	//----- CLOSE THE UART -----
+	delete[] nodes_buffer;
 	LS.Close();
 	debug_server::add_debug_data(0, "_SERIAL_", "Close Serial Connections");
 	debug_server::stop_debug_server();

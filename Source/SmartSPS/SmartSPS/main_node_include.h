@@ -16,6 +16,8 @@
 #include "node_bndmx.h" // 1 Channel DMX Output <mid><msi><channel>
 #include "node_bnidisp.h" //Show Text on Display <mid><msi><line>
 #include "node_eowt.h" //one wire temperature node
+#include "node_nbss.h"
+#include "node_nbrs.h"
 //BASIC LOGIC GATE NODES
 #include "node_bland.h" //NAD GATE
 #include "node_blor.h" //OR GATE
