@@ -126,7 +126,9 @@
     <ClCompile Include="node_nbss.cpp">
       <Filter>node_classes</Filter>
     </ClCompile>
-    <ClCompile Include="node_nbrs.cpp" />
+    <ClCompile Include="node_nbrs.cpp">
+      <Filter>node_classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_node.h" />
@@ -256,7 +258,9 @@
     <ClInclude Include="node_nbss.h">
       <Filter>node_headers</Filter>
     </ClInclude>
-    <ClInclude Include="node_nbrs.h" />
+    <ClInclude Include="node_nbrs.h">
+      <Filter>node_headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />

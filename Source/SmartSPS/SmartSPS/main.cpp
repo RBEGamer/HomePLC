@@ -1081,11 +1081,9 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "stringsplit") { nodes_buffer[element_count] = new node_stringsplit(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "stringoffset") { nodes_buffer[element_count] = new node_stringoffset(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "basiccounter") { nodes_buffer[element_count] = new node_basiccounter(nid, false, count_connections(*connection_string, nid), nparam, false, false); return; };
-
 	if (nsi == "eowt") { nodes_buffer[element_count] = new node_eowt(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
-
 	if (nsi == "nbss") { nodes_buffer[element_count] = new node_nbss(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
-	if (nsi == "nbsr") { nodes_buffer[element_count] = new node_nbsr(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
+	if (nsi == "nbsr") { nodes_buffer[element_count] = new node_nbrs(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 }
 
 void main_serial_update_loop() {
@@ -1153,6 +1151,8 @@ bool reload_schematic() {
 
 
 	std::string xml_root_node_content_string = "";
+
+
 	xml_root_node_content_string = xml_parser::get_xml_root_node_content(xml_input_string, "schematic");
 	if (xml_root_node_content_string == "") { return 3; }
 #if defined(DEBUG)
