@@ -24,7 +24,7 @@
 #include <math.h>
 #include <vector>
 #include "pthread.h"
-
+#include <csignal>
 #endif
 
 
@@ -531,7 +531,7 @@ namespace debug_server
 		//SEND DEBUG HEADERS
 		if (requested_data == "/debug" || requested_data == "/") {
 			int lsize = 0;
-			std::string end_msg = "<br>Please see : <a href = '/debug'>DEBUG LOG</a><br><a href = '/shutdown'>SHUTDOWN</a><br><a href = '/reload'>RELOAD SCHEMATIC</ a></body></html>";
+			std::string end_msg = "<br>Please see :<br> <a href = '/debug'>DEBUG LOG</a><br><a href = '/shutdown'>SHUTDOWN</a><br><a href = '/reload'>RELOAD SCHEMATIC</ a><br><a href = '/level=info'>Set Debug-Level to INFO</ a><br><a href = '/level=warning'>Set Debug-Level to WARNING</ a><br><a href = '/level=error'>Set Debug-Level to ERROR</ a></body></html>";
 			for (size_t i = 0; i < debug_data_storage.size(); i++)
 			{
 				lsize += debug_data_storage.at(i).size();
@@ -551,7 +551,7 @@ namespace debug_server
 			{
 				http_header.append(debug_data_storage.at(i));
 			}
-			http_header.append("<br>Please see : <a href = '/debug'>DEBUG LOG< / a><br><a href = '/shutdown'>SHUTDOWN< / a><br><a href = '/reload'>RELOAD SCHEMATIC< / a></body></html>");
+			http_header.append(end_msg);
 
 			write(sock, http_header.c_str(), http_header.size());
 			// std::cout << http_header << std::endl;
@@ -573,7 +573,7 @@ namespace debug_server
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
+			http_header.append("Connection: closed\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -597,7 +597,7 @@ namespace debug_server
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
+			http_header.append("Connection: closed\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -616,12 +616,13 @@ namespace debug_server
 					pthread_mutex_unlock(&log_level_mutex);
 				}
 			}
+			add_debug_data(2, "_DEBUG_LEVEL_", "Set Debug-Level to ERROR");
 			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO ERROR</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
+			http_header.append("Connection: closed\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -640,12 +641,13 @@ namespace debug_server
 					pthread_mutex_unlock(&log_level_mutex);
 				}
 			}
+			add_debug_data(1, "_DEBUG_LEVEL_", "Set Debug-Level to WARNING");
 			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO WARNING</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
+			http_header.append("Connection: closed\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -664,12 +666,13 @@ namespace debug_server
 					pthread_mutex_unlock(&log_level_mutex);
 				}
 			}
+			add_debug_data(0, "_DEBUG_LEVEL_", "Set Debug-Level to INFO");
 			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO INFO</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
+			http_header.append("Connection: closed\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -685,7 +688,7 @@ namespace debug_server
 			http_header.append("HTTP/1.1 200 OK\r\n");
 			http_header.append("Host: 192.168.178.58\r\n");
 			http_header.append("Server: Apache/1.1.1\r\n");
-			http_header.append("Connection: clos\r\n");
+			http_header.append("Connection: closed\r\n");
 			http_header.append("Content-Type: text/html;charset=UTF-8\r\n");
 			http_header.append("Content-Lenght: ");
 			http_header.append(NumberToString(html_message.size()));
@@ -777,7 +780,7 @@ namespace debug_server
 		debug_data_storage = std::vector<std::string>();
 		debug_data_storage.reserve(512);
 		debug_data_storage.insert(debug_data_storage.end(), std::string("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>SmartSPS Debug Log Viewer</title></head><body><h1>SmartSPS - Debug Log Output </h1><hr>"));
-		debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
+		//debug_data_storage.insert(debug_data_storage.end(), std::string("</body></html>"));
 
 		std::string plattform = "UNKNOWN";
 #if defined(_WIN_)
@@ -825,6 +828,7 @@ namespace debug_server
 		std::cout << "STOP DEBUG SERVER THREAD" << std::endl;
 		pthread_mutex_unlock(&t1_mutex);
 		pthread_mutex_unlock(&state_mutex);
+		pthread_mutex_unlock(&log_level_mutex);
 		closesocket(sockfd);
 		pthread_join(t1, NULL);
 		debug_data_storage.clear();
@@ -836,7 +840,17 @@ namespace debug_server
 
 
 
+void signalHandler(int signum)
+{
+	std::cout << "Interrupt signal (" << signum << ") received.\n";
 
+	debug_server::add_debug_data(0, "_SIGNAL_", "Interrupt signal (" + NumberToString(signum)  +  ") received.");
+	// cleanup and close up stuff here  
+	// terminate program  
+
+	exit(signum);
+
+}
 
 void processing_serial_query(base_node* bn[]) {
 	
@@ -903,6 +917,7 @@ void make_connections(base_node* bn[], int bnsize, std::string _cstring) {
 		{
 			if (bn[i]->nid == atoi(origin_node_id.c_str())) {
 				obn = bn[i];
+				
 				break;
 			}
 		}
@@ -916,10 +931,17 @@ void make_connections(base_node* bn[], int bnsize, std::string _cstring) {
 
 		if (obn != NULL && dbn != NULL) {
 			obn->set_connection(atoi(origin_node_con.c_str()), dbn, atoi(dest_node_con.c_str()));
-			std::cout << "make connection for : " << origin_node_id << "-" << origin_node_con << " -> " << dest_node_id << "-" << dest_node_con << std::endl;
+#if defined(DEBUG)
+			std::cout << "make connection for : " <<  origin_node_id << "-" << origin_node_con << " -> " << dest_node_id << "-" << dest_node_con << std::endl;
+#endif
+			debug_server::add_debug_data(0, "_NODE_", "Make connection for : " + NumberToString(origin_node_id) + ":" + NumberToString(origin_node_con) + " -> " + NumberToString(dest_node_id) + "-" + NumberToString(dest_node_con));
+
 		}
 		else {
+#if defined(DEBUG)
 			std::cout << "cant_ connect nodes 1" << std::endl;
+#endif
+			debug_server::add_debug_data(2, "_NODE_", "CANT CONNECT NODE PLEASE CHECK SCHEMATIC FILE FOR RIGHT NIDs");
 
 		}
 
@@ -927,12 +949,35 @@ void make_connections(base_node* bn[], int bnsize, std::string _cstring) {
 		obn = NULL;
 		dbn = NULL;
 	}
+
+	/*
+	if (cbn != NULL && cbn->p_connections != NULL) {
+
+		bool all_assigned = true;
+
+		for (size_t i = 0; i < cbn->connection_count; i++)
+		{
+			if (cbn->p_connections[i].connector_node_ptr == NULL) {
+				all_assigned = false;
+			}
+		}
+
+		if (!all_assigned) {
+			debug_server::add_debug_data(1, "_NODE_", "not all connections are assigned at:" + NumberToString(cbn->nid));
+		}
+		else {
+
+		}
+	}
+	*/
+	//CHECK IF A÷÷ IN‹PUTS CONNECTED
+
 	free(obn);
 	free(dbn);
 
 
 
-
+	
 
 }
 
@@ -1143,6 +1188,9 @@ bool reload_schematic() {
 
 void main_loop() {
 	//START MAINLOOP
+	signal(SIGINT, signalHandler);
+
+
 	debug_server::add_debug_data(0, "_NODE_", "Starting Main-Loop");
 	break_update_cycle = false;
 	while (!break_update_cycle)
