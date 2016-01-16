@@ -1,7 +1,7 @@
 #include "node_nbss.h"
 
 
-node_nbss::node_nbdo(int id, bool us, const int con_count, std::string params, bool is_static, bool ut)
+node_nbss::node_nbss(int id, bool us, const int con_count, std::string params, bool is_static, bool ut)
 {
 	is_value_static = is_static;
 	nid = id;
@@ -12,14 +12,14 @@ node_nbss::node_nbdo(int id, bool us, const int con_count, std::string params, b
 	use_timer = ut;
 }
 
-node_nbss::~node_nbdo()
+node_nbss::~node_nbss()
 {
 }
 
 void node_nbss::update(float timestep)
 {
-	if (node_nbdo::updated_values) {
-		node_nbdo::updated_values = false;
+	if (node_nbss::updated_values) {
+		node_nbss::updated_values = false;
 		
 			//SEND TO SERIAL SEND QUARRY -> PORT LOW
 			serial_management::add_to_send_queue(p0_value_input_state +"\n");
@@ -29,7 +29,8 @@ void node_nbss::update(float timestep)
 
 void node_nbss::init()
 {
-
+	p0_value_input_state = "";
+		updated_values = false;
 }
 
 

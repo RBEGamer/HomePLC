@@ -113,6 +113,8 @@
     <ClCompile Include="node_nbftoi.cpp" />
     <ClCompile Include="node_nbinttostr.cpp" />
     <ClCompile Include="node_nbitof.cpp" />
+    <ClCompile Include="node_nbrs.cpp" />
+    <ClCompile Include="node_nbss.cpp" />
     <ClCompile Include="node_nbsttof.cpp" />
     <ClCompile Include="node_nbsttoi.cpp" />
     <ClCompile Include="node_opwemare.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="node_nbftoi.h" />
     <ClInclude Include="node_nbinttostr.h" />
     <ClInclude Include="node_nbitof.h" />
+    <ClInclude Include="node_nbrs.h" />
+    <ClInclude Include="node_nbss.h" />
     <ClInclude Include="node_nbsttof.h" />
     <ClInclude Include="node_nbsttoi.h" />
     <ClInclude Include="node_opwemare.h" />
