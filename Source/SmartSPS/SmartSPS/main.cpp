@@ -833,7 +833,7 @@ namespace debug_server
 		closesocket(sockfd);
 		pthread_join(t1, NULL);
 		debug_data_storage.clear();
-		delete debug_data_storage;
+		//delete debug_data_storage;
 	}
 
 
