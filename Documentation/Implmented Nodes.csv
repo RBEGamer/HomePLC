@@ -38,5 +38,5 @@ node_stringappend;stringappend;String append;Misc;FALSE;FALSE;TRUE;FALSE;FALSE;;
 node_stringoffset;string offset;String offset;Misc;FALSE;FALSE;TRUE;TRUE;FALSE;;[0,string,input string]%[1,int,offset]%;[2,string,return string]%;;With this node you can remove a spcific lenght of the start of the string.
 node_stringsplit;stringsplit;String Split;Misc;FALSE;FALSE;TRUE;TRUE;FALSE;;[0,string,input]%;[1,string,split extract value]%[2,string,rest value]%;[0,string,Search-String]%;This node serarch until the needlestring and returns the both splitted parts.
 node_eowt;eowt;One Wire Temperature;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;eowt;;[0,float,temp_out]%;[0,int,mid]%[1,string,msi]%[2,int,sensor_id,(0-50)]%;With this node you can read temperature data from one wire temp sensors DS…
-node_nbss;nbss;Serial Send;Basic IO;TRUE;FALSE;TRUE;FALSE;FALSE;;[0,string,message]%;;;Sends a Message to the global Serial bus
+node_nbss;nbss;Serial Send;Basic IO;TRUE;FALSE;TRUE;FALSE;FALSE;;[0,string,message]%;;;Sends a Message to the global Serial bus (automatic adds a new line on the end
 node_nbsr;nbsr;Serial Recieve;Basic IO;TRUE;FALSE;TRUE;FALSE;FALSE;;;[0,string,message]%;;With this node you can get all data recieved from the global serial bus
