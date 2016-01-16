@@ -825,6 +825,7 @@ namespace debug_server
 	}
 
 	void stop_debug_server() {
+	
 		std::cout << "STOP DEBUG SERVER THREAD" << std::endl;
 		pthread_mutex_unlock(&t1_mutex);
 		pthread_mutex_unlock(&state_mutex);
@@ -832,6 +833,7 @@ namespace debug_server
 		closesocket(sockfd);
 		pthread_join(t1, NULL);
 		debug_data_storage.clear();
+		delete debug_data_storage;
 	}
 
 
@@ -846,10 +848,15 @@ void signalHandler(int signum)
 
 	debug_server::add_debug_data(0, "_SIGNAL_", "Interrupt signal (" + NumberToString(signum)  +  ") received.");
 
+
+	
+
+
 	if(nodes_buffer != NULL)
 	{
 		delete[] nodes_buffer;
 	}
+
 
 	// cleanup and close up stuff here  
 	// terminate program  
