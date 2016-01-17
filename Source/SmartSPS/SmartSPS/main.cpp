@@ -27,6 +27,13 @@
 #include <csignal>
 #endif
 
+extern "C" {
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}  
+
+
 
 #if defined(_WIN_)
 #include <iostream>
@@ -1203,9 +1210,11 @@ bool reload_schematic() {
 
 
 void main_loop() {
-	//START MAINLOOP
-	signal(SIGINT, signalHandler);
 
+	
+
+	int g = 0;
+	std::cin >> g;
 
 	debug_server::add_debug_data(0, "_NODE_", "Starting Main-Loop");
 	break_update_cycle = false;
@@ -1282,6 +1291,14 @@ void main_loop() {
 
 int main(int argc, char *argv[])
 {
+	//START MAINLOOP
+	signal(SIGINT, signalHandler);
+
+
+
+
+
+
 
 	debug_server::start_debug_server(debug_server::INFO);
 
