@@ -1,0 +1,12 @@
+function update(delta_time)
+print(delta_time)
+output = input + output
+end
+
+function start()
+print("init called")
+end
+
+function serial_recieve(message)
+print("serial recieve")
+end

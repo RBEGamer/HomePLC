@@ -27,11 +27,6 @@
 #include <csignal>
 #endif
 
-extern "C" {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-}  
 
 
 
@@ -47,7 +42,11 @@ extern "C" {
 
 
 
-
+extern "C" {
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}
 
 #if defined(_MAC_)
 #endif
@@ -1293,8 +1292,6 @@ int main(int argc, char *argv[])
 {
 	//START MAINLOOP
 	signal(SIGINT, signalHandler);
-
-
 
 
 

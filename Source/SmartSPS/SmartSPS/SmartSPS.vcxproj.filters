@@ -234,6 +234,7 @@
     <ClCompile Include="lzio.c">
       <Filter>lua</Filter>
     </ClCompile>
+    <ClCompile Include="node_generic_lua.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_node.h" />
@@ -444,6 +445,7 @@
     <ClInclude Include="lzio.h">
       <Filter>lua</Filter>
     </ClInclude>
+    <ClInclude Include="node_generic_lua.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />

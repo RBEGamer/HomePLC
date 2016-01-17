@@ -135,6 +135,7 @@
     <ClCompile Include="node_ctimest.cpp" />
     <ClCompile Include="node_eowt.cpp" />
     <ClCompile Include="node_floatcomp.cpp" />
+    <ClCompile Include="node_generic_lua.cpp" />
     <ClCompile Include="node_intcomp.cpp" />
     <ClCompile Include="node_nbcobof.cpp" />
     <ClCompile Include="node_nbcobot.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="node_ctimest.h" />
     <ClInclude Include="node_eowt.h" />
     <ClInclude Include="node_floatcomp.h" />
+    <ClInclude Include="node_generic_lua.h" />
     <ClInclude Include="node_intcomp.h" />
     <ClInclude Include="node_nbcobof.h" />
     <ClInclude Include="node_nbcobot.h" />
