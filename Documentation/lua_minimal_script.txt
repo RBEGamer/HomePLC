@@ -1,12 +1,15 @@
+-- this function is the update function and will be called every frame
 function update(delta_time)
 print(delta_time)
 output = input + output
 end
 
+-- this function will be called before the mailloop will be entered. Write here your init stuff
 function start()
 print("init called")
 end
 
+-- this function will be called if a serial message are recieved. Note that every serial input from the system are calling this function
 function serial_recieve(message)
 print("serial recieve")
 end
