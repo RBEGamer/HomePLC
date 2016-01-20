@@ -121,6 +121,67 @@ namespace SmartPLC_Commander
                         tnode.param_properties = splitted_content[12];
                         tnode.output_con_string = splitted_content[11];
                         tnode.input_con_string = splitted_content[10];
+                        tnode.extention_name = splitted_content[9];
+
+
+                        tnode.class_name = splitted_content[0];
+
+                        if (splitted_content[4].ToLower().Contains("true"))
+                        {
+                            tnode.use_serial = true;
+                        }
+                        else
+                        {
+                            tnode.use_serial = false;
+                        }
+
+
+                        if (splitted_content[5].ToLower().Contains("true"))
+                        {
+                            tnode.is_static = true;
+                        }
+                        else
+                        {
+                            tnode.is_static = false;
+                        }
+
+                        if (splitted_content[14].ToLower().Contains("true"))
+                        {
+                            tnode.use_timer = true;
+                        }
+                        else
+                        {
+                            tnode.use_timer = false;
+                        }
+
+                        if (splitted_content[15].ToLower().Contains("true"))
+                        {
+                            tnode.is_lua_node = true;
+                        }
+                        else
+                        {
+                            tnode.is_lua_node = false;
+                        }
+
+
+                        if (splitted_content[8].ToLower().Contains("true"))
+                        {
+                            tnode.requires_extention = true;
+                        }
+                        else
+                        {
+                            tnode.requires_extention = false;
+                        }
+
+
+                        if (splitted_content[7].ToLower().Contains("true"))
+                        {
+                            tnode.pass_though = true;
+                        }
+                        else
+                        {
+                            tnode.pass_though = false;
+                        }
                         tnode.idnr = i;
                         tnode.extention_name = splitted_content[9];
                         loaded_nodes.Add(tnode);
@@ -162,7 +223,7 @@ namespace SmartPLC_Commander
                     }
                     n.connection_string = constring_tmp;
                     //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
-                    final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" />";
+                    final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" use_timer=\"" + n.use_timer.ToString().ToLower() + "\" is_static=\"" + n.is_static.ToString().ToLower() + "\" is_lua_node=\"" + n.is_lua_node.ToString().ToLower() + "\" use_serial=\"" + n.use_serial.ToString().ToLower() + "\" requires_extention=\"" + n.requires_extention.ToString().ToLower() + "\" extention_name=\"" + n.extention_name + "\" pass_though=\"" + n.pass_though.ToString().ToLower() + "\" />";
               
                 }
                 final_string += "</schematic>";
@@ -258,6 +319,67 @@ namespace SmartPLC_Commander
                         tnode.output_con_string = splitted_content[11];
                         tnode.input_con_string = splitted_content[10];
                         tnode.extention_name = splitted_content[9];
+
+
+                        tnode.class_name = splitted_content[0];
+
+                        if (splitted_content[4].ToLower().Contains("true"))
+                        {
+                            tnode.use_serial = true;
+                        }
+                        else
+                        {
+                            tnode.use_serial = false;
+                        }
+
+
+                        if (splitted_content[5].ToLower().Contains("true"))
+                        {
+                            tnode.is_static = true;
+                        }
+                        else
+                        {
+                            tnode.is_static = false;
+                        }
+
+                        if (splitted_content[14].ToLower().Contains("true"))
+                        {
+                            tnode.use_timer = true;
+                        }
+                        else
+                        {
+                            tnode.use_timer = false;
+                        }
+
+                        if (splitted_content[15].ToLower().Contains("true"))
+                        {
+                            tnode.is_lua_node = true;
+                        }
+                        else
+                        {
+                            tnode.is_lua_node = false;
+                        }
+
+
+                        if (splitted_content[8].ToLower().Contains("true"))
+                        {
+                            tnode.requires_extention = true;
+                        }
+                        else
+                        {
+                            tnode.requires_extention = false;
+                        }
+
+
+                        if (splitted_content[7].ToLower().Contains("true"))
+                        {
+                            tnode.pass_though = true;
+                        }
+                        else
+                        {
+                            tnode.pass_though = false;
+                        }
+
                         tnode.idnr = i;
                         loaded_nodes.Add(tnode);
 
@@ -306,6 +428,17 @@ namespace SmartPLC_Commander
                 {
                     nid_counter++;
                     node tmnode = new node();
+                    tmnode.is_static = loaded_nodes[i].is_static;
+                    tmnode.use_timer = loaded_nodes[i].use_timer;
+                    tmnode.use_serial = loaded_nodes[i].use_serial;
+                    tmnode.is_lua_node = loaded_nodes[i].is_lua_node;
+
+                    tmnode.requires_extention = loaded_nodes[i].requires_extention;
+                    tmnode.pass_though = loaded_nodes[i].pass_though;
+                    tmnode.class_name = loaded_nodes[i].class_name;
+
+
+
                     tmnode.idnr = loaded_nodes[i].idnr;
                     tmnode.xml_name = loaded_nodes[i].xml_name;
                     tmnode.title = loaded_nodes[i].title;
@@ -934,6 +1067,11 @@ namespace SmartPLC_Commander
             }
 
             selected_history_node.save_parameters(ref parameter_panel_form);
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

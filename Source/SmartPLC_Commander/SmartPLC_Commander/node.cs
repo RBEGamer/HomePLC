@@ -29,6 +29,7 @@ namespace SmartPLC_Commander
         public Rectangle text_rect;
         public  node parent_node;
 
+
     }
 
     public struct transform
@@ -47,10 +48,14 @@ namespace SmartPLC_Commander
 
     public class node
     {
-       
 
-
-
+        public string class_name;
+        public bool use_timer;
+        public bool is_static;
+        public bool is_lua_node;
+        public bool use_serial;
+        public bool requires_extention;
+        public bool pass_though;
         public List<connection> connections = new List<connection>();
         public int idnr;
         public int nid;
@@ -87,6 +92,15 @@ namespace SmartPLC_Commander
             param_properties = "";
             connection_string = "";
             extention_name = "";
+
+            use_timer = true;
+            is_static = false;
+            is_lua_node = false;
+            use_serial = false;
+            requires_extention = false;
+            pass_though = false;
+            class_name = "";
+
         }
 
 

@@ -7,14 +7,14 @@
       <PathStyle>RemoteUnix</PathStyle>
     </CustomSourceDirectories>
     <BuildHost>
-      <HostName>192.168.178.58</HostName>
+      <HostName>rbnetworks.dyndns.ws</HostName>
       <Transport>SSH</Transport>
       <UserName>root</UserName>
     </BuildHost>
     <MainSourceTransferCommand>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
       <RemoteHost>
-        <HostName>192.168.178.58</HostName>
+        <HostName>rbnetworks.dyndns.ws</HostName>
         <Transport>SSH</Transport>
         <UserName>root</UserName>
       </RemoteHost>
@@ -33,6 +33,7 @@
       </FileMasks>
       <TransferNewFilesOnly>true</TransferNewFilesOnly>
       <IncludeSubdirectories>true</IncludeSubdirectories>
+      <SelectedDirectories />
     </MainSourceTransferCommand>
     <AllowChangingHostForMainCommands>false</AllowChangingHostForMainCommands>
     <SkipBuildIfNoSourceFilesChanged>false</SkipBuildIfNoSourceFilesChanged>
@@ -78,7 +79,7 @@
     <MakeCommandTemplate>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
       <RemoteHost>
-        <HostName>192.168.178.58</HostName>
+        <HostName>rbnetworks.dyndns.ws</HostName>
         <Transport>SSH</Transport>
         <UserName>root</UserName>
       </RemoteHost>

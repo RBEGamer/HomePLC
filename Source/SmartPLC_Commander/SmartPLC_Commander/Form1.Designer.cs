@@ -40,6 +40,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.parameter_panel_form = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,7 +67,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -121,6 +121,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(1008, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // saveNodeSchematicToolStripMenuItem
             // 
@@ -163,6 +164,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(276, 616);
             this.panel1.TabIndex = 2;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(187, 16);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "SAVE PARAMS";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label5
             // 
@@ -421,16 +432,6 @@
             this.vScrollBar1.Size = new System.Drawing.Size(20, 565);
             this.vScrollBar1.TabIndex = 2;
             this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(187, 16);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "SAVE PARAMS";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
