@@ -223,7 +223,7 @@ namespace SmartPLC_Commander
                     }
                     n.connection_string = constring_tmp;
                     //<node nid="6" nsi="ctimest" ncon="6:0:7:0%" nparam="%" />
-                    final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" use_timer=\"" + n.use_timer.ToString().ToLower() + "\" is_static=\"" + n.is_static.ToString().ToLower() + "\" is_lua_node=\"" + n.is_lua_node.ToString().ToLower() + "\" use_serial=\"" + n.use_serial.ToString().ToLower() + "\" requires_extention=\"" + n.requires_extention.ToString().ToLower() + "\" extention_name=\"" + n.extention_name + "\" pass_though=\"" + n.pass_though.ToString().ToLower() + "\" />";
+                    final_string += "<node nid=\"" + n.nid + "\" nsi=\"" + n.xml_name + "\" ncon=\"" + constring_tmp + "\" nparam=\"" + n.param_string + "\" pos=\"" + n.pos.x.ToString() + ";" + n.pos.y.ToString() + "\" use_timer=\"" + n.use_timer.ToString().ToLower() + "\" is_static=\"" + n.is_static.ToString().ToLower() + "\" is_lua_node=\"" + n.is_lua_node.ToString().ToLower() + "\" use_serial=\"" + n.use_serial.ToString().ToLower() + "\" requires_extention=\"" + n.requires_extention.ToString().ToLower() + "\" extention_name=\"" + n.extention_name + "\" pass_through=\"" + n.pass_though.ToString().ToLower() + "\" class_name=\"" + n.class_name + "\" />";
               
                 }
                 final_string += "</schematic>";

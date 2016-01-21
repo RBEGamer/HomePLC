@@ -40,4 +40,4 @@ node_stringsplit;stringsplit;String Split;Misc;FALSE;FALSE;TRUE;TRUE;FALSE;;[0,s
 node_eowt;eowt;One Wire Temperature;Basic IO;TRUE;FALSE;TRUE;FALSE;TRUE;eowt;;[0,float,temp_out]%;[0,int,mid]%[1,string,msi]%[2,int,sensor_id,(0-50)]%;With this node you can read temperature data from one wire temp sensors DS…;TRUE;FALSE
 node_nbss;nbss;Serial Send;Basic IO;TRUE;FALSE;TRUE;FALSE;FALSE;;[0,string,message]%;;;Sends a Message to the global Serial bus (automatic adds a new line on the end;TRUE;FALSE
 node_nbsr;nbsr;Serial Recieve;Basic IO;TRUE;FALSE;TRUE;FALSE;FALSE;;;[0,string,message]%;;With this node you can get all data recieved from the global serial bus;TRUE;FALSE
-;;;;;;;;;;;;;;TRUE;FALSE
+node_generic_lua;generic_lua_node;GENERIC_LUA_NODE;LUA;TRUE;FALSE;TRUE;FALSE;FALSE;;[0,bool,state_in]%;[1,bool,state_out]%;;g lua node;TRUE;TRUE
