@@ -1,4 +1,9 @@
 
+#if defined(__NO_USE_FF__)
+#define __FILE__ ""
+#define __LINE__ -1
+#endif
+
 
 #if defined(_LINUX_)
 #include <iostream>
