@@ -412,7 +412,7 @@ namespace debug_server
 	debug_level_enum current_debug_level;
 	// This function will run concurrently.
 
-	void add_debug_data(int debug_level, std::string key, std::string value) {
+	void add_debug_data(int debug_level,std::string file,int line, std::string key, std::string value) {
 
 
 		switch (current_debug_level)
@@ -460,8 +460,11 @@ namespace debug_server
 			final_html.append("<td width=\"100px\" ><b> <p style=\"color : green\">SYS-INFO</p></b></td>");
 		}
 
-
 		final_html.append("<td  width=\"150px\" >");
+		final_html.append(file);
+		final_html.append("</td><td  width=\"150px\" >");
+		final_html.append(NumberToString(line));
+		final_html.append("</td><td  width=\"150px\" >");
 		final_html.append(key);
 		final_html.append("</td><td  width=\"400px\" >");
 		final_html.append(value);
@@ -487,6 +490,7 @@ namespace debug_server
 
 		//DELOCK
 	}
+
 
 
 	void doprocessing(int sock) {
@@ -622,7 +626,7 @@ namespace debug_server
 					pthread_mutex_unlock(&log_level_mutex);
 				}
 			}
-			add_debug_data(2, "_DEBUG_LEVEL_", "Set Debug-Level to ERROR");
+			add_debug_data(2, __FILE__, __LINE__ ,"_DEBUG_LEVEL_","Set Debug-Level to ERROR");
 			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO ERROR</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
@@ -647,7 +651,7 @@ namespace debug_server
 					pthread_mutex_unlock(&log_level_mutex);
 				}
 			}
-			add_debug_data(1, "_DEBUG_LEVEL_", "Set Debug-Level to WARNING");
+			add_debug_data(1,__FILE__,__LINE__, "_DEBUG_LEVEL_", "Set Debug-Level to WARNING");
 			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO WARNING</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
@@ -672,7 +676,7 @@ namespace debug_server
 					pthread_mutex_unlock(&log_level_mutex);
 				}
 			}
-			add_debug_data(0, "_DEBUG_LEVEL_", "Set Debug-Level to INFO");
+			add_debug_data(0,__FILE__,__LINE__, "_DEBUG_LEVEL_", "Set Debug-Level to INFO");
 			std::string html_message = "<html><header></header><body><h1>SET DEBUG-LEVEL TO INFO</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a></body></html>";
 			std::string http_header = "";
 			http_header.append("HTTP/1.1 200 OK\r\n");
@@ -823,7 +827,7 @@ namespace debug_server
 		default:
 			break;
 		}
-		add_debug_data(-1, "TARGET", "RAM:" + NumberToString((getTotalSystemMemory() / 1024)) + "KB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
+		add_debug_data(-1,__FILE__,__LINE__, "TARGET", "RAM:" + NumberToString((getTotalSystemMemory() / 1024)) + "KB<br>PLATTFORM:" + plattform + "<br>CONFIGURATION:" + build_config + "<br>DEBUG-LEVEL:" + debuglevel_string + "<br>");
 
 
 
@@ -843,6 +847,32 @@ namespace debug_server
 	}
 
 
+	void write_log_to_file() {
+
+		debug_server::stop_debug_server();
+
+
+		std::string http_header = "<html><head><title>SAVED LOG</title></head><body>";
+		std::string http_end = "</body></html>";
+		for (size_t i = 0; i < debug_data_storage.size(); i++)
+		{
+			http_header.append(debug_data_storage.at(i));
+		}
+		http_header.append(http_end);
+
+		struct timeval tv;
+		gettimeofday(&tv, NULL);
+		//printf("Seconds since Jan. 1, 1970: %ld\n", tv.tv_sec);
+
+		std::string filename = "debug_log_";
+		filename.append(NumberToString(tv.tv_sec));
+		filename.append(".html");
+
+		int fd;
+		fd = open(filename.c_str(), O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
+		write(fd, http_header.c_str(), http_end.size());
+		close(fd);
+	}
 }
 
 
@@ -852,11 +882,11 @@ void signalHandler(int signum)
 {
 	std::cout << "Interrupt signal (" << signum << ") received.\n";
 
-	debug_server::add_debug_data(0, "_SIGNAL_", "Interrupt signal (" + NumberToString(signum)  +  ") received.");
+	debug_server::add_debug_data(0,__FILE__,__LINE__ ,"_SIGNAL_", "Interrupt signal (" + NumberToString(signum)  +  ") received.");
 
 
 	
-
+debug_server::write_log_to_file();
 
 	if(nodes_buffer != NULL)
 	{
@@ -953,14 +983,14 @@ void make_connections(base_node* bn[], int bnsize, std::string _cstring) {
 #if defined(DEBUG)
 			std::cout << "make connection for : " <<  origin_node_id << "-" << origin_node_con << " -> " << dest_node_id << "-" << dest_node_con << std::endl;
 #endif
-			debug_server::add_debug_data(0, "_NODE_", "Make connection for : " + NumberToString(origin_node_id) + ":" + NumberToString(origin_node_con) + " -> " + NumberToString(dest_node_id) + "-" + NumberToString(dest_node_con));
+			debug_server::add_debug_data(0,__FILE__,__LINE__, "_NODE_", "Make connection for : " + NumberToString(origin_node_id) + ":" + NumberToString(origin_node_con) + " -> " + NumberToString(dest_node_id) + "-" + NumberToString(dest_node_con));
 
 		}
 		else {
 #if defined(DEBUG)
 			std::cout << "cant_ connect nodes 1" << std::endl;
 #endif
-			debug_server::add_debug_data(2, "_NODE_", "CANT CONNECT NODE PLEASE CHECK SCHEMATIC FILE FOR RIGHT NIDs");
+			debug_server::add_debug_data(2,__FILE__,__LINE__, "_NODE_", "CANT CONNECT NODE PLEASE CHECK SCHEMATIC FILE FOR RIGHT NIDs");
 
 		}
 
@@ -1226,12 +1256,12 @@ void main_serial_update_loop() {
 
 
 bool reload_schematic() {
-	debug_server::add_debug_data(0, "_NODE_", "RELOADING SCHEMATIC BY USER COMMAND");
+	debug_server::add_debug_data(0,__FILE__, __LINE__, "_NODE_", "RELOADING SCHEMATIC BY USER COMMAND");
 	//pointer aufräumen wenn nötig 
 	//sch laden
 	connection_string = new std::string();//create string
 
-	debug_server::add_debug_data(0, "_XML_PARSER_", "Start parsing xml string");
+	debug_server::add_debug_data(0,__FILE__, __LINE__, "_XML_PARSER_", "Start parsing xml string");
 	//XML BIS NODES PARSEN
 	std::string xml_input_string = request_schematic();
 
@@ -1292,7 +1322,7 @@ bool reload_schematic() {
 	}
 	//FINISH WITH LOADING NODES
 	//std::cout << node_amount << " NODES LOADED : SCHMEATIC SIMULATION IS STARTING" << std::endl;
-	debug_server::add_debug_data(0, "_XML_PARSER_", "Finishing parsing nodes :" + NumberToString(node_amount) + " Nodes created.");
+	debug_server::add_debug_data(0,__FILE__, __LINE__, "_XML_PARSER_", "Finishing parsing nodes :" + NumberToString(node_amount) + " Nodes created.");
 
 	first_iteration = true;
 }
@@ -1306,7 +1336,7 @@ void main_loop() {
 	int g = 0;
 	std::cin >> g;
 
-	debug_server::add_debug_data(0, "_NODE_", "Starting Main-Loop");
+	debug_server::add_debug_data(0,__FILE__,__LINE__, "_NODE_", "Starting Main-Loop");
 	break_update_cycle = false;
 	while (!break_update_cycle)
 	{
@@ -1345,7 +1375,7 @@ void main_loop() {
 
 		//UPDATE ALL STATIC NODES
 		if (first_iteration) {
-			debug_server::add_debug_data(0, "_NODE_", "Update static nodes");
+			debug_server::add_debug_data(0,__FILE__,__LINE__, "_NODE_", "Update static nodes");
 			for (size_t i = 0; i < node_amount; i++) {
 				if (nodes_buffer[i]->is_value_static) {
 					nodes_buffer[i]->updated_values = true;
@@ -1374,8 +1404,8 @@ void main_loop() {
 
 
 
-	debug_server::add_debug_data(0, "_SYSTEM_", "Average frame time : " + NumberToString(average_delta_time));
-	debug_server::add_debug_data(0, "_SYSTEM_", "CleanUp");
+	debug_server::add_debug_data(0,__FILE__,__LINE__, "_SYSTEM_", "Average frame time : " + NumberToString(average_delta_time));
+	debug_server::add_debug_data(0,__FILE__,__LINE__, "_SYSTEM_", "CleanUp");
 	delete[] nodes_buffer;
 }
 
@@ -1397,7 +1427,7 @@ int main(int argc, char *argv[])
 	Ret = LS.Open("/dev/ttyUSB0", 9600);                                     
 	if (Ret != 1) {                                                          
 	  
-		debug_server::add_debug_data(2, "_SERIAL_", "Error while opening port. Permission problem ?");
+		debug_server::add_debug_data(2, __FILE__, __LINE__, "_SERIAL_", "Error while opening port. Permission problem ?");
 
 		return Ret;                                                       
 	}
@@ -1406,7 +1436,7 @@ int main(int argc, char *argv[])
 	#if defined(DEBUG)
 	//serial_management::add_to_send_queue("0_bnid_1_DEBUG-BUILD\n");
 	#endif
-	debug_server::add_debug_data(0, "_SYSTEM_", "Serial-Interface : <b>/dev/tty/USB0 at b9600</b>");
+	debug_server::add_debug_data(0,__FILE__,__LINE__, "_SYSTEM_", "Serial-Interface : <b>/dev/tty/USB0 at b9600</b>");
 
 
 
@@ -1429,7 +1459,7 @@ enter:
 	//----- CLOSE THE UART -----
 	delete[] nodes_buffer;
 	LS.Close();
-	debug_server::add_debug_data(0, "_SERIAL_", "Close Serial Connections");
+	debug_server::add_debug_data(0,__FILE__, __LINE__, "_SERIAL_", "Close Serial Connections");
 	debug_server::stop_debug_server();
 	
 	std::cout << "EXIT NODESERVER WITH EXITCODE 0" << std::endl;
