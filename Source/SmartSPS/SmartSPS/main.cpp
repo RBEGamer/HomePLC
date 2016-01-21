@@ -1031,18 +1031,109 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	std::string  nsi ="";
 	std::string nparam = "";
 	std::string result = "";
+
+	bool use_serial = false;
+	bool use_timer = true;
+	bool is_static = false;
+	bool is_lua_node = false;
+	bool requires_extention = false;
+	bool pass_through = false;
+	//SET CLASS_NAME
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "class_name");
+	if (result == "") { return; }
+	std::string class_name = result;
+	//SET CLASS_NAME
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "extention_name");
+	if (result == "") { return; }
+	std::string extention_name = result;
+
+
+
+	//SET USE SERIAL
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "use_serial");
+	if (result == "") { return; }
+	if (result == "TRUE" || result == "true") {
+		use_serial = true;
+	}
+	else {
+		use_serial = false;
+	}
+
+	//SET USE TIMER
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "use_timer");
+	if (result == "") { return; }
+	if (result == "TRUE" || result == "true") {
+		use_timer = true;
+	}
+	else {
+		use_timer = false;
+	}
+
+	//SET is_static
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "is_static");
+	if (result == "") { return; }
+	if (result == "TRUE" || result == "true") {
+		is_static = true;
+	}
+	else {
+		is_static = false;
+	}
+
+
+	//SET is_lua_node
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "is_lua_node");
+	if (result == "") { return; }
+	if (result == "TRUE" || result == "true") {
+		is_lua_node = true;
+	}
+	else {
+		is_lua_node = false;
+	}
+
+
+	//SET is_lua_node
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "requires_extention");
+	if (result == "") { return; }
+	if (result == "TRUE" || result == "true") {
+		requires_extention = true;
+	}
+	else {
+		requires_extention = false;
+	}
+
+	//SET is_lua_node
+	result = "";
+	result = xml_parser::get_element_attributes(kvp[element_count], "pass_through");
+	if (result == "") { return; }
+	if (result == "TRUE" || result == "true") {
+		pass_through = true;
+	}
+	else {
+		pass_through = false;
+	}
+	
+	//SET NID
+	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "nid");
 	if (result == "") { return; }
 	nid = atoi(result.c_str());
 	if (nid < 0) { return; }
+	//SET NSI
 	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "nsi");
 	if (result == "") { return; }
 	nsi = result;
 	if (nsi == "") { return; }
+	//SET NCON
 	result = "";
 	result = xml_parser::get_element_attributes(kvp[element_count], "ncon");
-
 	if (result == "") {}
 	else if(result == "%"){}
 	else{ connection_string->append(result);}
@@ -1340,7 +1431,7 @@ enter:
 	LS.Close();
 	debug_server::add_debug_data(0, "_SERIAL_", "Close Serial Connections");
 	debug_server::stop_debug_server();
-
+	
 	std::cout << "EXIT NODESERVER WITH EXITCODE 0" << std::endl;
 
 	return 0;
