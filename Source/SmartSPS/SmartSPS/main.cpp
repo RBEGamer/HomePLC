@@ -1,4 +1,5 @@
 
+
 #if defined(__NO_USE_FF__)
 #define __FILE__ ""
 #define __LINE__ -1
@@ -1223,6 +1224,10 @@ void process_xml_nodes(std::string*  kvp, int element_count) {
 	if (nsi == "eowt") { nodes_buffer[element_count] = new node_eowt(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "nbss") { nodes_buffer[element_count] = new node_nbss(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 	if (nsi == "nbsr") { nodes_buffer[element_count] = new node_nbrs(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
+
+
+	//TEST 
+	if (nsi == "generic_lua_node") { nodes_buffer[element_count] = new node_generic_lua(nid, true, count_connections(*connection_string, nid), nparam, false, false); return; };
 }
 
 void main_serial_update_loop() {
@@ -1465,6 +1470,7 @@ enter:
 	delete[] nodes_buffer;
 	LS.Close();
 	debug_server::add_debug_data(0,__FILE__, __LINE__, "_SERIAL_", "Close Serial Connections");
+	debug_server::write_log_to_file();
 	debug_server::stop_debug_server();
 	
 	std::cout << "EXIT NODESERVER WITH EXITCODE 0" << std::endl;

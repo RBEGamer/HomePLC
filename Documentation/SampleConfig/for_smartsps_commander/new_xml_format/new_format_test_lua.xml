@@ -1,0 +1,6 @@
+<?xml version="1.0"?><info schematic-list="C:\Users\Marcel\Documents\GitHub\HomePLC\Documentation\Implmented Nodes.csv" date="21.01.2016 18:36:46" schematiccount="9" />
+<schematic>
+<node nid="2" nsi="nbcobot" ncon="2:0:3:0%" nparam="%" pos="10;10" use_timer="true" is_static="true" is_lua_node="false" use_serial="false" requires_extention="false" extention_name="" pass_through="false" class_name="node_nbcobot" />
+<node nid="3" nsi="generic_lua_node" ncon="3:1:4:0%" nparam="basic_lua_script.lua%2%[0,bool,input]:%[1,bool,output]:%" pos="303;144" use_timer="true" is_static="false" is_lua_node="true" use_serial="true" requires_extention="false" extention_name="" pass_through="false" class_name="node_generic_lua" />
+<node nid="4" nsi="nbdo" ncon="" nparam="8%eqro%1%" pos="274;231" use_timer="true" is_static="false" is_lua_node="false" use_serial="true" requires_extention="true" extention_name="eqro" pass_through="false" class_name="node_nbdo" />
+</schematic><schematic></schematic><schematic></schematic><schematic></schematic><schematic></schematic><schematic></schematic><schematic></schematic><schematic></schematic><schematic></schematic></xml>

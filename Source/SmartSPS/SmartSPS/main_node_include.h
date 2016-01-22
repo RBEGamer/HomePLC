@@ -63,3 +63,5 @@
 #include "node_phhlux.h" // PHILIPS HUE LUX LAMPS  <bridge_ip><username><light_id>
 //OpenWeatherMap 
 #include "node_opwemare.h" //Current Weater Request <api_key><city_id><key_search>
+//LUA NODES
+#include "node_generic_lua.h" //a lua scripting node that executes an lua file

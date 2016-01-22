@@ -175,18 +175,113 @@ void node_generic_lua::load_node_parameters(std::string params)
 	lua_variables = new lua_variable[lua_variable_amount]();
 
 	//PARSE VARIABLE STRING
-	//[0,string,counter];[1,int,output]
+	//[0,string,counter]:xx[1,int,output]
 	if (input_param_string != "" || input_param_string != "%") {
 
+		const char* start_param = input_param_string.c_str();
+		const char* end_param = 0;
+		int _param_counter = 0;
+
+		while (true)
+		{
+			if (start_param != 0) {
+				end_param = strstr(start_param, ":");
+				if (end_param != 0) {
+					param_result = "";
+					param_result.append(start_param, end_param);
+					if (param_result != "") {
+						
+
+						// im param result is jetzt immer [0,bool,output] also noch nach , splitten und zuerst die [] entfernen
+						param_result = param_result.substr(1, param_result.length());
+						
+					
 
 
 
+
+						const char* _start_param = params.c_str();
+						const char* _end_param = 0;
+						std::string _param_result = "";
+						
+						while (true)
+						{
+							if (_start_param != 0) {
+								_end_param = strstr(_start_param, "%");
+								if (_end_param != 0) {
+									_param_result = "";
+									_param_result.append(_start_param, _end_param);
+									if (_param_result != "") {
+										//ASSIGN POINTER
+								
+
+										lua_variables[_param_counter].var_type = _input;
+
+
+										switch (_param_counter)
+										{
+										case 0: lua_variables[_param_counter].position = atoi(param_result.c_str()); break;
+										case 1:
+											
+											if (_param_result == "string") {lua_variables[_param_counter].vat_dtype = _string;}
+											if (_param_result == "bool") { lua_variables[_param_counter].vat_dtype = _bool; }
+											if (_param_result == "int") { lua_variables[_param_counter].vat_dtype = _int; }
+											if (_param_result == "float") { lua_variables[_param_counter].vat_dtype = _float; }
+											
+											break;
+										case 2: lua_variables[_param_counter].lua_variable_name = _param_result; break;
+										default:
+											break;
+										}
+
+
+										
+									
+										_start_param = _end_param + 1; //remove the %
+									}
+									else {
+										break;
+									}
+								}
+								else {
+									break;
+								}
+							}
+							else {
+								break;
+							}
+						}
+
+
+
+
+
+
+
+
+
+
+						_param_counter++;
+						start_param = end_param + 1; //remove the %
+					}
+					else {
+						break;
+					}
+				}
+				else {
+					break;
+				}
+			}
+			else {
+				break;
+			}
+		}
 
 
 
 	}
 
-	//1. nach ; splitten
+	//1. nach : splitten
 	//substring die [] entfernen
 	//nach , splitten
 	
