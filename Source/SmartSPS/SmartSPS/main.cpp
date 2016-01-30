@@ -597,7 +597,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
+			//closesocket(sock);
 		}
 		else if (requested_data == "/shutdown") {
 			volatile bool got_lock = false;
@@ -621,7 +621,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
+			//closesocket(sock);
 		}
 		else if (requested_data == "/level=error") {
 			volatile bool got_lock = false;
@@ -646,7 +646,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
+			//closesocket(sock);
 		}
 		else if (requested_data == "/level=warning") {
 			volatile bool got_lock = false;
@@ -671,7 +671,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
+			//closesocket(sock);
 		}
 		else if (requested_data == "/level=info") {
 			volatile bool got_lock = false;
@@ -696,7 +696,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
+			//closesocket(sock);
 		}
 		else {
 			std::string html_message = "<html><header></header><body><h1>HELP ERR 404</h1><hr><br>Please see: <a href='/debug'>DEBUG LOG</a><br><a href='/shutdown'>SHUTDOWN</a><br><a href='/reload'>RELOAD SCHEMATIC</a></body></html>";
@@ -712,7 +712,7 @@ namespace debug_server
 			http_header.append("\r\n");
 			http_header.append(html_message);
 			write(sock, http_header.c_str(), http_header.size());
-			closesocket(sock);
+			//closesocket(sock);
 		}
 
 
@@ -720,9 +720,9 @@ namespace debug_server
 
 		if (n < 0) {
 			perror("ERROR writing to socket");
-
+closesocket(sock);
 		}
-
+closesocket(sock);
 	}
 
 	void* debuge_server_thread(void *ptr) {
@@ -1025,7 +1025,7 @@ void make_connections(base_node* bn[], int bnsize, std::string _cstring) {
 		}
 	}
 	*/
-	//CHECK IF AÖÖ INÜPUTS CONNECTED
+	//CHECK IF Aï¿½ï¿½ INï¿½PUTS CONNECTED
 
 	free(obn);
 	free(dbn);
@@ -1267,7 +1267,7 @@ void main_serial_update_loop() {
 
 bool reload_schematic() {
 	debug_server::add_debug_data(0,__FILE__, __LINE__, "_NODE_", "RELOADING SCHEMATIC BY USER COMMAND");
-	//pointer aufräumen wenn nötig 
+	//pointer aufrï¿½umen wenn nï¿½tig 
 	//sch laden
 	connection_string = new std::string();//create string
 
