@@ -1,7 +1,10 @@
 # HomePLC
-HomePLC is a PLC for smarthome purposes, to control your lamps, devices or machines. You can use as input several sensors or webservices.
-For the HomePLC you will need at least the main unit. The main unit contains a RaspberryPi witch run the HomePLC-Server software.
-As connection to the modules (like relais, sensors,..), it uses a standard USB2RS485 stick. To connect the Mainunit to the modules it uses a 4 wire standard cable, which contains power and serial data. The Serial data bus is RS485@9600 but you can change it to our needs.
+HomePLC is a PLC for smarthome purposes, to control your lamps, devices or machines. 
+You can use as input several sensors or webservices. For the HomePLC you will need at least the main unit. 
+The main unit contains a RaspberryPi witch run the HomePLC-Server software.
+As connection to the modules (like relais, sensors,..), it uses a standard USB2RS485 stick.
+To connect the Mainunit to the modules it uses a 4 wire standard cable, which contains power and serial data. 
+The Serial data bus is RS485@9600 but you can change it to our needs.
 
 # Features:
 * RaspberryPi and Arduino based hardware
