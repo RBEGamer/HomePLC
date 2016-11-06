@@ -72,7 +72,7 @@ You can see the process and errors at the debug interfache.
 
 # IMAGES
 ### TWO EXTENTIONS (left 6 channel relais, right, 12 channel analog input)
-![Gopher image](/Documentation/Pictures/two_extentions_with_case.jpg)
+![Gopher image](/Documentation/Pictures/two_extentions_with_case.JPG)
 
 ###  BASE MAIN UNIT
 ![Gopher image](/Documentation/Pictures/base_case_complete.JPG)
