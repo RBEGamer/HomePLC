@@ -67,7 +67,7 @@ You can see the process and errors at the debug interfache.
 
 # TODO
 * Add Ethernet-Modules
-* Add node bugging
+* Add node debugging
 * Add cmakelists
 
 
