@@ -70,4 +70,13 @@ You can see the process and errors at the debug interfache.
 * Add node debugging
 * Add cmakelists
 
+# IMAGES
+### TWO EXTENTIONS (left 6 channel relais, right, 12 channel analog input)
+![Gopher image](/Documentation/Pictures/two_extentions_with_case.jpg)
+
+###  BASE MAIN UNIT
+![Gopher image](/Documentation/Pictures/base_case_complete.JPG)
+
+### OPEN MAIN UNIT
+![Gopher image](/Documentation/Pictures/base_open.JPG)
 
