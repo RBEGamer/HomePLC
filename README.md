@@ -52,18 +52,18 @@ You have several nodes like standard logical nodes :
 * Compares
 * Serial IN/OUT
 All other currently implemented nodes are located at:
-HomePLC/Documentation/Implmented Nodes.csv
+`HomePLC/Documentation/Implmented Nodes.csv`
 
 If you have designed a schematic, enter the ip to upload a xml design file to the HomePLC-MainUnit.
 The main unit will restart and will start to execute the new schematic. 
 You can see the process and errors at the debug interfache.
 
 # LOCATIONS
-* A debug build of the HomePLC-Server for the RaspberryPi3 is located at /Source/BUILDS/BUILD_15_01_2016/
-* The source of the HomePLC-Server to build ith on your own system is located at /Source/SmartSPS/
-* The HomePLC-Commander source is located at /Source/SmartPLC_Commander/
-* Sample programs for the HomePLC-Commander are located at /Documentation/SampleConfig/for_smartsps_commander/
-* Pictures of the MainUnit hardware are located at /Documentation/Pictures/
+* A debug build of the HomePLC-Server for the RaspberryPi3 is located at `/Source/BUILDS/BUILD_15_01_2016/`
+* The source of the HomePLC-Server to build ith on your own system is located at `/Source/SmartSPS/`
+* The HomePLC-Commander source is located at `/Source/SmartPLC_Commander/`
+* Sample programs for the HomePLC-Commander are located at `/Documentation/SampleConfig/for_smartsps_commander/`
+* Pictures of the MainUnit hardware are located at `/Documentation/Pictures/`
 
 # TODO
 * Add Ethernet-Modules
