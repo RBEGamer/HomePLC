@@ -42,8 +42,10 @@ The Serial data bus is RS485@9600 but you can change it to our needs.
 The software are splitted in two parts :
 * HomePLC-Server (runs on your main unit to control your devices, this repo)
 * HomePLC-Commander (Design the interaction beween the modules and create the schematic files and upload it to your main unit)
-#### The HomePLC_Commander software was moved to https://github.com/RBEGamer/HomePLC_Commander
-#### please the the description at the new location
+
+### The HomePLC_Commander software was moved to https://github.com/RBEGamer/HomePLC_Commander
+### please the the description at the new location
+
 The HomePLC schematic is a grafical control language to design a interaction between the modules.
 You have several nodes like standard logical nodes :
 * AND, OR, NOT,...
