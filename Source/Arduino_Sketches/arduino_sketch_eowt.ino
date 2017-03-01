@@ -1,6 +1,6 @@
 #include <OneWire.h>            // OneWire-Bibliothek einbinden
 #include <DallasTemperature.h>  // DS18B20-Bibliothek einbinden
-#define DS18B20_PIN 8   // Pin für DS18B20 definieren Arduino D2
+#define DS18B20_PIN 8   // Pin fÃ¼r DS18B20 definieren Arduino D2
 OneWire oneWire(DS18B20_PIN);          // OneWire Referenz setzen
 DallasTemperature sensors(&oneWire);   // DS18B20 initialisieren
 int modul_id;
@@ -58,7 +58,7 @@ if(modul_id > 0){
      
   }
   
-  delay(1000);  // 5s Pause bis zur nächsten Messung
+  delay(1000);  // 5s Pause bis zur nÃ¤chsten Messung
 }
 }
 
