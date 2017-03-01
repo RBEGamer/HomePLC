@@ -1,16 +1,9 @@
+# EXTENTION PROTOCOLS
 EQRO-ExtentionQuadRelaisOutput -> <id>_eqro_set_<h,l>_<0,1,2,3>
-
 EORO-ExtentionOctaRelaisOutput -> <id>_eqro_set_<h,l>_<0,1,2,3,4,5,6,7> //<h,l> HIGH(ON), LOW(OFF)
-
-
-
-TO BUILD
 EHAO - ExtentionHexaAnalogOutput -> <id>_eqro_set_<0,1,2,3,4,5>_<0-100> //<0-100> PERCENTAGE 0-100% Intensity
 
 
-INTERNAL PROTOCOLL
-
-
+# BASE STATION INTERNAL PROTOCOLS
 BNID - Base Node Information Display -> 0_bnid_<0-3>_<message max 15 chars> // collum<0-1> if collum >1 = clear
-
 BNDMX - Base Node DMX Output -> 0_bndmx_<0-255>_<0-255> // channel <0-255> value <0-255>
