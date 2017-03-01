@@ -21,21 +21,21 @@ The Serial data bus is RS485@9600 but you can change it to our needs.
 
 # HARDWARE (MAIN UNIT)
 * Linux based computer, to mount it at the DIN-Rail i used a RaspberryPi 3
-* 5V and 12V switching power supply
-* Arduino Micro (LED, LCD, POWER)
+* 5V and 12V switching power supply (search for combined)
+* Arduino Micro (for controlling system status: LED, LCD, POWER)
 * I2C 16x2 Display for status information
 * 3 LEDs for power, error and message signals
 * Sub-D9 female connector to connect modules
-* USB2Serial converter, if your linux board have no serial port avariable
-* RS485 transceiver chip (optional isolated)
+* 2 USB2Serial converter, if your linux board have no serial port avariable
+* RS485 transceiver chip [optional isolated]
 * DIN-Rail case
 
 # HARDWARE (SAMPLE MODULE)
 * Din-Rail case
-* 2 state leds (optional)
+* 2 state leds [optional]
 * Arduino micro
-* RS485 transceiver chip (optional isolated)
-* 2 Sub-D9 female connectors (in/out)
+* RS485 transceiver chip [optional isolated]
+* 2 Sub-D9 female connectors [in/out]
 * 4 channel relais board
 
 # SOFTWARE
