@@ -52,9 +52,12 @@ You have several nodes like standard logical nodes :
 * FLIPFLOS
 * MATH
 * CONSTANS
-* Time Nodes
+* Time/r Nodes
 * Compares
 * Serial IN/OUT
+* TCP/UDP IN/OUT
+* DMX send
+* 
 All other currently implemented nodes are located at:
 `HomePLC/Documentation/Implmented Nodes.csv`
 
