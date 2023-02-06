@@ -46,6 +46,12 @@ The software are splitted in two parts :
 
 ### The HomePLC_Commander software was moved to [HomePLC_Commander](https://github.com/RBEGamer/HomePLC_Commander)
 
+###  SCHEMATIC
+![screen_node_list_open](Documentation/Pictures/screen_node_list_open.png)
+
+###  NODE PARAMETER EDITOR
+![screen_sample_schem_param](Documentation/Pictures/screen_sample_schem_param.png)
+
 The HomePLC schematic is a grafical control language (like FUP) to design the control logic.
 You have several nodes like standard logical operations :
 * AND, OR, NOT,...
