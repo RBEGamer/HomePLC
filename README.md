@@ -27,11 +27,11 @@ The Serial data bus is RS485@9600 but you can change it to our needs.
 * I2C 16x2 Display for status information
 * 3 LEDs for power, error and message signals
 * Sub-D9 female connector to connect modules
-* 2 USB2Serial converter, if your linux board have no serial port avariable
+* 2 USB2Serial converter, if your linux board have no gpio based serial port 
 * RS485 transceiver chip [optional isolated]
 * DIN-Rail case
 
-# HARDWARE (SAMPLE MODULE)
+# HARDWARE 4-DO (SAMPLE MODULE)
 * Din-Rail case
 * 2 state leds [optional]
 * Arduino micro
@@ -44,11 +44,10 @@ The software are splitted in two parts :
 * HomePLC-Server (runs on your main unit to control your devices, this repo)
 * HomePLC-Commander (Design the interaction beween the modules and create the schematic files and upload it to your main unit)
 
-### The HomePLC_Commander software was moved to https://github.com/RBEGamer/HomePLC_Commander
-### please the the description at the new location
+### The HomePLC_Commander software was moved to [HomePLC_Commander](https://github.com/RBEGamer/HomePLC_Commander)
 
-The HomePLC schematic is a grafical control language to design a interaction between the modules.
-You have several nodes like standard logical nodes :
+The HomePLC schematic is a grafical control language (like FUP) to design the control logic.
+You have several nodes like standard logical operations :
 * AND, OR, NOT,...
 * FLIPFLOS
 * MATH
@@ -58,24 +57,25 @@ You have several nodes like standard logical nodes :
 * Serial IN/OUT
 * TCP/UDP IN/OUT
 * DMX send
-* 
+
+
 All other currently implemented nodes are located at:
-`HomePLC/Documentation/Implmented Nodes.csv`
+`./Documentation/Implmented Nodes.csv`
 
 If you have designed a schematic, enter the ip to upload a xml design file to the HomePLC-MainUnit.
 The main unit will restart and will start to execute the new schematic. 
-You can see the process and errors at the debug interfache.
+You can see the process and errors over the debug interfache.
 
 # LOCATIONS
 * A debug build of the HomePLC-Server for the RaspberryPi3 is located at `/Source/BUILDS/BUILD_15_01_2016/`
-* The source of the HomePLC-Server to build ith on your own system is located at `/Source/SmartSPS/`
-* The HomePLC-Commander source is located at `/Source/SmartPLC_Commander/`
-* Sample programs for the HomePLC-Commander are located at `/Documentation/SampleConfig/for_smartsps_commander/`
-* Pictures of the MainUnit hardware are located at `/Documentation/Pictures/`
+* The source of the HomePLC-Server to build ith on your own system is located at `./Source/SmartSPS/`
+* The HomePLC-Commander source is located at `./Source/SmartPLC_Commander/`
+* Sample programs for the HomePLC-Commander are located at `./Documentation/SampleConfig/for_smartsps_commander/`
+* Pictures of the MainUnit hardware are located at `./Documentation/Pictures/`
 
 # TODO
-* Add Ethernet-Modules
-* Add node debugging
+* Add MODBUS-TCP
+* Add realtime node debugging
 * Add cmakelists
 
 # IMAGES
